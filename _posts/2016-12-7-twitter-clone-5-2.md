@@ -93,8 +93,8 @@ connection.query(query, [id], function(err, results) {
     return;
   }
 
-  res.render('edit-tweets', { tweet: results[0] });
-}
+  res.render('edit-tweet', { tweet: results[0] });
+});
 ```
 
-We're rendering the 'edit-tweets' view and giving it the first result from our query since our results should only contain a single row.  The 'edit-tweets' EJS file doesn't exist yet, but we'll create it in the next lesson.
+We're rendering the 'edit-tweet' view and giving it the first result from our query since our results should only contain a single row.  The 'edit-tweet' EJS file doesn't exist yet, but we'll create it in the next lesson.

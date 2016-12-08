@@ -83,7 +83,7 @@ Restart your server since we added the data object to our "render" method in "ap
 
 Our tweets feed is finally coming to life, but that date is plain nasty.  We want to put it into a much easier to digest format such as "18 minutes ago".  To do this, we are going to use a library called Moment.js.
 
-Moment.js is an extremely useful library that makes working with dates really easy.  As we have with other libraries we need to install it for our project (--no-bin-links) for windows.
+Moment.js is an extremely useful library that makes working with dates really easy.  As we have with other libraries we need to install it for our project. Don't forget "--no-bin-links" for Windows.
 
 ```bash
 # Terminal
@@ -91,6 +91,14 @@ npm install moment --save
 ```
 
 With that library installed, let's require it in our "app.js" file.  Put this under the rest of our "require" calls to keep things organized.
+
+```javascript
+// app.js
+var mysql = require('mysql');
+var express = require('express');
+var bodyParser = require('body-parser');
+var moment = require('moment');
+```
 
 Moment.js is imported, so let's loop through our tweets and calculate the time from now for each tweet's "created\_at" value.  We'll add this time from now value to each tweet object as "time\_from\_now".  Our "for" loop in app.js will now look like the following.
 
