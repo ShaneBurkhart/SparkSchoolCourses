@@ -9,11 +9,11 @@ next-lesson-link: /twitter-clone/4/2
 
 Welcome to day 4 of the Twitter clone course.  Yesterday, we connected our tweet form to our server and saved the tweet to our database.  Today, we are going to get those tweets and render them on our homepage. After today, your site will feel very interactive because you can create tweets and see them appear on our feed.
 
-Since we’ve already gone over HTML and CSS basics, I’ll show you how I would go about designing a tweet in this lesson.  We’ll be walking through some of the steps and iterations we take to design the tweet.  Even though I’m going to show you more of the process, there was still a lot of trial and error involved in getting the styles I wanted.  I tell you this so you don’t get impatient when creating your own HTML and CSS.  It takes time to get things looking good.  Let’s get started.
+Since we've already gone over HTML and CSS basics, I'll show you how I would go about designing a tweet in this lesson.  We'll be walking through some of the steps and iterations we take to design the tweet.  Even though I'm going to show you more of the process, there was still a lot of trial and error involved in getting the styles I wanted.  I tell you this so you don't get impatient when creating your own HTML and CSS.  It takes time to get things looking good.  Let's get started.
 
 Before we can render our Tweets on the page, we need to make static version of a Tweet.  I like to start with a static version so I can focus on designing what I want the tweet to look like before I try to populate it with data from our database.
 
-Open “tweets.ejs” and let’s start making a tweet.  In HTML, there is an element tag called “article” that is used to contain HTML that would make sense on it’s own.  An example of this would be the contents of a blog post because a blog post should make sense on it’s own.  Tweets are the same way in that reading a single tweet should still make sense.  Let’s add an “article” element under our tweet form and give it the class “tweet” so we can style our tweet.
+Open “tweets.ejs” and let's start making a tweet.  In HTML, there is an element tag called “article” that is used to contain HTML that would make sense on it's own.  An example of this would be the contents of a blog post because a blog post should make sense on it's own.  Tweets are the same way in that reading a single tweet should still make sense.  Let's add an “article” element under our tweet form and give it the class “tweet” so we can style our tweet.
 
 ```html
 <body>
@@ -30,14 +30,14 @@ Open “tweets.ejs” and let’s start making a tweet.  In HTML, there is an el
 </body>
 ```
 
-We now have a container for our tweet, let’s add some info about our tweet.  Let’s think about what we want to show.  A tweet has a user handle, and a text body so we’ll for sure want to render that.  It’s also useful for users to know when the tweet was posted so we also need some text that tells us how long ago the tweet was created.
+We now have a container for our tweet, let's add some info about our tweet.  Let's think about what we want to show.  A tweet has a user handle, and a text body so we'll for sure want to render that.  It's also useful for users to know when the tweet was posted so we also need some text that tells us how long ago the tweet was created.
 
-First things first, let’s add our user handle and tweet body to our tweet element.
+First things first, let's add our user handle and tweet body to our tweet element.
 
 ```html
 <article class="tweet">
   <p>@DonkkaShane</p>
-  <p>I’m having a great time teaching the Twitter clone course!</p>
+  <p>I'm having a great time teaching the Twitter clone course!</p>
 </article>
 ```
 
@@ -45,7 +45,7 @@ With our web server running, if you load http://127.0.0.1:8080, you should see a
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/initial-tweet.png)
 
-Let’s add a little bit of style. The first thing we need to do is line up our text with our form inputs.  We do that by putting some padding on our article element.  It also wouldn’t be a bad idea to add a subtle border between the tweet form and the tweet.  Right now, the blue from the form runs into the white in our tweet, but they are separate entities, so we want to make a clear distinction between them.  Add the style below to “site.css”.
+Let's add a little bit of style. The first thing we need to do is line up our text with our form inputs.  We do that by putting some padding on our article element.  It also wouldn't be a bad idea to add a subtle border between the tweet form and the tweet.  Right now, the blue from the form runs into the white in our tweet, but they are separate entities, so we want to make a clear distinction between them.  Add the style below to “site.css”.
 
 ```css
 .tweet {
@@ -58,44 +58,44 @@ Reload the page and it should look like the following:
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/adding-padding-to-tweet.png)
 
-Our tweet is starting to look a little better.  We also want to display how long ago the tweet was created.  Let’s add that after our Twitter handle and separate it with a dash (“-”).
+Our tweet is starting to look a little better.  We also want to display how long ago the tweet was created.  Let's add that after our Twitter handle and separate it with a dash (“-”).
 
 ```html
 <article class="tweet">
   <p>@DonkkaShane - 18 minutes ago</p>
-  <p>I’m having a great time teaching the Twitter clone course!</p>
+  <p>I'm having a great time teaching the Twitter clone course!</p>
 </article>
 ```
 
-We just added the time since creation to the end of our first paragraph element’s contents.
+We just added the time since creation to the end of our first paragraph element's contents.
 
-Now, let’s make the handle a link to the Twitter user profile page for the handle.  We do that with an “a” HTML tag.  This stands for anchor and is a text link in HTML.  Anchor tags require only an “href” attribute that tells the browser where to go when clicking the link.  Anything inside an anchor element is the link’s text.  We want that to be our Twitter handle so we’ll wrap our handle in an anchor element. Let’s turn our handle into a link.
+Now, let's make the handle a link to the Twitter user profile page for the handle.  We do that with an “a” HTML tag.  This stands for anchor and is a text link in HTML.  Anchor tags require only an “href” attribute that tells the browser where to go when clicking the link.  Anything inside an anchor element is the link's text.  We want that to be our Twitter handle so we'll wrap our handle in an anchor element. Let's turn our handle into a link.
 
 ```html
 <article class="tweet">
   <p><a href=”http://twitter.com/DonkkaShane”>@DonkkaShane</a> - 18 minutes ago</p>
-  <p>I’m having a great time teaching the Twitter clone course!</p>
+  <p>I'm having a great time teaching the Twitter clone course!</p>
 </article>
 ```
 
-Notice we gave our link the “href” of “http://twitter.com/DonkkaShane”.  To access a user profile by handle on twitter, we follow the URL pattern of “http://twitter.com/<handle>” where we replace the “<handle>” portion with the user’s handle.  Reload the page and it should look like the following.
+Notice we gave our link the “href” of “http://twitter.com/DonkkaShane”.  To access a user profile by handle on twitter, we follow the URL pattern of “http://twitter.com/<handle>” where we replace the “<handle>” portion with the user's handle.  Reload the page and it should look like the following.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/tweet-handle-to-link.png)
 
 If you click on the link, you will be redirected to my Twitter profile page.
 
-We’re pretty close, but I think the our tweet’s time since created stands out a little too much.  Time since created is more of a fine print kind of thing and is less important to the tweet so we want to emphasize it less so we don’t detract from the tweet body and handle.  Let’s color the time since created text a light grey.
+We're pretty close, but I think the our tweet's time since created stands out a little too much.  Time since created is more of a fine print kind of thing and is less important to the tweet so we want to emphasize it less so we don't detract from the tweet body and handle.  Let's color the time since created text a light grey.
 
-To add style to a section of text, we use the “span” HTML element.  Wrap “- 18 minutes ago” in a “span” element and give it the class name of “light-grey”.  We are creating a generic light grey class so we can quickly apply it to other elements as well.  We won’t use this class again in this course, but it’s always a good idea to write style and code that is reusable to avoid duplicate code.  Let’s wrap the time since created now.
+To add style to a section of text, we use the “span” HTML element.  Wrap “- 18 minutes ago” in a “span” element and give it the class name of “light-grey”.  We are creating a generic light grey class so we can quickly apply it to other elements as well.  We won't use this class again in this course, but it's always a good idea to write style and code that is reusable to avoid duplicate code.  Let's wrap the time since created now.
 
 ```html
 <article class="tweet">
   <p><a href=”http://twitter.com/DonkkaShane”>@DonkkaShane</a><span class=”light-grey”> - 18 minutes ago</span></p>
-  <p>I’m having a great time teaching the Twitter clone course!</p>
+  <p>I'm having a great time teaching the Twitter clone course!</p>
 </article>
 ```
 
-Let’s also define our “light-grey” class style.
+Let's also define our “light-grey” class style.
 
 ```css
 .light-grey {
@@ -107,6 +107,6 @@ Now if you refresh the page, the time since created text should be a light grey.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/time-from-text-to-light-grey.png)
 
-We are going to leave our tweet style simple like above.  User profiles and uploading images is out of the scope of this course, so we aren’t going to add a profile image.  This course is about understanding the basics of a web app, so we are going to stick to understanding CRUD apps.
+We are going to leave our tweet style simple like above.  User profiles and uploading images is out of the scope of this course, so we aren't going to add a profile image.  This course is about understanding the basics of a web app, so we are going to stick to understanding CRUD apps.
 
 Now we have a static tweet, but we want to populate this with tweets from our database.  In the next section, we will be getting our tweets from our database so we can render them to the page.

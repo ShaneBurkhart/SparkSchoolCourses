@@ -28,9 +28,9 @@
         <main class="container">
             <h1>5.2 Getting Our Tweet From The Database</h1>
             <article>
-                <p>In the last lesson, we created a link to our edit tweets page, but the tweet page currently only renders the id param in the URL.  Let’s get our tweet from the database so we can pass it to our view.</p>
+                <p>In the last lesson, we created a link to our edit tweets page, but the tweet page currently only renders the id param in the URL.  Let&#39;s get our tweet from the database so we can pass it to our view.</p>
 
-<p>Previously we have been getting all tweets from the Tweets table with a SELECT query.  We’ll use this same query to get a single tweet, but we are going to add a filter to get only the tweet with the id we want.</p>
+<p>Previously we have been getting all tweets from the Tweets table with a SELECT query.  We&#39;ll use this same query to get a single tweet, but we are going to add a filter to get only the tweet with the id we want.</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Tweets</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
 <p>To do this, we add a WHERE clause to the end of our query.  The WHERE clause allows us to find all rows that match the given requirements.  In the above, we are selecting rows where the id is equal to the given parameter.  Ids uniquely identify rows so this should only return a single row.  The above gets the row with the id of 1.</p>
@@ -38,7 +38,7 @@
 <p>Since an id is taken from a URL and URLs are user input, we need to let MySQL sanitize the input.  We do this with query parameters and need to replace the a 1 above with a question mark.</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Tweets</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="o">?</span><span class="p">;</span>
 </code></pre></div>
-<p>Let’s execute this query and pass our tweet id as a parameter. We’ll print the tweet to the terminal so we can see what’s returned.</p>
+<p>Let&#39;s execute this query and pass our tweet id as a parameter. We&#39;ll print the tweet to the terminal so we can see what&#39;s returned.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
@@ -49,7 +49,7 @@
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>As always, we need to check for query errors.  For our edit page, when there is an error, we want to redirect to our homepage.  It doesn’t make sense to render an edit page if there was an error when getting our tweet.</p>
+<p>As always, we need to check for query errors.  For our edit page, when there is an error, we want to redirect to our homepage.  It doesn&#39;t make sense to render an edit page if there was an error when getting our tweet.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
@@ -60,24 +60,24 @@
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>The above is checking for an error, printing the error to the terminal, redirecting to the homepage and then returning from the query callback since we don’t want to execute the code below.</p>
+<p>The above is checking for an error, printing the error to the terminal, redirecting to the homepage and then returning from the query callback since we don&#39;t want to execute the code below.</p>
 
-<p>What if our query doesn’t return a tweet?  If we don’t find a tweet, it doesn’t make sense to render a edit tweet page since there is nothing to edit.  So in that case, we want to also redirect to the homepage.</p>
+<p>What if our query doesn&#39;t return a tweet?  If we don&#39;t find a tweet, it doesn&#39;t make sense to render a edit tweet page since there is nothing to edit.  So in that case, we want to also redirect to the homepage.</p>
 
-<p>We don’t need to create a new “if” statement since the one we have does what we want for no tweet as well.  Let’s do that with the “or” operator.</p>
+<p>We don&#39;t need to create a new “if” statement since the one we have does what we want for no tweet as well.  Let&#39;s do that with the “or” operator.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
   <span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>There are a few new things in the above “if” statement that we need to go over.  The first thing is what’s in the “if” statement’s parentheses.  The “||” is the “or” operator and allows us to make more complex decisions.  What this says is if “err” exists OR “results.length” is zero then execute the code.  The “===” returns true if both sides of the “===” are the same.  It equates to  false otherwise.</p>
+<p>There are a few new things in the above “if” statement that we need to go over.  The first thing is what&#39;s in the “if” statement&#39;s parentheses.  The “||” is the “or” operator and allows us to make more complex decisions.  What this says is if “err” exists OR “results.length” is zero then execute the code.  The “===” returns true if both sides of the “===” are the same.  It equates to  false otherwise.</p>
 
-<p>Now let’s go to the second line.  We are again using the “or” operator, but in a slightly different way.  In this case, we are giving default text to output if “err” doesn’t exist.  If “err”’ exists, “console.log()” will be passed the “err” variable.  If the “err” variable is undefined, then the text ‘No tweet found.’ will be passed to “console.log()” instead.</p>
+<p>Now let&#39;s go to the second line.  We are again using the “or” operator, but in a slightly different way.  In this case, we are giving default text to output if “err” doesn&#39;t exist.  If “err”&#39; exists, “console.log()” will be passed the “err” variable.  If the “err” variable is undefined, then the text &#39;No tweet found.&#39; will be passed to “console.log()” instead.</p>
 
-<p>Restart your server and visit a tweet edit page for an id that doesn’t exist yet.  Assuming you don’t haven’t created many tweets, visit http://127.0.0.1:8080/tweets/1000/edit and it should redirect to the homepage.</p>
+<p>Restart your server and visit a tweet edit page for an id that doesn&#39;t exist yet.  Assuming you don&#39;t haven&#39;t created many tweets, visit http://127.0.0.1:8080/tweets/1000/edit and it should redirect to the homepage.</p>
 
-<p>Alright, we have our errors and no tweet cases handled.  Let’s render an EJS file instead of sending back the id parameter. We’ll also pass our tweet to the view since we’ll need it in there.</p>
+<p>Alright, we have our errors and no tweet cases handled.  Let&#39;s render an EJS file instead of sending back the id parameter. We&#39;ll also pass our tweet to the view since we&#39;ll need it in there.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
@@ -85,10 +85,10 @@
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="err">‘</span><span class="nx">edit</span><span class="o">-</span><span class="nx">tweets</span><span class="err">’</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">});</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We’re rendering the ‘edit-tweets’ view and giving it the first result from our query since our results should only contain a single row.  The ‘edit-tweets’ EJS file doesn’t exist yet, but we’ll create it in the next lesson.</p>
+<p>We&#39;re rendering the &#39;edit-tweets&#39; view and giving it the first result from our query since our results should only contain a single row.  The &#39;edit-tweets&#39; EJS file doesn&#39;t exist yet, but we&#39;ll create it in the next lesson.</p>
 
                 
                     <a href="/twitter-clone/5/3"> Click here to go the next lesson.</a>

@@ -6,9 +6,9 @@ course: Twitter Clone
 section: 'Day 4: Showing Tweets'
 ---
 
-In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let’s pass these to our template.
+In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let's pass these to our template.
 
-The “render” method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let’s add that now and assign our “results” parameter to the “tweets” key on our data object.
+The “render” method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let's add that now and assign our “results” parameter to the “tweets” key on our data object.
 
 ```javascript
 app.get('/', function(req, res) {
@@ -28,9 +28,9 @@ app.get('/', function(req, res) {
 });
 ```
 
-Now inside our “tweets.ejs” template, we can reference the variable “tweets” to get our results array.  Let’s go into our “tweets.ejs” template and loop through our results much like we did in our homepage route.
+Now inside our “tweets.ejs” template, we can reference the variable “tweets” to get our results array.  Let's go into our “tweets.ejs” template and loop through our results much like we did in our homepage route.
 
-EJS is a template engine that allows us to run javascript code in HTML files.  So an EJS file is really just an HTML file that has a special syntax that lets us run javascript code in our template. I’m going to write a for loop in EJS below and explain it after.
+EJS is a template engine that allows us to run javascript code in HTML files.  So an EJS file is really just an HTML file that has a special syntax that lets us run javascript code in our template. I'm going to write a for loop in EJS below and explain it after.
 
 ```ejs
 <% for(var i = 0; i < tweets.length; i++) { %>
@@ -38,13 +38,13 @@ EJS is a template engine that allows us to run javascript code in HTML files.  S
 <% } %>
 ```
 
-The above code has a lot of symbols, but it’s pretty easy to break down.  To run javascript code in EJS files, we put our javascript between “<%” and “%>”.  The first line shows an example of how this works.  We define the start of our “for” loop block in EJS brackets.  We also close the “for” loop code block on the third line with the same brackets and a curly brace.  This looks just like our homepage route’s loop, but we wrap the lines with EJS brackets.
+The above code has a lot of symbols, but it's pretty easy to break down.  To run javascript code in EJS files, we put our javascript between “<%” and “%>”.  The first line shows an example of how this works.  We define the start of our “for” loop block in EJS brackets.  We also close the “for” loop code block on the third line with the same brackets and a curly brace.  This looks just like our homepage route's loop, but we wrap the lines with EJS brackets.
 
 Now every time this runs, the code and elements inside the for loop will be executed.  If we have 3 tweets, then you will see three paragraph tags appear.  Inside our paragraph element, we are outputting the tweet body.  Notice how this EJS tag starts with a “<%=” instead of just “<%”.  The equals sign tells EJS to output whatever was returned inside the tags.  So in our case, we are getting the tweet with the index “i” and getting its body.  The body will be put in each of the paragraph elements.
 
-These are really the two main EJS tags you will use.  There are a few others but they are used far less frequently so we won’t go over them.  If you want to know more, check out the EJS site.
+These are really the two main EJS tags you will use.  There are a few others but they are used far less frequently so we won't go over them.  If you want to know more, check out the EJS site.
 
-Now we know how to run javascript in EJS files, so let’s run through our tweets and output the tweets HTML for each tweet filled in with correct values.  The code will look a bit different since I formatted the first paragraph element (the one containing the handle) to be on multiple lines.  This doesn’t change any behavior of our file, it just makes it easier to read.
+Now we know how to run javascript in EJS files, so let's run through our tweets and output the tweets HTML for each tweet filled in with correct values.  The code will look a bit different since I formatted the first paragraph element (the one containing the handle) to be on multiple lines.  This doesn't change any behavior of our file, it just makes it easier to read.
 
 ```html
 <main>
@@ -66,7 +66,7 @@ Now we know how to run javascript in EJS files, so let’s run through our tweet
 </main>
 ```
 
-All I did here was substitute the hardcoded handle, body and created\_at values with EJS brackets outputting the appropriate values.  Since we would be getting “tweets[i]” a bunch, I saved this value to a variable called “tweets” at the beginning of each iteration.  We use the “tweet” variable to get each tweet’s data.
+All I did here was substitute the hardcoded handle, body and created\_at values with EJS brackets outputting the appropriate values.  Since we would be getting “tweets[i]” a bunch, I saved this value to a variable called “tweets” at the beginning of each iteration.  We use the “tweet” variable to get each tweet's data.
 
 Restart your server since we added the data object to our “render” method in “app.js”.  Load the homepage http://127.0.0.1:8080 and you should see your tweets rendered with their values.
 
@@ -80,9 +80,9 @@ Moment.js is an extremely useful library that makes working with dates really ea
 npm install moment --save
 ```
 
-With that library installed, let’s require it in our “app.js” file.  Put this under the rest of our “require” calls to keep things organized.
+With that library installed, let's require it in our “app.js” file.  Put this under the rest of our “require” calls to keep things organized.
 
-Moment.js is imported, so let’s loop through our tweets and calculate the time from now for each tweet’s “created\_at” value.  We’ll add this time from now value to each tweet object as “time\_from\_now”.  Our “for” loop in app.js will now look like the following.
+Moment.js is imported, so let's loop through our tweets and calculate the time from now for each tweet's “created\_at” value.  We'll add this time from now value to each tweet object as “time\_from\_now”.  Our “for” loop in app.js will now look like the following.
 
 ```javascript
 for(var i = 0; i < results.length; i++) {
@@ -97,7 +97,7 @@ Up until now, we have only used the dot notation to get values for keys on objec
 
 On the right side of the equals, we have our Moment.js code.  When importing Moment.js, we get a function that takes a date and returns a Moment.js date object.  The new Moment.js date has a lot of helper methods we can use to format and manipulate our date.  The method that will give us the time from now is the “fromNow” method.  This returns the date in a human friendly format like “18 minutes ago”
 
-With our new value on each tweet, let’s go back to our template and update our date to “time\_from\_now” instead of “created\_at”.
+With our new value on each tweet, let's go back to our template and update our date to “time\_from\_now” instead of “created\_at”.
 
 ```html
 <p>

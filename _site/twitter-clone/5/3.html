@@ -28,7 +28,7 @@
         <main class="container">
             <h1>5.3 Creating An Edit Tweet Page</h1>
             <article>
-                <p>In the last lesson, we got our tweet from the database and rendered the ‘edit-tweet’ EJS file, but that file doesn’t exist yet.  Let’s create an EJS file for our edit tweet page.  In the “views” directory, we are going to create a file called “edit-tweet.ejs” for our edit page.  Do that now and let’s add the basic HTML structure for our site (header, css, etc.).</p>
+                <p>In the last lesson, we got our tweet from the database and rendered the &#39;edit-tweet&#39; EJS file, but that file doesn&#39;t exist yet.  Let&#39;s create an EJS file for our edit tweet page.  In the “views” directory, we are going to create a file called “edit-tweet.ejs” for our edit page.  Do that now and let&#39;s add the basic HTML structure for our site (header, css, etc.).</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -41,17 +41,17 @@
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div>
-<p>Visit a tweet edit page and you’ll see a blank page with a header.</p>
+<p>Visit a tweet edit page and you&#39;ll see a blank page with a header.</p>
 
-<p>Let’s talk about what’s going to go on this page.  When editing a resource, it’s generally a good idea to give a preview of what it currently looks like and then a form to edit those values.  That means the first thing we need to add to our page is a tweet.  We’ve already created HTML/CSS for tweets, so no need to go over that again.</p>
+<p>Let&#39;s talk about what&#39;s going to go on this page.  When editing a resource, it&#39;s generally a good idea to give a preview of what it currently looks like and then a form to edit those values.  That means the first thing we need to add to our page is a tweet.  We&#39;ve already created HTML/CSS for tweets, so no need to go over that again.</p>
 
 <p>We could copy the tweet HTML from our homepage view into our edit tweet view, but this is generally bad practice.  If you have the tweet HTML in two places, anytime you want to make changes to a tweet, you have to update it in two places.  This can quickly cause inconsistencies and makes development tedious.</p>
 
 <p>Instead, it would be better if we could have an EJS file that defines what a tweet looks like that we could use in both locations.  Luckily, EJS can do this by including other EJS files in our views.</p>
 
-<p>Let’s first create a file in our “views” directory that is called “<em>tweet.ejs”.  Notice the “</em>” at the beginning of our files name.  It’s generally good practice to put an underscore at the beginning of a file’s name if that file only defines part of an HTML page.  Our “_tweet.ejs” is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.</p>
+<p>Let&#39;s first create a file in our “views” directory that is called “<em>tweet.ejs”.  Notice the “</em>” at the beginning of our files name.  It&#39;s generally good practice to put an underscore at the beginning of a file&#39;s name if that file only defines part of an HTML page.  Our “_tweet.ejs” is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.</p>
 
-<p>Let’s copy our tweet HTML into our “_tweet.ejs” file.</p>
+<p>Let&#39;s copy our tweet HTML into our “_tweet.ejs” file.</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;p&gt;</span>
     <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="err">&lt;</span>%= tweet.handle %&gt;<span class="nt">&lt;/a&gt;</span>
@@ -61,27 +61,27 @@
   <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/edit"</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 <span class="nt">&lt;/article&gt;</span>
 </code></pre></div>
-<p>Now that we have a tweet partial, let’s update our homepage to use it.  EJS has a function we can use to include other EJS files that is called “include”.  It follows the same pattern as our “res.render()” function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in “tweets.ejs” will now look like the following.</p>
+<p>Now that we have a tweet partial, let&#39;s update our homepage to use it.  EJS has a function we can use to include other EJS files that is called “include”.  It follows the same pattern as our “res.render()” function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in “tweets.ejs” will now look like the following.</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="err">&lt;</span>% for(var i = 0; i <span class="nt">&lt; tweets</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span> <span class="err">%</span><span class="nt">&gt;</span>
   <span class="err">&lt;</span>%- include('_tweet', { tweet: tweets[i] }); %&gt;
 <span class="err">&lt;</span>% } %&gt;
 </code></pre></div>
 <p>We are still looping through the tweets the same but we are now including our tweet partial instead of having HTML.  We specify we want to include the “_tweet” partial and give a data object that contains the tweet to render.</p>
 
-<p>The EJS tags around the “include” function call is different than we’ve done before.  The hyphen after the opening EJS tag indicates that we want to render HTML and not text.  If we used an equals sign instead of a hyphen, you would see the literal HTML code printed to the page rather than HTML elements.</p>
+<p>The EJS tags around the “include” function call is different than we&#39;ve done before.  The hyphen after the opening EJS tag indicates that we want to render HTML and not text.  If we used an equals sign instead of a hyphen, you would see the literal HTML code printed to the page rather than HTML elements.</p>
 
 <p>If you refresh your homepage, you should still see each of the tweets being rendered.</p>
 
-<p>Let’s include the tweet partial in ‘edit-tweet.ejs’.</p>
+<p>Let&#39;s include the tweet partial in &#39;edit-tweet.ejs&#39;.</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs">&lt;main&gt;
   &lt;%- include('_tweet', { tweet: tweet }); %&gt;
 &lt;/main&gt;
 </code></pre></div>
-<p>We passed our tweet from the database to “edit-tweet” as “tweet”.  We’ll pass that to our partial as “tweet” as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.</p>
+<p>We passed our tweet from the database to “edit-tweet” as “tweet”.  We&#39;ll pass that to our partial as “tweet” as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-tweet-preview-on-edit-tweet-page.png" alt=""></p>
 
-<p>The time since created is blank. This is because we didn’t add it to the tweet in our edit tweet route.  Let’s add that now.  Our final edit tweet route will look like the following.</p>
+<p>The time since created is blank. This is because we didn&#39;t add it to the tweet in our edit tweet route.  Let&#39;s add that now.  Our final edit tweet route will look like the following.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
@@ -100,7 +100,7 @@
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let’s copy our tweet form and add it below our tweet preview on the “edit-tweet” view.  We’ll change some values so our form submits to our update route.</p>
+<p>Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let&#39;s copy our tweet form and add it below our tweet preview on the “edit-tweet” view.  We&#39;ll change some values so our form submits to our update route.</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs">&lt;main&gt;
   &lt;%- include('_tweet', { tweet: tweet }); %&gt;
   &lt;form id="tweet-form" action="/tweets/&lt;%= tweet.id %&gt;/update" method="POST"&gt;
@@ -110,15 +110,15 @@
   &lt;/form&gt;
 &lt;/main&gt;
 </code></pre></div>
-<p>The first thing we change is the form “action” attribute.  Our update route is going to listen for a POST route at “/tweets/:id/update”.  We’re following the same resource-action pattern.</p>
+<p>The first thing we change is the form “action” attribute.  Our update route is going to listen for a POST route at “/tweets/:id/update”.  We&#39;re following the same resource-action pattern.</p>
 
-<p>Next, we are populating inputs with the tweet’s current values.  For “input” elements, we give populate it with the “value” attribute.  For “textarea” elements, we put the value in the elements contents.  Lastly, we updated the button to say “Update Tweet” so it’s obvious what the user is doing.</p>
+<p>Next, we are populating inputs with the tweet&#39;s current values.  For “input” elements, we give populate it with the “value” attribute.  For “textarea” elements, we put the value in the elements contents.  Lastly, we updated the button to say “Update Tweet” so it&#39;s obvious what the user is doing.</p>
 
 <p>Refresh the edit tweet page and you should see the form populated with the tweet values.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-adding-form-to-edit-tweet-page.png" alt=""></p>
 
-<p>This is looking really good.  If you try submitting the form, nothing happens yet because we haven’t defined our update tweet route.  In the next lesson, we’ll be creating our update tweet POST route and updating the tweet in the database.</p>
+<p>This is looking really good.  If you try submitting the form, nothing happens yet because we haven&#39;t defined our update tweet route.  In the next lesson, we&#39;ll be creating our update tweet POST route and updating the tweet in the database.</p>
 
                 
                     <a href="/twitter-clone/5/4"> Click here to go the next lesson.</a>

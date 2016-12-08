@@ -6,7 +6,7 @@ course: Twitter Clone
 section: 'Day 7: Restrict Updating And Deleting Tweets'
 ---
 
-In the last lesson, we implemented our middleware to restrict users from accessing tweets they didn’t create.  In this lesson, we are going to remove the edit tweet link for tweets that the user didn’t create.
+In the last lesson, we implemented our middleware to restrict users from accessing tweets they didn't create.  In this lesson, we are going to remove the edit tweet link for tweets that the user didn't create.
 
 The edit tweet links are rendered on the homepage route so we need to check if each tweet is editable there.  We are going to add an “isEditable” attribute to each tweet object in our existing loop.
 
@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 });
 ```
 
-We already have a loop that is going through the tweets that are going to be rendered, so let’s use that to check if each tweet is editable.
+We already have a loop that is going through the tweets that are going to be rendered, so let's use that to check if each tweet is editable.
 
 ```javascript
 for(var i = 0; i < results.length; i++) {
@@ -43,9 +43,9 @@ for(var i = 0; i < results.length; i++) {
 }
 ```
 
-We are setting the “isEditable” attribute to the return value of “includes”.  If the id is included in created tweets then it is editable, if it’s not, then the user can’t edit the tweet.
+We are setting the “isEditable” attribute to the return value of “includes”.  If the id is included in created tweets then it is editable, if it's not, then the user can't edit the tweet.
 
-We have the “isEditable” attribute on each tweet, so let’s go to our “_tweet.ejs” partial and add a check for “isEditable.
+We have the “isEditable” attribute on each tweet, so let's go to our “_tweet.ejs” partial and add a check for “isEditable.
 
 ```html
 <article class="tweet">
@@ -66,8 +66,8 @@ We are adding an “if” statement in EJS tags that checks the “isEditable”
 
 That concludes the Twitter clone course.  At the start of this course, you started with minimal to no knowledge and in 7 days, you learned the basics of building a web app.  With the knowledge from this course, you can now start building your own CRUD apps.
 
-There is still a lot of learning to be done, but now you have a solid understanding of the basic concepts that go into building a web app.  Everything else you’ll learn is simply adding complexity to what we have and figuring out how to solve the problems you come across.
+There is still a lot of learning to be done, but now you have a solid understanding of the basic concepts that go into building a web app.  Everything else you'll learn is simply adding complexity to what we have and figuring out how to solve the problems you come across.
 
-I’m really excited that you made it all the way through the course and would love to know what you think.  Email me at shane@trysparkschool.com to let me know what you thought of the course.  I would appreciate any feedback and if you are interested, I can help point you in the right direction to continue your education.
+I'm really excited that you made it all the way through the course and would love to know what you think.  Email me at shane@trysparkschool.com to let me know what you thought of the course.  I would appreciate any feedback and if you are interested, I can help point you in the right direction to continue your education.
 
 Thanks for taking the course and I hope to hear from you soon!

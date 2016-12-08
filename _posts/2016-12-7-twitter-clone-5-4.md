@@ -6,9 +6,9 @@ course: Twitter Clone
 section: 'Day 5: Editing Tweets'
 ---
 
-In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn’t exist yet.  In this lesson, we’ll be making that route and updating the tweet in the database.
+In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn't exist yet.  In this lesson, we'll be making that route and updating the tweet in the database.
 
-Let’s create a POST route with the “/tweets/:id/update” path.  I’m going to put this under our edit tweet route.  It’s a good idea to keep edit and update routes close since they work together.
+Let's create a POST route with the “/tweets/:id/update” path.  I'm going to put this under our edit tweet route.  It's a good idea to keep edit and update routes close since they work together.
 
 ```javascript
 app.post('/tweets/:id([0-9]+)/update', function(req, res) {
@@ -21,12 +21,12 @@ I went ahead and saved the tweet id to a variable since we will use it in just a
 Before we can update our database, we need to understand the SQL UPDATE query.  Below, is a query that updates a tweet with the the id of 1.
 
 ```sql
-UPDATE Tweets SET handle = ‘DonkkaShane’, body = ‘Updated tweet.’ WHERE id = 1;
+UPDATE Tweets SET handle = 'DonkkaShane', body = 'Updated tweet.' WHERE id = 1;
 ```
 
-UPDATE queries start with the UPDATE keyword followed by the name of the table we want to update.  Next is the SET keyword and the values we want to update come after separated by commas.  In the above example, we are setting the body to ‘Updated tweet.’ and the handle to ‘DonkkaShane’.
+UPDATE queries start with the UPDATE keyword followed by the name of the table we want to update.  Next is the SET keyword and the values we want to update come after separated by commas.  In the above example, we are setting the body to 'Updated tweet.' and the handle to 'DonkkaShane'.
 
-After the SET clause, we can add an optional WHERE clause.  If we didn’t have the WHERE clause, every row would be updated to the values we SET earlier.  The WHERE clause let’s us define which rows we update.  In our case, we are updating the row with the id of 1.
+After the SET clause, we can add an optional WHERE clause.  If we didn't have the WHERE clause, every row would be updated to the values we SET earlier.  The WHERE clause let's us define which rows we update.  In our case, we are updating the row with the id of 1.
 
 As always, we are going to use query parameters for user input in our query.  Our query will end up looking like the following.
 
@@ -34,7 +34,7 @@ As always, we are going to use query parameters for user input in our query.  Ou
 UPDATE Tweets SET handle = ?, body = ? WHERE id = ?;
 ```
 
-Like in our create tweet route, let’s get our tweet handle and body values from our request body.  We’ll pass these and the tweet id to our query as parameters.  Let’s do that now.
+Like in our create tweet route, let's get our tweet handle and body values from our request body.  We'll pass these and the tweet id to our query as parameters.  Let's do that now.
 
 ```javascript
 app.post('/tweets/:id([0-9]+)/update', function(req, res) {
@@ -48,7 +48,7 @@ app.post('/tweets/:id([0-9]+)/update', function(req, res) {
 });
 ```
 
-This will update our tweet in the database, but as always, we need to check for errors and print them to the console.  There’s no need to redirect on error because we are going to redirect to the homepage on error or success.  Let’s add an error check and redirect to our homepage.
+This will update our tweet in the database, but as always, we need to check for errors and print them to the console.  There's no need to redirect on error because we are going to redirect to the homepage on error or success.  Let's add an error check and redirect to our homepage.
 
 ```javascript
 connection.query(query, [body, handle, id], function(err) {
@@ -64,7 +64,7 @@ Restart your server, go to the edit page and submit the form with updated values
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-4-updated-tweet-in-feed.png)
 
-Here’s the final code for “app.js”.
+Here's the final code for “app.js”.
 
 ```javascript
 'use strict'

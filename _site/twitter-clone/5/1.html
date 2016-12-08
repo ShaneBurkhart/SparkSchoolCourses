@@ -28,41 +28,41 @@
         <main class="container">
             <h1>5.1 Adding An Edit Link To Tweets</h1>
             <article>
-                <p>Welcome to day 5 of the Twitter clone course.  Yesterday, we read our tweets from our database and rendered them to our homepage.  Today, we are going to cover the “U” (Update) in CRUD and learn how to edit those tweets after we have created them. Let’s get started.</p>
+                <p>Welcome to day 5 of the Twitter clone course.  Yesterday, we read our tweets from our database and rendered them to our homepage.  Today, we are going to cover the “U” (Update) in CRUD and learn how to edit those tweets after we have created them. Let&#39;s get started.</p>
 
-<p>After today, anyone that visits the site will be able to edit tweets.  This isn’t ideal, but as I’ve mentioned earlier, creating users is out of the scope of the course.  Don’t worry though, on day 7, I’m going to go over how we can restrict editing tweets to the computer that created them.</p>
+<p>After today, anyone that visits the site will be able to edit tweets.  This isn&#39;t ideal, but as I&#39;ve mentioned earlier, creating users is out of the scope of the course.  Don&#39;t worry though, on day 7, I&#39;m going to go over how we can restrict editing tweets to the computer that created them.</p>
 
-<p>Let’s talk a little about what we need to edit a tweet.  The first thing we need is a link on each tweet that takes us to a page to edit the tweet.  On that same note, we need a GET route that serves a page with a form to update the selected tweet.  This route will get the tweet from the database, render the form template and populate the form with the existing tweet data.  Much like we did when creating tweets, we need another route that the form submits to.  In this route though, we will be updating the existing tweet rather than creating a new tweet.</p>
+<p>Let&#39;s talk a little about what we need to edit a tweet.  The first thing we need is a link on each tweet that takes us to a page to edit the tweet.  On that same note, we need a GET route that serves a page with a form to update the selected tweet.  This route will get the tweet from the database, render the form template and populate the form with the existing tweet data.  Much like we did when creating tweets, we need another route that the form submits to.  In this route though, we will be updating the existing tweet rather than creating a new tweet.</p>
 
-<p>Let’s start at the beginning.  We need a link to take us to an edit tweet page.  In a previous lesson, I mentioned that it’s a good idea to define routes with the resource we are working on, followed by the action we are doing.  We are still going to follow that rule, but we’ll have to elaborate a bit since the path “/tweets/edit” has no way of determining which tweet to edit.</p>
+<p>Let&#39;s start at the beginning.  We need a link to take us to an edit tweet page.  In a previous lesson, I mentioned that it&#39;s a good idea to define routes with the resource we are working on, followed by the action we are doing.  We are still going to follow that rule, but we&#39;ll have to elaborate a bit since the path “/tweets/edit” has no way of determining which tweet to edit.</p>
 
 <p>We have an “id” column for our tweets that uniquely identifies them.  We can put the tweet id in the URL to tell our server which tweet we want to edit.  Our resource we are working on is now a specific tweet and a standard way to define this is “/tweets/:id” where “:id” is the tweet id.  Our final path comes out to “/tweets/:id/edit”.  So “/tweets/1/edit” would render a page to edit the tweet with the id of 1.</p>
 
-<p>Let’s define a GET route for our “/tweets/:id/edit” path.  I’m going to add this under our create tweet route.</p>
+<p>Let&#39;s define a GET route for our “/tweets/:id/edit” path.  I&#39;m going to add this under our create tweet route.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>You may be wondering what the “:id” portion does in our path.  In Express, we can define parameters in URL paths with a colon followed by the name of the parameter.  Forward slashes mark the beginning and end of the parameter.  Express will then extract the portion we define as a parameter and provide it to us on the request parameter passed to our route function.</p>
 
-<p>Our “req” parameter has a “params” object that holds the parameters for the request.  Let’s print the “id” parameter on our edit page so we can play around with it to see how it works.</p>
+<p>Our “req” parameter has a “params” object that holds the parameters for the request.  Let&#39;s print the “id” parameter on our edit page so we can play around with it to see how it works.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Restart your server and visit http://127.0.0.1:8080/tweets/1/edit and you’ll see a “1” on the screen.  This is really close to what we want but what happens when you put text in the “id” parameter instead of a number?</p>
+<p>Restart your server and visit http://127.0.0.1:8080/tweets/1/edit and you&#39;ll see a “1” on the screen.  This is really close to what we want but what happens when you put text in the “id” parameter instead of a number?</p>
 
-<p>Visit http://127.0.0.1:8080/tweets/some-text/edit and you should see “some-text” on our page.  We don’t want to allow text in our “id” parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I’ll add that now and explain after.</p>
+<p>Visit http://127.0.0.1:8080/tweets/some-text/edit and you should see “some-text” on our page.  We don&#39;t want to allow text in our “id” parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I&#39;ll add that now and explain after.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>The only thing we added was the “([0-9]+)” after our “id” param.  Express allows us to add an optional parenthesis at the end of the param name that contains a pattern to match.  The pattern uses regular expressions which is simply a way to match patterns in text.  Regular expressions are out of the scope of the course, but what you need to know is that the “[0-9]” part says “any number 0-9” and the “+” after says “one or more” number.</p>
 
-<p>Restart your server and visit http://127.0.0.1:8080/tweets/some-text/edit again.  You should see a screen like the following that indicates the URL isn’t valid.</p>
+<p>Restart your server and visit http://127.0.0.1:8080/tweets/some-text/edit again.  You should see a screen like the following that indicates the URL isn&#39;t valid.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-1-edit-text.png" alt=""></p>
 
-<p>Now our edit tweets path’s id parameter can only contain numbers.  Let’s add a link to our tweet that takes us to the edit page.</p>
+<p>Now our edit tweets path&#39;s id parameter can only contain numbers.  Let&#39;s add a link to our tweet that takes us to the edit page.</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="err">&lt;</span>% for(var i = 0; i <span class="nt">&lt; tweets</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span> <span class="err">%</span><span class="nt">&gt;</span>
   <span class="err">&lt;</span>% var tweet = tweets[i]; %&gt;
   <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
@@ -75,11 +75,11 @@
   <span class="nt">&lt;/article&gt;</span>
 <span class="err">&lt;</span>% } %&gt;
 </code></pre></div>
-<p>We simply added an anchor tag to each tweet with the text “Edit” and the href of “/tweets/:id/edit”.  I put this in a “p” tag so it would be on it’s own line at the bottom of the tweet.</p>
+<p>We simply added an anchor tag to each tweet with the text “Edit” and the href of “/tweets/:id/edit”.  I put this in a “p” tag so it would be on it&#39;s own line at the bottom of the tweet.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-1-edit-links-on-tweets.png" alt=""></p>
 
-<p>You can now click the “Edit” link to visit that tweet’s edit page.  Right now the page only prints the “id” parameter.  In the next lesson, we’ll be getting the tweet from the database so we can render and edit it later.</p>
+<p>You can now click the “Edit” link to visit that tweet&#39;s edit page.  Right now the page only prints the “id” parameter.  In the next lesson, we&#39;ll be getting the tweet from the database so we can render and edit it later.</p>
 
                 
                     <a href="/twitter-clone/5/2"> Click here to go the next lesson.</a>
