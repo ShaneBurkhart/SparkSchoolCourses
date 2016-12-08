@@ -6,6 +6,13 @@ course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
 ---
 
+####Table Of Contents
+
+- [3.1 Connecting To MySQL](/courses/twitter-clone/3/1)
+- [3.2 Creating The Database And Tweets Table](/courses/twitter-clone/3/2)
+- [3.3 Inserting Some Tweets Into Our Database](/courses/twitter-clone/3/3)
+- **3.4 Connecting The Tweet Form To Our Web Server**
+
 Now that we know how to create tweets, let's do that in code.  Earlier we created our tweet form, but it doesn't do anything yet.
 
 If you remember, we gave our form the “/tweets/create” action and the “POST” method.  This means when the form is submitted, the browser will send a POST request, with the form data, to http://127.0.01:8080/tweets/create. I chose the “/tweets/create” path because when defining urls, it's good practice to define the resource you are going to be working on and then the action you are going to be doing.  We are going to be working on “tweets” and are going to “create” a tweet.

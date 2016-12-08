@@ -26,9 +26,18 @@
 </header>
 
         <main class="container">
-            <h1>5.4 Updating The Tweet In The Database</h1>
             <article>
-                <p>In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn&#39;t exist yet.  In this lesson, we&#39;ll be making that route and updating the tweet in the database.</p>
+                <h1>5.4 Updating The Tweet In The Database</h1>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/5/1">5.1 Adding An Edit Link To Tweets</a></li>
+<li><a href="/courses/twitter-clone/5/2">5.2 Getting Our Tweet From The Database</a></li>
+<li><a href="/courses/twitter-clone/5/3">5.3 Creating An Edit Tweet Page</a></li>
+<li><strong>5.4 Updating The Tweet In The Database</strong></li>
+</ul>
+
+<p>In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn&#39;t exist yet.  In this lesson, we&#39;ll be making that route and updating the tweet in the database.</p>
 
 <p>Let&#39;s create a POST route with the “/tweets/:id/update” path.  I&#39;m going to put this under our edit tweet route.  It&#39;s a good idea to keep edit and update routes close since they work together.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>

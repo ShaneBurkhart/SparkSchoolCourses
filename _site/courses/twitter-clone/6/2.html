@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>6.2 Adding A Delete Button | Shane Burkhart</title>
+<title>6.2 Removing The Tweet From The Database | Shane Burkhart</title>
 <meta name="viewport" content="width=device-width">
 
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
@@ -26,9 +26,16 @@
 </header>
 
         <main class="container">
-            <h1>6.2 Adding A Delete Button</h1>
             <article>
-                <p>We now have a delete button to submit our update tweet form, but we haven&#39;t added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.</p>
+                <h1>6.2 Removing The Tweet From The Database</h1>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/6/1">6.1 Adding A Delete Button</a></li>
+<li><strong>6.2 Removing The Tweet From The Database</strong></li>
+</ul>
+
+<p>We now have a delete button to submit our update tweet form, but we haven&#39;t added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.</p>
 
 <p>To determine which button was pressed, we get the “delete_button” value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let&#39;s get that now and save it to a variable called “isDelete” under our “body” variable.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>

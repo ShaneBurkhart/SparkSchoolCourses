@@ -7,6 +7,13 @@ section: 'Day 3: Creating And Saving Tweets'
 next-lesson-link: /twitter-clone/3/4
 ---
 
+####Table Of Contents
+
+- [3.1 Connecting To MySQL](/courses/twitter-clone/3/1)
+- [3.2 Creating The Database And Tweets Table](/courses/twitter-clone/3/2)
+- **3.3 Inserting Some Tweets Into Our Database**
+- [3.4 Connecting The Tweet Form To Our Web Server](/courses/twitter-clone/3/4)
+
 Right now, our table doesn't contain any data.  Unfortunately, our form isn't working yet, but we can insert tweets manually by running SQL queries in our MySQL GUI.
 
 To insert rows into tables, we use the INSERT INTO command.  When we created the Tweets table, we gave the “id” and “created_at” columns default values.  Since the id and created_at columns are pre populated with default values, we only need to insert the user handle and the body of the tweet.  I'm going to use my Twitter handle in this case.  Run this command in your MySQL GUI and I'll explain it in a minute:

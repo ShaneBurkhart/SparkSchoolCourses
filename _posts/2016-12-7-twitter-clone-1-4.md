@@ -7,6 +7,13 @@ section: 'Day 1: Getting Your Development Environment Setup'
 next-lesson-link: /twitter-clone/1/5
 ---
 
+####Table Of Contents
+
+- [1.1 Introduction](/courses/twitter-clone/1/1)
+- [1.2 Installing Tools](/courses/twitter-clone/1/2)
+- [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
+- **1.4 Your First Javascript Program**
+
 This guide assumes you know nothing about programming so let's create and run our first program.  We are going to start with a very basic program that prints the text “Hello World!” to the terminal.  This will get your feet wet as well as ensure that everything is setup correctly for our project.
 
 It's usually a good idea to test early and often.  Coding can become tedious if you try to do everything at once.  Instead, it's better to start small and basic, make sure everything is working, and then move onto the next step.  In this tutorial, you'll notice that we are constantly checking to see if the code we wrote works as we expected.  Mistakes and errors are part of programming, so don't get discouraged.

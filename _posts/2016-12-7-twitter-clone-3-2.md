@@ -7,6 +7,13 @@ section: 'Day 3: Creating And Saving Tweets'
 next-lesson-link: /twitter-clone/3/3
 ---
 
+####Table Of Contents
+
+- [3.1 Connecting To MySQL](/courses/twitter-clone/3/1)
+- **3.2 Creating The Database And Tweets Table**
+- [3.3 Inserting Some Tweets Into Our Database](/courses/twitter-clone/3/3)
+- [3.4 Connecting The Tweet Form To Our Web Server](/courses/twitter-clone/3/4)
+
 We are now connect to our MySQL server, but we don't have a database yet.  In this section, we'll be creating a database and a table in that database called “Tweets”.  Before we can do this, let's go over what databases are and how they work.
 
 ###Understanding Databases

@@ -7,6 +7,12 @@ section: 'Day 2: Creating The Tweets Form In HTML/CSS'
 next-lesson-link: /twitter-clone/2/3
 ---
 
+####Table Of Contents
+
+- [2.1 Creating A Simple HTML Page](/courses/twitter-clone/2/1)
+- **2.2 Adding Style To Our HTML Page With CSS**
+- [2.3 Adding The Tweet Form](/courses/twitter-clone/2/3)
+
 You've now created your first HTML page, but let's start writing our Tweets feed page.  Because this is a Twitter clone, we are going to mimic Twitter's site style as much as possible.  For today, we are just going to create the Tweet form.  We'll work on rendering Tweets after we have the ability to create them.
 
 Like most website these days, we need a header bar.  Header bars have become a web standard for displaying high level site navigation.  Header bars usually contain links to about pages, blog articles, user profiles, etc.  We don't have any other pages yet so our header won't contain any links just yet.

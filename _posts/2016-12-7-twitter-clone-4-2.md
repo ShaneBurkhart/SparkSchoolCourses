@@ -7,6 +7,12 @@ section: 'Day 4: Showing Tweets'
 next-lesson-link: /twitter-clone/4/3
 ---
 
+####Table Of Contents
+
+- [4.1 Creating A Tweet In HTML/CSS](/courses/twitter-clone/4/1)
+- **4.2 Reading The Tweet From The Database**
+- [4.3 Rendering Tweets On Our Page](/courses/twitter-clone/4/3)
+
 Our page now has a static tweet, but we still need to get our tweets from our database and pass them to our “tweet.ejs” template file so it can render them.
 
 If you remember from day 3, we've been using a SELECT query to see the contents of our Tweet table.  The query we have been using is one of the simplest forms of the SELECT query and let's go over that now.

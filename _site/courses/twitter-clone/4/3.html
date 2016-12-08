@@ -26,9 +26,17 @@
 </header>
 
         <main class="container">
-            <h1>4.3 Rendering Tweets On Our Page</h1>
             <article>
-                <p>In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let&#39;s pass these to our template.</p>
+                <h1>4.3 Rendering Tweets On Our Page</h1>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/4/1">4.1 Creating A Tweet In HTML/CSS</a></li>
+<li><a href="/courses/twitter-clone/4/2">4.2 Reading The Tweet From The Database</a></li>
+<li><strong>4.3 Rendering Tweets On Our Page</strong></li>
+</ul>
+
+<p>In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let&#39;s pass these to our template.</p>
 
 <p>The “render” method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let&#39;s add that now and assign our “results” parameter to the “tweets” key on our data object.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>

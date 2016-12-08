@@ -2050,6 +2050,14 @@ a, a:hover {
   text-decoration: none;
 }
 
+ul {
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+ul li {
+  margin-bottom: 15px;
+}
+
 .highlight {
   border: 1px solid #303f45;
   border-radius: 3px;

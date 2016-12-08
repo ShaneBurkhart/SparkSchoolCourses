@@ -7,6 +7,13 @@ section: 'Day 3: Creating And Saving Tweets'
 next-lesson-link: /twitter-clone/3/2
 ---
 
+####Table Of Contents
+
+- **3.1 Connecting To MySQL**
+- [3.2 Creating The Database And Tweets Table](/courses/twitter-clone/3/2)
+- [3.3 Inserting Some Tweets Into Our Database](/courses/twitter-clone/3/3)
+- [3.4 Connecting The Tweet Form To Our Web Server](/courses/twitter-clone/3/4)
+
 Welcome to day 3 of the Twitter clone course.  Today we are going to connect the Tweet form we made in the last lesson to our server and save the Tweet to our database.
 
 This is exciting stuff because this is what separates web apps from basic websites.  Basic websites serve serve static pages that never change while web apps serve pages that are populated with data that the user can create, read, update and destroy.

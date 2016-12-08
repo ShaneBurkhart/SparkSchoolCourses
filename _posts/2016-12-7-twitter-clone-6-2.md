@@ -1,10 +1,15 @@
 ---
 layout: default
 permalink: /courses/twitter-clone/6/2
-title: 6.2 Adding A Delete Button
+title: 6.2 Removing The Tweet From The Database
 course: Twitter Clone
 section: 'Day 6: Deleting A Tweets'
 ---
+
+####Table Of Contents
+
+- [6.1 Adding A Delete Button](/courses/twitter-clone/6/1)
+- **6.2 Removing The Tweet From The Database**
 
 We now have a delete button to submit our update tweet form, but we haven't added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.
 

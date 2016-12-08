@@ -7,6 +7,13 @@ section: 'Day 5: Editing Tweets'
 next-lesson-link: /twitter-clone/5/2
 ---
 
+####Table Of Contents
+
+- **5.1 Adding An Edit Link To Tweets**
+- [5.2 Getting Our Tweet From The Database](/courses/twitter-clone/5/2)
+- [5.3 Creating An Edit Tweet Page](/courses/twitter-clone/5/3)
+- [5.4 Updating The Tweet In The Database](/courses/twitter-clone/5/4)
+
 Welcome to day 5 of the Twitter clone course.  Yesterday, we read our tweets from our database and rendered them to our homepage.  Today, we are going to cover the “U” (Update) in CRUD and learn how to edit those tweets after we have created them. Let's get started.
 
 After today, anyone that visits the site will be able to edit tweets.  This isn't ideal, but as I've mentioned earlier, creating users is out of the scope of the course.  Don't worry though, on day 7, I'm going to go over how we can restrict editing tweets to the computer that created them.

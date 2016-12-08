@@ -1,6 +1,5 @@
 @import "font-awesome/css/font-awesome.min";
 @import "syntax";
-@import "course";
 
 body, html{
     margin: 0;
@@ -63,6 +62,15 @@ p {
 
 a, a:hover {
     text-decoration: none;
+}
+
+ul {
+    margin-top: 0px;
+    margin-bottom: 25px;
+
+    li {
+        margin-bottom: 15px;
+    }
 }
 
 .highlight {

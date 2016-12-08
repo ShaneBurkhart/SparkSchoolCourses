@@ -26,9 +26,18 @@
 </header>
 
         <main class="container">
-            <h1>5.2 Getting Our Tweet From The Database</h1>
             <article>
-                <p>In the last lesson, we created a link to our edit tweets page, but the tweet page currently only renders the id param in the URL.  Let&#39;s get our tweet from the database so we can pass it to our view.</p>
+                <h1>5.2 Getting Our Tweet From The Database</h1>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/5/1">5.1 Adding An Edit Link To Tweets</a></li>
+<li><strong>5.2 Getting Our Tweet From The Database</strong></li>
+<li><a href="/courses/twitter-clone/5/3">5.3 Creating An Edit Tweet Page</a></li>
+<li><a href="/courses/twitter-clone/5/4">5.4 Updating The Tweet In The Database</a></li>
+</ul>
+
+<p>In the last lesson, we created a link to our edit tweets page, but the tweet page currently only renders the id param in the URL.  Let&#39;s get our tweet from the database so we can pass it to our view.</p>
 
 <p>Previously we have been getting all tweets from the Tweets table with a SELECT query.  We&#39;ll use this same query to get a single tweet, but we are going to add a filter to get only the tweet with the id we want.</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Tweets</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>

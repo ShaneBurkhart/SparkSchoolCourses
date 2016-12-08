@@ -7,6 +7,12 @@ section: 'Day 4: Showing Tweets'
 next-lesson-link: /twitter-clone/4/2
 ---
 
+####Table Of Contents
+
+- **4.1 Creating A Tweet In HTML/CSS**
+- [4.2 Reading The Tweet From The Database](/courses/twitter-clone/4/2)
+- [4.3 Rendering Tweets On Our Page](/courses/twitter-clone/4/3)
+
 Welcome to day 4 of the Twitter clone course.  Yesterday, we connected our tweet form to our server and saved the tweet to our database.  Today, we are going to get those tweets and render them on our homepage. After today, your site will feel very interactive because you can create tweets and see them appear on our feed.
 
 Since we've already gone over HTML and CSS basics, I'll show you how I would go about designing a tweet in this lesson.  We'll be walking through some of the steps and iterations we take to design the tweet.  Even though I'm going to show you more of the process, there was still a lot of trial and error involved in getting the styles I wanted.  I tell you this so you don't get impatient when creating your own HTML and CSS.  It takes time to get things looking good.  Let's get started.

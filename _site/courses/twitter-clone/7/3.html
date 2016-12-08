@@ -26,9 +26,17 @@
 </header>
 
         <main class="container">
-            <h1>7.3 Hiding Tweet Edit Link</h1>
             <article>
-                <p>In the last lesson, we implemented our middleware to restrict users from accessing tweets they didn&#39;t create.  In this lesson, we are going to remove the edit tweet link for tweets that the user didn&#39;t create.</p>
+                <h1>7.3 Hiding Tweet Edit Link</h1>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/7/1">7.1 Saving Created Tweets In Cookies</a></li>
+<li><a href="/courses/twitter-clone/7/2">7.2 Creating User Authentication Middleware</a></li>
+<li><strong>7.3 Hiding Tweet Edit Link</strong></li>
+</ul>
+
+<p>In the last lesson, we implemented our middleware to restrict users from accessing tweets they didn&#39;t create.  In this lesson, we are going to remove the edit tweet link for tweets that the user didn&#39;t create.</p>
 
 <p>The edit tweet links are rendered on the homepage route so we need to check if each tweet is editable there.  We are going to add an “isEditable” attribute to each tweet object in our existing loop.</p>
 

@@ -26,9 +26,17 @@
 </header>
 
         <main class="container">
-            <h1>7.2 Creating User Authentication Middleware</h1>
             <article>
-                <p>In the last lesson, we added created tweet ids to a cookie, but right now, we aren&#39;t checking these ids to see if the user can edit the tweet.  We are going to use middleware to do this.</p>
+                <h1>7.2 Creating User Authentication Middleware</h1>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/7/1">7.1 Saving Created Tweets In Cookies</a></li>
+<li><strong>7.2 Creating User Authentication Middleware</strong></li>
+<li><a href="/courses/twitter-clone/7/3">7.3 Hiding Tweet Edit Link</a></li>
+</ul>
+
+<p>In the last lesson, we added created tweet ids to a cookie, but right now, we aren&#39;t checking these ids to see if the user can edit the tweet.  We are going to use middleware to do this.</p>
 
 <p>Middleware is simply some code that gets executed before our route gets executed.  This is useful for things that need to happen on every request like logging and user authentication.  We are already using cookie-parser and body-parser middleware that parses cookies and the request body on every request.</p>
 

@@ -7,6 +7,13 @@ section: 'Day 1: Getting Your Development Environment Setup'
 next-lesson-link: /twitter-clone/1/4
 ---
 
+####Table Of Contents
+
+- [1.1 Introduction](/courses/twitter-clone/1/1)
+- [1.2 Installing Tools](/courses/twitter-clone/1/2)
+- **1.3 Setup Your Project And Connect To Your VM**
+- [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+
 To set up our project, we need to create a place to store our project files and connect to our VM so we can develop our web app in it.
 
 The first thing we need to do is create a folder for our project files.  I like to keep all of my projects on the Desktop, so we'll be creating our project directory there.  Go to your Desktop and create a folder called “TwitterClone”.  This will be our project folder.

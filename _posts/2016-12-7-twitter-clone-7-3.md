@@ -6,6 +6,12 @@ course: Twitter Clone
 section: 'Day 7: Restrict Updating And Deleting Tweets'
 ---
 
+####Table Of Contents
+
+- [7.1 Saving Created Tweets In Cookies](/courses/twitter-clone/7/1)
+- [7.2 Creating User Authentication Middleware](/courses/twitter-clone/7/2)
+- **7.3 Hiding Tweet Edit Link**
+
 In the last lesson, we implemented our middleware to restrict users from accessing tweets they didn't create.  In this lesson, we are going to remove the edit tweet link for tweets that the user didn't create.
 
 The edit tweet links are rendered on the homepage route so we need to check if each tweet is editable there.  We are going to add an “isEditable” attribute to each tweet object in our existing loop.

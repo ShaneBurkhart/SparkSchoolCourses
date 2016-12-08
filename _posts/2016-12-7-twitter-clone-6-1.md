@@ -7,6 +7,11 @@ section: 'Day 6: Deleting A Tweets'
 next-lesson-link: /twitter-clone/6/2
 ---
 
+####Table Of Contents
+
+- **6.1 Adding A Delete Button**
+- [6.2 Removing The Tweet From The Database](/courses/twitter-clone/6/2)
+
 Welcome to day 6 of the Twitter clone course.  Yesterday, we created a tweet edit page that let us update tweets.  Today, we are going to cover the “D” (Delete) in CRUD and learn how to delete tweets. Today's lesson is shorter than the previous days because there isn't much to deleting data.  Let's get started.
 
 Like editing tweets, right now, anyone that visits our site will be able to delete tweets.  Don't worry about this too much since tomorrow we will go over how to use cookies to allow only the computer that created the tweet to update or delete it.

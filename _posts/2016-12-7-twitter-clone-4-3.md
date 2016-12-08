@@ -6,6 +6,12 @@ course: Twitter Clone
 section: 'Day 4: Showing Tweets'
 ---
 
+####Table Of Contents
+
+- [4.1 Creating A Tweet In HTML/CSS](/courses/twitter-clone/4/1)
+- [4.2 Reading The Tweet From The Database](/courses/twitter-clone/4/2)
+- **4.3 Rendering Tweets On Our Page**
+
 In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let's pass these to our template.
 
 The “render” method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let's add that now and assign our “results” parameter to the “tweets” key on our data object.

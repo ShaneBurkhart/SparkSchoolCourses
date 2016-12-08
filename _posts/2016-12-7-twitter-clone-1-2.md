@@ -7,6 +7,13 @@ section: 'Day 1: Getting Your Development Environment Setup'
 next-lesson-link: /twitter-clone/1/3
 ---
 
+####Table Of Contents
+
+- [1.1 Introduction](/courses/twitter-clone/1/1)
+- **1.2 Installing Tools**
+- [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
+- [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+
 Before we can start coding, we need to install some tools that we are going to use to build our Twitter clone.  Some tools are specific to certain operating systems.  Read through the whole section to make sure you have everything you need.
 
 ###Installing VirtualBox

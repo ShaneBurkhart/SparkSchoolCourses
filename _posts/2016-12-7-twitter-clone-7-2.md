@@ -7,6 +7,12 @@ section: 'Day 7: Restrict Updating And Deleting Tweets'
 next-lesson-link: /twitter-clone/7/3
 ---
 
+####Table Of Contents
+
+- [7.1 Saving Created Tweets In Cookies](/courses/twitter-clone/7/1)
+- **7.2 Creating User Authentication Middleware**
+- [7.3 Hiding Tweet Edit Link](/courses/twitter-clone/7/3)
+
 In the last lesson, we added created tweet ids to a cookie, but right now, we aren't checking these ids to see if the user can edit the tweet.  We are going to use middleware to do this.
 
 Middleware is simply some code that gets executed before our route gets executed.  This is useful for things that need to happen on every request like logging and user authentication.  We are already using cookie-parser and body-parser middleware that parses cookies and the request body on every request.

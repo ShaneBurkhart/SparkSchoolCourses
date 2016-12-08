@@ -7,6 +7,13 @@ section: 'Day 5: Editing Tweets'
 next-lesson-link: /twitter-clone/5/3
 ---
 
+####Table Of Contents
+
+- [5.1 Adding An Edit Link To Tweets](/courses/twitter-clone/5/1)
+- **5.2 Getting Our Tweet From The Database**
+- [5.3 Creating An Edit Tweet Page](/courses/twitter-clone/5/3)
+- [5.4 Updating The Tweet In The Database](/courses/twitter-clone/5/4)
+
 In the last lesson, we created a link to our edit tweets page, but the tweet page currently only renders the id param in the URL.  Let's get our tweet from the database so we can pass it to our view.
 
 Previously we have been getting all tweets from the Tweets table with a SELECT query.  We'll use this same query to get a single tweet, but we are going to add a filter to get only the tweet with the id we want.

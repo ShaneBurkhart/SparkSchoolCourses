@@ -6,8 +6,8 @@
     <body>
         {% include header.html %}
         <main class="container">
-            <h1>{{ page.title }}</h1>
             <article>
+                <h1>{{ page.title }}</h1>
                 {{ content }}
                 {% if page.next-lesson-link %}
                     <a href="{{ page.next-lesson-link }}"> Click here to go the next lesson.</a>

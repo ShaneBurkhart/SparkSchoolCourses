@@ -7,6 +7,13 @@ section: 'Day 1: Getting Your Development Environment Setup'
 next-lesson-link: /twitter-clone/1/2
 ---
 
+####Table Of Contents
+
+- **1.1 Introduction**
+- [1.2 Installing Tools](/courses/twitter-clone/1/2)
+- [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
+- [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+
 Welcome to my course that teaches you how to build a small Twitter clone.  The course is going to teach you the basics of web developments.  As you can imagine, we can't cover everything since that would take months.  Instead, I'm going to teach you the basics that every web app is built on, so you can start building web apps yourself.
 
 I'm going to show you the process not necessarily teaching you the deep understanding of the technology.  What I mean is I'm going to show you the process I go through when building a web app so you are setup to build your own apps and fix some of your own issues you run into.
