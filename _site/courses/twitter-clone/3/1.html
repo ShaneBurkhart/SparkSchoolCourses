@@ -45,7 +45,7 @@
 
 <p>If you know how to write a basic CRUD app, you can build just about any web app you want.  Of course, some apps are more complex than others, but at the basis, you will find that it comes back to the CRUD principles.</p>
 
-<p>Each of the next four days of the course are going to be used to explain one of the four letters in CRUD.  Today, we are going to start with the “C” and learn how to create data in a database.  Before we can create any data, we need to understand a little bit about databases.</p>
+<p>Each of the next four days of the course are going to be used to explain one of the four letters in CRUD.  Today, we are going to start with the &quot;C&quot; and learn how to create data in a database.  Before we can create any data, we need to understand a little bit about databases.</p>
 
 <h3>Connect To MySQL</h3>
 
@@ -59,23 +59,23 @@
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/heidisql-session-creation.png" alt=""></p>
 
-<p>Click the button that says “New” to create a new session.  You&#39;ll see a window like the following appear.</p>
+<p>Click the button that says &quot;New&quot; to create a new session.  You&#39;ll see a window like the following appear.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/creating-new-session-in-heidisql.png" alt=""></p>
 
-<p>Under “Network type” select “MySQL (SSH tunnel) since we are going to use SSH to connect to our MySQL server running in our VM.  Our “Hostname/IP” should be “127.0.0.1”.  The user should be “vagrant” and the password should be blank.  The port should be 3306.</p>
+<p>Under &quot;Network type&quot; select &quot;MySQL (SSH tunnel) since we are going to use SSH to connect to our MySQL server running in our VM.  Our &quot;Hostname/IP&quot; should be &quot;127.0.0.1&quot;.  The user should be &quot;vagrant&quot; and the password should be blank.  The port should be 3306.</p>
 
-<p>Now go to the “SSH Tunnel” tab to configure our SSH credentials. You should see a screen like the following:</p>
+<p>Now go to the &quot;SSH Tunnel&quot; tab to configure our SSH credentials. You should see a screen like the following:</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/config-ssh-for-heidisql.png" alt=""></p>
 
-<p>In the “plink.exe location” we need to give the location of the plink.exe file we downloaded earlier.  Click on the little folder magnifying glass icon to the right of the box.  Find your plink.exe file and click open.</p>
+<p>In the &quot;plink.exe location&quot; we need to give the location of the plink.exe file we downloaded earlier.  Click on the little folder magnifying glass icon to the right of the box.  Find your plink.exe file and click open.</p>
 
-<p>For “SSH host + port” put 127.0.0.1 in the first box and 2222 in the second.  The “Username” and “Password” should both be “vagrant”. Click the open button and select yes for any popups that come up.  You should now be connected and see a screen like the following.</p>
+<p>For &quot;SSH host + port&quot; put 127.0.0.1 in the first box and 2222 in the second.  The &quot;Username&quot; and &quot;Password&quot; should both be &quot;vagrant&quot;. Click the open button and select yes for any popups that come up.  You should now be connected and see a screen like the following.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/heidisql-open-session-screen.png" alt=""></p>
 
-<p>Click on the “Query” tab in the upper middle part of the screen.  This will open a window where you can run SQL queries on the database.</p>
+<p>Click on the &quot;Query&quot; tab in the upper middle part of the screen.  This will open a window where you can run SQL queries on the database.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/heidisql-query+panel.png" alt=""></p>
 
@@ -83,25 +83,27 @@
 
 <h4>OS X</h4>
 
-<p>Open Sequel Pro and you should see a screen asking you for connection details.  Click on the “SSH” tab and fill out the form with the following info:</p>
+<p>Open Sequel Pro and you should see a screen asking you for connection details.  Click on the &quot;SSH&quot; tab and fill out the form with the following info:</p>
 
-<p>Name: Twitter Clone
-MySQL Host: 127.0.0.1
-Username: vagrant
-SSH Host: 127.0.0.1
-SSH User: vagrant
-SSH Password: vagrant
-SSH Port: 2222</p>
+<ul>
+<li>Name: Twitter Clone</li>
+<li>MySQL Host: 127.0.0.1</li>
+<li>Username: vagrant</li>
+<li>SSH Host: 127.0.0.1</li>
+<li>SSH User: vagrant</li>
+<li>SSH Password: vagrant</li>
+<li>SSH Port: 2222</li>
+</ul>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/sql-pro-login-screen.png" alt=""></p>
 
-<p>Press the “Test connection” button and if it succeeds, click “Add to Favorites” so you can get to it quickly in the future.  You should see “Twitter Clone” appear on the left hand side under “FAVORITES”.  This saves your connection configuration so you can click the “Twitter Clone” favorite to fill it in quickly.</p>
+<p>Press the &quot;Test connection&quot; button and if it succeeds, click &quot;Add to Favorites&quot; so you can get to it quickly in the future.  You should see &quot;Twitter Clone&quot; appear on the left hand side under &quot;FAVORITES&quot;.  This saves your connection configuration so you can click the &quot;Twitter Clone&quot; favorite to fill it in quickly.</p>
 
-<p>Click the “Connect” button and your screen should look like this:</p>
+<p>Click the &quot;Connect&quot; button and your screen should look like this:</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/sequel-pro-query-tab.png" alt=""></p>
 
-<p>As you can see at the top, we are in the “Query” tab.  In this tab, we can run SQL code on the MySQL server we are logged into.</p>
+<p>As you can see at the top, we are in the &quot;Query&quot; tab.  In this tab, we can run SQL code on the MySQL server we are logged into.</p>
 
 <p>In the rest of the course, I&#39;m going to mention running the SQL command in your MySQL GUI.  To run SQL queries in Sequel Pro, click on the command you want to run and press cmd+r.  Remember, semicolons mark the end of a command, so keep that in mind when selecting commands.</p>
 

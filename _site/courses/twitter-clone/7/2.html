@@ -42,18 +42,18 @@
 
 <p>The middleware that we are already using is executed on every request but you can add middleware to only specific requests.  We are going to add user authentication middleware to the edit, update and delete routes since those are the only routes that need user authentication.</p>
 
-<p>The authentication middleware will check that the tweet id we are trying to access is in our “tweets_created” cookie.  If it&#39;s not, then we will redirect to the homepage since the user shouldn&#39;t be able to access the edit tweet page.</p>
+<p>The authentication middleware will check that the tweet id we are trying to access is in our &quot;tweets_created&quot; cookie.  If it&#39;s not, then we will redirect to the homepage since the user shouldn&#39;t be able to access the edit tweet page.</p>
 
-<p>Let&#39;s start by creating a new directory in the root of our project called “middleware”.  This will hold any middleware files.  Our middleware is going to authenticate users, so we&#39;ll call our file “auth-user.js”.  Create this file in the “middleware” directory.  Add the following contents to the file and I&#39;ll explain what&#39;s going on in a minute.</p>
+<p>Let&#39;s start by creating a new directory in the root of our project called &quot;middleware&quot;.  This will hold any middleware files.  Our middleware is going to authenticate users, so we&#39;ll call our file &quot;auth-user.js&quot;.  Create this file in the &quot;middleware&quot; directory.  Add the following contents to the file and I&#39;ll explain what&#39;s going on in a minute.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
 <span class="s1">'use strict'</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>We are going to need this file in “app.js” so we&#39;ll be importing it in a minute.  First, we need to understand how you export things in node.js.  To export something in node.js, you assign what you want to export to “module.exports”.  This can be anything (function, object, array, etc). In the above code, we are exporting a function with three parameters.</p>
+<p>We are going to need this file in &quot;app.js&quot; so we&#39;ll be importing it in a minute.  First, we need to understand how you export things in node.js.  To export something in node.js, you assign what you want to export to &quot;module.exports&quot;.  This can be anything (function, object, array, etc). In the above code, we are exporting a function with three parameters.</p>
 
-<p>Now when we require this file in “app.js”, the require function will return what “module.exports” was set to for that file.  Let&#39;s require “auth-user.js” in “app.js”.  We&#39;ll put this under the requires for other middleware.</p>
+<p>Now when we require this file in &quot;app.js&quot;, the require function will return what &quot;module.exports&quot; was set to for that file.  Let&#39;s require &quot;auth-user.js&quot; in &quot;app.js&quot;.  We&#39;ll put this under the requires for other middleware.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
@@ -62,11 +62,11 @@
 <span class="kd">var</span> <span class="nx">authUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./middleware/auth-user'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
 </code></pre></div>
-<p>The require function can also be given file paths to import javascript files that aren&#39;t in a library.  The period at the beginning means current directory that “app.js” is in, then the middleware subdirectory, and then the auth-user file in there.  Node is smart enough to figure out the file extension so we don&#39;t need to add it.  Now the “authUser” variable will be set to the function with three parameters in “auth-user.js”.</p>
+<p>The require function can also be given file paths to import javascript files that aren&#39;t in a library.  The period at the beginning means current directory that &quot;app.js&quot; is in, then the middleware subdirectory, and then the auth-user file in there.  Node is smart enough to figure out the file extension so we don&#39;t need to add it.  Now the &quot;authUser&quot; variable will be set to the function with three parameters in &quot;auth-user.js&quot;.</p>
 
-<p>Although our authentication middleware doesn&#39;t do anything yet, let&#39;s add it to the edit and update routes.  To do this, we add a parameter to “app.get” and “app.post”.  Both of the methods take a path to listen for as the first argument and then any number of functions as arguments after.  These functions will be executed in the order they are given to “app.get” or “app.post” and the last argument should always be the route handler.</p>
+<p>Although our authentication middleware doesn&#39;t do anything yet, let&#39;s add it to the edit and update routes.  To do this, we add a parameter to &quot;app.get&quot; and &quot;app.post&quot;.  Both of the methods take a path to listen for as the first argument and then any number of functions as arguments after.  These functions will be executed in the order they are given to &quot;app.get&quot; or &quot;app.post&quot; and the last argument should always be the route handler.</p>
 
-<p>Let&#39;s add the “authUser” middleware as the second argument to the edit and update routes.  The third argument is now our route handler.</p>
+<p>Let&#39;s add the &quot;authUser&quot; middleware as the second argument to the edit and update routes.  The third argument is now our route handler.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
@@ -110,22 +110,22 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Currently, if you restarted your server and try to visit the edit page, your browser would keep loading until it times out.  This is because we haven&#39;t done anything in our middleware yet.  We are going to add a simple “console.log” to understand how middleware works.  I&#39;ll explain what&#39;s going on in a minute.</p>
+<p>Currently, if you restarted your server and try to visit the edit page, your browser would keep loading until it times out.  This is because we haven&#39;t done anything in our middleware yet.  We are going to add a simple &quot;console.log&quot; to understand how middleware works.  I&#39;ll explain what&#39;s going on in a minute.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This is middleware'</span><span class="p">);</span>
   <span class="nx">next</span><span class="p">();</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>If you notice, our middleware function looks a lot like our route handler.  The difference is that the middleware function has a third parameter called “next”.  In Express, middleware works in a chain of sorts.  The first middleware is called and is passed a request object, a response object and the next middleware function to be called as the third parameter.  So the first middleware calls the second, which calls the third, and so on.</p>
+<p>If you notice, our middleware function looks a lot like our route handler.  The difference is that the middleware function has a third parameter called &quot;next&quot;.  In Express, middleware works in a chain of sorts.  The first middleware is called and is passed a request object, a response object and the next middleware function to be called as the third parameter.  So the first middleware calls the second, which calls the third, and so on.</p>
 
-<p>Without calling the “next” function, the middleware chain won&#39;t be continued.  Since we weren&#39;t calling the next middleware in the chain, we were causing the request to timeout.  We&#39;ll talk a little more about how we can use this later, but for now, we just want to output the text “This is middleware” and call the next middleware.</p>
+<p>Without calling the &quot;next&quot; function, the middleware chain won&#39;t be continued.  Since we weren&#39;t calling the next middleware in the chain, we were causing the request to timeout.  We&#39;ll talk a little more about how we can use this later, but for now, we just want to output the text &quot;This is middleware&quot; and call the next middleware.</p>
 
-<p>Restart your server and visit an edit tweet page.  You should see the text “This is middleware” printed in the terminal.</p>
+<p>Restart your server and visit an edit tweet page.  You should see the text &quot;This is middleware&quot; printed in the terminal.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-2-logging-middleware.png" alt=""></p>
 
-<p>We now know our middleware is working, so let&#39;s check if the tweet id is in the “tweets_created” cookie.  We can get values from the request parameter just like we do in our route handlers.</p>
+<p>We now know our middleware is working, so let&#39;s check if the tweet id is in the &quot;tweets_created&quot; cookie.  We can get values from the request parameter just like we do in our route handlers.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
@@ -140,17 +140,17 @@
   <span class="nx">next</span><span class="p">();</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>The first thing we are doing is getting the tweet id from the parameters and getting the list of tweet ids created from the cookies.  The id parameter is text that contains the id, but we need it to be a number.  To convert text to a number, we can use the “parseInt” function.  It takes the text to parse as the first argument and the number base as the second.  We are giving it our id and passing it the number base of 10 since we want decimal.</p>
+<p>The first thing we are doing is getting the tweet id from the parameters and getting the list of tweet ids created from the cookies.  The id parameter is text that contains the id, but we need it to be a number.  To convert text to a number, we can use the &quot;parseInt&quot; function.  It takes the text to parse as the first argument and the number base as the second.  We are giving it our id and passing it the number base of 10 since we want decimal.</p>
 
-<p>For “tweetsCreated”, we are using the “or” operator again to ensure that the variable will be an empty array if the cookie hasn&#39;t been created yet.</p>
+<p>For &quot;tweetsCreated&quot;, we are using the &quot;or&quot; operator again to ensure that the variable will be an empty array if the cookie hasn&#39;t been created yet.</p>
 
-<p>Next we have an “if” statement that is checking if the “tweetsCreated” array includes the id of the tweet.  Arrays in javascript have a method “includes” that checks if the value passed is in the array.  It returns true if it is and false if it isn&#39;t.  The exclamation mark at the beginning of the check is the “not” operator.  The “not” operator simple changes true to false and false to true.</p>
+<p>Next we have an &quot;if&quot; statement that is checking if the &quot;tweetsCreated&quot; array includes the id of the tweet.  Arrays in javascript have a method &quot;includes&quot; that checks if the value passed is in the array.  It returns true if it is and false if it isn&#39;t.  The exclamation mark at the beginning of the check is the &quot;not&quot; operator.  The &quot;not&quot; operator simple changes true to false and false to true.</p>
 
-<p>Since we only want to redirect to the homepage if the tweet id doesn&#39;t exist in the cookie, we need to use the “not” operator on the value returned from the “includes” method.  Our if statement will only be executed if the id is not in the “tweetsCreated” variable.</p>
+<p>Since we only want to redirect to the homepage if the tweet id doesn&#39;t exist in the cookie, we need to use the &quot;not&quot; operator on the value returned from the &quot;includes&quot; method.  Our if statement will only be executed if the id is not in the &quot;tweetsCreated&quot; variable.</p>
 
-<p>Inside the “if” statement, we are redirecting to the homepage (“/”) and are returning early so “next” isn&#39;t called.  Since we are redirecting, we want to stop the middleware chain early so the code doesn&#39;t get to our route handler.</p>
+<p>Inside the &quot;if&quot; statement, we are redirecting to the homepage (&quot;/&quot;) and are returning early so &quot;next&quot; isn&#39;t called.  Since we are redirecting, we want to stop the middleware chain early so the code doesn&#39;t get to our route handler.</p>
 
-<p>Now if the “if” statement isn&#39;t executed, then the code will reach the “next” function call and the middleware chain will continue as normal.</p>
+<p>Now if the &quot;if&quot; statement isn&#39;t executed, then the code will reach the &quot;next&quot; function call and the middleware chain will continue as normal.</p>
 
 <p>Restart your server and let&#39;s test this.  Any tweet that was created before we added cookies should redirect you to the homepage when attempting to edit.  If you create a new tweet, and then try to edit it, you should see a form to edit the tweet.</p>
 

@@ -39,7 +39,7 @@
 
 <p>In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn&#39;t exist yet.  In this lesson, we&#39;ll be making that route and updating the tweet in the database.</p>
 
-<p>Let&#39;s create a POST route with the “/tweets/:id/update” path.  I&#39;m going to put this under our edit tweet route.  It&#39;s a good idea to keep edit and update routes close since they work together.</p>
+<p>Let&#39;s create a POST route with the &quot;/tweets/:id/update&quot; path.  I&#39;m going to put this under our edit tweet route.  It&#39;s a good idea to keep edit and update routes close since they work together.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
@@ -85,7 +85,7 @@
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-4-updated-tweet-in-feed.png" alt=""></p>
 
-<p>Here&#39;s the final code for “app.js”.</p>
+<p>Here&#39;s the final code for &quot;app.js&quot;.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="s1">'use strict'</span>
 
@@ -184,7 +184,7 @@
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Today, we went over the “U” (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the “D” (Delete).  In day 5, we will go over how we can delete tweets.</p>
+<p>Today, we went over the &quot;U&quot; (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the &quot;D&quot; (Delete).  In day 5, we will go over how we can delete tweets.</p>
 
                 
                 <div id="disqus_thread"></div>

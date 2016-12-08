@@ -19,7 +19,7 @@ Since we've already gone over HTML and CSS basics, I'll show you how I would go 
 
 Before we can render our Tweets on the page, we need to make static version of a Tweet.  I like to start with a static version so I can focus on designing what I want the tweet to look like before I try to populate it with data from our database.
 
-Open “tweets.ejs” and let's start making a tweet.  In HTML, there is an element tag called “article” that is used to contain HTML that would make sense on it's own.  An example of this would be the contents of a blog post because a blog post should make sense on it's own.  Tweets are the same way in that reading a single tweet should still make sense.  Let's add an “article” element under our tweet form and give it the class “tweet” so we can style our tweet.
+Open "tweets.ejs" and let's start making a tweet.  In HTML, there is an element tag called "article" that is used to contain HTML that would make sense on it's own.  An example of this would be the contents of a blog post because a blog post should make sense on it's own.  Tweets are the same way in that reading a single tweet should still make sense.  Let's add an "article" element under our tweet form and give it the class "tweet" so we can style our tweet.
 
 ```ejs
 <!-- views/tweets.ejs -->
@@ -53,7 +53,7 @@ With our web server running, if you load http://127.0.0.1:8080, you should see a
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/initial-tweet.png)
 
-Let's add a little bit of style. The first thing we need to do is line up our text with our form inputs.  We do that by putting some padding on our article element.  It also wouldn't be a bad idea to add a subtle border between the tweet form and the tweet.  Right now, the blue from the form runs into the white in our tweet, but they are separate entities, so we want to make a clear distinction between them.  Add the style below to “site.css”.
+Let's add a little bit of style. The first thing we need to do is line up our text with our form inputs.  We do that by putting some padding on our article element.  It also wouldn't be a bad idea to add a subtle border between the tweet form and the tweet.  Right now, the blue from the form runs into the white in our tweet, but they are separate entities, so we want to make a clear distinction between them.  Add the style below to "site.css".
 
 ```css
 /* public/css/site.css */
@@ -67,7 +67,7 @@ Reload the page and it should look like the following:
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/adding-padding-to-tweet.png)
 
-Our tweet is starting to look a little better.  We also want to display how long ago the tweet was created.  Let's add that after our Twitter handle and separate it with a dash (“-”).
+Our tweet is starting to look a little better.  We also want to display how long ago the tweet was created.  Let's add that after our Twitter handle and separate it with a dash ("-").
 
 ```ejs
 <!-- views/tweets.ejs -->
@@ -79,17 +79,17 @@ Our tweet is starting to look a little better.  We also want to display how long
 
 We just added the time since creation to the end of our first paragraph element's contents.
 
-Now, let's make the handle a link to the Twitter user profile page for the handle.  We do that with an “a” HTML tag.  This stands for anchor and is a text link in HTML.  Anchor tags require only an “href” attribute that tells the browser where to go when clicking the link.  Anything inside an anchor element is the link's text.  We want that to be our Twitter handle so we'll wrap our handle in an anchor element. Let's turn our handle into a link.
+Now, let's make the handle a link to the Twitter user profile page for the handle.  We do that with an "a" HTML tag.  This stands for anchor and is a text link in HTML.  Anchor tags require only an "href" attribute that tells the browser where to go when clicking the link.  Anything inside an anchor element is the link's text.  We want that to be our Twitter handle so we'll wrap our handle in an anchor element. Let's turn our handle into a link.
 
 ```ejs
 <!-- views/tweets.ejs -->
 <article class="tweet">
-  <p><a href=”http://twitter.com/DonkkaShane”>@DonkkaShane</a> - 18 minutes ago</p>
+  <p><a href="http://twitter.com/DonkkaShane">@DonkkaShane</a> - 18 minutes ago</p>
   <p>I'm having a great time teaching the Twitter clone course!</p>
 </article>
 ```
 
-Notice we gave our link the “href” of “http://twitter.com/DonkkaShane”.  To access a user profile by handle on twitter, we follow the URL pattern of “http://twitter.com/<handle>” where we replace the “<handle>” portion with the user's handle.  Reload the page and it should look like the following.
+Notice we gave our link the "href" of "http://twitter.com/DonkkaShane".  To access a user profile by handle on twitter, we follow the URL pattern of "http://twitter.com/<handle>" where we replace the "<handle>" portion with the user's handle.  Reload the page and it should look like the following.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/tweet-handle-to-link.png)
 
@@ -97,17 +97,17 @@ If you click on the link, you will be redirected to my Twitter profile page.
 
 We're pretty close, but I think the our tweet's time since created stands out a little too much.  Time since created is more of a fine print kind of thing and is less important to the tweet so we want to emphasize it less so we don't detract from the tweet body and handle.  Let's color the time since created text a light grey.
 
-To add style to a section of text, we use the “span” HTML element.  Wrap “- 18 minutes ago” in a “span” element and give it the class name of “light-grey”.  We are creating a generic light grey class so we can quickly apply it to other elements as well.  We won't use this class again in this course, but it's always a good idea to write style and code that is reusable to avoid duplicate code.  Let's wrap the time since created now.
+To add style to a section of text, we use the "span" HTML element.  Wrap "- 18 minutes ago" in a "span" element and give it the class name of "light-grey".  We are creating a generic light grey class so we can quickly apply it to other elements as well.  We won't use this class again in this course, but it's always a good idea to write style and code that is reusable to avoid duplicate code.  Let's wrap the time since created now.
 
 ```ejs
 <!-- views/tweets.ejs -->
 <article class="tweet">
-  <p><a href=”http://twitter.com/DonkkaShane”>@DonkkaShane</a><span class=”light-grey”> - 18 minutes ago</span></p>
+  <p><a href="http://twitter.com/DonkkaShane">@DonkkaShane</a><span class="light-grey"> - 18 minutes ago</span></p>
   <p>I'm having a great time teaching the Twitter clone course!</p>
 </article>
 ```
 
-Let's also define our “light-grey” class style.
+Let's also define our "light-grey" class style.
 
 ```css
 /* public/css/site.css */

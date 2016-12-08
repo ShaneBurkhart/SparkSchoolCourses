@@ -14,9 +14,9 @@ section: 'Day 7: Restrict Updating And Deleting Tweets'
 
 In the last lesson, we implemented our middleware to restrict users from accessing tweets they didn't create.  In this lesson, we are going to remove the edit tweet link for tweets that the user didn't create.
 
-The edit tweet links are rendered on the homepage route so we need to check if each tweet is editable there.  We are going to add an “isEditable” attribute to each tweet object in our existing loop.
+The edit tweet links are rendered on the homepage route so we need to check if each tweet is editable there.  We are going to add an "isEditable" attribute to each tweet object in our existing loop.
 
-Before we can do that, we need to get our “tweets_created” cookie and save it to a variable.  We are going to use the “or” operator again to make sure the “tweetsCreated” variable is an array.
+Before we can do that, we need to get our "tweets_created" cookie and save it to a variable.  We are going to use the "or" operator again to make sure the "tweetsCreated" variable is an array.
 
 ```javascript
 // app.js
@@ -51,9 +51,9 @@ for(var i = 0; i < results.length; i++) {
 }
 ```
 
-We are setting the “isEditable” attribute to the return value of “includes”.  If the id is included in created tweets then it is editable, if it's not, then the user can't edit the tweet.
+We are setting the "isEditable" attribute to the return value of "includes".  If the id is included in created tweets then it is editable, if it's not, then the user can't edit the tweet.
 
-We have the “isEditable” attribute on each tweet, so let's go to our “_tweet.ejs” partial and add a check for “isEditable.
+We have the "isEditable" attribute on each tweet, so let's go to our "_tweet.ejs" partial and add a check for "isEditable.
 
 ```ejs
 <!-- views/_tweet.ejs -->
@@ -69,7 +69,7 @@ We have the “isEditable” attribute on each tweet, so let's go to our “_twe
 </article>
 ```
 
-We are adding an “if” statement in EJS tags that checks the “isEditable” value on the tweet and renders the edit tweet link if it is editable.  If you restart your web server and visit your homepage, tweets that were created before cookies were added should not have an edit link.
+We are adding an "if" statement in EJS tags that checks the "isEditable" value on the tweet and renders the edit tweet link if it is editable.  If you restart your web server and visit your homepage, tweets that were created before cookies were added should not have an edit link.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-3-hidden-edit-links.png)
 

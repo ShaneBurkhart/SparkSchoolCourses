@@ -42,7 +42,7 @@
 
 <p>If you&#39;re interested in learning more about design, I recommend looking at other people&#39;s work and see if you can&#39;t replicate their design.  https://dribbble.com/ is an awesome place to get inspired by great design.</p>
 
-<p>Remember that all terminal commands we run today refer to running them in our VM.  Make sure you are logged in to your VM before getting started.  If you need help, refer back to the “Setup Your Project And Connect To Your VM” in day 1.</p>
+<p>Remember that all terminal commands we run today refer to running them in our VM.  Make sure you are logged in to your VM before getting started.  If you need help, refer back to the &quot;Setup Your Project And Connect To Your VM&quot; in day 1.</p>
 
 <h3>HTML 101</h3>
 
@@ -54,17 +54,17 @@
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/HTML-element-markup-syntax-diagram.png" alt=""></p>
 
-<p>HTML is made up of elements and each element has a closing and opening tag.  Opening tags start with “&lt;” and end with “&gt;” while closing tags start with “&lt;/” and end with “&gt;”.  Anything between the opening and closing tag is the contents of the element and the contents can be other elements.  In this case, the contents is the text “Hello World”.</p>
+<p>HTML is made up of elements and each element has a closing and opening tag.  Opening tags start with &quot;&lt;&quot; and end with &quot;&gt;&quot; while closing tags start with &quot;&lt;/&quot; and end with &quot;&gt;&quot;.  Anything between the opening and closing tag is the contents of the element and the contents can be other elements.  In this case, the contents is the text &quot;Hello World&quot;.</p>
 
 <p>Here is a pretty good reference for HTML elements.  It does a good job of splitting elements up by purpose so it&#39;s a little easier for you to find what you are looking for.</p>
 
-<p>The first thing that goes inside the opening and closing tags is the element tag name.  In the above example, our HTML element has a tag name of “h1” which stands for header 1.  This is the biggest header on the page and usually is the primary heading for the page.  H1 tags are unique on a page meaning there should only ever be one h1 tag on a given page.</p>
+<p>The first thing that goes inside the opening and closing tags is the element tag name.  In the above example, our HTML element has a tag name of &quot;h1&quot; which stands for header 1.  This is the biggest header on the page and usually is the primary heading for the page.  H1 tags are unique on a page meaning there should only ever be one h1 tag on a given page.</p>
 
-<p>The closing tag is pretty simple and only ever contains the element tag name that we are ending.  The opening tag on the other hand can contain attributes which are used to specify how elements should behave.  In the above example, we are setting the “class” attribute to the value “primary”.</p>
+<p>The closing tag is pretty simple and only ever contains the element tag name that we are ending.  The opening tag on the other hand can contain attributes which are used to specify how elements should behave.  In the above example, we are setting the &quot;class&quot; attribute to the value &quot;primary&quot;.</p>
 
-<p>Now that we understand basic HTML syntax, let&#39;s create our first page.  It&#39;s generally a good idea to keep all of you HTML in a separate directory so we stay organized.  HTML files are commonly referred to as views.  This makes sense because each file is a specific “view” we show the user. Create a folder in our project directory called “views”.  In the “views” folder, create a file called “tweets.ejs”.</p>
+<p>Now that we understand basic HTML syntax, let&#39;s create our first page.  It&#39;s generally a good idea to keep all of you HTML in a separate directory so we stay organized.  HTML files are commonly referred to as views.  This makes sense because each file is a specific &quot;view&quot; we show the user. Create a folder in our project directory called &quot;views&quot;.  In the &quot;views&quot; folder, create a file called &quot;tweets.ejs&quot;.</p>
 
-<p>You may have noticed that we used the “.ejs” file extension instead of the “.html” file extension.  This is because we are going to be using a template engine called EJS in future lessons.  EJS files can contain HTML, so for now, think of “.ejs” as an HTML file.</p>
+<p>You may have noticed that we used the &quot;.ejs&quot; file extension instead of the &quot;.html&quot; file extension.  This is because we are going to be using a template engine called EJS in future lessons.  EJS files can contain HTML, so for now, think of &quot;.ejs&quot; as an HTML file.</p>
 
 <p>Let&#39;s write a basic HTML page with a title heading and some text.  Below is the code for the page and I&#39;ll explain it in a second:</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
@@ -82,38 +82,38 @@
 
 <p>Although the doctype looks similar to an HTML element, it is not one.   The doctype just tells the browser how to interpret the file.</p>
 
-<p>The first element on the page is the “html” element.  This tag wraps the entire page and contains the elements of the page.</p>
+<p>The first element on the page is the &quot;html&quot; element.  This tag wraps the entire page and contains the elements of the page.</p>
 
-<p>Inside the “html” tag are two elements: the “head” element and the “body” element.  The “head” element is invisible and is used to define metadata and include CSS and Javascript files.  We aren&#39;t going to use the “head” element right now, so we&#39;ll explain it later.  For now, we just need to make sure it&#39;s included inside the “html” element and before the “body”.</p>
+<p>Inside the &quot;html&quot; tag are two elements: the &quot;head&quot; element and the &quot;body&quot; element.  The &quot;head&quot; element is invisible and is used to define metadata and include CSS and Javascript files.  We aren&#39;t going to use the &quot;head&quot; element right now, so we&#39;ll explain it later.  For now, we just need to make sure it&#39;s included inside the &quot;html&quot; element and before the &quot;body&quot;.</p>
 
-<p>The next child in the “html” element is the “body” element.  This element contains everything that you see on the page.</p>
+<p>The next child in the &quot;html&quot; element is the &quot;body&quot; element.  This element contains everything that you see on the page.</p>
 
-<p>Inside the “body” element, we have our  “h1” and a “p” (paragraph) elements.  The “h1” tag will display the contents, “Twitter Clone Course” and the “p” tag will display “We are learning HTML!”.</p>
+<p>Inside the &quot;body&quot; element, we have our  &quot;h1&quot; and a &quot;p&quot; (paragraph) elements.  The &quot;h1&quot; tag will display the contents, &quot;Twitter Clone Course&quot; and the &quot;p&quot; tag will display &quot;We are learning HTML!&quot;.</p>
 
-<p>All HTML files follow the same pattern as above.  They start with a doctype declaration followed by an “html” tag that contains a “head” and “body” element.  From there, it&#39;s up to you how the page will be structured.</p>
+<p>All HTML files follow the same pattern as above.  They start with a doctype declaration followed by an &quot;html&quot; tag that contains a &quot;head&quot; and &quot;body&quot; element.  From there, it&#39;s up to you how the page will be structured.</p>
 
-<p>Now that we have our page, let&#39;s have our web server render our new HTML page.  Before we can do that, we need to install the EJS library:</p>
+<p>Now that we have our page, let&#39;s have our web server render our new HTML page.  Before we can do that, we need to install the EJS library. Don&#39;t forget &quot;--no-bin-links&quot; for Windows.</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
 npm install ejs --save
 </code></pre></div>
-<p>With that saved, we can tell Express to use EJS as our templating engine.  We also need to tell Express where it can find our view (HTML) files.  To do this, we need to add these two lines under the “var app = express();” line:</p>
+<p>With that saved, we can tell Express to use EJS as our templating engine.  We also need to tell Express where it can find our view (HTML) files.  To do this, we need to add these two lines under the &quot;var app = express();&quot; line:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
 </code></pre></div>
-<p>Express provides the “set” method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a list of setting here.</p>
+<p>Express provides the &quot;set&quot; method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a list of setting here.</p>
 
-<p>In the example above, the “views” setting defines where our views can be found.  We are setting this to “./views”.  The period at the beginning means the current directory the “app.js” file is in and the “/views” part says we want the “views” directory in the current directory.</p>
+<p>In the example above, the &quot;views&quot; setting defines where our views can be found.  We are setting this to &quot;./views&quot;.  The period at the beginning means the current directory the &quot;app.js&quot; file is in and the &quot;/views&quot; part says we want the &quot;views&quot; directory in the current directory.</p>
 
-<p>The second line sets the “view engine” setting which defines which template engine to use when rendering a view.  We are setting this to “ejs” since we want to use the EJS template engine.</p>
+<p>The second line sets the &quot;view engine&quot; setting which defines which template engine to use when rendering a view.  We are setting this to &quot;ejs&quot; since we want to use the EJS template engine.</p>
 
-<p>Now that we have told Express how to handle rendering views, let&#39;s actually render our EJS file instead of print “Hello World!” text on our homepage.  To do this, we use the “render” method on the “res” variable and pass it the name of our view.  Your homepage route should now look like the following:</p>
+<p>Now that we have told Express how to handle rendering views, let&#39;s actually render our EJS file instead of print &quot;Hello World!&quot; text on our homepage.  To do this, we use the &quot;render&quot; method on the &quot;res&quot; variable and pass it the name of our view.  Your homepage route should now look like the following:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Notice how there was no need to add the “.ejs” extension to our view name.  With the settings we set earlier, Express is smart enough to figure out which file you want to render.</p>
+<p>Notice how there was no need to add the &quot;.ejs&quot; extension to our view name.  With the settings we set earlier, Express is smart enough to figure out which file you want to render.</p>
 
 <p>Here is the final code so it&#39;s easier to see everything:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
@@ -133,7 +133,7 @@ npm install ejs --save
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Save this and restart your server by pressing ctrl-c in the terminal and re running the “node app.js” command.</p>
+<p>Save this and restart your server by pressing ctrl-c in the terminal and re running the &quot;node app.js&quot; command.</p>
 
 <p>Every time we update our Javascript code, we need to restart our server to see the changes.  There are programs that can auto reload our code for us, but that&#39;s out of the scope of this course.</p>
 

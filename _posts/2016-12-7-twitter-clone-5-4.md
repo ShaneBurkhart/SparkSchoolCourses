@@ -15,7 +15,7 @@ section: 'Day 5: Editing Tweets'
 
 In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn't exist yet.  In this lesson, we'll be making that route and updating the tweet in the database.
 
-Let's create a POST route with the “/tweets/:id/update” path.  I'm going to put this under our edit tweet route.  It's a good idea to keep edit and update routes close since they work together.
+Let's create a POST route with the "/tweets/:id/update" path.  I'm going to put this under our edit tweet route.  It's a good idea to keep edit and update routes close since they work together.
 
 ```javascript
 // app.js
@@ -76,7 +76,7 @@ Restart your server, go to the edit page and submit the form with updated values
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-4-updated-tweet-in-feed.png)
 
-Here's the final code for “app.js”.
+Here's the final code for "app.js".
 
 ```javascript
 // app.js
@@ -178,4 +178,4 @@ app.post('/tweets/:id([0-9]+)/update', function(req, res) {
 });
 ```
 
-Today, we went over the “U” (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the “D” (Delete).  In day 5, we will go over how we can delete tweets.
+Today, we went over the "U" (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the "D" (Delete).  In day 5, we will go over how we can delete tweets.

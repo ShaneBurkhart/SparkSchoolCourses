@@ -14,7 +14,7 @@ next-lesson-link: /courses/twitter-clone/5/4
 - **5.3 Creating An Edit Tweet Page**
 - [5.4 Updating The Tweet In The Database](/courses/twitter-clone/5/4)
 
-In the last lesson, we got our tweet from the database and rendered the 'edit-tweet' EJS file, but that file doesn't exist yet.  Let's create an EJS file for our edit tweet page.  In the “views” directory, we are going to create a file called “edit-tweet.ejs” for our edit page.  Do that now and let's add the basic HTML structure for our site (header, css, etc.).
+In the last lesson, we got our tweet from the database and rendered the 'edit-tweet' EJS file, but that file doesn't exist yet.  Let's create an EJS file for our edit tweet page.  In the "views" directory, we are going to create a file called "edit-tweet.ejs" for our edit page.  Do that now and let's add the basic HTML structure for our site (header, css, etc.).
 
 ```ejs
 <!-- views/edit-tweet.ejs -->
@@ -39,9 +39,9 @@ We could copy the tweet HTML from our homepage view into our edit tweet view, bu
 
 Instead, it would be better if we could have an EJS file that defines what a tweet looks like that we could use in both locations.  Luckily, EJS can do this by including other EJS files in our views.
 
-Let's first create a file in our “views” directory that is called “_tweet.ejs”.  Notice the “_” at the beginning of our files name.  It's generally good practice to put an underscore at the beginning of a file's name if that file only defines part of an HTML page.  Our “_tweet.ejs” is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.
+Let's first create a file in our "views" directory that is called "_tweet.ejs".  Notice the "_" at the beginning of our files name.  It's generally good practice to put an underscore at the beginning of a file's name if that file only defines part of an HTML page.  Our "_tweet.ejs" is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.
 
-Let's copy our tweet HTML into our “_tweet.ejs” file.
+Let's copy our tweet HTML into our "_tweet.ejs" file.
 
 ```ejs
 <!-- views/_tweet.ejs -->
@@ -55,7 +55,7 @@ Let's copy our tweet HTML into our “_tweet.ejs” file.
 </article>
 ```
 
-Now that we have a tweet partial, let's update our homepage to use it.  EJS has a function we can use to include other EJS files that is called “include”.  It follows the same pattern as our “res.render()” function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in “tweets.ejs” will now look like the following.
+Now that we have a tweet partial, let's update our homepage to use it.  EJS has a function we can use to include other EJS files that is called "include".  It follows the same pattern as our "res.render()" function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in "tweets.ejs" will now look like the following.
 
 ```ejs
 <!-- views/tweets.ejs -->
@@ -64,9 +64,9 @@ Now that we have a tweet partial, let's update our homepage to use it.  EJS has 
 <% } %>
 ```
 
-We are still looping through the tweets the same but we are now including our tweet partial instead of having HTML.  We specify we want to include the “_tweet” partial and give a data object that contains the tweet to render.
+We are still looping through the tweets the same but we are now including our tweet partial instead of having HTML.  We specify we want to include the "_tweet" partial and give a data object that contains the tweet to render.
 
-The EJS tags around the “include” function call is different than we've done before.  The hyphen after the opening EJS tag indicates that we want to render HTML and not text.  If we used an equals sign instead of a hyphen, you would see the literal HTML code printed to the page rather than HTML elements.
+The EJS tags around the "include" function call is different than we've done before.  The hyphen after the opening EJS tag indicates that we want to render HTML and not text.  If we used an equals sign instead of a hyphen, you would see the literal HTML code printed to the page rather than HTML elements.
 
 If you refresh your homepage, you should still see each of the tweets being rendered.
 
@@ -79,7 +79,7 @@ Let's include the tweet partial in 'edit-tweet.ejs'.
 </main>
 ```
 
-We passed our tweet from the database to “edit-tweet” as “tweet”.  We'll pass that to our partial as “tweet” as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.
+We passed our tweet from the database to "edit-tweet" as "tweet".  We'll pass that to our partial as "tweet" as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-tweet-preview-on-edit-tweet-page.png)
 
@@ -106,7 +106,7 @@ app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
 });
 ```
 
-Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let's copy our tweet form and add it below our tweet preview on the “edit-tweet” view.  We'll change some values so our form submits to our update route.
+Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let's copy our tweet form and add it below our tweet preview on the "edit-tweet" view.  We'll change some values so our form submits to our update route.
 
 ```ejs
 <!-- views/edit-tweet.ejs -->
@@ -120,9 +120,9 @@ Our tweet preview is good to go, but we need a form to edit the tweet values.  W
 </main>
 ```
 
-The first thing we change is the form “action” attribute.  Our update route is going to listen for a POST route at “/tweets/:id/update”.  We're following the same resource-action pattern.
+The first thing we change is the form "action" attribute.  Our update route is going to listen for a POST route at "/tweets/:id/update".  We're following the same resource-action pattern.
 
-Next, we are populating inputs with the tweet's current values.  For “input” elements, we give populate it with the “value” attribute.  For “textarea” elements, we put the value in the elements contents.  Lastly, we updated the button to say “Update Tweet” so it's obvious what the user is doing.
+Next, we are populating inputs with the tweet's current values.  For "input" elements, we give populate it with the "value" attribute.  For "textarea" elements, we put the value in the elements contents.  Lastly, we updated the button to say "Update Tweet" so it's obvious what the user is doing.
 
 Refresh the edit tweet page and you should see the form populated with the tweet values.
 

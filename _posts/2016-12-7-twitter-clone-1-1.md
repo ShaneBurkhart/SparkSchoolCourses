@@ -33,6 +33,6 @@ If something seems off or doesn't make sense though, let me know and I'll do my 
 
 If you have questions or feedback for me during the course, email me at shane@trysparkschool.com.  I'll be sure to respond to you personally.
 
-As I mentioned earlier, part of being a good dev is being able to find solutions to your issues.  I am here to answer questions, but most things are already answered on Stack Overflow.  If you run into issues, I recommend going to Google and searching “stack overflow” followed by the problem you are having.
+As I mentioned earlier, part of being a good dev is being able to find solutions to your issues.  I am here to answer questions, but most things are already answered on Stack Overflow.  If you run into issues, I recommend going to Google and searching "stack overflow" followed by the problem you are having.
 
 With that out of the way, let's get started by installing some tools we are going to need.

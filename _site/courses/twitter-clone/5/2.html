@@ -76,7 +76,7 @@
 
 <p>What if our query doesn&#39;t return a tweet?  If we don&#39;t find a tweet, it doesn&#39;t make sense to render a edit tweet page since there is nothing to edit.  So in that case, we want to also redirect to the homepage.</p>
 
-<p>We don&#39;t need to create a new “if” statement since the one we have does what we want for no tweet as well.  Let&#39;s do that with the “or” operator.</p>
+<p>We don&#39;t need to create a new &quot;if&quot; statement since the one we have does what we want for no tweet as well.  Let&#39;s do that with the &quot;or&quot; operator.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
@@ -84,9 +84,9 @@
   <span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>There are a few new things in the above “if” statement that we need to go over.  The first thing is what&#39;s in the “if” statement&#39;s parentheses.  The “||” is the “or” operator and allows us to make more complex decisions.  What this says is if “err” exists OR “results.length” is zero then execute the code.  The “===” returns true if both sides of the “===” are the same.  It equates to  false otherwise.</p>
+<p>There are a few new things in the above &quot;if&quot; statement that we need to go over.  The first thing is what&#39;s in the &quot;if&quot; statement&#39;s parentheses.  The &quot;||&quot; is the &quot;or&quot; operator and allows us to make more complex decisions.  What this says is if &quot;err&quot; exists OR &quot;results.length&quot; is zero then execute the code.  The &quot;===&quot; returns true if both sides of the &quot;===&quot; are the same.  It equates to  false otherwise.</p>
 
-<p>Now let&#39;s go to the second line.  We are again using the “or” operator, but in a slightly different way.  In this case, we are giving default text to output if “err” doesn&#39;t exist.  If “err”&#39; exists, “console.log()” will be passed the “err” variable.  If the “err” variable is undefined, then the text &#39;No tweet found.&#39; will be passed to “console.log()” instead.</p>
+<p>Now let&#39;s go to the second line.  We are again using the &quot;or&quot; operator, but in a slightly different way.  In this case, we are giving default text to output if &quot;err&quot; doesn&#39;t exist.  If &quot;err&quot;&#39; exists, &quot;console.log()&quot; will be passed the &quot;err&quot; variable.  If the &quot;err&quot; variable is undefined, then the text &#39;No tweet found.&#39; will be passed to &quot;console.log()&quot; instead.</p>
 
 <p>Restart your server and visit a tweet edit page for an id that doesn&#39;t exist yet.  Assuming you don&#39;t haven&#39;t created many tweets, visit http://127.0.0.1:8080/tweets/1000/edit and it should redirect to the homepage.</p>
 

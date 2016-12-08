@@ -13,7 +13,7 @@ next-lesson-link: /courses/twitter-clone/4/3
 - **4.2 Reading The Tweet From The Database**
 - [4.3 Rendering Tweets On Our Page](/courses/twitter-clone/4/3)
 
-Our page now has a static tweet, but we still need to get our tweets from our database and pass them to our “tweet.ejs” template file so it can render them.
+Our page now has a static tweet, but we still need to get our tweets from our database and pass them to our "tweet.ejs" template file so it can render them.
 
 If you remember from day 3, we've been using a SELECT query to see the contents of our Tweet table.  The query we have been using is one of the simplest forms of the SELECT query and let's go over that now.
 
@@ -22,14 +22,14 @@ If you remember from day 3, we've been using a SELECT query to see the contents 
 SELECT * FROM Tweets;
 ```
 
-SELECT queries allow us to read data from the database and start with the SELECT keyword.  After that, we define what columns we want to get from the database.  The “*” says get all columns.  If we only wanted the id and body columns, we could do the following.  We separate the column names by commas.
+SELECT queries allow us to read data from the database and start with the SELECT keyword.  After that, we define what columns we want to get from the database.  The "*" says get all columns.  If we only wanted the id and body columns, we could do the following.  We separate the column names by commas.
 
 ```sql
 -- SQL Example
 SELECT id, body FROM Tweets;
 ```
 
-After defining the columns we want, we put the FROM keyword followed by the table name that we want to get our data from.  Our table is named “Tweets” so we are going to get data from the Tweets table.
+After defining the columns we want, we put the FROM keyword followed by the table name that we want to get our data from.  Our table is named "Tweets" so we are going to get data from the Tweets table.
 
 As I mentioned, this is the simplest form of the SELECT query and it gets all rows and columns in our Tweets table.  Since we want to order them by created_at, let's add the ORDER BY keyword to the end of our query.
 
@@ -38,9 +38,9 @@ As I mentioned, this is the simplest form of the SELECT query and it gets all ro
 SELECT * FROM Tweets ORDER BY created_at DESC;
 ```
 
-The ORDER BY section usually goes at the end of a query and lets us order our data by a column.  After the ORDER BY keyword, we give the name of the column we want to order by.  After the column name, we either put ASC to sort in ascending order or DESC for descending order.  We are ordering by the “created_at” column and want to sort them in DESC order since we want the most recently created to come first.  This will be the query we use in our homepage route.
+The ORDER BY section usually goes at the end of a query and lets us order our data by a column.  After the ORDER BY keyword, we give the name of the column we want to order by.  After the column name, we either put ASC to sort in ascending order or DESC for descending order.  We are ordering by the "created_at" column and want to sort them in DESC order since we want the most recently created to come first.  This will be the query we use in our homepage route.
 
-Let's execute this query in our homepage “/” route like we did in our create tweet route.  We'll also move the line that renders the “tweets.ejs” file to inside the query callback since the template will need the tweets from the query.  This time when we call the “query” method, we won't have any query parameters to pass.  Just the query and the callback.
+Let's execute this query in our homepage "/" route like we did in our create tweet route.  We'll also move the line that renders the "tweets.ejs" file to inside the query callback since the template will need the tweets from the query.  This time when we call the "query" method, we won't have any query parameters to pass.  Just the query and the callback.
 
 ```javascript
 // app.js
@@ -55,7 +55,7 @@ app.get('/', function(req, res) {
 
 I set the query to a variable again since it's easier to read.  If you ever have code that is hard to read, it is usually a good idea to restructure how you are doing it so it's easier to read in the future.
 
-We're now getting tweets, but as always, we need to check for errors and print them if they exist.  We still want to render our homepage if there is a query error so there's no need for the “return” keyword.
+We're now getting tweets, but as always, we need to check for errors and print them if they exist.  We still want to render our homepage if there is a query error so there's no need for the "return" keyword.
 
 ```javascript
 // app.js
@@ -72,7 +72,7 @@ app.get('/', function(req, res) {
 });
 ```
 
-The second parameter to the query callback contains the query results and we are naming that parameter“results”.  This is an array (list) of rows from our database.  We can run through these with a thing called a loop.  Loops let us execute a block of code over and over until we tell it to stop.  The loop we are going to use is the “for” loop.  I'll give an example and then explain what's going on.
+The second parameter to the query callback contains the query results and we are naming that parameter"results".  This is an array (list) of rows from our database.  We can run through these with a thing called a loop.  Loops let us execute a block of code over and over until we tell it to stop.  The loop we are going to use is the "for" loop.  I'll give an example and then explain what's going on.
 
 ```javascript
 // Javascript Example
@@ -81,17 +81,17 @@ for(var i = 0; i < 4; i++) {
 }
 ```
 
-For loops start with the “for” keyword followed by parenthesis that tell the loop how to execute.  After the parenthesis, we have curly brackets that contain the code block that will run on each iteration of the loop.
+For loops start with the "for" keyword followed by parenthesis that tell the loop how to execute.  After the parenthesis, we have curly brackets that contain the code block that will run on each iteration of the loop.
 
-Inside the parenthesis, there are three parts separated by semicolons.  The first section gets executed before the loop executes for the first time.  In the above “for” loop, we are setting the variable “i” to the value 0.
+Inside the parenthesis, there are three parts separated by semicolons.  The first section gets executed before the loop executes for the first time.  In the above "for" loop, we are setting the variable "i" to the value 0.
 
-The next section in the parenthesis is the test condition for whether the loop should run.  If it returns true, then the loop will execute.  Ours is checking if the “i” variable is less than 4.  If “i” is less than 4, the loop's code block will be executed and if “i” is 4 or greater, the loop stops and code execution continues under the for loop.
+The next section in the parenthesis is the test condition for whether the loop should run.  If it returns true, then the loop will execute.  Ours is checking if the "i" variable is less than 4.  If "i" is less than 4, the loop's code block will be executed and if "i" is 4 or greater, the loop stops and code execution continues under the for loop.
 
-The third section in the parenthesis executes after every iteration.  Ours has the code “i++” which is incrementing the “i” variable by 1.  This is short for “i = i + 1;”.
+The third section in the parenthesis executes after every iteration.  Ours has the code "i++" which is incrementing the "i" variable by 1.  This is short for "i = i + 1;".
 
-Based on what I just said, the for loop will print the number 0 to 3 and then stop execution.  If this doesn't make sense, you can walk through it.  On initialization, “i” gets set to zero.  The test condition is check and “i” is less than 4 so we execute the code block.  Our code is printing the variable “i” so it will print 0 on the first iteration.  After the first iteration, the third section in the parenthesis increments “i” so it will be 1 on the second iteration.  This pattern continues until the test condition is false.  That happens when “i” is 4 and the for loop will stop.
+Based on what I just said, the for loop will print the number 0 to 3 and then stop execution.  If this doesn't make sense, you can walk through it.  On initialization, "i" gets set to zero.  The test condition is check and "i" is less than 4 so we execute the code block.  Our code is printing the variable "i" so it will print 0 on the first iteration.  After the first iteration, the third section in the parenthesis increments "i" so it will be 1 on the second iteration.  This pattern continues until the test condition is false.  That happens when "i" is 4 and the for loop will stop.
 
-Let's use a for loop to go through our results.  I mentioned that our results parameter is an array of rows returned.  Arrays have a “length” property that will tell us how many items there are in the array.  We use the dot notation on our array as if we were getting the “length” value from an object.  The following will return how many results are in our array.
+Let's use a for loop to go through our results.  I mentioned that our results parameter is an array of rows returned.  Arrays have a "length" property that will tell us how many items there are in the array.  We use the dot notation on our array as if we were getting the "length" value from an object.  The following will return how many results are in our array.
 
 ```javascript
 // Javascript Example
@@ -119,7 +119,7 @@ app.get('/', function(req, res) {
 });
 ```
 
-Since the first item in an array has an index of 0, we check if “i” is less than the length of the array.
+Since the first item in an array has an index of 0, we check if "i" is less than the length of the array.
 
 Assuming you inserted Tweets into your database earlier, you can restart your web server and load the homepage http://127.0.0.1:8080/ to see our tweets get printed to our terminal.
 
@@ -127,4 +127,4 @@ Assuming you inserted Tweets into your database earlier, you can restart your we
 
 As you can see, each row is an object containing the data for each tweet.  We'll need the for loop in our next lesson so we're going to leave it there for now.  I more wanted to show you what was returned by our query.
 
-In the next lesson, we'll be passing these tweets to our “tweets.ejs” template and rendering them to the page.
+In the next lesson, we'll be passing these tweets to our "tweets.ejs" template and rendering them to the page.

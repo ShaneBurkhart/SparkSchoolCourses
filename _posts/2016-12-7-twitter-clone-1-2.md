@@ -51,17 +51,17 @@ Unfortunately, there isn't a great GUI that runs on both OS X and Windows so we 
 
 Go to http://www.heidisql.com/download.php?download=installer which should start downloading the installer.  Open the installer you just downloaded and use the default settings.
 
-HeidiSQL also requires we download a program called plink.exe.  Go to this page http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html and click the link that says “plink.exe”.  Put this somewhere easy to access because we will need this later.
+HeidiSQL also requires we download a program called plink.exe.  Go to this page http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html and click the link that says "plink.exe".  Put this somewhere easy to access because we will need this later.
 
 ####OS X - Sequel Pro
 
-Go to https://www.sequelpro.com/ and click on the download link.  Open the file you just downloaded and drag the Sequel Pro icon to your “Applications” folder.
+Go to https://www.sequelpro.com/ and click on the download link.  Open the file you just downloaded and drag the Sequel Pro icon to your "Applications" folder.
 
 ###Install Putty For Windows
 
 Because we want to run commands in our VM, we need a way to log into it.  On OS X and Linux, there are tools built in for us to do that and Vagrant handles it for us.  On Windows however, the same tools don't exist so we need to use something else.  We are going to use a program called PuTTY which will let us log into our VM.  I'll cover what I'm talking about more in detail later, but for now, if you are running Windows, you need to install PuTTY.
 
-Go to http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html and click the link that says “putty.exe”.  There is no installer for Putty and instead put the downloaded file somewhere easy to access (where you put plink.exe).  This file opens Putty.
+Go to http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html and click the link that says "putty.exe".  There is no installer for Putty and instead put the downloaded file somewhere easy to access (where you put plink.exe).  This file opens Putty.
 
 ###Install Chrome Browser
 

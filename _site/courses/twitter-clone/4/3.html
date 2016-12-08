@@ -38,7 +38,7 @@
 
 <p>In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let&#39;s pass these to our template.</p>
 
-<p>The “render” method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let&#39;s add that now and assign our “results” parameter to the “tweets” key on our data object.</p>
+<p>The &quot;render&quot; method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let&#39;s add that now and assign our &quot;results&quot; parameter to the &quot;tweets&quot; key on our data object.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets ORDER BY created_at DESC'</span><span class="p">;</span>
@@ -56,7 +56,7 @@
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Now inside our “tweets.ejs” template, we can reference the variable “tweets” to get our results array.  Let&#39;s go into our “tweets.ejs” template and loop through our results much like we did in our homepage route.</p>
+<p>Now inside our &quot;tweets.ejs&quot; template, we can reference the variable &quot;tweets&quot; to get our results array.  Let&#39;s go into our &quot;tweets.ejs&quot; template and loop through our results much like we did in our homepage route.</p>
 
 <p>EJS is a template engine that allows us to run javascript code in HTML files.  So an EJS file is really just an HTML file that has a special syntax that lets us run javascript code in our template. I&#39;m going to write a for loop in EJS below and explain it after.</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- EJS Example --&gt;</span>
@@ -64,9 +64,9 @@
   <span class="nt">&lt;p&gt;</span><span class="k">&lt;%= </span><span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/p&gt;</span>
 <span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
 </code></pre></div>
-<p>The above code has a lot of symbols, but it&#39;s pretty easy to break down.  To run javascript code in EJS files, we put our javascript between “&lt;%” and “%&gt;”.  The first line shows an example of how this works.  We define the start of our “for” loop block in EJS brackets.  We also close the “for” loop code block on the third line with the same brackets and a curly brace.  This looks just like our homepage route&#39;s loop, but we wrap the lines with EJS brackets.</p>
+<p>The above code has a lot of symbols, but it&#39;s pretty easy to break down.  To run javascript code in EJS files, we put our javascript between &quot;&lt;%&quot; and &quot;%&gt;&quot;.  The first line shows an example of how this works.  We define the start of our &quot;for&quot; loop block in EJS brackets.  We also close the &quot;for&quot; loop code block on the third line with the same brackets and a curly brace.  This looks just like our homepage route&#39;s loop, but we wrap the lines with EJS brackets.</p>
 
-<p>Now every time this runs, the code and elements inside the for loop will be executed.  If we have 3 tweets, then you will see three paragraph tags appear.  Inside our paragraph element, we are outputting the tweet body.  Notice how this EJS tag starts with a “&lt;%=” instead of just “&lt;%”.  The equals sign tells EJS to output whatever was returned inside the tags.  So in our case, we are getting the tweet with the index “i” and getting its body.  The body will be put in each of the paragraph elements.</p>
+<p>Now every time this runs, the code and elements inside the for loop will be executed.  If we have 3 tweets, then you will see three paragraph tags appear.  Inside our paragraph element, we are outputting the tweet body.  Notice how this EJS tag starts with a &quot;&lt;%=&quot; instead of just &quot;&lt;%&quot;.  The equals sign tells EJS to output whatever was returned inside the tags.  So in our case, we are getting the tweet with the index &quot;i&quot; and getting its body.  The body will be put in each of the paragraph elements.</p>
 
 <p>These are really the two main EJS tags you will use.  There are a few others but they are used far less frequently so we won&#39;t go over them.  If you want to know more, check out the EJS site.</p>
 
@@ -90,34 +90,34 @@
   <span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
 <span class="nt">&lt;/main&gt;</span>
 </code></pre></div>
-<p>All I did here was substitute the hardcoded handle, body and created_at values with EJS brackets outputting the appropriate values.  Since we would be getting “tweets[i]” a bunch, I saved this value to a variable called “tweets” at the beginning of each iteration.  We use the “tweet” variable to get each tweet&#39;s data.</p>
+<p>All I did here was substitute the hardcoded handle, body and created_at values with EJS brackets outputting the appropriate values.  Since we would be getting &quot;tweets[i]&quot; a bunch, I saved this value to a variable called &quot;tweets&quot; at the beginning of each iteration.  We use the &quot;tweet&quot; variable to get each tweet&#39;s data.</p>
 
-<p>Restart your server since we added the data object to our “render” method in “app.js”.  Load the homepage http://127.0.0.1:8080 and you should see your tweets rendered with their values.</p>
+<p>Restart your server since we added the data object to our &quot;render&quot; method in &quot;app.js&quot;.  Load the homepage http://127.0.0.1:8080 and you should see your tweets rendered with their values.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/rendered-tweets.png" alt=""></p>
 
-<p>Our tweets feed is finally coming to life, but that date is plain nasty.  We want to put it into a much easier to digest format such as “18 minutes ago”.  To do this, we are going to use a library called Moment.js.</p>
+<p>Our tweets feed is finally coming to life, but that date is plain nasty.  We want to put it into a much easier to digest format such as &quot;18 minutes ago&quot;.  To do this, we are going to use a library called Moment.js.</p>
 
 <p>Moment.js is an extremely useful library that makes working with dates really easy.  As we have with other libraries we need to install it for our project (--no-bin-links) for windows.</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
 npm install moment --save
 </code></pre></div>
-<p>With that library installed, let&#39;s require it in our “app.js” file.  Put this under the rest of our “require” calls to keep things organized.</p>
+<p>With that library installed, let&#39;s require it in our &quot;app.js&quot; file.  Put this under the rest of our &quot;require&quot; calls to keep things organized.</p>
 
-<p>Moment.js is imported, so let&#39;s loop through our tweets and calculate the time from now for each tweet&#39;s “created_at” value.  We&#39;ll add this time from now value to each tweet object as “time_from_now”.  Our “for” loop in app.js will now look like the following.</p>
+<p>Moment.js is imported, so let&#39;s loop through our tweets and calculate the time from now for each tweet&#39;s &quot;created_at&quot; value.  We&#39;ll add this time from now value to each tweet object as &quot;time_from_now&quot;.  Our &quot;for&quot; loop in app.js will now look like the following.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
   <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The first thing we are doing is getting the tweet and saving it to a variable called “tweet”.</p>
+<p>The first thing we are doing is getting the tweet and saving it to a variable called &quot;tweet&quot;.</p>
 
-<p>Up until now, we have only used the dot notation to get values for keys on objects.  In javascript, you can also assign values to keys the same way you would a variable.  The second line in the for loop is setting the “time_from_now” key to the right side of the equals sign.</p>
+<p>Up until now, we have only used the dot notation to get values for keys on objects.  In javascript, you can also assign values to keys the same way you would a variable.  The second line in the for loop is setting the &quot;time_from_now&quot; key to the right side of the equals sign.</p>
 
-<p>On the right side of the equals, we have our Moment.js code.  When importing Moment.js, we get a function that takes a date and returns a Moment.js date object.  The new Moment.js date has a lot of helper methods we can use to format and manipulate our date.  The method that will give us the time from now is the “fromNow” method.  This returns the date in a human friendly format like “18 minutes ago”</p>
+<p>On the right side of the equals, we have our Moment.js code.  When importing Moment.js, we get a function that takes a date and returns a Moment.js date object.  The new Moment.js date has a lot of helper methods we can use to format and manipulate our date.  The method that will give us the time from now is the &quot;fromNow&quot; method.  This returns the date in a human friendly format like &quot;18 minutes ago&quot;</p>
 
-<p>With our new value on each tweet, let&#39;s go back to our template and update our date to “time_from_now” instead of “created_at”.</p>
+<p>With our new value on each tweet, let&#39;s go back to our template and update our date to &quot;time_from_now&quot; instead of &quot;created_at&quot;.</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
 <span class="nt">&lt;p&gt;</span>
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">handle</span><span class="k"> %&gt;</span><span class="nt">&lt;/a&gt;</span>
@@ -130,7 +130,7 @@ npm install moment --save
 
 <p>We can now create tweets and see them get added to the page.  Try adding a tweet with our form and you should see it get added to the top of our tweets feed.</p>
 
-<p>Today, we went over the “R” (Read) part of CRUD.  So far we can create tweets with our form and render tweets on our homepage.  This is really exciting, because our app is becoming interactive.  In day 5, we will go over the “U” (Update) and how we can edit these tweets after they are created.</p>
+<p>Today, we went over the &quot;R&quot; (Read) part of CRUD.  So far we can create tweets with our form and render tweets on our homepage.  This is really exciting, because our app is becoming interactive.  In day 5, we will go over the &quot;U&quot; (Update) and how we can edit these tweets after they are created.</p>
 
                 
                 <div id="disqus_thread"></div>

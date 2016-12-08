@@ -65,7 +65,7 @@ The above is checking for an error, printing the error to the terminal, redirect
 
 What if our query doesn't return a tweet?  If we don't find a tweet, it doesn't make sense to render a edit tweet page since there is nothing to edit.  So in that case, we want to also redirect to the homepage.
 
-We don't need to create a new “if” statement since the one we have does what we want for no tweet as well.  Let's do that with the “or” operator.
+We don't need to create a new "if" statement since the one we have does what we want for no tweet as well.  Let's do that with the "or" operator.
 
 ```javascript
 // app.js
@@ -76,9 +76,9 @@ if(err || results.length === 0) {
 }
 ```
 
-There are a few new things in the above “if” statement that we need to go over.  The first thing is what's in the “if” statement's parentheses.  The “||” is the “or” operator and allows us to make more complex decisions.  What this says is if “err” exists OR “results.length” is zero then execute the code.  The “===” returns true if both sides of the “===” are the same.  It equates to  false otherwise.
+There are a few new things in the above "if" statement that we need to go over.  The first thing is what's in the "if" statement's parentheses.  The "||" is the "or" operator and allows us to make more complex decisions.  What this says is if "err" exists OR "results.length" is zero then execute the code.  The "===" returns true if both sides of the "===" are the same.  It equates to  false otherwise.
 
-Now let's go to the second line.  We are again using the “or” operator, but in a slightly different way.  In this case, we are giving default text to output if “err” doesn't exist.  If “err”' exists, “console.log()” will be passed the “err” variable.  If the “err” variable is undefined, then the text 'No tweet found.' will be passed to “console.log()” instead.
+Now let's go to the second line.  We are again using the "or" operator, but in a slightly different way.  In this case, we are giving default text to output if "err" doesn't exist.  If "err"' exists, "console.log()" will be passed the "err" variable.  If the "err" variable is undefined, then the text 'No tweet found.' will be passed to "console.log()" instead.
 
 Restart your server and visit a tweet edit page for an id that doesn't exist yet.  Assuming you don't haven't created many tweets, visit http://127.0.0.1:8080/tweets/1000/edit and it should redirect to the homepage.
 

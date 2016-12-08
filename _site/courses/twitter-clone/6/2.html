@@ -37,7 +37,7 @@
 
 <p>We now have a delete button to submit our update tweet form, but we haven&#39;t added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.</p>
 
-<p>To determine which button was pressed, we get the “delete_button” value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let&#39;s get that now and save it to a variable called “isDelete” under our “body” variable.</p>
+<p>To determine which button was pressed, we get the &quot;delete_button&quot; value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let&#39;s get that now and save it to a variable called &quot;isDelete&quot; under our &quot;body&quot; variable.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
@@ -45,7 +45,7 @@
 <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">isDelete</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">delete_button</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span>
 </code></pre></div>
-<p>The “!==” is the not equals operator.  We are making sure that the “delete<em>button” key is not undefined.  If the update button was used to submit the form, the “delete</em>button” variable will be undefined so “isDelete” will be false.  If the delete button was pressed, the “delete_button” variable will be defined and “isDelete” will be true.</p>
+<p>The &quot;!==&quot; is the not equals operator.  We are making sure that the &quot;delete<em>button&quot; key is not undefined.  If the update button was used to submit the form, the &quot;delete</em>button&quot; variable will be undefined so &quot;isDelete&quot; will be false.  If the delete button was pressed, the &quot;delete_button&quot; variable will be defined and &quot;isDelete&quot; will be true.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
@@ -68,17 +68,17 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>This checks if “isDelete” is true.  If it is, the code block that says “Our delete code goes here.” will be executed.  The else block gets executed if the “isDelete” variable is false and will update our tweet.</p>
+<p>This checks if &quot;isDelete&quot; is true.  If it is, the code block that says &quot;Our delete code goes here.&quot; will be executed.  The else block gets executed if the &quot;isDelete&quot; variable is false and will update our tweet.</p>
 
 <p>Before we can write our delete query, let&#39;s go over how you delete rows in SQL.  We use the DELETE FROM query to delete rows.</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL Example</span>
 <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">Tweets</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
-<p>DELETE FROM queries start with “DELETE FROM” followed by the table we are deleting rows from.  We can add an optional WHERE clause to specify which rows should be deleted.</p>
+<p>DELETE FROM queries start with &quot;DELETE FROM&quot; followed by the table we are deleting rows from.  We can add an optional WHERE clause to specify which rows should be deleted.</p>
 
-<p>The above query is deleting all rows where the “id” column is 1.  Since ids are unique, there will only be one row deleted.  If we didn&#39;t add the WHERE clause, the query would delete all rows in our table.</p>
+<p>The above query is deleting all rows where the &quot;id&quot; column is 1.  Since ids are unique, there will only be one row deleted.  If we didn&#39;t add the WHERE clause, the query would delete all rows in our table.</p>
 
-<p>Let&#39;s add this query to our update route as the variable “deleteQuery” and change the update query variable name to “updateQuery”.  Don&#39;t forget to change the variable name we pass to the “query” method as well.</p>
+<p>Let&#39;s add this query to our update route as the variable &quot;deleteQuery&quot; and change the update query variable name to &quot;updateQuery&quot;.  Don&#39;t forget to change the variable name we pass to the &quot;query&quot; method as well.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
@@ -104,7 +104,7 @@
 </code></pre></div>
 <p>As always, since our id is user input, we are using query parameters in our query&#39;s WHERE clause.</p>
 
-<p>Let&#39;s execute the delete query in the first section of our “if” statement.  We&#39;ll pass it the id as a parameter.  The query callback will look the same as the one we used for the update query.</p>
+<p>Let&#39;s execute the delete query in the first section of our &quot;if&quot; statement.  We&#39;ll pass it the id as a parameter.  The query callback will look the same as the one we used for the update query.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
@@ -161,7 +161,7 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>We are now saving our anonymous function to a variable called “queryCallback” and passing that “queryCallback” variable to our “query” method as the callback.  This removes duplicate code and makes everything look much cleaner.</p>
+<p>We are now saving our anonymous function to a variable called &quot;queryCallback&quot; and passing that &quot;queryCallback&quot; variable to our &quot;query&quot; method as the callback.  This removes duplicate code and makes everything look much cleaner.</p>
 
 <p>Our update route now updates and deletes rows in our table based on which form button was pressed.  Today&#39;s lesson is much shorter than the other CRUD methods because there isn&#39;t much to deleting data.  In day 7, we&#39;ll learn how to use cookies to restrict deleting and updating tweets to the user that created the tweet.</p>
 
