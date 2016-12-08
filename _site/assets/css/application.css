@@ -2061,7 +2061,7 @@ ul li {
 .highlight {
   border: 1px solid #303f45;
   border-radius: 3px;
-  padding: 14px;
+  padding: 5px 14px;
   margin-bottom: 25px;
   overflow: scroll;
 }

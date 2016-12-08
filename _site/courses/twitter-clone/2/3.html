@@ -37,7 +37,8 @@
 </ul>
 
 <p>Next, let&#39;s make a form so users can submit tweets.  Since creating user profiles is out of the scope of the course, we are going to have the user input their Twitter handle as well as the body of their tweet.  Let&#39;s replace the contents of our “main” element with our tweet form.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;main&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="nt">&lt;main&gt;</span>
   <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/create"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
@@ -59,7 +60,8 @@
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/add-tweet-form-input-values.png" alt=""></p>
 
 <p>Right now, our form isn&#39;t very nice to look at.  Let&#39;s add some style.  We&#39;ll start with the “form” element:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#tweet-form</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/assets/site.css */</span>
+<span class="nf">#tweet-form</span> <span class="p">{</span>
   <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">12px</span> <span class="m">10px</span> <span class="m">12px</span><span class="p">;</span>
   <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e8f4fb</span><span class="p">;</span>
 <span class="p">}</span>
@@ -67,7 +69,8 @@
 <p>The first line is giving our form some “padding”.  Padding is similar to margin in that it adds extra space around the element, but padding is inside the element&#39;s border rather than outside.  You can read more about padding here.  Lastly, we are giving our form a background color.</p>
 
 <p>Next, let&#39;s add some style to our inputs now.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#tweet-form-handle</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/assets/site.css */</span>
+<span class="nf">#tweet-form-handle</span> <span class="p">{</span>
   <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
   <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
   <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span> <span class="m">10px</span> <span class="m">8px</span> <span class="m">10px</span><span class="p">;</span>
@@ -90,14 +93,16 @@
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/style-tweet-form.png" alt=""></p>
 
 <p>Our tweet form is almost done, but it needs a button so the user can submit the form.  To do this, we are going to use the “button” element.  Let&#39;s add this to the end of our form:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/create"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/create"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
   <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-button"</span><span class="nt">&gt;</span>Tweet<span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </code></pre></div>
 <p>We are giving our button the id “tweet-form-button” and the text “Tweet”.  If you reload the page, you&#39;ll see our button, but it looks like something that belongs on a 90s web page.  Let&#39;s change that.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#tweet-form-button</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/assets/site.css */</span>
+<span class="nf">#tweet-form-button</span> <span class="p">{</span>
   <span class="nl">color</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>
   <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
   <span class="nl">padding</span><span class="p">:</span> <span class="m">7px</span> <span class="m">8px</span><span class="p">;</span>

@@ -49,27 +49,32 @@
 <p>For this course, we don&#39;t have users, so we are going to store the ids of tweets that were created.  We&#39;ll give our cookie the name “tweets_created” and it&#39;s value will be a list of ids.  We can use these ids to check if the user created the tweet they are trying to edit, update, or destroy.</p>
 
 <p>Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called cookie-parser and it works much like body-parser.  Let&#39;s install the cookie-parser library now.  Remember to add “--no-bin-links” if you are on Windows.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install cookie-parser --save
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+npm install cookie-parser --save
 </code></pre></div>
 <p>With that installed, let&#39;s require the cookie-parser library under our body-parser library.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
 </code></pre></div>
 <p>To get the middleware and add it to our app, we simply call the “cookieParser” function, which returns the middleware, and pass it to “app.use”.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span>
 </code></pre></div>
 <p>Now on each request, Express will parse cookies for us and add them to the request object with the key “cookies”.  The “cookies” object contains name-value pairs with the name of the cookie being the key.  To get our “tweets_created” cookie value, we can do the following.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span>
 </code></pre></div>
 <p>With that out of the way, we need to start by saving the id of newly created tweets in a the “tweets_creatd” cookie.  We&#39;ll add this to the create tweet route.</p>
 
 <p>Each time the user creates a tweet, we need to get the “tweets<em>created” cookie, add the new tweet id, and then set the “tweets</em>created” cookie to the new list.  Let&#39;s add the code to get the tweets created and save it again to the “tweets_created” cookie.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -92,7 +97,8 @@
 <p>For our cookies, we are setting the “httpOnly” option to true.  This option makes it so the cookie can only be accessed by the web server and not by client side javascript.  Don&#39;t worry about this too much.  Just know that the having this option set means that only our web server can read the cookie.</p>
 
 <p>We are setting our cookie, but we aren&#39;t adding ids to our “tweetsCreated” array.  To do this, we need the id of the tweet that was just created.  There is a second parameter that is passed to our INSERT INTO query callback that contains the inserted id. Let&#39;s add that parameter and call it “results”.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">handle</span><span class="p">,</span> <span class="nx">body</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">handle</span><span class="p">,</span> <span class="nx">body</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">}</span>
@@ -102,7 +108,8 @@
 <span class="p">});</span>
 </code></pre></div>
 <p>The “results” parameter is an object that has a key called “insertId” that contains the id that was just inserted.  Let&#39;s get that id and add it to our “tweetsCreated” array.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>

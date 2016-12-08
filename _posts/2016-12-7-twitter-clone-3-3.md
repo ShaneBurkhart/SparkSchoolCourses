@@ -19,6 +19,7 @@ Right now, our table doesn't contain any data.  Unfortunately, our form isn't wo
 To insert rows into tables, we use the INSERT INTO command.  When we created the Tweets table, we gave the “id” and “created_at” columns default values.  Since the id and created_at columns are pre populated with default values, we only need to insert the user handle and the body of the tweet.  I'm going to use my Twitter handle in this case.  Run this command in your MySQL GUI and I'll explain it in a minute:
 
 ```sql
+-- SQL GUI Query Tab
 INSERT INTO Tweets(handle, body) VALUES('DonkkaShane', 'Having a great time teaching this Twitter clone course!');
 ```
 
@@ -27,12 +28,14 @@ The first part, “INSERT INTO Tweets”, tells MySQL which table to insert into
 To see our Tweets, we can run the following SQL command in our MySQL GUI.  We'll go over this command later, but for now, just use it to see the contents of the Tweets table.
 
 ```sql
+-- SQL GUI Query Tab
 SELECT * FROM Tweets;
 ```
 
 You can rerun the INSERT INTO command to create more tweets.  Try adding a Tweet with your Twitter handle.  I'm going to add another tweet from myself:
 
 ```sql
+-- SQL GUI Query Tab
 INSERT INTO Tweets(handle, body) VALUES('DonkkaShane', 'Yogi is the best dog in the world!');
 ```
 

@@ -45,7 +45,8 @@ You may have noticed that we used the “.ejs” file extension instead of the �
 
 Let's write a basic HTML page with a title heading and some text.  Below is the code for the page and I'll explain it in a second:
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,12 +75,14 @@ All HTML files follow the same pattern as above.  They start with a doctype decl
 Now that we have our page, let's have our web server render our new HTML page.  Before we can do that, we need to install the EJS library:
 
 ```bash
+# Terminal
 npm install ejs --save
  ```
 
 With that saved, we can tell Express to use EJS as our templating engine.  We also need to tell Express where it can find our view (HTML) files.  To do this, we need to add these two lines under the “var app = express();” line:
 
 ```javascript
+// app.js
 app.set('view engine', 'ejs');
 app.set('views', './views');
 ```
@@ -93,6 +96,7 @@ The second line sets the “view engine” setting which defines which template 
 Now that we have told Express how to handle rendering views, let's actually render our EJS file instead of print “Hello World!” text on our homepage.  To do this, we use the “render” method on the “res” variable and pass it the name of our view.  Your homepage route should now look like the following:
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   res.render('tweets');
 });
@@ -103,6 +107,7 @@ Notice how there was no need to add the “.ejs” extension to our view name.  
 Here is the final code so it's easier to see everything:
 
 ```javascript
+// app.js
 'use strict'
 
 var express = require('express');

@@ -48,20 +48,23 @@
 <p>We have an “id” column for our tweets that uniquely identifies them.  We can put the tweet id in the URL to tell our server which tweet we want to edit.  Our resource we are working on is now a specific tweet and a standard way to define this is “/tweets/:id” where “:id” is the tweet id.  Our final path comes out to “/tweets/:id/edit”.  So “/tweets/1/edit” would render a page to edit the tweet with the id of 1.</p>
 
 <p>Let&#39;s define a GET route for our “/tweets/:id/edit” path.  I&#39;m going to add this under our create tweet route.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>You may be wondering what the “:id” portion does in our path.  In Express, we can define parameters in URL paths with a colon followed by the name of the parameter.  Forward slashes mark the beginning and end of the parameter.  Express will then extract the portion we define as a parameter and provide it to us on the request parameter passed to our route function.</p>
 
 <p>Our “req” parameter has a “params” object that holds the parameters for the request.  Let&#39;s print the “id” parameter on our edit page so we can play around with it to see how it works.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Restart your server and visit http://127.0.0.1:8080/tweets/1/edit and you&#39;ll see a “1” on the screen.  This is really close to what we want but what happens when you put text in the “id” parameter instead of a number?</p>
 
 <p>Visit http://127.0.0.1:8080/tweets/some-text/edit and you should see “some-text” on our page.  We don&#39;t want to allow text in our “id” parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I&#39;ll add that now and explain after.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -72,17 +75,18 @@
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-1-edit-text.png" alt=""></p>
 
 <p>Now our edit tweets path&#39;s id parameter can only contain numbers.  Let&#39;s add a link to our tweet that takes us to the edit page.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="err">&lt;</span>% for(var i = 0; i <span class="nt">&lt; tweets</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span> <span class="err">%</span><span class="nt">&gt;</span>
-  <span class="err">&lt;</span>% var tweet = tweets[i]; %&gt;
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="k">&lt;% for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tweets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="k"> %&gt;</span>
+  <span class="k">&lt;% </span><span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="k"> %&gt;</span>
   <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;p&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="err">&lt;</span>%= tweet.handle %&gt;<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"light-grey"</span><span class="nt">&gt;</span> - <span class="err">&lt;</span>%= tweet.time_from_now %&gt;<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">handle</span><span class="k"> %&gt;</span><span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"light-grey"</span><span class="nt">&gt;</span> - <span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span><span class="k"> %&gt;</span><span class="nt">&lt;/span&gt;</span>
     <span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= tweet.body %&gt;<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/p&gt;</span>
     <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/edit"</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
   <span class="nt">&lt;/article&gt;</span>
-<span class="err">&lt;</span>% } %&gt;
+<span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
 </code></pre></div>
 <p>We simply added an anchor tag to each tweet with the text “Edit” and the href of “/tweets/:id/edit”.  I put this in a “p” tag so it would be on it&#39;s own line at the bottom of the tweet.</p>
 

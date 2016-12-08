@@ -6,6 +6,14 @@ course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
 ---
 
+####Table Of Contents
+
+- [1.1 Introduction](/courses/twitter-clone/1/1)
+- [1.2 Installing Tools](/courses/twitter-clone/1/2)
+- [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
+- [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
+
 We're finally have everything set up and are ready to start creating a web server.  Before we can write our web server, we need to create a “package.json” file in the root of our project directory.  This file stores information about the project as well as keeps track of the Node.js libraries we want to install.
 
 Libraries are also sometimes called packages.  Generally, libraries are other projects that people have made to help do a specific task.  We are going to use the Express.js library since it makes creating web servers much easier.
@@ -19,12 +27,14 @@ With npm initialized, we can install libraries for our project.  The first libra
 To install libraries, we use the “npm” command followed by the word “install” followed by the name of the library we want to install.  To tell npm we want to save this library in our package.json file, we add the “--save” option at the end.  Below is what this looks like for Express.js:
 
 ```bash
+# Terminal
 npm install express --save
 ```
 
 On Windows, when running “npm install” commands, you'll have to add “--no-bin-links” to the end of the command.  So the previous command on windows should look like the following.
 
 ```bash
+# Terminal
 npm install express --save --no-bin-links
 ```
 
@@ -68,6 +78,7 @@ With a basic understanding of how a web server works, let's create one. Open you
 Like most programming languages, javascript executes code line-by-line starting at the top.  The first line of all of our javascript files needs to say “use strict” wrapped in single quotes.
 
 ```javascript
+// app.js
 'use strict'
 ```
 
@@ -80,6 +91,7 @@ One of the most common programming concepts is using variables.  Variables are s
 To define variables in javascript, we use the “var” keyword followed by the name we want to give to our variable. Below we are defining a variable called num:
 
 ```javascript
+// Javascript Example
 var num;
 ```
 
@@ -88,12 +100,14 @@ Most lines in Javascript end in a semicolon.  There are a few exceptions that we
 That only defines a variable, but right now it has a value of undefined since we haven't given it a value. We do that with the assignment operator (equals sign) followed by the value we want to assign to the variable.  In the code snippet below, we are assigning the value 3 to the variable “num”:
 
 ```javascript
+// Javascript Example
 var num = 3;
 ```
 
 If you want to see the value of a variable, you can use “console.log()” like we did earlier and instead of giving it text, give it the variable you want to output.  The following code would output the number “3” to the terminal.
 
 ```javascript
+// Javascript Example
 var num = 3;
 console.log(num);
 ```
@@ -111,18 +125,21 @@ Functions can also return values, but aren't required to.  This is useful when a
 A simple example of a function that takes arguments and returns a value would be an “add” function that takes two numbers and returns the sum.  In the code snippet below, we are calling the “add” function and assigning the return value to a variable called “sum”.  The variable “sum” would now equal the number 7.
 
 ```javascript
+// Javascript Example
 var sum = add(2, 5);
 ```
 
 Now that we understand how variables and functions work, let's use the “require” function to import the express library.
 
 ```javascript
+// app.js
 var express = require('express');
 ```
 
 The Express library returns a function that doesn't take arguments and is used to create an Express app. Let's do that now under our express import:
 
 ```javascript
+// app.js
 var app = express();
 ```
 
@@ -139,12 +156,14 @@ Before we can define a GET route, you need to understand how to call a Javascrip
 Don't worry about this too much for right now, just know that you call methods on variables using the dot notation. The following calls the “get” method on the “app” variable using the the dot notation (the period):
 
 ```javascript
+// Javascript Example
 app.get();
 ```
 
 Luckily with Express, creating a GET route can easily be done with the “get” method on our “app” variable.  The first argument to the “get” method is the path our route is listening for and the second is a function that get's executed when a request matches this route.  Let's define a GET request to the homepage (“/”):
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   // Our code will go here
 });
@@ -167,6 +186,7 @@ Notice that the anonymous function has two parameters that Express passes in as 
 Our route doesn't do anything yet, but let's fix that.  Our goal here is to get the words “Hello world!” printed on a web page.  Luckily, the “res” variable has a “send” method that lets us send text back to the client.  It takes a single argument and prints that argument to the web page.  In our case, we are going to pass it the text “Hello world!”.
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   res.send('Hello world!');
 });
@@ -187,6 +207,7 @@ Typically when developing and running our server locally, we don't listen on por
 Now that we know a little about ports, let's write some code to have our server listen on port 8080. The “app” variable has a method called “listen” that tells the server to start listening for web requests.
 
 ```javascript
+// app.js
 app.listen(8080, function() {
   console.log('Web server listening on port 8080!');
 });
@@ -205,6 +226,7 @@ We used “console.log” earlier, but I didn't get a chance to explain it.  The
 Your final code should look similar to this:
 
 ```javascript
+// app.js
 'use strict'
 
 var express = require('express');
@@ -226,6 +248,7 @@ Now we have our server written, let's run it. Save “app.js” and go to your t
 To run javascript files, we use the “node” command.  Node.js is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let's run our “app.js” file.
 
 ```bash
+# Terminal
 node app.js
 ```
 

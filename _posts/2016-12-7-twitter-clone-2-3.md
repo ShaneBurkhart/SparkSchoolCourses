@@ -14,7 +14,8 @@ section: 'Day 2: Creating The Tweets Form In HTML/CSS'
 
 Next, let's make a form so users can submit tweets.  Since creating user profiles is out of the scope of the course, we are going to have the user input their Twitter handle as well as the body of their tweet.  Let's replace the contents of our “main” element with our tweet form.
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <main>
   <form id="tweet-form" action="/tweets/create" method="POST">
     <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane">
@@ -40,6 +41,7 @@ Next, we have a “textarea” element which is similar to our text input above,
 Right now, our form isn't very nice to look at.  Let's add some style.  We'll start with the “form” element:
 
 ```css
+/* public/assets/site.css */
 #tweet-form {
   padding: 10px 12px 10px 12px;
   background-color: #e8f4fb;
@@ -51,6 +53,7 @@ The first line is giving our form some “padding”.  Padding is similar to mar
 Next, let's add some style to our inputs now.
 
 ```css
+/* public/assets/site.css */
 #tweet-form-handle {
   font-size: 14px;
   margin-bottom: 8px;
@@ -76,7 +79,8 @@ We have already gone over the properties used above, so we aren't going to go in
 
 Our tweet form is almost done, but it needs a button so the user can submit the form.  To do this, we are going to use the “button” element.  Let's add this to the end of our form:
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <form id="tweet-form" action="/tweets/create" method="POST">
   <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane">
   <textarea id="tweet-form-body" name="body" placeholder="What's happening?"></textarea>
@@ -87,6 +91,7 @@ Our tweet form is almost done, but it needs a button so the user can submit the 
 We are giving our button the id “tweet-form-button” and the text “Tweet”.  If you reload the page, you'll see our button, but it looks like something that belongs on a 90s web page.  Let's change that.
 
 ```css
+/* public/assets/site.css */
 #tweet-form-button {
   color: #ffffff;
   font-size: 14px;

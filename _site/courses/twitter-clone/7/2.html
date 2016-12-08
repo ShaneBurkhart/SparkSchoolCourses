@@ -45,7 +45,8 @@
 <p>The authentication middleware will check that the tweet id we are trying to access is in our “tweets_created” cookie.  If it&#39;s not, then we will redirect to the homepage since the user shouldn&#39;t be able to access the edit tweet page.</p>
 
 <p>Let&#39;s start by creating a new directory in the root of our project called “middleware”.  This will hold any middleware files.  Our middleware is going to authenticate users, so we&#39;ll call our file “auth-user.js”.  Create this file in the “middleware” directory.  Add the following contents to the file and I&#39;ll explain what&#39;s going on in a minute.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
+<span class="s1">'use strict'</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">};</span>
@@ -53,7 +54,8 @@
 <p>We are going to need this file in “app.js” so we&#39;ll be importing it in a minute.  First, we need to understand how you export things in node.js.  To export something in node.js, you assign what you want to export to “module.exports”.  This can be anything (function, object, array, etc). In the above code, we are exporting a function with three parameters.</p>
 
 <p>Now when we require this file in “app.js”, the require function will return what “module.exports” was set to for that file.  Let&#39;s require “auth-user.js” in “app.js”.  We&#39;ll put this under the requires for other middleware.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
@@ -65,7 +67,8 @@
 <p>Although our authentication middleware doesn&#39;t do anything yet, let&#39;s add it to the edit and update routes.  To do this, we add a parameter to “app.get” and “app.post”.  Both of the methods take a path to listen for as the first argument and then any number of functions as arguments after.  These functions will be executed in the order they are given to “app.get” or “app.post” and the last argument should always be the route handler.</p>
 
 <p>Let&#39;s add the “authUser” middleware as the second argument to the edit and update routes.  The third argument is now our route handler.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 
@@ -108,7 +111,8 @@
 <span class="p">});</span>
 </code></pre></div>
 <p>Currently, if you restarted your server and try to visit the edit page, your browser would keep loading until it times out.  This is because we haven&#39;t done anything in our middleware yet.  We are going to add a simple “console.log” to understand how middleware works.  I&#39;ll explain what&#39;s going on in a minute.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This is middleware'</span><span class="p">);</span>
   <span class="nx">next</span><span class="p">();</span>
 <span class="p">};</span>
@@ -122,7 +126,8 @@
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-2-logging-middleware.png" alt=""></p>
 
 <p>We now know our middleware is working, so let&#39;s check if the tweet id is in the “tweets_created” cookie.  We can get values from the request parameter just like we do in our route handlers.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
 

@@ -44,9 +44,10 @@
 <p>We could make another POST route to delete tweets and have a new form that submits to that route, but a new form is probably overkill since a delete tweet form would only contain a button.  Instead, we can add our delete button to our update form.</p>
 
 <p>When submitting a form, if you give the button that is submitting the form a “name” attribute, you can check whether the button was clicked.  So for our form, we&#39;ll have an “Update Tweet” and a “Delete Tweet” button.  Both will submit the update form and we can check which of these buttons was pressed in the “/tweets/:id/update” POST route. Based on which was pressed, we can either update or delete the tweet.  Let&#39;s add a delete button to our form with a name attribute.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/update"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/update"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span> <span class="na">value=</span><span class="s">"&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= tweet.body %&gt;<span class="nt">&lt;/textarea&gt;</span>
+  <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/textarea&gt;</span>
   <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-button"</span><span class="nt">&gt;</span>Update Tweet<span class="nt">&lt;/button&gt;</span>
   <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-delete-button"</span> <span class="na">name=</span><span class="s">”delete_button”</span><span class="nt">&gt;</span>Delete Tweet<span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
@@ -54,7 +55,8 @@
 <p>We are giving our “Delete Tweet” button a name attribute of “delete_button”.  We also gave it an id of “tweet-form-delete-button” so we can style it a little differently than our “Update Tweet” button.</p>
 
 <p>Since we want users to use caution when pressing the delete button, we&#39;ll give ours the color red.  Red contrasts with the rest of the site and will make the user more cautious when pressing it.  The following is the style we are going to use for our button.  Add this to site.css.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#tweet-form-delete-button</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+<span class="nf">#tweet-form-delete-button</span> <span class="p">{</span>
   <span class="nl">color</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>
   <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
   <span class="nl">padding</span><span class="p">:</span> <span class="m">7px</span> <span class="m">8px</span><span class="p">;</span>
@@ -69,7 +71,8 @@
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/6/6-1-adding-delete-button.png" alt=""></p>
 
 <p>Now we have a delete button that will submit our form, but we don&#39;t want users to accidentally click the delete button when they intend to update the tweet.  To prevent this, we can add a confirm dialog that asks the user if they are sure they want to delete.  Update our delete button to look like the following and I&#39;ll explain in a minute.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-delete-button"</span> <span class="na">name=</span><span class="s">"delete_button"</span> <span class="na">onclick=</span><span class="s">"return confirm('Are you sure you want to delete the tweet?')"</span><span class="nt">&gt;</span>Delete Tweet<span class="nt">&lt;/button&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-delete-button"</span> <span class="na">name=</span><span class="s">"delete_button"</span> <span class="na">onclick=</span><span class="s">"return confirm('Are you sure you want to delete the tweet?')"</span><span class="nt">&gt;</span>Delete Tweet<span class="nt">&lt;/button&gt;</span>
 </code></pre></div>
 <p>This line is a little long, but you&#39;ll notice I added an “onclick” attribute to the button element. The “onclick” attribute allows us to define some javascript that will be called when the button is clicked.  If true is returned in “onclick” then the button submits.  If false is returned, the button does nothing.</p>
 

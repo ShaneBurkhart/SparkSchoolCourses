@@ -38,7 +38,8 @@
 </ul>
 
 <p>In the last lesson, we got our tweet from the database and rendered the &#39;edit-tweet&#39; EJS file, but that file doesn&#39;t exist yet.  Let&#39;s create an EJS file for our edit tweet page.  In the “views” directory, we are going to create a file called “edit-tweet.ejs” for our edit page.  Do that now and let&#39;s add the basic HTML structure for our site (header, css, etc.).</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/css/site.css"</span><span class="nt">&gt;</span>
@@ -61,19 +62,21 @@
 <p>Let&#39;s first create a file in our “views” directory that is called “<em>tweet.ejs”.  Notice the “</em>” at the beginning of our files name.  It&#39;s generally good practice to put an underscore at the beginning of a file&#39;s name if that file only defines part of an HTML page.  Our “_tweet.ejs” is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.</p>
 
 <p>Let&#39;s copy our tweet HTML into our “_tweet.ejs” file.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/_tweet.ejs --&gt;</span>
+<span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;p&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="err">&lt;</span>%= tweet.handle %&gt;<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"light-grey"</span><span class="nt">&gt;</span> - <span class="err">&lt;</span>%= tweet.time_from_now %&gt;<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">handle</span><span class="k"> %&gt;</span><span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"light-grey"</span><span class="nt">&gt;</span> - <span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span><span class="k"> %&gt;</span><span class="nt">&lt;/span&gt;</span>
   <span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= tweet.body %&gt;<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/p&gt;</span>
   <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/edit"</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 <span class="nt">&lt;/article&gt;</span>
 </code></pre></div>
 <p>Now that we have a tweet partial, let&#39;s update our homepage to use it.  EJS has a function we can use to include other EJS files that is called “include”.  It follows the same pattern as our “res.render()” function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in “tweets.ejs” will now look like the following.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="err">&lt;</span>% for(var i = 0; i <span class="nt">&lt; tweets</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span> <span class="err">%</span><span class="nt">&gt;</span>
-  <span class="err">&lt;</span>%- include('_tweet', { tweet: tweets[i] }); %&gt;
-<span class="err">&lt;</span>% } %&gt;
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="k">&lt;% for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tweets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="k"> %&gt;</span>
+  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">});</span><span class="k"> %&gt;</span>
+<span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
 </code></pre></div>
 <p>We are still looping through the tweets the same but we are now including our tweet partial instead of having HTML.  We specify we want to include the “_tweet” partial and give a data object that contains the tweet to render.</p>
 
@@ -82,16 +85,18 @@
 <p>If you refresh your homepage, you should still see each of the tweets being rendered.</p>
 
 <p>Let&#39;s include the tweet partial in &#39;edit-tweet.ejs&#39;.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs">&lt;main&gt;
-  &lt;%- include('_tweet', { tweet: tweet }); %&gt;
-&lt;/main&gt;
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<span class="nt">&lt;main&gt;</span>
+  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
 </code></pre></div>
 <p>We passed our tweet from the database to “edit-tweet” as “tweet”.  We&#39;ll pass that to our partial as “tweet” as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-tweet-preview-on-edit-tweet-page.png" alt=""></p>
 
 <p>The time since created is blank. This is because we didn&#39;t add it to the tweet in our edit tweet route.  Let&#39;s add that now.  Our final edit tweet route will look like the following.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 
@@ -101,23 +106,24 @@
       <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
+
     <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
-
 
     <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let&#39;s copy our tweet form and add it below our tweet preview on the “edit-tweet” view.  We&#39;ll change some values so our form submits to our update route.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs">&lt;main&gt;
-  &lt;%- include('_tweet', { tweet: tweet }); %&gt;
-  &lt;form id="tweet-form" action="/tweets/&lt;%= tweet.id %&gt;/update" method="POST"&gt;
-    &lt;input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane" value="&lt;%= tweet.handle %&gt;"&gt;
-    &lt;textarea id="tweet-form-body" name="body" placeholder="What's happening?"&gt;&lt;%= tweet.body %&gt;&lt;/textarea&gt;
-    &lt;button id="tweet-form-button"&gt;Update Tweet&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/main&gt;
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<span class="nt">&lt;main&gt;</span>
+  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
+  <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/update"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span> <span class="na">value=</span><span class="s">"&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/textarea&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-button"</span><span class="nt">&gt;</span>Update Tweet<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
 </code></pre></div>
 <p>The first thing we change is the form “action” attribute.  Our update route is going to listen for a POST route at “/tweets/:id/update”.  We&#39;re following the same resource-action pattern.</p>
 

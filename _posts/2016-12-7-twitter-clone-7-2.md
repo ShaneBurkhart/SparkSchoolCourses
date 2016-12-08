@@ -24,6 +24,7 @@ The authentication middleware will check that the tweet id we are trying to acce
 Let's start by creating a new directory in the root of our project called “middleware”.  This will hold any middleware files.  Our middleware is going to authenticate users, so we'll call our file “auth-user.js”.  Create this file in the “middleware” directory.  Add the following contents to the file and I'll explain what's going on in a minute.
 
 ```javascript
+// middleware/auth-user.js
 'use strict'
 
 module.exports = function(req, res, next) {
@@ -35,6 +36,7 @@ We are going to need this file in “app.js” so we'll be importing it in a min
 Now when we require this file in “app.js”, the require function will return what “module.exports” was set to for that file.  Let's require “auth-user.js” in “app.js”.  We'll put this under the requires for other middleware.
 
 ```javascript
+// app.js
 var mysql = require('mysql');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -50,6 +52,7 @@ Although our authentication middleware doesn't do anything yet, let's add it to 
 Let's add the “authUser” middleware as the second argument to the edit and update routes.  The third argument is now our route handler.
 
 ```javascript
+// app.js
 app.get('/tweets/:id([0-9]+)/edit', authUser, function(req, res) {
   var query = 'SELECT * FROM Tweets WHERE id = ?';
   var id = req.params.id;
@@ -96,6 +99,7 @@ app.post('/tweets/:id([0-9]+)/update', authUser, function(req, res) {
 Currently, if you restarted your server and try to visit the edit page, your browser would keep loading until it times out.  This is because we haven't done anything in our middleware yet.  We are going to add a simple “console.log” to understand how middleware works.  I'll explain what's going on in a minute.
 
 ```javascript
+// middleware/auth-user.js
 module.exports = function(req, res, next) {
   console.log('This is middleware');
   next();
@@ -113,6 +117,7 @@ Restart your server and visit an edit tweet page.  You should see the text “Th
 We now know our middleware is working, so let's check if the tweet id is in the “tweets_created” cookie.  We can get values from the request parameter just like we do in our route handlers.
 
 ```javascript
+// middleware/auth-user.js
 module.exports = function(req, res, next) {
   var id = parseInt(req.params.id, 10);
   var tweetsCreated = req.cookies.tweets_created || [];

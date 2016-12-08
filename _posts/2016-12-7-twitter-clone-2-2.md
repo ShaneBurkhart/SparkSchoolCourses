@@ -19,7 +19,8 @@ Like most website these days, we need a header bar.  Header bars have become a w
 
 In HTML5 there is an element type called “header” that is used to define a site's header.  Above our “h1” element add a header element:
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <header></header>
 <h1>Twitter Clone Course</h1>
 <p>We're learning HTML!</p>
@@ -50,6 +51,7 @@ An HTML element can have any combination of the above identifiers.  All elements
 The following snippet of code contains the three main selectors:
 
 ```css
+/* CSS Example */
 header
 .tweet
 #site-logo
@@ -70,6 +72,7 @@ To tell Express to send static files, we need to add some middleware.  Understan
 Express provides middleware we can use to server static files.  To add middleware, we use the “use” method on the “app” variable.  This takes the middleware we are going to use as an argument.  Let's add this under our view settings code.
 
 ```javascript
+// app.js
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
@@ -82,7 +85,8 @@ Now anything in our “public” directory can be accessed by the browser.  You 
 
 We now have a CSS file and it's publicly accessible, but we aren't loading it on our page.  To load CSS files in HTML, we put a “link” element in the “head” element of our page.  Let's do that now:
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <link rel="stylesheet" type="text/css" href="/css/site.css">
 ```
 
@@ -93,6 +97,7 @@ Let's look at the attributes on the element.  The “rel” attribute is telling
 Let's test to make sure the file is loaded properly by turning the background color of the page to blue.  To do this, open your “site.css” file and type the following.  Save and reload the page.
 
 ```css
+/* public/css/site.css */
 body {
   background-color: blue;
 }
@@ -115,6 +120,7 @@ This is a really useful tool to see how other people are styling their page and 
 Let's get back to styling our site header.  In our case, we are going to have only one header element per page so we can use the tag name selector.  Replace the “body” style with the style for our header:
 
 ```css
+/* public/css/site.css */
 header {
   position: fixed;
   top: 0;
@@ -148,7 +154,8 @@ You may or may not have noticed, but modern sites don't normally have their main
 
 In HTML5 there is an element called “main” that contains the main content for the page.  We are going to include everything but the site header since the site header is on every page and isn't really specific to this page.  Below our “header” element, add a “main” element and put our “h1” and “p” tags in it's contents.
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <header></header>
 <main>
   <h1>Twitter Clone Course</h1>
@@ -159,6 +166,7 @@ In HTML5 there is an element called “main” that contains the main content fo
 If you reload the page, you'll notice nothing happened.  This is because we haven't given it a style yet.  Let's give our “main” element some style:
 
 ```css
+/* public/assets/site.css */
 main {
   width: 600px;
   margin: 60px auto 0px auto;
@@ -181,6 +189,7 @@ The last property is “border-radius” which gives our element rounded corners
 Our page is starting to look like an actual web page.  It's a little plain, so let's add a subtle background color and change the font to something less formal.  To do this, let's add some style to the “body” element.
 
 ```css
+/* public/assets/site.css */
 body {
   background-color: #f5f8fa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -200,6 +209,7 @@ The next line is setting the “font-size” to “14px”.  The last line is se
 Unfortunately, the “box-sizing” attribute isn't inherited but we want it to be.  We can change that by adding the following style.  This is a little out of the scope of the course, so don't worry about the details of what this is doing.  Instead, just know that we use this so all of our elements can have the same “box-sizing” property.
 
 ```css
+/* public/assets/site.css */
 *, *:before, *:after {
   box-sizing: inherit;
 }

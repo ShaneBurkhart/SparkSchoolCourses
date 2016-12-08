@@ -18,6 +18,7 @@ In the last lesson, we added a tweet preview and edit form to our edit tweet pag
 Let's create a POST route with the “/tweets/:id/update” path.  I'm going to put this under our edit tweet route.  It's a good idea to keep edit and update routes close since they work together.
 
 ```javascript
+// app.js
 app.post('/tweets/:id([0-9]+)/update', function(req, res) {
   var id = req.params.id;
 });
@@ -28,6 +29,7 @@ I went ahead and saved the tweet id to a variable since we will use it in just a
 Before we can update our database, we need to understand the SQL UPDATE query.  Below, is a query that updates a tweet with the the id of 1.
 
 ```sql
+-- SQL Example
 UPDATE Tweets SET handle = 'DonkkaShane', body = 'Updated tweet.' WHERE id = 1;
 ```
 
@@ -38,12 +40,14 @@ After the SET clause, we can add an optional WHERE clause.  If we didn't have th
 As always, we are going to use query parameters for user input in our query.  Our query will end up looking like the following.
 
 ```sql
+-- SQL Example
 UPDATE Tweets SET handle = ?, body = ? WHERE id = ?;
 ```
 
 Like in our create tweet route, let's get our tweet handle and body values from our request body.  We'll pass these and the tweet id to our query as parameters.  Let's do that now.
 
 ```javascript
+// app.js
 app.post('/tweets/:id([0-9]+)/update', function(req, res) {
   var query = 'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?';
   var id = req.params.id;
@@ -58,6 +62,7 @@ app.post('/tweets/:id([0-9]+)/update', function(req, res) {
 This will update our tweet in the database, but as always, we need to check for errors and print them to the console.  There's no need to redirect on error because we are going to redirect to the homepage on error or success.  Let's add an error check and redirect to our homepage.
 
 ```javascript
+// app.js
 connection.query(query, [body, handle, id], function(err) {
   if(err) {
     console.log(err);
@@ -74,6 +79,7 @@ Restart your server, go to the edit page and submit the form with updated values
 Here's the final code for “app.js”.
 
 ```javascript
+// app.js
 'use strict'
 
 var mysql = require('mysql');

@@ -40,24 +40,28 @@
 <p>In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn&#39;t exist yet.  In this lesson, we&#39;ll be making that route and updating the tweet in the database.</p>
 
 <p>Let&#39;s create a POST route with the “/tweets/:id/update” path.  I&#39;m going to put this under our edit tweet route.  It&#39;s a good idea to keep edit and update routes close since they work together.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>I went ahead and saved the tweet id to a variable since we will use it in just a minute.</p>
 
 <p>Before we can update our database, we need to understand the SQL UPDATE query.  Below, is a query that updates a tweet with the the id of 1.</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="n">Tweets</span> <span class="k">SET</span> <span class="n">handle</span> <span class="o">=</span> <span class="s1">'DonkkaShane'</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="s1">'Updated tweet.'</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL Example</span>
+<span class="k">UPDATE</span> <span class="n">Tweets</span> <span class="k">SET</span> <span class="n">handle</span> <span class="o">=</span> <span class="s1">'DonkkaShane'</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="s1">'Updated tweet.'</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
 <p>UPDATE queries start with the UPDATE keyword followed by the name of the table we want to update.  Next is the SET keyword and the values we want to update come after separated by commas.  In the above example, we are setting the body to &#39;Updated tweet.&#39; and the handle to &#39;DonkkaShane&#39;.</p>
 
 <p>After the SET clause, we can add an optional WHERE clause.  If we didn&#39;t have the WHERE clause, every row would be updated to the values we SET earlier.  The WHERE clause let&#39;s us define which rows we update.  In our case, we are updating the row with the id of 1.</p>
 
 <p>As always, we are going to use query parameters for user input in our query.  Our query will end up looking like the following.</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="n">Tweets</span> <span class="k">SET</span> <span class="n">handle</span> <span class="o">=</span> <span class="o">?</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="o">?</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="o">?</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL Example</span>
+<span class="k">UPDATE</span> <span class="n">Tweets</span> <span class="k">SET</span> <span class="n">handle</span> <span class="o">=</span> <span class="o">?</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="o">?</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="o">?</span><span class="p">;</span>
 </code></pre></div>
 <p>Like in our create tweet route, let&#39;s get our tweet handle and body values from our request body.  We&#39;ll pass these and the tweet id to our query as parameters.  Let&#39;s do that now.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
@@ -68,7 +72,8 @@
 <span class="p">});</span>
 </code></pre></div>
 <p>This will update our tweet in the database, but as always, we need to check for errors and print them to the console.  There&#39;s no need to redirect on error because we are going to redirect to the homepage on error or success.  Let&#39;s add an error check and redirect to our homepage.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">}</span>
@@ -81,7 +86,8 @@
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-4-updated-tweet-in-feed.png" alt=""></p>
 
 <p>Here&#39;s the final code for “app.js”.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="s1">'use strict'</span>
 
 <span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>

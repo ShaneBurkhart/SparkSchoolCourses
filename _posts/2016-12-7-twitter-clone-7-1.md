@@ -28,12 +28,14 @@ For this course, we don't have users, so we are going to store the ids of tweets
 Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called cookie-parser and it works much like body-parser.  Let's install the cookie-parser library now.  Remember to add “--no-bin-links” if you are on Windows.
 
 ```bash
+# Terminal
 npm install cookie-parser --save
 ```
 
 With that installed, let's require the cookie-parser library under our body-parser library.
 
 ```javascript
+// app.js
 var mysql = require('mysql');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -44,6 +46,7 @@ var moment = require('moment');
 To get the middleware and add it to our app, we simply call the “cookieParser” function, which returns the middleware, and pass it to “app.use”.
 
 ```javascript
+// app.js
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -52,6 +55,7 @@ app.use(cookieParser());
 Now on each request, Express will parse cookies for us and add them to the request object with the key “cookies”.  The “cookies” object contains name-value pairs with the name of the cookie being the key.  To get our “tweets_created” cookie value, we can do the following.
 
 ```javascript
+// Javascript Example
 req.cookies.tweets_created
 ```
 
@@ -60,6 +64,7 @@ With that out of the way, we need to start by saving the id of newly created twe
 Each time the user creates a tweet, we need to get the “tweets_created” cookie, add the new tweet id, and then set the “tweets_created” cookie to the new list.  Let's add the code to get the tweets created and save it again to the “tweets_created” cookie.
 
 ```javascript
+// app.js
 app.post('/tweets/create', function(req, res) {
   var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
   var handle = req.body.handle;
@@ -86,6 +91,7 @@ For our cookies, we are setting the “httpOnly” option to true.  This option 
 We are setting our cookie, but we aren't adding ids to our “tweetsCreated” array.  To do this, we need the id of the tweet that was just created.  There is a second parameter that is passed to our INSERT INTO query callback that contains the inserted id. Let's add that parameter and call it “results”.
 
 ```javascript
+// app.js
 connection.query(query, [handle, body], function(err, results) {
   if(err) {
     console.log(err);
@@ -99,6 +105,7 @@ connection.query(query, [handle, body], function(err, results) {
 The “results” parameter is an object that has a key called “insertId” that contains the id that was just inserted.  Let's get that id and add it to our “tweetsCreated” array.
 
 ```javascript
+// app.js
 app.post('/tweets/create', function(req, res) {
   var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
   var handle = req.body.handle;

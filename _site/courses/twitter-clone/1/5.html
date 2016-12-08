@@ -28,7 +28,17 @@
         <main class="container">
             <article>
                 <h1>1.5 Writing Your First Web Server</h1>
-                <p>We&#39;re finally have everything set up and are ready to start creating a web server.  Before we can write our web server, we need to create a “package.json” file in the root of our project directory.  This file stores information about the project as well as keeps track of the Node.js libraries we want to install.</p>
+                <h4>Table Of Contents</h4>
+
+<ul>
+<li><a href="/courses/twitter-clone/1/1">1.1 Introduction</a></li>
+<li><a href="/courses/twitter-clone/1/2">1.2 Installing Tools</a></li>
+<li><a href="/courses/twitter-clone/1/3">1.3 Setup Your Project And Connect To Your VM</a></li>
+<li><a href="/courses/twitter-clone/1/4">1.4 Your First Javascript Program</a></li>
+<li><a href="/courses/twitter-clone/1/5">1.5 Writing Your First Web Server</a></li>
+</ul>
+
+<p>We&#39;re finally have everything set up and are ready to start creating a web server.  Before we can write our web server, we need to create a “package.json” file in the root of our project directory.  This file stores information about the project as well as keeps track of the Node.js libraries we want to install.</p>
 
 <p>Libraries are also sometimes called packages.  Generally, libraries are other projects that people have made to help do a specific task.  We are going to use the Express.js library since it makes creating web servers much easier.</p>
 
@@ -39,10 +49,12 @@
 <p>With npm initialized, we can install libraries for our project.  The first library we need is Express.js (http://expressjs.com/).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.</p>
 
 <p>To install libraries, we use the “npm” command followed by the word “install” followed by the name of the library we want to install.  To tell npm we want to save this library in our package.json file, we add the “--save” option at the end.  Below is what this looks like for Express.js:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install express --save
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+npm install express --save
 </code></pre></div>
 <p>On Windows, when running “npm install” commands, you&#39;ll have to add “--no-bin-links” to the end of the command.  So the previous command on windows should look like the following.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install express --save --no-bin-links
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+npm install express --save --no-bin-links
 </code></pre></div>
 <p>If you wanted to install the library only temporary, you can omit the “--save” portion and the library won&#39;t be saved to your package.json file.</p>
 
@@ -81,7 +93,8 @@
 <p>With a basic understanding of how a web server works, let&#39;s create one. Open your “app.js” and remove our previous code.  This will be the file that contains our web server.</p>
 
 <p>Like most programming languages, javascript executes code line-by-line starting at the top.  The first line of all of our javascript files needs to say “use strict” wrapped in single quotes.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="s1">'use strict'</span>
 </code></pre></div>
 <p>This enables strict mode which makes development a little more consistent and takes out some of the weird parts of javascript.  To read more about what strict mode does, you can read this explanation of strict mode.</p>
 
@@ -90,15 +103,18 @@
 <p>One of the most common programming concepts is using variables.  Variables are simply used to store information for later.  Each variable has a data type such as numbers and text.</p>
 
 <p>To define variables in javascript, we use the “var” keyword followed by the name we want to give to our variable. Below we are defining a variable called num:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">num</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
+<span class="kd">var</span> <span class="nx">num</span><span class="p">;</span>
 </code></pre></div>
 <p>Most lines in Javascript end in a semicolon.  There are a few exceptions that we&#39;ll go over later, but for the most part, know that a line of Javascript code ends in a semicolon.</p>
 
 <p>That only defines a variable, but right now it has a value of undefined since we haven&#39;t given it a value. We do that with the assignment operator (equals sign) followed by the value we want to assign to the variable.  In the code snippet below, we are assigning the value 3 to the variable “num”:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
+<span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 </code></pre></div>
 <p>If you want to see the value of a variable, you can use “console.log()” like we did earlier and instead of giving it text, give it the variable you want to output.  The following code would output the number “3” to the terminal.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
+<span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
 </code></pre></div>
 <p>Now that we understand variables a bit, let&#39;s go over how to import libraries.  To import libraries into our file, we use the “require” function.</p>
@@ -112,13 +128,16 @@
 <p>Functions can also return values, but aren&#39;t required to.  This is useful when a function creates something or fetches a value.</p>
 
 <p>A simple example of a function that takes arguments and returns a value would be an “add” function that takes two numbers and returns the sum.  In the code snippet below, we are calling the “add” function and assigning the return value to a variable called “sum”.  The variable “sum” would now equal the number 7.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
+<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 </code></pre></div>
 <p>Now that we understand how variables and functions work, let&#39;s use the “require” function to import the express library.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 </code></pre></div>
 <p>The Express library returns a function that doesn&#39;t take arguments and is used to create an Express app. Let&#39;s do that now under our express import:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 </code></pre></div>
 <p>We now have an “app” variable that we can use to configure our server.  Right now, it doesn&#39;t do anything, but we are about to change that.</p>
 
@@ -131,10 +150,12 @@
 <p>Before we can define a GET route, you need to understand how to call a Javascript method on a variable.  Certain variable types in javascript also have functions attached to them called methods.  These act similarly to calling a normal function but instead the variable we are calling the method on can be used inside the method.</p>
 
 <p>Don&#39;t worry about this too much for right now, just know that you call methods on variables using the dot notation. The following calls the “get” method on the “app” variable using the the dot notation (the period):</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
 </code></pre></div>
 <p>Luckily with Express, creating a GET route can easily be done with the “get” method on our “app” variable.  The first argument to the “get” method is the path our route is listening for and the second is a function that get&#39;s executed when a request matches this route.  Let&#39;s define a GET request to the homepage (“/”):</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Our code will go here</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -153,7 +174,8 @@
 <p>Notice that the anonymous function has two parameters that Express passes in as arguments on each request.  The first is the parameter “req” (short for “request”) and contains data about the request the server received.  The second is “res” (short for “response”) which provides methods for sending data back to the server. Express adds methods to these variables to make things easier.</p>
 
 <p>Our route doesn&#39;t do anything yet, but let&#39;s fix that.  Our goal here is to get the words “Hello world!” printed on a web page.  Luckily, the “res” variable has a “send” method that lets us send text back to the client.  It takes a single argument and prints that argument to the web page.  In our case, we are going to pass it the text “Hello world!”.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Hello world!'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -170,7 +192,8 @@
 <p>Typically when developing and running our server locally, we don&#39;t listen on port 80.  This is a good idea for many reasons but primarily allows us to run multiple web servers on the same computer.</p>
 
 <p>Now that we know a little about ports, let&#39;s write some code to have our server listen on port 8080. The “app” variable has a method called “listen” that tells the server to start listening for web requests.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -185,7 +208,8 @@
 <p>We used “console.log” earlier, but I didn&#39;t get a chance to explain it.  The “console” variable always exists and can be accessed at any time.  The “console” variable has a method called “log” that takes an argument and prints it to the termina.  This is useful for inspecting variable values and notifying us that things have happen.</p>
 
 <p>Your final code should look similar to this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="s1">'use strict'</span>
 
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
@@ -203,7 +227,8 @@
 <p>Now we have our server written, let&#39;s run it. Save “app.js” and go to your terminal (remember we need to be logged into our VM and be in our project directory).</p>
 
 <p>To run javascript files, we use the “node” command.  Node.js is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let&#39;s run our “app.js” file.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">node app.js
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+node app.js
 </code></pre></div>
 <p>You should see a screen similar to this:</p>
 

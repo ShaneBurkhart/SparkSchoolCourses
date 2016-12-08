@@ -13,6 +13,7 @@ next-lesson-link: /twitter-clone/1/5
 - [1.2 Installing Tools](/courses/twitter-clone/1/2)
 - [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
 - **1.4 Your First Javascript Program**
+- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
 
 This guide assumes you know nothing about programming so let's create and run our first program.  We are going to start with a very basic program that prints the text “Hello World!” to the terminal.  This will get your feet wet as well as ensure that everything is setup correctly for our project.
 
@@ -25,6 +26,7 @@ To create our file, go into your text editor and select File > New File as we di
 In the next section, we are going to go into more detail on javascript, but since we are mostly wanting to check if everything is working, type the following code in our “app.js” file and save.
 
 ```javascript
+// app.js
 console.log('Hello World!');
 ```
 
@@ -37,6 +39,7 @@ The terminal is simply a place where you can type and run text based commands.  
 The first word is always the command we are running and the rest is extra arguments given to the command so it knows what you want it to run.
 
 ```bash
+# Terminal Example
 cd ~/Desktop/TwitterClone
 ```
 
@@ -53,6 +56,7 @@ The “~” path stands for the home directory.  When you open the terminal, you
 Now that we know a bit about the terminal, let's get back to running our program.  First, let's navigate to our project directory in our VM.  Vagrant automatically links all of the files in our project directory to the '/vagrant' directory in our VM.  Navigate there now with the following command:
 
 ```bash
+# Terminal
 cd /vagrant
 ```
 
@@ -61,6 +65,7 @@ Now run the “ls” command to see the contents of the current working director
 To run javascript files, we use the “node” and give it the name of the file we want to run.  In our case, our file is called “app.js” so our command looks like:
 
 ```bash
+# Terminal
 node app.js
 ```
 

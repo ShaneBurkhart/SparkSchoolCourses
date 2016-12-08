@@ -67,7 +67,8 @@
 <p>You may have noticed that we used the “.ejs” file extension instead of the “.html” file extension.  This is because we are going to be using a template engine called EJS in future lessons.  EJS files can contain HTML, so for now, think of “.ejs” as an HTML file.</p>
 
 <p>Let&#39;s write a basic HTML page with a title heading and some text.  Below is the code for the page and I&#39;ll explain it in a second:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
     <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;/head&gt;</span>
@@ -92,10 +93,12 @@
 <p>All HTML files follow the same pattern as above.  They start with a doctype declaration followed by an “html” tag that contains a “head” and “body” element.  From there, it&#39;s up to you how the page will be structured.</p>
 
 <p>Now that we have our page, let&#39;s have our web server render our new HTML page.  Before we can do that, we need to install the EJS library:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install ejs --save
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+npm install ejs --save
 </code></pre></div>
 <p>With that saved, we can tell Express to use EJS as our templating engine.  We also need to tell Express where it can find our view (HTML) files.  To do this, we need to add these two lines under the “var app = express();” line:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
 </code></pre></div>
 <p>Express provides the “set” method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a list of setting here.</p>
@@ -105,14 +108,16 @@
 <p>The second line sets the “view engine” setting which defines which template engine to use when rendering a view.  We are setting this to “ejs” since we want to use the EJS template engine.</p>
 
 <p>Now that we have told Express how to handle rendering views, let&#39;s actually render our EJS file instead of print “Hello World!” text on our homepage.  To do this, we use the “render” method on the “res” variable and pass it the name of our view.  Your homepage route should now look like the following:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Notice how there was no need to add the “.ejs” extension to our view name.  With the settings we set earlier, Express is smart enough to figure out which file you want to render.</p>
 
 <p>Here is the final code so it&#39;s easier to see everything:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="s1">'use strict'</span>
 
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>

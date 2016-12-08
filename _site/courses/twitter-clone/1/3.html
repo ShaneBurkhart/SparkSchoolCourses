@@ -35,6 +35,7 @@
 <li><a href="/courses/twitter-clone/1/2">1.2 Installing Tools</a></li>
 <li><strong>1.3 Setup Your Project And Connect To Your VM</strong></li>
 <li><a href="/courses/twitter-clone/1/4">1.4 Your First Javascript Program</a></li>
+<li><a href="/courses/twitter-clone/1/5">1.5 Writing Your First Web Server</a></li>
 </ul>
 
 <p>To set up our project, we need to create a place to store our project files and connect to our VM so we can develop our web app in it.</p>
@@ -50,7 +51,8 @@
 <p>Open Sublime Text 3 and go to File &gt; New File.  Now go to File &gt; Save As and save this file in our “TwitterClone” folder we just made and give it the name “Vagrantfile”.  Click save and you now have an empty Vagrantfile.</p>
 
 <p>Our file doesn&#39;t do anything yet since it&#39;s blank, but we are going to fix that now.  Type the following code into the file and save:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Vagrant</span><span class="p">.</span><span class="nf">configure</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Vagrantfile</span>
+<span class="no">Vagrant</span><span class="p">.</span><span class="nf">configure</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">box</span> <span class="o">=</span> <span class="s2">"node-mysql"</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">network</span> <span class="s2">"forwarded_port"</span><span class="p">,</span> <span class="ss">guest: </span><span class="mi">8080</span><span class="p">,</span> <span class="ss">host: </span><span class="mi">8080</span>
 <span class="k">end</span>
@@ -66,7 +68,8 @@
 <p>Now that we have defined what our VM will look like for our project, we need to start it and connect to it.  Our goal here is to start the VM on your computer so we can log into that run terminal commands in our VM.</p>
 
 <p>In our Vagrantfile, we configured our VM to use the “node-mysql” box, but we haven&#39;t told Vagrant where to find it yet.  Open your terminal and copy the following into your terminal.  Press enter to run it.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">vagrant box add --name node-mysql <span class="s2">"https://s3.amazonaws.com/spark-school/node-mysql.box"</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+vagrant box add --name node-mysql <span class="s2">"https://s3.amazonaws.com/spark-school/node-mysql.box"</span>
 </code></pre></div>
 <p>If this command fails to run saying there was an error, you might have to install an older version of vagrant.  Some people have contacted me telling me that they have ran into this issue and the fix is to download an older version.  https://releases.hashicorp.com/vagrant/ Visit that link to see a list of vagrant versions you can download. I would try a version or two down from the top.  Click that and you will see a page with links to installers.  For windows download the “.msi” version and for OS X, download the “.dmg” version.</p>
 
@@ -81,17 +84,20 @@
 <h4>OS X/Linux</h4>
 
 <p>Assuming you created the “TwitterClone” folder on the Desktop, open your terminal, in your applications, and navigate to the project directory with:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Desktop/TwitterClone
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<span class="nb">cd</span> ~/Desktop/TwitterClone
 </code></pre></div>
 <p>Type that into your terminal and press enter to run it.</p>
 
 <p>Now that we are in our project directory, let&#39;s start our VM with the “vagrant up” command.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">vagrant up
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+vagrant up
 </code></pre></div>
 <p>Type that into your terminal and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.</p>
 
 <p>Now we have our VM running, let&#39;s connect to it.  On Unix based operating systems, this is easy because we can run “vagrant ssh” and Vagrant will take care the our user authentication for us.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">vagrant ssh
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+vagrant ssh
 </code></pre></div>
 <p>Type that into your terminal and press enter.  You should see the last line of your terminal change format to look like this:</p>
 
@@ -102,19 +108,22 @@
 <h4>Windows</h4>
 
 <p>Assuming you created the “TwitterClone” folder on the Desktop, open“Windows Powershell” from the start menu, and navigate to the project directory with:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Desktop/TwitterClone
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell</span>
+<span class="nb">cd</span> ~/Desktop/TwitterClone
 </code></pre></div>
 <p>Type that into your terminal and press enter to run it.</p>
 
 <p>Now that we are in our project directory, let&#39;s start our VM with the “vagrant up” command.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">vagrant up
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell</span>
+vagrant up
 </code></pre></div>
 <p>Type that into powershell and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.</p>
 
 <p>Now we have our VM running, let&#39;s connect to it.  On Unix based operating systems, the following command will log you into your VM, but windows doesn&#39;t have the tools Vagrant needs.  Instead, when you run the following command on Windows, it will tell you it can&#39;t find the “ssh executable”.  On Windows we are going to use Putty to log into our VM.</p>
 
 <p>In order to log into our VM with Putty, we need login credentials.  Run the following command to get them:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">vagrant ssh-config
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell</span>
+vagrant ssh-config
 </code></pre></div>
 <p>Type that into your terminal and press enter.  You should see something like the following.</p>
 

@@ -22,7 +22,8 @@ We could make another POST route to delete tweets and have a new form that submi
 
 When submitting a form, if you give the button that is submitting the form a “name” attribute, you can check whether the button was clicked.  So for our form, we'll have an “Update Tweet” and a “Delete Tweet” button.  Both will submit the update form and we can check which of these buttons was pressed in the “/tweets/:id/update” POST route. Based on which was pressed, we can either update or delete the tweet.  Let's add a delete button to our form with a name attribute.
 
-```html
+```ejs
+<!-- views/edit-tweet.ejs -->
 <form id="tweet-form" action="/tweets/<%= tweet.id %>/update" method="POST">
   <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane" value="<%= tweet.handle %>">
   <textarea id="tweet-form-body" name="body" placeholder="What's happening?"><%= tweet.body %></textarea>
@@ -36,6 +37,7 @@ We are giving our “Delete Tweet” button a name attribute of “delete_button
 Since we want users to use caution when pressing the delete button, we'll give ours the color red.  Red contrasts with the rest of the site and will make the user more cautious when pressing it.  The following is the style we are going to use for our button.  Add this to site.css.
 
 ```css
+/* public/css/site.css */
 #tweet-form-delete-button {
   color: #ffffff;
   font-size: 14px;
@@ -53,7 +55,8 @@ If you refresh our edit tweet page, you should see the following.
 
 Now we have a delete button that will submit our form, but we don't want users to accidentally click the delete button when they intend to update the tweet.  To prevent this, we can add a confirm dialog that asks the user if they are sure they want to delete.  Update our delete button to look like the following and I'll explain in a minute.
 
-```html
+```ejs
+<!-- views/edit-tweet.ejs -->
 <button id="tweet-form-delete-button" name="delete_button" onclick="return confirm('Are you sure you want to delete the tweet?')">Delete Tweet</button>
 ```
 

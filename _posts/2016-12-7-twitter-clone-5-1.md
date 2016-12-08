@@ -27,6 +27,7 @@ We have an “id” column for our tweets that uniquely identifies them.  We can
 Let's define a GET route for our “/tweets/:id/edit” path.  I'm going to add this under our create tweet route.
 
 ```javascript
+// app.js
 app.get('/tweets/:id/edit', function(req, res) {
 });
 ```
@@ -36,6 +37,7 @@ You may be wondering what the “:id” portion does in our path.  In Express, w
 Our “req” parameter has a “params” object that holds the parameters for the request.  Let's print the “id” parameter on our edit page so we can play around with it to see how it works.
 
 ```javascript
+// app.js
 app.get('/tweets/:id/edit', function(req, res) {
   res.send(req.params.id);
 });
@@ -46,6 +48,7 @@ Restart your server and visit http://127.0.0.1:8080/tweets/1/edit and you'll see
 Visit http://127.0.0.1:8080/tweets/some-text/edit and you should see “some-text” on our page.  We don't want to allow text in our “id” parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I'll add that now and explain after.
 
 ```javascript
+// app.js
 app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
   res.send(req.params.id);
 });
@@ -59,7 +62,8 @@ Restart your server and visit http://127.0.0.1:8080/tweets/some-text/edit again.
 
 Now our edit tweets path's id parameter can only contain numbers.  Let's add a link to our tweet that takes us to the edit page.
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <% for(var i = 0; i < tweets.length; i++) { %>
   <% var tweet = tweets[i]; %>
   <article class="tweet">

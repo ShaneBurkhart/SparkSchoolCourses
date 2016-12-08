@@ -13,6 +13,7 @@ next-lesson-link: /twitter-clone/1/3
 - **1.2 Installing Tools**
 - [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
 - [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
 
 Before we can start coding, we need to install some tools that we are going to use to build our Twitter clone.  Some tools are specific to certain operating systems.  Read through the whole section to make sure you have everything you need.
 

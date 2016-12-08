@@ -13,6 +13,7 @@ next-lesson-link: /twitter-clone/1/4
 - [1.2 Installing Tools](/courses/twitter-clone/1/2)
 - **1.3 Setup Your Project And Connect To Your VM**
 - [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
 
 To set up our project, we need to create a place to store our project files and connect to our VM so we can develop our web app in it.
 
@@ -29,6 +30,7 @@ Open Sublime Text 3 and go to File > New File.  Now go to File > Save As and sav
 Our file doesn't do anything yet since it's blank, but we are going to fix that now.  Type the following code into the file and save:
 
 ```ruby
+# Vagrantfile
 Vagrant.configure("2") do |config|
   config.vm.box = "node-mysql"
   config.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -48,6 +50,7 @@ Now that we have defined what our VM will look like for our project, we need to 
 In our Vagrantfile, we configured our VM to use the “node-mysql” box, but we haven't told Vagrant where to find it yet.  Open your terminal and copy the following into your terminal.  Press enter to run it.
 
 ```bash
+# Terminal
 vagrant box add --name node-mysql "https://s3.amazonaws.com/spark-school/node-mysql.box"
 ```
 
@@ -66,6 +69,7 @@ These instructions are specific to your operating system so scroll down to find 
 Assuming you created the “TwitterClone” folder on the Desktop, open your terminal, in your applications, and navigate to the project directory with:
 
 ```bash
+# Terminal
 cd ~/Desktop/TwitterClone
 ```
 
@@ -74,6 +78,7 @@ Type that into your terminal and press enter to run it.
 Now that we are in our project directory, let's start our VM with the “vagrant up” command.
 
 ```bash
+# Terminal
 vagrant up
 ```
 
@@ -82,6 +87,7 @@ Type that into your terminal and press enter.   This command takes some time to 
 Now we have our VM running, let's connect to it.  On Unix based operating systems, this is easy because we can run “vagrant ssh” and Vagrant will take care the our user authentication for us.
 
 ```bash
+# Terminal
 vagrant ssh
 ```
 
@@ -96,6 +102,7 @@ You are now logged into your VM and are ready to get started.  All terminal comm
 Assuming you created the “TwitterClone” folder on the Desktop, open“Windows Powershell” from the start menu, and navigate to the project directory with:
 
 ```bash
+# PowerShell
 cd ~/Desktop/TwitterClone
 ```
 
@@ -104,6 +111,7 @@ Type that into your terminal and press enter to run it.
 Now that we are in our project directory, let's start our VM with the “vagrant up” command.
 
 ```bash
+# PowerShell
 vagrant up
 ```
 
@@ -114,6 +122,7 @@ Now we have our VM running, let's connect to it.  On Unix based operating system
 In order to log into our VM with Putty, we need login credentials.  Run the following command to get them:
 
 ```bash
+# PowerShell
 vagrant ssh-config
 ```
 

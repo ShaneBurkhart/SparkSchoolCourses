@@ -24,6 +24,7 @@ The request method we use depends on the purpose of our form.  We use POST reque
 Right now we don't haven't anything that listens for a route with the POST method and the path “/tweets/create”, so let's add that now.  Similar to the “get” method on the “app” variable, we use the “post” method to listen for POST requests.  Go to “app.js” and let's create a POST route to “/tweets/create” under our homepage route.
 
 ```javascript
+// app.js
 app.post('/tweets/create', function(req, res) {
   // Code to create tweets goes here.
   res.send('Creating tweet.');
@@ -37,12 +38,14 @@ Right now, we are outputting the text “Creating tweet.” so we can test if ev
 Before we can have our POST route create tweets, we need to establish a connection to our database.  To do this, we need to install the MySQL driver for node. Run the following in your terminal:
 
 ```bash
+# Terminal
 npm install mysql --save
 ```
 
 Now that the MySQL driver is installed, let's include it in our file.  It's a good idea to keep all imports together and at the top of the file, so we are going to add a “mysql” require above our “express” require.
 
 ```javascript
+// app.js
 var mysql = require('mysql');
 var express = require('express');
 ```
@@ -50,6 +53,7 @@ var express = require('express');
 The MySQL library is required, but we aren't connected to our database yet.  To create a connection, we use the “createConnection” method on the “mysql” variable.  The first argument is a Javascript object that contains connection details for our MySQL database.  I'll explain what a Javascript object is in a second but for right now, create a connection under the “app” variable.
 
 ```javascript
+// app.js
 var app = express();
 var connection = mysql.createConnection({
   host: '127.0.0.1',
@@ -72,6 +76,7 @@ So when we do “app.post()” we are actually getting the value of the “post�
 The second way to get object values by key is with the bracket notation.  This is almost the same as the dot notation, but it's advantage is we can search for keys with variable values.  Both the second and third line would get the value of the “name” key.  The fourth line is how we could call the “post” function with the bracket notation.
 
 ```javascript
+// Javascript Example
 var nameKey = 'name';
 
 app['name']
@@ -83,6 +88,7 @@ app['post']('/tweets/create', function(req, res) { });
 Now that you understand objects a little better, let's get back to connecting to our database.  The “createConnection” function on the “mysql” object returns a connection object that has a “connect” method to initiate the connection to the database.  The only argument it takes is a callback function that gets executed when the connection has been made or there was an error.
 
 ```javascript
+// app.js
 connection.connect(function(err) {
   // Our code will go here
 });
@@ -95,6 +101,7 @@ Since there might be an error when connecting to the database, we need to check 
 We can do this check with “if” statements.  “If” statements let us make decisions based on whether or not what we give it passes a truth test.  Below is how we can check if the “err” variable exists and print the error if it does:
 
 ```javascript
+// Javascript Example
 if(err) {
   console.log(err);
 }
@@ -105,6 +112,7 @@ if(err) {
 Let's add an error check to our connection callback:
 
 ```javascript
+// app.js
 connection.connect(function(err) {
   if(err) {
     console.log(err);
@@ -116,6 +124,7 @@ connection.connect(function(err) {
 Now our database connection callback checks for an error and prints it if there was one.  Currently, the text “Connected to the database” will be printed even if there is an error because our function will keep executing after the “if” statement.  To return from a function before the end, we use the “return” keyword.  Let's add that to our “if” statement.
 
 ```javascript
+// app.js
 if(err) {
   console.log(err);
   return;
@@ -127,6 +136,7 @@ The code will now enter the “if” statement if there was an error, print that
 Since some of our routes need a database connection, we need to wait for the connection to connect successfully before we start our server.  Let's move the “app.listen()” call to our connection callback.  We'll add this below our “Connected to the database.” line so our web server will only get started if there wasn't an error.  Your app.js file should now look like the following:
 
 ```javascript
+// app.js
 'use strict'
 
 var mysql = require('mysql');
@@ -139,7 +149,6 @@ var connection = mysql.createConnection({
   database : 'twitter'
 });
 
-
 connection.connect(function(err) {
   if(err) {
     console.log(err);
@@ -151,18 +160,14 @@ connection.connect(function(err) {
   });
 });
 
-
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-
 app.use(express.static('./public'));
-
 
 app.get('/', function(req, res) {
   res.render('tweets');
 });
-
 
 app.post('/tweets/create', function(req, res) {
   // Code to create tweets goes here.
@@ -183,12 +188,14 @@ The first thing we need to do is get the Tweet data from the form.  If you remem
 Since the POST request body is URL encoded, we need to decode it with middleware so we can read our form values.  There is an Express library we need to install to do this called body-parser.  Let's install that now.  Run the following command in your terminal:
 
 ```bash
+# Terminal
 npm install body-parser --save
 ```
 
 Now that our library is installed, let's require it in our “app.js” file.  Under our express require, let's require the “body-parser” library and save it to a variable called “bodyParser”:
 
 ```javascript
+// app.js
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -199,6 +206,7 @@ Like we did with the static file middleware, we are going to call the “use” 
 The only option we need to set is the “extended” option and we need to set it to “true”.  Explaining this option is out of the scope of the course, but just know you need it when using the body-parser.  If you are curious, you can read about the “extended” option here. Under the line that adds our static middleware, add the URL encoded request body middleware:
 
 ```javascript
+// app.js
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 ```
@@ -208,14 +216,13 @@ Our form values are now in a readable state, so let's get them in our POST route
 If you remember, each of our form inputs had a “name” attribute.  For our handle it was “handle” and for our tweet body, it was “body”.  These are the keys we use to get each form value from the request body.  Let's get the handle and body form values and print them to the terminal.
 
 ```javascript
+// app.js
 app.post('/tweets/create', function(req, res) {
   var handle = req.body.handle;
   var body = req.body.body;
 
-
   console.log(handle);
   console.log(body);
-
 
   // Code to create tweets goes here.
   res.send('Creating tweets');
@@ -231,6 +238,7 @@ Now that we have our Tweet form values, let's insert them into our database as w
 To make our code easier to read, let's first create our query and save it to a variable called “query”.  Add this line above our “handle” and “body” variables.
 
 ```javascript
+// app.js
 var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
 var handle = req.body.handle;
 var body = req.body.body;
@@ -249,15 +257,14 @@ To run queries in code, we use the “query” method on our “connection” va
 Let's save our Tweet to the database.
 
 ```javascript
+// app.js
 app.post('/tweets/create', function(req, res) {
   var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
   var handle = req.body.handle;
   var body = req.body.body;
 
-
   connection.query(query, [handle, body], function(err) {
   });
-
 
   res.send('Creating tweets');
 });
@@ -268,6 +275,7 @@ This code contains some stuff we haven't learned yet.  If you look at the second
 Arrays are defined with square brackets and can contain any number of values.  These values can be accessed with bracket notation and giving the index you want to get in the bracket notation.  The indexes start at 0 so the first item in the array has an index of 0, the second has an index of 1, etc.  The code below shows how you would assign an array to a variable called “nums” and get the first and third value in the array.
 
 ```javascript
+// Javascript Example
 var nums = [4, 9, 10, 3];
 nums[0]; // returns the number 4
 nums[2]; // returns the number 10
@@ -276,11 +284,11 @@ nums[2]; // returns the number 10
 Now we are creating the Tweet, but we aren't waiting for our query to finish before responding to the request with “Creating Tweets”.  To do this, move that line into our “query” method callback.
 
 ```javascript
+// app.js
 app.post('/tweets/create', function(req, res) {
   var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
   var handle = req.body.handle;
   var body = req.body.body;
-
 
   connection.query(query, [handle, body], function(err) {
     res.send('Creating tweets');
@@ -295,6 +303,7 @@ You may notice that we aren't doing anything but sending back text when we creat
 When you go from one route to another, we call this a redirect.  Lucky for us, Express has a method on the request object called “redirect”.  The first argument it takes is the URL we want to redirect to.  Since the page we want to redirect to is on the same domain, we can simply give it the root path “/” (homepage).
 
 ```javascript
+// app.js
 connection.query(query, [handle, body], function(err) {
   res.redirect('/');
 });
@@ -305,6 +314,7 @@ Restart your server and submit the Tweet form again.  It should redirect you bac
 Lastly, we want to make sure to print any errors if they exist.  The first argument to the query callback is an error if it exists, otherwise, it's undefined.  Like we did in our connection callback, we need to check the “err” argument with an “if” statement and print the error if it exists. We want to redirect back to our homepage no matter what so no need to return early in the case of an error.
 
 ```javascript
+// app.js
 connection.query(query, [handle, body], function(err) {
   if(err) {
     console.log(err);
@@ -317,6 +327,7 @@ connection.query(query, [handle, body], function(err) {
 The final code for “app.js” should look like the following:
 
 ```javascript
+// app.js
 'use strict'
 
 var mysql = require('mysql');

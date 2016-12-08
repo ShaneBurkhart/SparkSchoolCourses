@@ -13,6 +13,7 @@ next-lesson-link: /twitter-clone/1/2
 - [1.2 Installing Tools](/courses/twitter-clone/1/2)
 - [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
 - [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
 
 Welcome to my course that teaches you how to build a small Twitter clone.  The course is going to teach you the basics of web developments.  As you can imagine, we can't cover everything since that would take months.  Instead, I'm going to teach you the basics that every web app is built on, so you can start building web apps yourself.
 

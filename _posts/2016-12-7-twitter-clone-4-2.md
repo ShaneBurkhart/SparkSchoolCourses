@@ -18,12 +18,14 @@ Our page now has a static tweet, but we still need to get our tweets from our da
 If you remember from day 3, we've been using a SELECT query to see the contents of our Tweet table.  The query we have been using is one of the simplest forms of the SELECT query and let's go over that now.
 
 ```sql
+-- SQL Example
 SELECT * FROM Tweets;
 ```
 
 SELECT queries allow us to read data from the database and start with the SELECT keyword.  After that, we define what columns we want to get from the database.  The “*” says get all columns.  If we only wanted the id and body columns, we could do the following.  We separate the column names by commas.
 
 ```sql
+-- SQL Example
 SELECT id, body FROM Tweets;
 ```
 
@@ -32,6 +34,7 @@ After defining the columns we want, we put the FROM keyword followed by the tabl
 As I mentioned, this is the simplest form of the SELECT query and it gets all rows and columns in our Tweets table.  Since we want to order them by created_at, let's add the ORDER BY keyword to the end of our query.
 
 ```sql
+-- SQL Example
 SELECT * FROM Tweets ORDER BY created_at DESC;
 ```
 
@@ -40,6 +43,7 @@ The ORDER BY section usually goes at the end of a query and lets us order our da
 Let's execute this query in our homepage “/” route like we did in our create tweet route.  We'll also move the line that renders the “tweets.ejs” file to inside the query callback since the template will need the tweets from the query.  This time when we call the “query” method, we won't have any query parameters to pass.  Just the query and the callback.
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
 
@@ -54,6 +58,7 @@ I set the query to a variable again since it's easier to read.  If you ever have
 We're now getting tweets, but as always, we need to check for errors and print them if they exist.  We still want to render our homepage if there is a query error so there's no need for the “return” keyword.
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
 
@@ -70,6 +75,7 @@ app.get('/', function(req, res) {
 The second parameter to the query callback contains the query results and we are naming that parameter“results”.  This is an array (list) of rows from our database.  We can run through these with a thing called a loop.  Loops let us execute a block of code over and over until we tell it to stop.  The loop we are going to use is the “for” loop.  I'll give an example and then explain what's going on.
 
 ```javascript
+// Javascript Example
 for(var i = 0; i < 4; i++) {
   console.log(i);
 }
@@ -88,12 +94,14 @@ Based on what I just said, the for loop will print the number 0 to 3 and then st
 Let's use a for loop to go through our results.  I mentioned that our results parameter is an array of rows returned.  Arrays have a “length” property that will tell us how many items there are in the array.  We use the dot notation on our array as if we were getting the “length” value from an object.  The following will return how many results are in our array.
 
 ```javascript
+// Javascript Example
 results.length
 ```
 
 We can use this value in our for loop's test condition to loop through our results.  Let's write a for loop that loop through all of our results and prints them.  We'll put this after our error check so we can see the results that are returned.
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
 

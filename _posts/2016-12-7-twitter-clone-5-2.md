@@ -19,6 +19,7 @@ In the last lesson, we created a link to our edit tweets page, but the tweet pag
 Previously we have been getting all tweets from the Tweets table with a SELECT query.  We'll use this same query to get a single tweet, but we are going to add a filter to get only the tweet with the id we want.
 
 ```sql
+-- SQL Example
 SELECT * FROM Tweets WHERE id = 1;
 ```
 
@@ -27,16 +28,17 @@ To do this, we add a WHERE clause to the end of our query.  The WHERE clause all
 Since an id is taken from a URL and URLs are user input, we need to let MySQL sanitize the input.  We do this with query parameters and need to replace the a 1 above with a question mark.
 
 ```sql
+-- SQL Example
 SELECT * FROM Tweets WHERE id = ?;
 ```
 
 Let's execute this query and pass our tweet id as a parameter. We'll print the tweet to the terminal so we can see what's returned.
 
 ```javascript
+// app.js
 app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
   var query = 'SELECT * FROM Tweets WHERE id = ?';
   var id = req.params.id;
-
 
   connection.query(query, [id], function(err, results) {
     res.send(id);
@@ -47,6 +49,7 @@ app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
 As always, we need to check for query errors.  For our edit page, when there is an error, we want to redirect to our homepage.  It doesn't make sense to render an edit page if there was an error when getting our tweet.
 
 ```javascript
+// app.js
 connection.query(query, [id], function(err, results) {
   if(err) {
     console.log(err);
@@ -65,6 +68,7 @@ What if our query doesn't return a tweet?  If we don't find a tweet, it doesn't 
 We don't need to create a new “if” statement since the one we have does what we want for no tweet as well.  Let's do that with the “or” operator.
 
 ```javascript
+// app.js
 if(err || results.length === 0) {
   console.log(err || 'No tweet found.');
   res.redirect('/');
@@ -81,6 +85,7 @@ Restart your server and visit a tweet edit page for an id that doesn't exist yet
 Alright, we have our errors and no tweet cases handled.  Let's render an EJS file instead of sending back the id parameter. We'll also pass our tweet to the view since we'll need it in there.
 
 ```javascript
+// app.js
 connection.query(query, [id], function(err, results) {
   if(err || results.length === 0) {
     console.log(err || 'No tweet found.');

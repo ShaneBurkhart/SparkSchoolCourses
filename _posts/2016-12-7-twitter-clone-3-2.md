@@ -37,12 +37,14 @@ Right now, we are connected to the MySQL server but don't have a database for ou
 Let's create a database for our project with the name “twitter”.  Run the following command in your MySQL GUI:
 
 ```sql
+-- SQL GUI Query Tab
 CREATE DATABASE twitter;
 ```
 
 We've created our database, now we need to select it as the database we want to use right now. We do that with the `USE` command, followed by the name of the database:
 
 ```sql
+-- SQL GUI Query Tab
 USE twitter;
 ```
 
@@ -57,6 +59,7 @@ We have a name for our table, but now we need to think about the data we want to
 Now that we know what data we want to store, we can create a table with those columns in it.  Run this query in your MySQL GUI and  I'll explain it in a bit:
 
 ```sql
+-- SQL GUI Query Tab
 CREATE TABLE Tweets (
   id INT NOT NULL AUTO_INCREMENT,
   body TEXT NOT NULL,

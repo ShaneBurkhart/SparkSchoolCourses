@@ -17,6 +17,7 @@ In the last lesson, we got our tweets from the database and saw how we can loop 
 The “render” method we call at the end of our query callback only specifies the template we want to render.  There is a second optional parameter that takes an object that is passed to our template file.  We can define whatever values we want to pass to our template.  Let's add that now and assign our “results” parameter to the “tweets” key on our data object.
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
 
@@ -39,6 +40,7 @@ Now inside our “tweets.ejs” template, we can reference the variable “tweet
 EJS is a template engine that allows us to run javascript code in HTML files.  So an EJS file is really just an HTML file that has a special syntax that lets us run javascript code in our template. I'm going to write a for loop in EJS below and explain it after.
 
 ```ejs
+<!-- EJS Example -->
 <% for(var i = 0; i < tweets.length; i++) { %>
   <p><%= tweets[i].body %></p>
 <% } %>
@@ -52,7 +54,8 @@ These are really the two main EJS tags you will use.  There are a few others but
 
 Now we know how to run javascript in EJS files, so let's run through our tweets and output the tweets HTML for each tweet filled in with correct values.  The code will look a bit different since I formatted the first paragraph element (the one containing the handle) to be on multiple lines.  This doesn't change any behavior of our file, it just makes it easier to read.
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <main>
   <form id="tweet-form" action="/tweets/create" method="POST">
     <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane">
@@ -83,6 +86,7 @@ Our tweets feed is finally coming to life, but that date is plain nasty.  We wan
 Moment.js is an extremely useful library that makes working with dates really easy.  As we have with other libraries we need to install it for our project (--no-bin-links) for windows.
 
 ```bash
+# Terminal
 npm install moment --save
 ```
 
@@ -91,6 +95,7 @@ With that library installed, let's require it in our “app.js” file.  Put thi
 Moment.js is imported, so let's loop through our tweets and calculate the time from now for each tweet's “created\_at” value.  We'll add this time from now value to each tweet object as “time\_from\_now”.  Our “for” loop in app.js will now look like the following.
 
 ```javascript
+// app.js
 for(var i = 0; i < results.length; i++) {
   var tweet = results[i];
   tweet.time_from_now = moment(tweet.created_at).fromNow();
@@ -105,7 +110,8 @@ On the right side of the equals, we have our Moment.js code.  When importing Mom
 
 With our new value on each tweet, let's go back to our template and update our date to “time\_from\_now” instead of “created\_at”.
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <p>
   <a href="http://twitter.com/<%= tweet.handle %>">@<%= tweet.handle %></a>
   <span class="light-grey"> - <%= tweet.time_from_now %></span>

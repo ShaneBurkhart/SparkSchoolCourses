@@ -58,10 +58,12 @@
 <p>Right now, we are connected to the MySQL server but don&#39;t have a database for our project yet.  Creating databases is pretty straightforward and can simply be done with the <code>CREATE DATABASE</code> command.</p>
 
 <p>Let&#39;s create a database for our project with the name “twitter”.  Run the following command in your MySQL GUI:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">twitter</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL GUI Query Tab</span>
+<span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">twitter</span><span class="p">;</span>
 </code></pre></div>
 <p>We&#39;ve created our database, now we need to select it as the database we want to use right now. We do that with the <code>USE</code> command, followed by the name of the database:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="n">twitter</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL GUI Query Tab</span>
+<span class="n">USE</span> <span class="n">twitter</span><span class="p">;</span>
 </code></pre></div>
 <p>With the “twitter” database selected, we can now create tables in the selected database.</p>
 
@@ -72,7 +74,8 @@
 <p>We have a name for our table, but now we need to think about the data we want to store for our tweets.  At minimum, we need columns for the handle of the user that created the tweet and the text body of the tweet.  We also need a way to uniquely identify a tweet, so we need another column for an id.  We also want to store the date the tweet was created so we can display it with the tweet. So we&#39;ll need four columns: “id”, “handle”, “body”, and “created_at”.</p>
 
 <p>Now that we know what data we want to store, we can create a table with those columns in it.  Run this query in your MySQL GUI and  I&#39;ll explain it in a bit:</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Tweets</span> <span class="p">(</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL GUI Query Tab</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Tweets</span> <span class="p">(</span>
   <span class="n">id</span> <span class="n">INT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
   <span class="n">body</span> <span class="n">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
   <span class="n">handle</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>

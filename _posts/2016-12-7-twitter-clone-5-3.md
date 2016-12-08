@@ -16,7 +16,8 @@ next-lesson-link: /twitter-clone/5/4
 
 In the last lesson, we got our tweet from the database and rendered the 'edit-tweet' EJS file, but that file doesn't exist yet.  Let's create an EJS file for our edit tweet page.  In the “views” directory, we are going to create a file called “edit-tweet.ejs” for our edit page.  Do that now and let's add the basic HTML structure for our site (header, css, etc.).
 
-```html
+```ejs
+<!-- views/edit-tweet.ejs -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -42,7 +43,8 @@ Let's first create a file in our “views” directory that is called “_tweet.
 
 Let's copy our tweet HTML into our “_tweet.ejs” file.
 
-```html
+```ejs
+<!-- views/_tweet.ejs -->
 <article class="tweet">
   <p>
     <a href="http://twitter.com/<%= tweet.handle %>">@<%= tweet.handle %></a>
@@ -55,7 +57,8 @@ Let's copy our tweet HTML into our “_tweet.ejs” file.
 
 Now that we have a tweet partial, let's update our homepage to use it.  EJS has a function we can use to include other EJS files that is called “include”.  It follows the same pattern as our “res.render()” function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in “tweets.ejs” will now look like the following.
 
-```html
+```ejs
+<!-- views/tweets.ejs -->
 <% for(var i = 0; i < tweets.length; i++) { %>
   <%- include('_tweet', { tweet: tweets[i] }); %>
 <% } %>
@@ -70,6 +73,7 @@ If you refresh your homepage, you should still see each of the tweets being rend
 Let's include the tweet partial in 'edit-tweet.ejs'.
 
 ```ejs
+<!-- views/edit-tweet.ejs -->
 <main>
   <%- include('_tweet', { tweet: tweet }); %>
 </main>
@@ -82,6 +86,7 @@ We passed our tweet from the database to “edit-tweet” as “tweet”.  We'll
 The time since created is blank. This is because we didn't add it to the tweet in our edit tweet route.  Let's add that now.  Our final edit tweet route will look like the following.
 
 ```javascript
+// app.js
 app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
   var query = 'SELECT * FROM Tweets WHERE id = ?';
   var id = req.params.id;
@@ -92,9 +97,9 @@ app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
       res.redirect('/');
       return;
     }
+
     var tweet = results[0];
     tweet.time_from_now = moment(tweet.created_at).fromNow();
-
 
     res.render('edit-tweet', { tweet: tweet });
   });
@@ -104,6 +109,7 @@ app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
 Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let's copy our tweet form and add it below our tweet preview on the “edit-tweet” view.  We'll change some values so our form submits to our update route.
 
 ```ejs
+<!-- views/edit-tweet.ejs -->
 <main>
   <%- include('_tweet', { tweet: tweet }); %>
   <form id="tweet-form" action="/tweets/<%= tweet.id %>/update" method="POST">

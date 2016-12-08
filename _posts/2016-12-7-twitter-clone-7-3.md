@@ -19,6 +19,7 @@ The edit tweet links are rendered on the homepage route so we need to check if e
 Before we can do that, we need to get our “tweets_created” cookie and save it to a variable.  We are going to use the “or” operator again to make sure the “tweetsCreated” variable is an array.
 
 ```javascript
+// app.js
 app.get('/', function(req, res) {
   var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
   var tweetsCreated = req.cookies.tweets_created || [];
@@ -41,6 +42,7 @@ app.get('/', function(req, res) {
 We already have a loop that is going through the tweets that are going to be rendered, so let's use that to check if each tweet is editable.
 
 ```javascript
+// app.js
 for(var i = 0; i < results.length; i++) {
   var tweet = results[i];
 
@@ -53,7 +55,8 @@ We are setting the “isEditable” attribute to the return value of “includes
 
 We have the “isEditable” attribute on each tweet, so let's go to our “_tweet.ejs” partial and add a check for “isEditable.
 
-```html
+```ejs
+<!-- views/_tweet.ejs -->
 <article class="tweet">
   <p>
     <a href="http://twitter.com/<%= tweet.handle %>">@<%= tweet.handle %></a>
