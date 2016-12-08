@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/4/2
 title: 4.2 Reading The Tweet From The Database
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'
-next-lesson-link: /twitter-clone/4/3
+next-lesson-link: /courses/twitter-clone/4/3
 ---
 
 ####Table Of Contents

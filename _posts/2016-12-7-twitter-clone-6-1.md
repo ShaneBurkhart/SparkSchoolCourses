@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/6/1
 title: 6.1 Adding A Delete Button
 course: Twitter Clone
 section: 'Day 6: Deleting A Tweets'
-next-lesson-link: /twitter-clone/6/2
+next-lesson-link: /courses/twitter-clone/6/2
 ---
 
 ####Table Of Contents

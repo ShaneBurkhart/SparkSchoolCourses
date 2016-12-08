@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/3/1
 title: 3.1 Connecting To MySQL
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
-next-lesson-link: /twitter-clone/3/2
+next-lesson-link: /courses/twitter-clone/3/2
 ---
 
 ####Table Of Contents

@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/4/1
 title: 4.1 Creating A Tweet In HTML/CSS
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'
-next-lesson-link: /twitter-clone/4/2
+next-lesson-link: /courses/twitter-clone/4/2
 ---
 
 ####Table Of Contents

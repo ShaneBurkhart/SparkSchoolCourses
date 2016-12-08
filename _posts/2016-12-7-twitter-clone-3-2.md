@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/3/2
 title: 3.2 Creating The Database And Tweets Table
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
-next-lesson-link: /twitter-clone/3/3
+next-lesson-link: /courses/twitter-clone/3/3
 ---
 
 ####Table Of Contents

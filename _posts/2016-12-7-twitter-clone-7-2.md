@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/7/2
 title: 7.2 Creating User Authentication Middleware
 course: Twitter Clone
 section: 'Day 7: Restrict Updating And Deleting Tweets'
-next-lesson-link: /twitter-clone/7/3
+next-lesson-link: /courses/twitter-clone/7/3
 ---
 
 ####Table Of Contents

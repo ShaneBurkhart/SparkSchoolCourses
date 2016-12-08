@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/1/2
 title: 1.2 Installing Tools
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
-next-lesson-link: /twitter-clone/1/3
+next-lesson-link: /courses/twitter-clone/1/3
 ---
 
 ####Table Of Contents

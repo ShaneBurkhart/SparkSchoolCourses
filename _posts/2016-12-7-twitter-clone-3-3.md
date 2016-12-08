@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/3/3
 title: 3.3 Inserting Some Tweets Into Our Database
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
-next-lesson-link: /twitter-clone/3/4
+next-lesson-link: /courses/twitter-clone/3/4
 ---
 
 ####Table Of Contents

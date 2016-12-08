@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/1/1
 title: 1.1 Introduction
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
-next-lesson-link: /twitter-clone/1/2
+next-lesson-link: /courses/twitter-clone/1/2
 ---
 
 ####Table Of Contents

@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/1/3
 title: 1.3 Setup Your Project And Connect To Your VM
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
-next-lesson-link: /twitter-clone/1/4
+next-lesson-link: /courses/twitter-clone/1/4
 ---
 
 ####Table Of Contents

@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/5/1
 title: 5.1 Adding An Edit Link To Tweets
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'
-next-lesson-link: /twitter-clone/5/2
+next-lesson-link: /courses/twitter-clone/5/2
 ---
 
 ####Table Of Contents

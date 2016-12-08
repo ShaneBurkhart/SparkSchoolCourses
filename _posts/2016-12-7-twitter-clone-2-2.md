@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/2/2
 title: 2.2 Adding Style To Our HTML Page With CSS
 course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'
-next-lesson-link: /twitter-clone/2/3
+next-lesson-link: /courses/twitter-clone/2/3
 ---
 
 ####Table Of Contents

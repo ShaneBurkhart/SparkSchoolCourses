@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/5/2
 title: 5.2 Getting Our Tweet From The Database
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'
-next-lesson-link: /twitter-clone/5/3
+next-lesson-link: /courses/twitter-clone/5/3
 ---
 
 ####Table Of Contents

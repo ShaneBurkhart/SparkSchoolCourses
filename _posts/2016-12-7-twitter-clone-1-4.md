@@ -4,7 +4,7 @@ permalink: /courses/twitter-clone/1/4
 title: 1.4 Your First Javascript Program
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
-next-lesson-link: /twitter-clone/1/5
+next-lesson-link: /courses/twitter-clone/1/5
 ---
 
 ####Table Of Contents
