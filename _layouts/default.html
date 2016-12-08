@@ -10,7 +10,11 @@
                 <h1>{{ page.title }}</h1>
                 {{ content }}
                 {% if page.next-lesson-link %}
-                    <a href="{{ page.next-lesson-link }}"> Click here to go the next lesson.</a>
+                <p class="text-center">
+                    <a href="{{ page.next-lesson-link }}" class="next-lesson-button">
+                        CLICK HERE TO GO TO THE NEXT LESSON
+                    </a>
+                </p>
                 {% endif %}
             </article>
         </main>

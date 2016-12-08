@@ -73,6 +73,10 @@ ul {
     }
 }
 
+.text-center {
+    text-align: center;
+}
+
 .highlight {
     border: 1px solid #303f45;
     border-radius: 3px;
@@ -102,4 +106,13 @@ ul {
 
 article img {
     max-width: 100%;
+}
+
+.next-lesson-button {
+    color: #ffffff;
+    background-color: #004056;
+    margin-top: 40px;
+    padding: 14px;
+    font-family: "Open Sans";
+    display: block;
 }
