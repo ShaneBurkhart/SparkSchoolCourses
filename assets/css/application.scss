@@ -1,0 +1,93 @@
+@import "font-awesome/css/font-awesome.min";
+@import "syntax";
+@import "course";
+
+body, html{
+    margin: 0;
+    background-color: #ffffff;
+}
+
+body {
+    padding: 65px 0px;
+}
+
+header {
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+main, .container {
+    margin: 0px auto;
+    width: 700px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans";
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    color: #5a5a5a;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+.highlight {
+    border: 1px solid #303f45;
+    border-radius: 3px;
+    padding: 14px;
+    margin-bottom: 25px;
+    overflow: scroll;
+}
+
+#site-logo {
+    color: #004056;
+    display: block;
+    margin-top: 11px;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: 700;
+}
+
+#section-name {
+    color: #c3ccd0;
+    font-size: 16px;
+    margin: 16px 0px;
+}
+
+article img {
+    max-width: 100%;
+}

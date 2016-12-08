@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>2.1 Creating A Simple HTML Page | Shane Burkhart</title>
+<meta name="viewport" content="width=device-width">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/assets/css/application.css">
+
+    </head>
+    <body>
+        <header>
+    <div class="container">
+        <nav class="pull-left">
+            <a id="site-logo">Spark School</a>
+        </nav>
+        
+        <h3 id="section-name" class="pull-right">Day 2: Creating The Tweets Form In HTML/CSS</h3>
+        
+    </div>
+</header>
+
+        <main class="container">
+            <h1>2.1 Creating A Simple HTML Page</h1>
+            <article>
+                <p>Welcome to day 2 of the Twitter clone course.  Today we are going to making our first web page.  This is going to be the page we display tweets on as well as have a form that allows people to submit tweets.  Today though, we are going to focus on building the form so we can create Tweets on day 3.</p>
+
+<p>Writing web pages in HTML and CSS usually takes a lot of iterations.  There is a lot of trial and error to get everything to look the way you want it.  This is mostly design work which is more time consuming than technically challenging, so it&#39;s not something we are going to cover in detail.</p>
+
+<p>If you&#39;re interested in learning more about design, I recommend looking at other people&#39;s work and see if you can&#39;t replicate their design.  https://dribbble.com/ is an awesome place to get inspired by great design.</p>
+
+<p>Remember that all terminal commands we run today refer to running them in our VM.  Make sure you are logged in to your VM before getting started.  If you need help, refer back to the “Setup Your Project And Connect To Your VM” in day 1.</p>
+
+<h3>HTML 101</h3>
+
+<p>HTML isn&#39;t complicated and it&#39;s more of a format than it is a language.  What I mean by this is HTML doesn&#39;t contain any logic and instead is just a document that tells the browser how the web page should be structured.</p>
+
+<p>To learn HTML, you just need to know the basic syntax and then use a reference for the specific element types.  To this day, I don&#39;t remember all of the element types and it&#39;s not realistic for anyone to do that.  It&#39;s not uncommon for me to look up something for reference.</p>
+
+<p>Let&#39;s go over HTML syntax.  Below is a diagram explaining HTML syntax.</p>
+
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/HTML-element-markup-syntax-diagram.png" alt=""></p>
+
+<p>HTML is made up of elements and each element has a closing and opening tag.  Opening tags start with “&lt;” and end with “&gt;” while closing tags start with “&lt;/” and end with “&gt;”.  Anything between the opening and closing tag is the contents of the element and the contents can be other elements.  In this case, the contents is the text “Hello World”.</p>
+
+<p>Here is a pretty good reference for HTML elements.  It does a good job of splitting elements up by purpose so it&#39;s a little easier for you to find what you are looking for.</p>
+
+<p>The first thing that goes inside the opening and closing tags is the element tag name.  In the above example, our HTML element has a tag name of “h1” which stands for header 1.  This is the biggest header on the page and usually is the primary heading for the page.  H1 tags are unique on a page meaning there should only ever be one h1 tag on a given page.</p>
+
+<p>The closing tag is pretty simple and only ever contains the element tag name that we are ending.  The opening tag on the other hand can contain attributes which are used to specify how elements should behave.  In the above example, we are setting the “class” attribute to the value “primary”.</p>
+
+<p>Now that we understand basic HTML syntax, let&#39;s create our first page.  It&#39;s generally a good idea to keep all of you HTML in a separate directory so we stay organized.  HTML files are commonly referred to as views.  This makes sense because each file is a specific “view” we show the user. Create a folder in our project directory called “views”.  In the “views” folder, create a file called “tweets.ejs”.</p>
+
+<p>You may have noticed that we used the “.ejs” file extension instead of the “.html” file extension.  This is because we are going to be using a template engine called EJS in future lessons.  EJS files can contain HTML, so for now, think of “.ejs” as an HTML file.</p>
+
+<p>Let&#39;s write a basic HTML page with a title heading and some text.  Below is the code for the page and I&#39;ll explain it in a second:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Twitter Clone Course<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>We're learning HTML!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<p>The first line of any HTML document is the doctype and it tells the document what version of HTML we want to use.  The version we have specified is HTML5.  There will probably never be a time where your doctype doesn&#39;t look like the one above.</p>
+
+<p>Although the doctype looks similar to an HTML element, it is not one.   The doctype just tells the browser how to interpret the file.</p>
+
+<p>The first element on the page is the “html” element.  This tag wraps the entire page and contains the elements of the page.</p>
+
+<p>Inside the “html” tag are two elements: the “head” element and the “body” element.  The “head” element is invisible and is used to define metadata and include CSS and Javascript files.  We aren&#39;t going to use the “head” element right now, so we&#39;ll explain it later.  For now, we just need to make sure it&#39;s included inside the “html” element and before the “body”.</p>
+
+<p>The next child in the “html” element is the “body” element.  This element contains everything that you see on the page.</p>
+
+<p>Inside the “body” element, we have our  “h1” and a “p” (paragraph) elements.  The “h1” tag will display the contents, “Twitter Clone Course” and the “p” tag will display “We are learning HTML!”.</p>
+
+<p>All HTML files follow the same pattern as above.  They start with a doctype declaration followed by an “html” tag that contains a “head” and “body” element.  From there, it&#39;s up to you how the page will be structured.</p>
+
+<p>Now that we have our page, let&#39;s have our web server render our new HTML page.  Before we can do that, we need to install the EJS library:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install ejs --save
+</code></pre></div>
+<p>With that saved, we can tell Express to use EJS as our templating engine.  We also need to tell Express where it can find our view (HTML) files.  To do this, we need to add these two lines under the “var app = express();” line:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
+</code></pre></div>
+<p>Express provides the “set” method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a list of setting here.</p>
+
+<p>In the example above, the “views” setting defines where our views can be found.  We are setting this to “./views”.  The period at the beginning means the current directory the “app.js” file is in and the “/views” part says we want the “views” directory in the current directory.</p>
+
+<p>The second line sets the “view engine” setting which defines which template engine to use when rendering a view.  We are setting this to “ejs” since we want to use the EJS template engine.</p>
+
+<p>Now that we have told Express how to handle rendering views, let&#39;s actually render our EJS file instead of print “Hello World!” text on our homepage.  To do this, we use the “render” method on the “res” variable and pass it the name of our view.  Your homepage route should now look like the following:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Notice how there was no need to add the “.ejs” extension to our view name.  With the settings we set earlier, Express is smart enough to figure out which file you want to render.</p>
+
+<p>Here is the final code so it&#39;s easier to see everything:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Save this and restart your server by pressing ctrl-c in the terminal and re running the “node app.js” command.</p>
+
+<p>Every time we update our Javascript code, we need to restart our server to see the changes.  There are programs that can auto reload our code for us, but that&#39;s out of the scope of this course.</p>
+
+<p>Go to your browser and reload you page.  You should see something like the following:</p>
+
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/simple-html-page-with-header-and-paragraph.png" alt=""></p>
+
+<p>Now that we have created a basic HTML page, let&#39;s add some style.</p>
+
+                
+                    <a href="/twitter-clone/2/2"> Click here to go the next lesson.</a>
+                
+            </article>
+        </main>
+    </body>
+</html>

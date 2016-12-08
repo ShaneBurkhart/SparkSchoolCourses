@@ -1,0 +1,30 @@
+---
+layout: default
+permalink: /twitter-clone/1/1
+title: 1.1 Introduction
+course: Twitter Clone
+section: 'Day 1: Getting Your Development Environment Setup'
+next-lesson-link: /twitter-clone/1/2
+---
+
+Welcome to my course that teaches you how to build a small Twitter clone.  The course is going to teach you the basics of web developments.  As you can imagine, we can't cover everything since that would take months.  Instead, I'm going to teach you the basics that every web app is built on, so you can start building web apps yourself.
+
+I'm going to show you the process not necessarily teaching you the deep understanding of the technology.  What I mean is I'm going to show you the process I go through when building a web app so you are setup to build your own apps and fix some of your own issues you run into.
+
+I could go into detail about how each technology works, but it's not going to help you know what to do when building your own apps.  This is way more useful since even veteran developers don't remember most things and have to look up references constantly.  Part of being a good developer is being able to find solutions to the problem you have.  This usually requires a lot of searching the internet for possible solutions.  At any given time, I might have fifteen webpages open with different references that I need at the time.
+
+Make sure you are trying to understand the broader concepts and how you would go about finding a solution rather than trying to memorize everything I say.  For instance, in day 2, we go over HTML, but HTML isn't something you memorize.  Instead, you need to know the basics and then you can use a reference to decide what to do.  My goal is to get you to the point where you can start making something on your own as soon as possible.
+
+###How To Take This Course
+
+This course assumes you know nothing about programming.  Even if you have some experience, I recommend reading through the entire course.  You might get a different perspective that will help you understand something better.
+
+If you get stuck somewhere, write in the part that you don't understand and come back to it later.  More than likely, it will probably make more sense when you come back.
+
+If something seems off or doesn't make sense though, let me know and I'll do my best to improve the explanation.  I want to make this course as good as I can be and your feedback helps me do that.  You will always have access to this course, so you will get all updates as well.
+
+If you have questions or feedback for me during the course, email me at shane@trysparkschool.com.  I'll be sure to respond to you personally.
+
+As I mentioned earlier, part of being a good dev is being able to find solutions to your issues.  I am here to answer questions, but most things are already answered on Stack Overflow.  If you run into issues, I recommend going to Google and searching “stack overflow” followed by the problem you are having.
+
+With that out of the way, let's get started by installing some tools we are going to need.

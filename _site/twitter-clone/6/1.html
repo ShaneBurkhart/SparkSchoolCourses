@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>6.1 Adding A Delete Button | Shane Burkhart</title>
+<meta name="viewport" content="width=device-width">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/assets/css/application.css">
+
+    </head>
+    <body>
+        <header>
+    <div class="container">
+        <nav class="pull-left">
+            <a id="site-logo">Spark School</a>
+        </nav>
+        
+        <h3 id="section-name" class="pull-right">Day 6: Deleting A Tweets</h3>
+        
+    </div>
+</header>
+
+        <main class="container">
+            <h1>6.1 Adding A Delete Button</h1>
+            <article>
+                <p>Welcome to day 6 of the Twitter clone course.  Yesterday, we created a tweet edit page that let us update tweets.  Today, we are going to cover the “D” (Delete) in CRUD and learn how to delete tweets. Today’s lesson is shorter than the previous days because there isn’t much to deleting data.  Let’s get started.</p>
+
+<p>Like editing tweets, right now, anyone that visits our site will be able to delete tweets.  Don’t worry about this too much since tomorrow we will go over how to use cookies to allow only the computer that created the tweet to update or delete it.</p>
+
+<p>From the user’s perspective, the only thing we really need to add to our page is a delete button for each tweet.  We could add this button to each tweet on our homepage like we did with the “Edit” link, but putting it there makes it pretty easy to accidently delete a tweet.  Instead, let’s put our delete button on the edit tweet page so it’s a little harder to accidently delete a tweet.</p>
+
+<p>We could make another POST route to delete tweets and have a new form that submits to that route, but a new form is probably overkill since a delete tweet form would only contain a button.  Instead, we can add our delete button to our update form.</p>
+
+<p>When submitting a form, if you give the button that is submitting the form a “name” attribute, you can check whether the button was clicked.  So for our form, we’ll have an “Update Tweet” and a “Delete Tweet” button.  Both will submit the update form and we can check which of these buttons was pressed in the “/tweets/:id/update” POST route. Based on which was pressed, we can either update or delete the tweet.  Let’s add a delete button to our form with a name attribute.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/update"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span> <span class="na">value=</span><span class="s">"&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= tweet.body %&gt;<span class="nt">&lt;/textarea&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-button"</span><span class="nt">&gt;</span>Update Tweet<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-delete-button"</span> <span class="na">name=</span><span class="s">”delete_button”</span><span class="nt">&gt;</span>Delete Tweet<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div>
+<p>We are giving our “Delete Tweet” button a name attribute of “delete_button”.  We also gave it an id of “tweet-form-delete-button” so we can style it a little differently than our “Update Tweet” button.</p>
+
+<p>Since we want users to use caution when pressing the delete button, we’ll give ours the color red.  Red contrasts with the rest of the site and will make the user more cautious when pressing it.  The following is the style we are going to use for our button.  Add this to site.css.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#tweet-form-delete-button</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">7px</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e53334</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nb">transparent</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If you refresh our edit tweet page, you should see the following.</p>
+
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/6/6-1-adding-delete-button.png" alt=""></p>
+
+<p>Now we have a delete button that will submit our form, but we don’t want users to accidentally click the delete button when they intend to update the tweet.  To prevent this, we can add a confirm dialog that asks the user if they are sure they want to delete.  Update our delete button to look like the following and I’ll explain in a minute.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-delete-button"</span> <span class="na">name=</span><span class="s">"delete_button"</span> <span class="na">onclick=</span><span class="s">"return confirm('Are you sure you want to delete the tweet?')"</span><span class="nt">&gt;</span>Delete Tweet<span class="nt">&lt;/button&gt;</span>
+</code></pre></div>
+<p>This line is a little long, but you’ll notice I added an “onclick” attribute to the button element. The “onclick” attribute allows us to define some javascript that will be called when the button is clicked.  If true is returned in “onclick” then the button submits.  If false is returned, the button does nothing.</p>
+
+<p>In the “onclick” javascript, we are returning the value returned by the “confirm” function.  This is a javascript function that takes a message and displays it to the user asking if it’s okay or not.  If the user presses “OK” then true is returned.  If the user presses “Cancel”, false is returned.  This behavior works perfectly for the “onclick” attribute, so we can just return the value from “confirm()”.</p>
+
+<p>Now if you refresh the edit page and press delete, you will be asked if you want to delete a tweet.</p>
+
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/6/6-1-adding-confirm-dialog.png" alt=""></p>
+
+<p>Pressing “OK” will submit the form and pressing “Cancel” will not.</p>
+
+<p>We now have our delete button created, but submitting the form with our delete button will still update the tweet rather than delete it since we haven’t update our update route yet.  In the next section, we’ll add a check for which button was pressed and update or delete the tweet accordingly.</p>
+
+                
+                    <a href="/twitter-clone/6/2"> Click here to go the next lesson.</a>
+                
+            </article>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>7.2 Creating User Authentication Middleware | Shane Burkhart</title>
+<meta name="viewport" content="width=device-width">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/assets/css/application.css">
+
+    </head>
+    <body>
+        <header>
+    <div class="container">
+        <nav class="pull-left">
+            <a id="site-logo">Spark School</a>
+        </nav>
+        
+        <h3 id="section-name" class="pull-right">Day 7: Restrict Updating And Deleting Tweets</h3>
+        
+    </div>
+</header>
+
+        <main class="container">
+            <h1>7.2 Creating User Authentication Middleware</h1>
+            <article>
+                <p>In the last lesson, we added created tweet ids to a cookie, but right now, we aren’t checking these ids to see if the user can edit the tweet.  We are going to use middleware to do this.</p>
+
+<p>Middleware is simply some code that gets executed before our route gets executed.  This is useful for things that need to happen on every request like logging and user authentication.  We are already using cookie-parser and body-parser middleware that parses cookies and the request body on every request.</p>
+
+<p>The middleware that we are already using is executed on every request but you can add middleware to only specific requests.  We are going to add user authentication middleware to the edit, update and delete routes since those are the only routes that need user authentication.</p>
+
+<p>The authentication middleware will check that the tweet id we are trying to access is in our “tweets_created” cookie.  If it’s not, then we will redirect to the homepage since the user shouldn’t be able to access the edit tweet page.</p>
+
+<p>Let’s start by creating a new directory in the root of our project called “middleware”.  This will hold any middleware files.  Our middleware is going to authenticate users, so we’ll call our file “auth-user.js”.  Create this file in the “middleware” directory.  Add the following contents to the file and I’ll explain what’s going on in a minute.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>We are going to need this file in “app.js” so we’ll be importing it in a minute.  First, we need to understand how you export things in node.js.  To export something in node.js, you assign what you want to export to “module.exports”.  This can be anything (function, object, array, etc). In the above code, we are exporting a function with three parameters.</p>
+
+<p>Now when we require this file in “app.js”, the require function will return what “module.exports” was set to for that file.  Let’s require “auth-user.js” in “app.js”.  We’ll put this under the requires for other middleware.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">authUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./middleware/auth-user'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
+</code></pre></div>
+<p>The require function can also be given file paths to import javascript files that aren’t in a library.  The period at the beginning means current directory that “app.js” is in, then the middleware subdirectory, and then the auth-user file in there.  Node is smart enough to figure out the file extension so we don’t need to add it.  Now the “authUser” variable will be set to the function with three parameters in “auth-user.js”.</p>
+
+<p>Although our authentication middleware doesn’t do anything yet, let’s add it to the edit and update routes.  To do this, we add a parameter to “app.get” and “app.post”.  Both of the methods take a path to listen for as the first argument and then any number of functions as arguments after.  These functions will be executed in the order they are given to “app.get” or “app.post” and the last argument should always be the route handler.</p>
+
+<p>Let’s add the “authUser” middleware as the second argument to the edit and update routes.  The third argument is now our route handler.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+
+  <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">isDelete</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">delete_button</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">queryCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="nx">isDelete</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Our delete code goes here.</span>
+    <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">deleteQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// The update button was pressed.</span>
+    <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">updateQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Currently, if you restarted your server and try to visit the edit page, your browser would keep loading until it times out.  This is because we haven’t done anything in our middleware yet.  We are going to add a simple “console.log” to understand how middleware works.  I’ll explain what’s going on in a minute.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This is middleware'</span><span class="p">);</span>
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>If you notice, our middleware function looks a lot like our route handler.  The difference is that the middleware function has a third parameter called “next”.  In Express, middleware works in a chain of sorts.  The first middleware is called and is passed a request object, a response object and the next middleware function to be called as the third parameter.  So the first middleware calls the second, which calls the third, and so on.</p>
+
+<p>Without calling the “next” function, the middleware chain won’t be continued.  Since we weren’t calling the next middleware in the chain, we were causing the request to timeout.  We’ll talk a little more about how we can use this later, but for now, we just want to output the text “This is middleware” and call the next middleware.</p>
+
+<p>Restart your server and visit an edit tweet page.  You should see the text “This is middleware” printed in the terminal.</p>
+
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-2-logging-middleware.png" alt=""></p>
+
+<p>We now know our middleware is working, so let’s check if the tweet id is in the “tweets_created” cookie.  We can get values from the request parameter just like we do in our route handlers.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">tweetsCreated</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Redirect to homepage if user didn't create tweet.</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>The first thing we are doing is getting the tweet id from the parameters and getting the list of tweet ids created from the cookies.  The id parameter is text that contains the id, but we need it to be a number.  To convert text to a number, we can use the “parseInt” function.  It takes the text to parse as the first argument and the number base as the second.  We are giving it our id and passing it the number base of 10 since we want decimal.</p>
+
+<p>For “tweetsCreated”, we are using the “or” operator again to ensure that the variable will be an empty array if the cookie hasn’t been created yet.</p>
+
+<p>Next we have an “if” statement that is checking if the “tweetsCreated” array includes the id of the tweet.  Arrays in javascript have a method “includes” that checks if the value passed is in the array.  It returns true if it is and false if it isn’t.  The exclamation mark at the beginning of the check is the “not” operator.  The “not” operator simple changes true to false and false to true.</p>
+
+<p>Since we only want to redirect to the homepage if the tweet id doesn’t exist in the cookie, we need to use the “not” operator on the value returned from the “includes” method.  Our if statement will only be executed if the id is not in the “tweetsCreated” variable.</p>
+
+<p>Inside the “if” statement, we are redirecting to the homepage (“/”) and are returning early so “next” isn’t called.  Since we are redirecting, we want to stop the middleware chain early so the code doesn’t get to our route handler.</p>
+
+<p>Now if the “if” statement isn’t executed, then the code will reach the “next” function call and the middleware chain will continue as normal.</p>
+
+<p>Restart your server and let’s test this.  Any tweet that was created before we added cookies should redirect you to the homepage when attempting to edit.  If you create a new tweet, and then try to edit it, you should see a form to edit the tweet.</p>
+
+<p>We have now added some user authentication to our tweets, but the edit button still shows for each tweet.  In the next lesson, we are going to go over how to hide this for tweets the user can’t edit.</p>
+
+                
+                    <a href="/twitter-clone/7/3"> Click here to go the next lesson.</a>
+                
+            </article>
+        </main>
+    </body>
+</html>

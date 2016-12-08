@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>3.3 Inserting Some Tweets Into Our Database | Shane Burkhart</title>
+<meta name="viewport" content="width=device-width">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/assets/css/application.css">
+
+    </head>
+    <body>
+        <header>
+    <div class="container">
+        <nav class="pull-left">
+            <a id="site-logo">Spark School</a>
+        </nav>
+        
+        <h3 id="section-name" class="pull-right">Day 3: Creating And Saving Tweets</h3>
+        
+    </div>
+</header>
+
+        <main class="container">
+            <h1>3.3 Inserting Some Tweets Into Our Database</h1>
+            <article>
+                Right now, our table doesn't contain any data.  Unfortunately, our form isn't working yet, but we can insert tweets manually by running SQL queries in our MySQL GUI.
+
+To insert rows into tables, we use the INSERT INTO command.  When we created the Tweets table, we gave the “id” and “created_at” columns default values.  Since the id and created_at columns are pre populated with default values, we only need to insert the user handle and the body of the tweet.  I'm going to use my Twitter handle in this case.  Run this command in your MySQL GUI and I'll explain it in a minute:
+
+```sql
+INSERT INTO Tweets(handle, body) VALUES('DonkkaShane', 'Having a great time teaching this Twitter clone course!');
+```
+
+The first part, “INSERT INTO Tweets”, tells MySQL which table to insert into.  After that, we give the columns we are inserting values for in parenthesis separated by commas.  Following that, we type the VALUES keyword followed by the values to put in those columns in parenthesis.  Since the values are text, we surround them in single quotes.  Notice that the order of the values we are inserting is the same as the order we defined them earlier in the query.  After running that command, we now have a tweet in our table.
+
+To see our Tweets, we can run the following SQL command in our MySQL GUI.  We'll go over this command later, but for now, just use it to see the contents of the Tweets table.
+
+```sql
+SELECT * FROM Tweets;
+```
+
+You can rerun the INSERT INTO command to create more tweets.  Try adding a Tweet with your Twitter handle.  I'm going to add another tweet from myself:
+
+```sql
+INSERT INTO Tweets(handle, body) VALUES('DonkkaShane', 'Yogi is the best dog in the world!');
+```
+
+We now know how to create Tweets in our database, but right now, we are doing it manually in our GUI.  Let's do this in code.
+
+                
+                    <a href="/twitter-clone/3/4"> Click here to go the next lesson.</a>
+                
+            </article>
+        </main>
+    </body>
+</html>
