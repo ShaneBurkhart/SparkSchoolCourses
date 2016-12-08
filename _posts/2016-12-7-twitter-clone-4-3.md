@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/4/3
+permalink: /courses/twitter-clone/4/3
 title: 4.3 Rendering Tweets On Our Page
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'

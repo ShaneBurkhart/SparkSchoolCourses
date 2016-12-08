@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/3/2
+permalink: /courses/twitter-clone/3/2
 title: 3.2 Creating The Database And Tweets Table
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'

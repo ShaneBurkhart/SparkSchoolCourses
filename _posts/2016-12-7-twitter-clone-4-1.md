@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/4/1
+permalink: /courses/twitter-clone/4/1
 title: 4.1 Creating A Tweet In HTML/CSS
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/1/1
+permalink: /courses/twitter-clone/1/1
 title: 1.1 Introduction
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'

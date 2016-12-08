@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/4/2
+permalink: /courses/twitter-clone/4/2
 title: 4.2 Reading The Tweet From The Database
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'

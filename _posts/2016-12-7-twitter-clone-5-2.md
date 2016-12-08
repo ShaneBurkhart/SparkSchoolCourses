@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/5/2
+permalink: /courses/twitter-clone/5/2
 title: 5.2 Getting Our Tweet From The Database
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'

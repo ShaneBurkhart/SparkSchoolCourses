@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/6/1
+permalink: /courses/twitter-clone/6/1
 title: 6.1 Adding A Delete Button
 course: Twitter Clone
 section: 'Day 6: Deleting A Tweets'

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/1/3
+permalink: /courses/twitter-clone/1/3
 title: 1.3 Setup Your Project And Connect To Your VM
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /twitter-clone/7/1
+permalink: /courses/twitter-clone/7/1
 title: 7.1 Saving Created Tweets In Cookies
 course: Twitter Clone
 section: 'Day 7: Restrict Updating And Deleting Tweets'
