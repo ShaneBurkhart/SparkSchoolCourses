@@ -54,7 +54,7 @@ In our Vagrantfile, we configured our VM to use the "node-mysql" box, but we hav
 vagrant box add --name node-mysql "https://s3.amazonaws.com/spark-school/node-mysql.box"
 ```
 
-If this command fails to run saying there was an error, you might have to install an older version of vagrant.  Some people have contacted me telling me that they have ran into this issue and the fix is to download an older version.  https://releases.hashicorp.com/vagrant/ Visit that link to see a list of vagrant versions you can download. I would try a version or two down from the top.  Click that and you will see a page with links to installers.  For windows download the ".msi" version and for OS X, download the ".dmg" version.
+If this command fails to run saying there was an error, you might have to install an older version of vagrant.  Some people have contacted me telling me that they have ran into this issue and the fix is to download an older version.  [https://releases.hashicorp.com/vagrant/](https://releases.hashicorp.com/vagrant/) Visit that link to see a list of vagrant versions you can download. I would try a version or two down from the top.  Click that and you will see a page with links to installers.  For windows download the ".msi" version and for OS X, download the ".dmg" version.
 
 We have now added our "node-mysql" box.
 
@@ -95,7 +95,7 @@ Type that into your terminal and press enter.  You should see the last line of y
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/ssh-login-to-vagrant.png)
 
-You are now logged into your VM and are ready to get started.  All terminal commands from here on out will assume you are logged into your VM.  If you ever need help getting logged back in, look at my Quick Guide To Vagrant as a reference.
+You are now logged into your VM and are ready to get started.  All terminal commands from here on out will assume you are logged into your VM.  If you ever need help getting logged back in, look back here as a reference.
 
 ####Windows
 

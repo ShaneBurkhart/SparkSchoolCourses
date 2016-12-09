@@ -31,7 +31,7 @@ app.post('/tweets/create', function(req, res) {
 });
 ```
 
-Right now, we are outputting the text "Creating tweet." so we can test if everything is working.  Restart your server and try submitting the form on the homepage (http://127.0.0.1:8080).  You should see "Creating tweet." on the page which means our form is connected to our server.
+Right now, we are outputting the text "Creating tweet." so we can test if everything is working.  Restart your server and try submitting the form on the homepage ([http://127.0.0.1:8080](http://127.0.0.1:8080)).  You should see "Creating tweet." on the page which means our form is connected to our server.
 
 ###Connecting To The Database In Code
 
@@ -107,7 +107,7 @@ if(err) {
 }
 ```
 
-"If" statements start with the "if" keyword followed by parenthesis.  If the value inside the parentheses is true, the block of code in the curly braces will get executed.  You can also have "else if" and "else" blocks.  We aren't going to use those right now, but you can read this guide on "if" statements if you want to know more.
+"If" statements start with the "if" keyword followed by parenthesis.  If the value inside the parentheses is true, the block of code in the curly braces will get executed.  You can also have "else if" and "else" blocks.  We aren't going to use those right now, but you can read this [guide on "if" statements](http://www.w3schools.com/js/js_if_else.asp) if you want to know more.
 
 Let's add an error check to our connection callback:
 
@@ -183,9 +183,9 @@ Restart your web server in your terminal and you should see the following:
 
 We now have a connection to our database in "app.js", so let's get the form data and save our Tweet to the database.
 
-The first thing we need to do is get the Tweet data from the form.  If you remember, we used a POST request to submit our form since it is creating data.  POST requests store form values in the body of the request and they are URL encoded.  We aren't going to go over the details of URL encoding, but just know it is a format we use to send data over the internet.  If you want to know more, you can see this guide on URL encoding.
+The first thing we need to do is get the Tweet data from the form.  If you remember, we used a POST request to submit our form since it is creating data.  POST requests store form values in the body of the request and they are URL encoded.  We aren't going to go over the details of URL encoding, but just know it is a format we use to send data over the internet.  If you want to know more, you can see this [guide on URL encoding](http://www.w3schools.com/tags/ref_urlencode.asp).
 
-Since the POST request body is URL encoded, we need to decode it with middleware so we can read our form values.  There is an Express library we need to install to do this called body-parser.  Let's install that now.  Run the following command in your terminal.  Don't forget "--no-bin-links" for Windows.
+Since the POST request body is URL encoded, we need to decode it with middleware so we can read our form values.  There is an Express library we need to install to do this called [body-parser](https://github.com/expressjs/body-parser).  Let's install that now.  Run the following command in your terminal.  Don't forget "--no-bin-links" for Windows.
 
 ```bash
 # Terminal
@@ -203,7 +203,7 @@ var app = express();
 
 Like we did with the static file middleware, we are going to call the "use" method and add our body-parser middleware.  The body-parser library provides various middlewares to decode request bodies of different encoding types but we only need the URL encoding middleware.  To get that, we call the "urlencoded" method on the bodyParser object and pass it an object containing options.
 
-The only option we need to set is the "extended" option and we need to set it to "true".  Explaining this option is out of the scope of the course, but just know you need it when using the body-parser.  If you are curious, you can read about the "extended" option here. Under the line that adds our static middleware, add the URL encoded request body middleware:
+The only option we need to set is the "extended" option and we need to set it to "true".  Explaining this option is out of the scope of the course, but just know you need it when using the body-parser.  If you are curious, you can read about the ["extended" option here](https://github.com/expressjs/body-parser#extended). Under the line that adds our static middleware, add the URL encoded request body middleware:
 
 ```javascript
 // app.js
@@ -229,7 +229,7 @@ app.post('/tweets/create', function(req, res) {
 });
 ```
 
-Restart your server visit http://127.0.0.1:8080.  Input some values in the Tweet form and submit the form.  If you look at your terminal, you should see your form values printed.
+Restart your server visit [http://127.0.0.1:8080](http://127.0.0.1:8080).  Input some values in the Tweet form and submit the form.  If you look at your terminal, you should see your form values printed.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/printing-post-request-body-variables.png)
 
@@ -248,7 +248,7 @@ The query looks very similar to the query we used earlier to insert a Tweet into
 
 We could just put our "handle" and "body" values directly in the query, but that would be a security vulnerability since we would be putting user input directly in our code.  Any time we get input from the user, we need to sanitize it to make sure they can't do something malicious.
 
-In our case, if we didn't use parameterized queries, we would be vulnerable to SQL injection attacks.  We aren't going to go into detail on how this attack works, but the attack allows the user to get access to parts of the database they aren't supposed to have access to.
+In our case, if we didn't use parameterized queries, we would be vulnerable to [SQL injection attacks](https://www.owasp.org/index.php/SQL_Injection).  We aren't going to go into detail on how this attack works, but the attack allows the user to get access to parts of the database they aren't supposed to have access to.
 
 The bottom line is we need to make sure the input we get from the user is sanitized before we use it in our query.  MySQL will do that for us if we put question marks in the query where our user input will be added.  For us, that's the "handle" and "body" values.
 
@@ -270,7 +270,7 @@ app.post('/tweets/create', function(req, res) {
 });
 ```
 
-This code contains some stuff we haven't learned yet.  If you look at the second parameter to the "query" method, you will see square brackets with "handle" and "body" in them separated by commas.  This is called an array and is essentially a list of data.
+This code contains some stuff we haven't learned yet.  If you look at the second parameter to the "query" method, you will see square brackets with "handle" and "body" in them separated by commas.  This is called an [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) and is essentially a list of data.
 
 Arrays are defined with square brackets and can contain any number of values.  These values can be accessed with bracket notation and giving the index you want to get in the bracket notation.  The indexes start at 0 so the first item in the array has an index of 0, the second has an index of 1, etc.  The code below shows how you would assign an array to a variable called "nums" and get the first and third value in the array.
 
@@ -296,7 +296,7 @@ app.post('/tweets/create', function(req, res) {
 });
 ```
 
-If you restart your server, visit http://127.0.0.1:8080 and submit the form, a Tweet will be inserted.  You can view this in your MySQL GUI by inspecting the Tweets table like we did in previous lessons.
+If you restart your server, visit [http://127.0.0.1:8080](http://127.0.0.1:8080) and submit the form, a Tweet will be inserted.  You can view this in your MySQL GUI by inspecting the Tweets table like we did in previous lessons.
 
 You may notice that we aren't doing anything but sending back text when we create a tweet.  This isn't very user friendly and ideally we would send them back to the homepage so they can view their new tweet there (when we get around to rendering tweets).
 

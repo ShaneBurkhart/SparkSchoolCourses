@@ -27,7 +27,7 @@ npm init
 
 Follow the instructions. The defaults should work well but give it a name of "twitter-clone" and when it asks for entry point, give it "app.js". When the command is done, it will have created a package.json file in the root of your project directory.
 
-With npm initialized, we can install libraries for our project.  The first library we need is Express.js (http://expressjs.com/).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.
+With npm initialized, we can install libraries for our project.  The first library we need is Express.js ([http://expressjs.com/](http://expressjs.com/)).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.
 
 To install libraries, we use the "npm" command followed by the word "install" followed by the name of the library we want to install.  To tell npm we want to save this library in our package.json file, we add the "--save" option at the end.  Below is what this looks like for Express.js:
 
@@ -87,7 +87,7 @@ Like most programming languages, javascript executes code line-by-line starting 
 'use strict'
 ```
 
-This enables strict mode which makes development a little more consistent and takes out some of the weird parts of javascript.  To read more about what strict mode does, you can read this explanation of strict mode.
+This enables strict mode which makes development a little more consistent and takes out some of the weird parts of javascript.  To read more about what strict mode does, you can read this [explanation of strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
 
 After that, we need to import the Express.js library we installed earlier and save it to a variable.  First, let's explain a bit about javascript.
 
@@ -184,7 +184,7 @@ Notice that there isn't a semicolon at the end of the first line.  Semicolons ne
 
 The next new thing is the comment  in the function body.  Comments are code that gets ignored when the program executes.  Anything after a "//" is a line comment that will go until the end of the line.  Comments are useful to add clarification to code or quickly remove some code temporarily.  In our case, we have are putting a note of what will go inside in the future.
 
-This is only a single line comment and there are other types of comments.  To learn more about comments, visit http://www.w3schools.com/js/js_comments.asp.
+This is only a single line comment and there are other types of comments.  To learn more about comments, visit [http://www.w3schools.com/js/js_comments.asp](http://www.w3schools.com/js/js_comments.asp).
 
 Notice that the anonymous function has two parameters that Express passes in as arguments on each request.  The first is the parameter "req" (short for "request") and contains data about the request the server received.  The second is "res" (short for "response") which provides methods for sending data back to the server. Express adds methods to these variables to make things easier.
 
@@ -203,7 +203,7 @@ IPs uniquely identify computers on the internet, and ports identify a specific c
 
 You can specify which port you want to make the request on in the URL.  To do this, put a colon after the domain name followed by the port number you want to request.  Below, we are requesting trysparkschool.com on port 3000.  If you visit that URL in the browser, you'll notice nothing happens since we don't have a server running on that port.
 
-http://trysparkschool.com:3000
+[http://trysparkschool.com:3000](http://trysparkschool.com:3000)
 
 By default, HTTP is done on port 80 and your browser hides this from you.  Try requesting trysparkschool.com on port 80 and you will get the same results as when you don't specify the port.
 
@@ -250,7 +250,7 @@ app.listen(8080, function() {
 
 Now we have our server written, let's run it. Save "app.js" and go to your terminal (remember we need to be logged into our VM and be in our project directory).
 
-To run javascript files, we use the "node" command.  Node.js is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let's run our "app.js" file.
+To run javascript files, we use the "node" command.  [Node.js](https://nodejs.org/en/) is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let's run our "app.js" file.
 
 ```bash
 # Terminal
@@ -263,7 +263,7 @@ You should see a screen similar to this:
 
 Notice how the terminal appears to stop and you don't get a new line for a command.  This is because the server waits and listens continuously for web requests.  To stop the server and run commands, hold control and press the "c" key.  This is the interrupt key sequence and will stop nearly all programs in the terminal.
 
-Now that our server is running, let's go to your browser and request our page.  Our server is running on our local computer and not an external IP, so we use a special internal IP called "localhost".  This IP address can be accessed with the name "localhost" or the IP address 127.0.0.1.  Let's request the localhost IP on port 8080.  Type "127.0.0.1:8080" into your browser and press enter.
+Now that our server is running, let's go to your browser and request our page.  Our server is running on our local computer and not an external IP, so we use a special internal IP called "localhost".  This IP address can be accessed with the name "localhost" or the IP address 127.0.0.1.  Let's request the localhost IP on port 8080.  Visit [http://127.0.0.1:8080](http://127.0.0.1:8080) in your browser.
 
 When the page loads, you should see the words "Hello world!" printed on the screen.
 

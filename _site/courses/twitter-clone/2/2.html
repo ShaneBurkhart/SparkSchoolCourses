@@ -80,7 +80,7 @@
 
 <p>This is going to contain all of our css files and images.  To stay organized, create a &quot;css&quot; directory in the &quot;public&quot; directory.  Now that we have a directory for our css files, we can create a &quot;site.css&quot; file in the &quot;css&quot; directory.  Do that now in Sublime Text.</p>
 
-<p>Right now, our CSS file can&#39;t be accessed since we haven&#39;t told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can&#39;t see the file by visiting http://127.0.0.1:8080/css/site.css.</p>
+<p>Right now, our CSS file can&#39;t be accessed since we haven&#39;t told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can&#39;t see the file by visiting <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a>.</p>
 
 <p>CSS files are what we call static files.  This means that they aren&#39;t dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time when because our server has to do less work.</p>
 
@@ -95,7 +95,7 @@
 </code></pre></div>
 <p>As you can see, we are using the Express static middleware.  Calling the &quot;static&quot; function on our &quot;express&quot; variable returns static middleware.  The argument it takes is directory containing our static files.  In our case, this is the &quot;./public&quot; directory.  After adding that line, restart you server for the changes to take effect.</p>
 
-<p>Now anything in our &quot;public&quot; directory can be accessed by the browser.  You can view our &quot;site.css&quot; file by going to http://127.0.0.1:8080/css/site.css.</p>
+<p>Now anything in our &quot;public&quot; directory can be accessed by the browser.  You can view our &quot;site.css&quot; file by going to <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a></p>
 
 <p>We now have a CSS file and it&#39;s publicly accessible, but we aren&#39;t loading it on our page.  To load CSS files in HTML, we put a &quot;link&quot; element in the &quot;head&quot; element of our page.  Let&#39;s do that now:</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
@@ -139,7 +139,7 @@
 </code></pre></div>
 <p>The first property is the &quot;position&quot; property which defines how the element will be positioned on the page.  We are setting the header position to &quot;fixed&quot; which means it will stay fixed to the browser window when scrolling.</p>
 
-<p>There are a few different position types, but we aren&#39;t going to go into detail since there are plenty of guides that do that for us.  If you want more detail, check out this guide on element positioning.</p>
+<p>There are a few different position types, but we aren&#39;t going to go into detail since there are plenty of guides that do that for us.  If you want more detail, check out this <a href="https://css-tricks.com/almanac/properties/p/position/">guide on element positioning</a>.</p>
 
 <p>Most of CSS is pretty straightforward and can be done with a reference.  It&#39;s all about tweaking and constant iteration.  We aren&#39;t going to go into details on the specifics of CSS since it&#39;s out of the scope of the course.</p>
 
@@ -147,7 +147,7 @@
 
 <p>The first four properties position the header how we want it and the next three add some style so we can see it easier.</p>
 
-<p>We set &quot;background-color&quot; to &quot;#ffffff&quot; which is hexadecimal for white.  There are a few different color formats that CSS accepts and hexadecimal is one of the more common.  Here is a really good explanation on how hexadecimal colors work.</p>
+<p>We set &quot;background-color&quot; to &quot;#ffffff&quot; which is hexadecimal for white.  There are a few different color formats that CSS accepts and hexadecimal is one of the more common.  Here is a really good explanation on <a href="http://stackoverflow.com/questions/22239803/how-does-hexadecimal-color-work#answer-22239907">how hexadecimal colors work</a>.</p>
 
 <p>Next we are defining &quot;border-bottom&quot; which as it sounds, defines the border on the bottom side of the element.  This sets a &quot;solid&quot; border of &quot;1px&quot; wide with the color &quot;#d9d9d9&quot;.  Last, we define the &quot;height&quot; property and give it a value of &quot;50px&quot;. Reload the page and you should see a light gray header:</p>
 
@@ -196,9 +196,9 @@
 </code></pre></div>
 <p>The first line is straightforward and is changing the background color.  The next line is setting the &quot;font-family&quot; property and we give it font names separated by commas.  We give it more than one font because not all fonts are on all computers so the browser needs to know what to fall back on if it can&#39;t find one.  It&#39;ll first look for &quot;Helvetica Neue&quot;, then &quot;Helvetica&quot;, then &quot;Arial&quot;, etc.</p>
 
-<p>Like most things, font families aren&#39;t something you need to memorize.  There are sites that help you define them.  CSS Font Stack is an awesome site that shows you different font families and their browser compatibility. I used this for the font family above.</p>
+<p>Like most things, font families aren&#39;t something you need to memorize.  There are sites that help you define them.  <a href="http://www.cssfontstack.com/">CSS Font Stack</a> is an awesome site that shows you different font families and their browser compatibility. I used this for the font family above.</p>
 
-<p>The next line is setting the &quot;font-size&quot; to &quot;14px&quot;.  The last line is setting the &quot;box-sizing&quot; property to &quot;border-box&quot;.  This property defines how elements are measured and is out of the scope of the course.  If you want to know more, CSS Tricks has a great guide on box sizing.</p>
+<p>The next line is setting the &quot;font-size&quot; to &quot;14px&quot;.  The last line is setting the &quot;box-sizing&quot; property to &quot;border-box&quot;.  This property defines how elements are measured and is out of the scope of the course.  If you want to know more, <a href="https://css-tricks.com/">CSS Tricks</a> has a great <a href="https://css-tricks.com/box-sizing/">guide on box sizing</a>.</p>
 
 <p>&quot;Font-family&quot; and &quot;font-size&quot; are inherited properties meaning the element&#39;s children will also have the same properties unless specifically set differently on the child element. Reload this and you should see the font and the background color of the page change.</p>
 

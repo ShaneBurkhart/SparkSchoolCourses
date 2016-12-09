@@ -49,7 +49,7 @@ First things first, let's add our user handle and tweet body to our tweet elemen
 </article>
 ```
 
-With our web server running, if you load http://127.0.0.1:8080, you should see a pretty ugly tweet with our tweet body and handle.
+With our web server running, if you load [http://127.0.0.1:8080](http://127.0.0.1:8080), you should see a pretty ugly tweet with our tweet body and handle.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/initial-tweet.png)
 

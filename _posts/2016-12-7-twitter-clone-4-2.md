@@ -121,7 +121,7 @@ app.get('/', function(req, res) {
 
 Since the first item in an array has an index of 0, we check if "i" is less than the length of the array.
 
-Assuming you inserted Tweets into your database earlier, you can restart your web server and load the homepage http://127.0.0.1:8080/ to see our tweets get printed to our terminal.
+Assuming you inserted Tweets into your database earlier, you can restart your web server and load the homepage [http://127.0.0.1:8080/](http://127.0.0.1:8080/) to see our tweets get printed to our terminal.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/select-tweets-query-results.png)
 

@@ -48,7 +48,7 @@ Right now, our form isn't very nice to look at.  Let's add some style.  We'll st
 }
 ```
 
-The first line is giving our form some "padding".  Padding is similar to margin in that it adds extra space around the element, but padding is inside the element's border rather than outside.  You can read more about padding here.  Lastly, we are giving our form a background color.
+The first line is giving our form some "padding".  Padding is similar to margin in that it adds extra space around the element, but padding is inside the element's border rather than outside.  You can read more about padding [here](https://css-tricks.com/almanac/properties/p/padding/).  Lastly, we are giving our form a background color.
 
 Next, let's add some style to our inputs now.
 

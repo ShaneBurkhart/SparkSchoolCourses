@@ -77,12 +77,11 @@ Now we know how to run javascript in EJS files, so let's run through our tweets 
 
 All I did here was substitute the hardcoded handle, body and created\_at values with EJS brackets outputting the appropriate values.  Since we would be getting "tweets[i]" a bunch, I saved this value to a variable called "tweets" at the beginning of each iteration.  We use the "tweet" variable to get each tweet's data.
 
-Restart your server since we added the data object to our "render" method in "app.js".  Load the homepage http://127.0.0.1:8080 and you should see your tweets rendered with their values.
+Restart your server since we added the data object to our "render" method in "app.js".  Load the homepage [http://127.0.0.1:8080](http://127.0.0.1:8080) and you should see your tweets rendered with their values.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/rendered-tweets.png)
 
-Our tweets feed is finally coming to life, but that date is plain nasty.  We want to put it into a much easier to digest format such as "18 minutes ago".  To do this, we are going to use a library called Moment.js.
-
+Our tweets feed is finally coming to life, but that date is plain nasty.  We want to put it into a much easier to digest format such as "18 minutes ago".  To do this, we are going to use a library called [Moment.js](http://momentjs.com/).
 Moment.js is an extremely useful library that makes working with dates really easy.  As we have with other libraries we need to install it for our project. Don't forget "--no-bin-links" for Windows.
 
 ```bash
@@ -126,7 +125,7 @@ With our new value on each tweet, let's go back to our template and update our d
 </p>
 ```
 
-Restart your server and refresh the homepage http://127.0.0.1:8080.  You should now see an easy to read date.
+Restart your server and refresh the homepage [http://127.0.0.1:8080](http://127.0.0.1:8080).  You should now see an easy to read date.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/4/human-readable-time-from-now.png)
 

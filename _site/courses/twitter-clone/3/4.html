@@ -52,7 +52,7 @@
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Creating tweet.'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Right now, we are outputting the text &quot;Creating tweet.&quot; so we can test if everything is working.  Restart your server and try submitting the form on the homepage (http://127.0.0.1:8080).  You should see &quot;Creating tweet.&quot; on the page which means our form is connected to our server.</p>
+<p>Right now, we are outputting the text &quot;Creating tweet.&quot; so we can test if everything is working.  Restart your server and try submitting the form on the homepage (<a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>).  You should see &quot;Creating tweet.&quot; on the page which means our form is connected to our server.</p>
 
 <h3>Connecting To The Database In Code</h3>
 
@@ -110,7 +110,7 @@ npm install mysql --save
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>&quot;If&quot; statements start with the &quot;if&quot; keyword followed by parenthesis.  If the value inside the parentheses is true, the block of code in the curly braces will get executed.  You can also have &quot;else if&quot; and &quot;else&quot; blocks.  We aren&#39;t going to use those right now, but you can read this guide on &quot;if&quot; statements if you want to know more.</p>
+<p>&quot;If&quot; statements start with the &quot;if&quot; keyword followed by parenthesis.  If the value inside the parentheses is true, the block of code in the curly braces will get executed.  You can also have &quot;else if&quot; and &quot;else&quot; blocks.  We aren&#39;t going to use those right now, but you can read this <a href="http://www.w3schools.com/js/js_if_else.asp">guide on &quot;if&quot; statements</a> if you want to know more.</p>
 
 <p>Let&#39;s add an error check to our connection callback:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
@@ -177,9 +177,9 @@ npm install mysql --save
 
 <p>We now have a connection to our database in &quot;app.js&quot;, so let&#39;s get the form data and save our Tweet to the database.</p>
 
-<p>The first thing we need to do is get the Tweet data from the form.  If you remember, we used a POST request to submit our form since it is creating data.  POST requests store form values in the body of the request and they are URL encoded.  We aren&#39;t going to go over the details of URL encoding, but just know it is a format we use to send data over the internet.  If you want to know more, you can see this guide on URL encoding.</p>
+<p>The first thing we need to do is get the Tweet data from the form.  If you remember, we used a POST request to submit our form since it is creating data.  POST requests store form values in the body of the request and they are URL encoded.  We aren&#39;t going to go over the details of URL encoding, but just know it is a format we use to send data over the internet.  If you want to know more, you can see this <a href="http://www.w3schools.com/tags/ref_urlencode.asp">guide on URL encoding</a>.</p>
 
-<p>Since the POST request body is URL encoded, we need to decode it with middleware so we can read our form values.  There is an Express library we need to install to do this called body-parser.  Let&#39;s install that now.  Run the following command in your terminal.  Don&#39;t forget &quot;--no-bin-links&quot; for Windows.</p>
+<p>Since the POST request body is URL encoded, we need to decode it with middleware so we can read our form values.  There is an Express library we need to install to do this called <a href="https://github.com/expressjs/body-parser">body-parser</a>.  Let&#39;s install that now.  Run the following command in your terminal.  Don&#39;t forget &quot;--no-bin-links&quot; for Windows.</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
 npm install body-parser --save
 </code></pre></div>
@@ -191,7 +191,7 @@ npm install body-parser --save
 </code></pre></div>
 <p>Like we did with the static file middleware, we are going to call the &quot;use&quot; method and add our body-parser middleware.  The body-parser library provides various middlewares to decode request bodies of different encoding types but we only need the URL encoding middleware.  To get that, we call the &quot;urlencoded&quot; method on the bodyParser object and pass it an object containing options.</p>
 
-<p>The only option we need to set is the &quot;extended&quot; option and we need to set it to &quot;true&quot;.  Explaining this option is out of the scope of the course, but just know you need it when using the body-parser.  If you are curious, you can read about the &quot;extended&quot; option here. Under the line that adds our static middleware, add the URL encoded request body middleware:</p>
+<p>The only option we need to set is the &quot;extended&quot; option and we need to set it to &quot;true&quot;.  Explaining this option is out of the scope of the course, but just know you need it when using the body-parser.  If you are curious, you can read about the <a href="https://github.com/expressjs/body-parser#extended">&quot;extended&quot; option here</a>. Under the line that adds our static middleware, add the URL encoded request body middleware:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'public'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
@@ -211,7 +211,7 @@ npm install body-parser --save
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Creating tweets'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Restart your server visit http://127.0.0.1:8080.  Input some values in the Tweet form and submit the form.  If you look at your terminal, you should see your form values printed.</p>
+<p>Restart your server visit <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>.  Input some values in the Tweet form and submit the form.  If you look at your terminal, you should see your form values printed.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/printing-post-request-body-variables.png" alt=""></p>
 
@@ -227,7 +227,7 @@ npm install body-parser --save
 
 <p>We could just put our &quot;handle&quot; and &quot;body&quot; values directly in the query, but that would be a security vulnerability since we would be putting user input directly in our code.  Any time we get input from the user, we need to sanitize it to make sure they can&#39;t do something malicious.</p>
 
-<p>In our case, if we didn&#39;t use parameterized queries, we would be vulnerable to SQL injection attacks.  We aren&#39;t going to go into detail on how this attack works, but the attack allows the user to get access to parts of the database they aren&#39;t supposed to have access to.</p>
+<p>In our case, if we didn&#39;t use parameterized queries, we would be vulnerable to <a href="https://www.owasp.org/index.php/SQL_Injection">SQL injection attacks</a>.  We aren&#39;t going to go into detail on how this attack works, but the attack allows the user to get access to parts of the database they aren&#39;t supposed to have access to.</p>
 
 <p>The bottom line is we need to make sure the input we get from the user is sanitized before we use it in our query.  MySQL will do that for us if we put question marks in the query where our user input will be added.  For us, that&#39;s the &quot;handle&quot; and &quot;body&quot; values.</p>
 
@@ -246,7 +246,7 @@ npm install body-parser --save
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Creating tweets'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>This code contains some stuff we haven&#39;t learned yet.  If you look at the second parameter to the &quot;query&quot; method, you will see square brackets with &quot;handle&quot; and &quot;body&quot; in them separated by commas.  This is called an array and is essentially a list of data.</p>
+<p>This code contains some stuff we haven&#39;t learned yet.  If you look at the second parameter to the &quot;query&quot; method, you will see square brackets with &quot;handle&quot; and &quot;body&quot; in them separated by commas.  This is called an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> and is essentially a list of data.</p>
 
 <p>Arrays are defined with square brackets and can contain any number of values.  These values can be accessed with bracket notation and giving the index you want to get in the bracket notation.  The indexes start at 0 so the first item in the array has an index of 0, the second has an index of 1, etc.  The code below shows how you would assign an array to a variable called &quot;nums&quot; and get the first and third value in the array.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
@@ -266,7 +266,7 @@ npm install body-parser --save
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>If you restart your server, visit http://127.0.0.1:8080 and submit the form, a Tweet will be inserted.  You can view this in your MySQL GUI by inspecting the Tweets table like we did in previous lessons.</p>
+<p>If you restart your server, visit <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> and submit the form, a Tweet will be inserted.  You can view this in your MySQL GUI by inspecting the Tweets table like we did in previous lessons.</p>
 
 <p>You may notice that we aren&#39;t doing anything but sending back text when we create a tweet.  This isn&#39;t very user friendly and ideally we would send them back to the homepage so they can view their new tweet there (when we get around to rendering tweets).</p>
 

@@ -60,9 +60,9 @@
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Restart your server and visit http://127.0.0.1:8080/tweets/1/edit and you&#39;ll see a &quot;1&quot; on the screen.  This is really close to what we want but what happens when you put text in the &quot;id&quot; parameter instead of a number?</p>
+<p>Restart your server and visit <a href="http://127.0.0.1:8080/tweets/1/edit">http://127.0.0.1:8080/tweets/1/edit</a> and you&#39;ll see a &quot;1&quot; on the screen.  This is really close to what we want but what happens when you put text in the &quot;id&quot; parameter instead of a number?</p>
 
-<p>Visit http://127.0.0.1:8080/tweets/some-text/edit and you should see &quot;some-text&quot; on our page.  We don&#39;t want to allow text in our &quot;id&quot; parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I&#39;ll add that now and explain after.</p>
+<p>Visit <a href="http://127.0.0.1:8080/tweets/some-text/edit">http://127.0.0.1:8080/tweets/some-text/edit</a> and you should see &quot;some-text&quot; on our page.  We don&#39;t want to allow text in our &quot;id&quot; parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I&#39;ll add that now and explain after.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
@@ -70,7 +70,7 @@
 </code></pre></div>
 <p>The only thing we added was the &quot;([0-9]+)&quot; after our &quot;id&quot; param.  Express allows us to add an optional parenthesis at the end of the param name that contains a pattern to match.  The pattern uses regular expressions which is simply a way to match patterns in text.  Regular expressions are out of the scope of the course, but what you need to know is that the &quot;[0-9]&quot; part says &quot;any number 0-9&quot; and the &quot;+&quot; after says &quot;one or more&quot; number.</p>
 
-<p>Restart your server and visit http://127.0.0.1:8080/tweets/some-text/edit again.  You should see a screen like the following that indicates the URL isn&#39;t valid.</p>
+<p>Restart your server and visit <a href="http://127.0.0.1:8080/tweets/some-text/edit">http://127.0.0.1:8080/tweets/some-text/edit</a> again.  You should see a screen like the following that indicates the URL isn&#39;t valid.</p>
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-1-edit-text.png" alt=""></p>
 

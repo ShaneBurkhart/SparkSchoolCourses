@@ -88,7 +88,7 @@
 
 <p>Now let&#39;s go to the second line.  We are again using the &quot;or&quot; operator, but in a slightly different way.  In this case, we are giving default text to output if &quot;err&quot; doesn&#39;t exist.  If &quot;err&quot;&#39; exists, &quot;console.log()&quot; will be passed the &quot;err&quot; variable.  If the &quot;err&quot; variable is undefined, then the text &#39;No tweet found.&#39; will be passed to &quot;console.log()&quot; instead.</p>
 
-<p>Restart your server and visit a tweet edit page for an id that doesn&#39;t exist yet.  Assuming you don&#39;t haven&#39;t created many tweets, visit http://127.0.0.1:8080/tweets/1000/edit and it should redirect to the homepage.</p>
+<p>Restart your server and visit a tweet edit page for an id that doesn&#39;t exist yet.  Assuming you don&#39;t haven&#39;t created many tweets, visit <a href="http://127.0.0.1:8080/tweets/1000/edit">http://127.0.0.1:8080/tweets/1000/edit</a> and it should redirect to the homepage.</p>
 
 <p>Alright, we have our errors and no tweet cases handled.  Let&#39;s render an EJS file instead of sending back the id parameter. We&#39;ll also pass our tweet to the view since we&#39;ll need it in there.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>

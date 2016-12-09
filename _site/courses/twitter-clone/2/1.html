@@ -40,7 +40,7 @@
 
 <p>Writing web pages in HTML and CSS usually takes a lot of iterations.  There is a lot of trial and error to get everything to look the way you want it.  This is mostly design work which is more time consuming than technically challenging, so it&#39;s not something we are going to cover in detail.</p>
 
-<p>If you&#39;re interested in learning more about design, I recommend looking at other people&#39;s work and see if you can&#39;t replicate their design.  https://dribbble.com/ is an awesome place to get inspired by great design.</p>
+<p>If you&#39;re interested in learning more about design, I recommend looking at other people&#39;s work and see if you can&#39;t replicate their design.  <a href="https://dribbble.com/">https://dribbble.com/</a> is an awesome place to get inspired by great design.</p>
 
 <p>Remember that all terminal commands we run today refer to running them in our VM.  Make sure you are logged in to your VM before getting started.  If you need help, refer back to the &quot;Setup Your Project And Connect To Your VM&quot; in day 1.</p>
 
@@ -56,7 +56,7 @@
 
 <p>HTML is made up of elements and each element has a closing and opening tag.  Opening tags start with &quot;&lt;&quot; and end with &quot;&gt;&quot; while closing tags start with &quot;&lt;/&quot; and end with &quot;&gt;&quot;.  Anything between the opening and closing tag is the contents of the element and the contents can be other elements.  In this case, the contents is the text &quot;Hello World&quot;.</p>
 
-<p>Here is a pretty good reference for HTML elements.  It does a good job of splitting elements up by purpose so it&#39;s a little easier for you to find what you are looking for.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Here is a pretty good reference for HTML elements</a>.  It does a good job of splitting elements up by purpose so it&#39;s a little easier for you to find what you are looking for.</p>
 
 <p>The first thing that goes inside the opening and closing tags is the element tag name.  In the above example, our HTML element has a tag name of &quot;h1&quot; which stands for header 1.  This is the biggest header on the page and usually is the primary heading for the page.  H1 tags are unique on a page meaning there should only ever be one h1 tag on a given page.</p>
 
@@ -64,7 +64,7 @@
 
 <p>Now that we understand basic HTML syntax, let&#39;s create our first page.  It&#39;s generally a good idea to keep all of you HTML in a separate directory so we stay organized.  HTML files are commonly referred to as views.  This makes sense because each file is a specific &quot;view&quot; we show the user. Create a folder in our project directory called &quot;views&quot;.  In the &quot;views&quot; folder, create a file called &quot;tweets.ejs&quot;.</p>
 
-<p>You may have noticed that we used the &quot;.ejs&quot; file extension instead of the &quot;.html&quot; file extension.  This is because we are going to be using a template engine called EJS in future lessons.  EJS files can contain HTML, so for now, think of &quot;.ejs&quot; as an HTML file.</p>
+<p>You may have noticed that we used the &quot;.ejs&quot; file extension instead of the &quot;.html&quot; file extension.  This is because we are going to be using a template engine called <a href="http://www.embeddedjs.com/">EJS</a> in future lessons.  EJS files can contain HTML, so for now, think of &quot;.ejs&quot; as an HTML file.</p>
 
 <p>Let&#39;s write a basic HTML page with a title heading and some text.  Below is the code for the page and I&#39;ll explain it in a second:</p>
 <div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
@@ -101,7 +101,7 @@ npm install ejs --save
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
 </code></pre></div>
-<p>Express provides the &quot;set&quot; method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a list of setting here.</p>
+<p>Express provides the &quot;set&quot; method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a <a href="http://expressjs.com/en/api.html#app.set">list of setting here</a>.</p>
 
 <p>In the example above, the &quot;views&quot; setting defines where our views can be found.  We are setting this to &quot;./views&quot;.  The period at the beginning means the current directory the &quot;app.js&quot; file is in and the &quot;/views&quot; part says we want the &quot;views&quot; directory in the current directory.</p>
 

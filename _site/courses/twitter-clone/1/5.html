@@ -48,7 +48,7 @@ npm init
 </code></pre></div>
 <p>Follow the instructions. The defaults should work well but give it a name of &quot;twitter-clone&quot; and when it asks for entry point, give it &quot;app.js&quot;. When the command is done, it will have created a package.json file in the root of your project directory.</p>
 
-<p>With npm initialized, we can install libraries for our project.  The first library we need is Express.js (http://expressjs.com/).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.</p>
+<p>With npm initialized, we can install libraries for our project.  The first library we need is Express.js (<a href="http://expressjs.com/">http://expressjs.com/</a>).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.</p>
 
 <p>To install libraries, we use the &quot;npm&quot; command followed by the word &quot;install&quot; followed by the name of the library we want to install.  To tell npm we want to save this library in our package.json file, we add the &quot;--save&quot; option at the end.  Below is what this looks like for Express.js:</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
@@ -98,7 +98,7 @@ npm install express --save --no-bin-links
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="s1">'use strict'</span>
 </code></pre></div>
-<p>This enables strict mode which makes development a little more consistent and takes out some of the weird parts of javascript.  To read more about what strict mode does, you can read this explanation of strict mode.</p>
+<p>This enables strict mode which makes development a little more consistent and takes out some of the weird parts of javascript.  To read more about what strict mode does, you can read this <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">explanation of strict mode</a>.</p>
 
 <p>After that, we need to import the Express.js library we installed earlier and save it to a variable.  First, let&#39;s explain a bit about javascript.</p>
 
@@ -171,7 +171,7 @@ npm install express --save --no-bin-links
 
 <p>The next new thing is the comment  in the function body.  Comments are code that gets ignored when the program executes.  Anything after a &quot;//&quot; is a line comment that will go until the end of the line.  Comments are useful to add clarification to code or quickly remove some code temporarily.  In our case, we have are putting a note of what will go inside in the future.</p>
 
-<p>This is only a single line comment and there are other types of comments.  To learn more about comments, visit http://www.w3schools.com/js/js_comments.asp.</p>
+<p>This is only a single line comment and there are other types of comments.  To learn more about comments, visit <a href="http://www.w3schools.com/js/js_comments.asp">http://www.w3schools.com/js/js_comments.asp</a>.</p>
 
 <p>Notice that the anonymous function has two parameters that Express passes in as arguments on each request.  The first is the parameter &quot;req&quot; (short for &quot;request&quot;) and contains data about the request the server received.  The second is &quot;res&quot; (short for &quot;response&quot;) which provides methods for sending data back to the server. Express adds methods to these variables to make things easier.</p>
 
@@ -187,7 +187,7 @@ npm install express --save --no-bin-links
 
 <p>You can specify which port you want to make the request on in the URL.  To do this, put a colon after the domain name followed by the port number you want to request.  Below, we are requesting trysparkschool.com on port 3000.  If you visit that URL in the browser, you&#39;ll notice nothing happens since we don&#39;t have a server running on that port.</p>
 
-<p>http://trysparkschool.com:3000</p>
+<p><a href="http://trysparkschool.com:3000">http://trysparkschool.com:3000</a></p>
 
 <p>By default, HTTP is done on port 80 and your browser hides this from you.  Try requesting trysparkschool.com on port 80 and you will get the same results as when you don&#39;t specify the port.</p>
 
@@ -228,7 +228,7 @@ npm install express --save --no-bin-links
 
 <p>Now we have our server written, let&#39;s run it. Save &quot;app.js&quot; and go to your terminal (remember we need to be logged into our VM and be in our project directory).</p>
 
-<p>To run javascript files, we use the &quot;node&quot; command.  Node.js is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let&#39;s run our &quot;app.js&quot; file.</p>
+<p>To run javascript files, we use the &quot;node&quot; command.  <a href="https://nodejs.org/en/">Node.js</a> is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let&#39;s run our &quot;app.js&quot; file.</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
 node app.js
 </code></pre></div>
@@ -238,7 +238,7 @@ node app.js
 
 <p>Notice how the terminal appears to stop and you don&#39;t get a new line for a command.  This is because the server waits and listens continuously for web requests.  To stop the server and run commands, hold control and press the &quot;c&quot; key.  This is the interrupt key sequence and will stop nearly all programs in the terminal.</p>
 
-<p>Now that our server is running, let&#39;s go to your browser and request our page.  Our server is running on our local computer and not an external IP, so we use a special internal IP called &quot;localhost&quot;.  This IP address can be accessed with the name &quot;localhost&quot; or the IP address 127.0.0.1.  Let&#39;s request the localhost IP on port 8080.  Type &quot;127.0.0.1:8080&quot; into your browser and press enter.</p>
+<p>Now that our server is running, let&#39;s go to your browser and request our page.  Our server is running on our local computer and not an external IP, so we use a special internal IP called &quot;localhost&quot;.  This IP address can be accessed with the name &quot;localhost&quot; or the IP address 127.0.0.1.  Let&#39;s request the localhost IP on port 8080.  Visit <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> in your browser.</p>
 
 <p>When the page loads, you should see the words &quot;Hello world!&quot; printed on the screen.</p>
 

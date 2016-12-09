@@ -43,9 +43,9 @@ app.get('/tweets/:id/edit', function(req, res) {
 });
 ```
 
-Restart your server and visit http://127.0.0.1:8080/tweets/1/edit and you'll see a "1" on the screen.  This is really close to what we want but what happens when you put text in the "id" parameter instead of a number?
+Restart your server and visit [http://127.0.0.1:8080/tweets/1/edit](http://127.0.0.1:8080/tweets/1/edit) and you'll see a "1" on the screen.  This is really close to what we want but what happens when you put text in the "id" parameter instead of a number?
 
-Visit http://127.0.0.1:8080/tweets/some-text/edit and you should see "some-text" on our page.  We don't want to allow text in our "id" parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I'll add that now and explain after.
+Visit [http://127.0.0.1:8080/tweets/some-text/edit](http://127.0.0.1:8080/tweets/some-text/edit) and you should see "some-text" on our page.  We don't want to allow text in our "id" parameter since our ids are numbers only.  Luckily, Express has a way we can restrict our parameter to only numbers.  I'll add that now and explain after.
 
 ```javascript
 // app.js
@@ -56,7 +56,7 @@ app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
 
 The only thing we added was the "([0-9]+)" after our "id" param.  Express allows us to add an optional parenthesis at the end of the param name that contains a pattern to match.  The pattern uses regular expressions which is simply a way to match patterns in text.  Regular expressions are out of the scope of the course, but what you need to know is that the "[0-9]" part says "any number 0-9" and the "+" after says "one or more" number.
 
-Restart your server and visit http://127.0.0.1:8080/tweets/some-text/edit again.  You should see a screen like the following that indicates the URL isn't valid.
+Restart your server and visit [http://127.0.0.1:8080/tweets/some-text/edit](http://127.0.0.1:8080/tweets/some-text/edit) again.  You should see a screen like the following that indicates the URL isn't valid.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-1-edit-text.png)
 

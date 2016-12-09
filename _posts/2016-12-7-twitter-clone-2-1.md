@@ -17,7 +17,7 @@ Welcome to day 2 of the Twitter clone course.  Today we are going to making our 
 
 Writing web pages in HTML and CSS usually takes a lot of iterations.  There is a lot of trial and error to get everything to look the way you want it.  This is mostly design work which is more time consuming than technically challenging, so it's not something we are going to cover in detail.
 
-If you're interested in learning more about design, I recommend looking at other people's work and see if you can't replicate their design.  https://dribbble.com/ is an awesome place to get inspired by great design.
+If you're interested in learning more about design, I recommend looking at other people's work and see if you can't replicate their design.  [https://dribbble.com/](https://dribbble.com/) is an awesome place to get inspired by great design.
 
 Remember that all terminal commands we run today refer to running them in our VM.  Make sure you are logged in to your VM before getting started.  If you need help, refer back to the "Setup Your Project And Connect To Your VM" in day 1.
 
@@ -33,7 +33,7 @@ Let's go over HTML syntax.  Below is a diagram explaining HTML syntax.
 
 HTML is made up of elements and each element has a closing and opening tag.  Opening tags start with "<" and end with ">" while closing tags start with "</" and end with ">".  Anything between the opening and closing tag is the contents of the element and the contents can be other elements.  In this case, the contents is the text "Hello World".
 
-Here is a pretty good reference for HTML elements.  It does a good job of splitting elements up by purpose so it's a little easier for you to find what you are looking for.
+[Here is a pretty good reference for HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).  It does a good job of splitting elements up by purpose so it's a little easier for you to find what you are looking for.
 
 The first thing that goes inside the opening and closing tags is the element tag name.  In the above example, our HTML element has a tag name of "h1" which stands for header 1.  This is the biggest header on the page and usually is the primary heading for the page.  H1 tags are unique on a page meaning there should only ever be one h1 tag on a given page.
 
@@ -41,7 +41,7 @@ The closing tag is pretty simple and only ever contains the element tag name tha
 
 Now that we understand basic HTML syntax, let's create our first page.  It's generally a good idea to keep all of you HTML in a separate directory so we stay organized.  HTML files are commonly referred to as views.  This makes sense because each file is a specific "view" we show the user. Create a folder in our project directory called "views".  In the "views" folder, create a file called "tweets.ejs".
 
-You may have noticed that we used the ".ejs" file extension instead of the ".html" file extension.  This is because we are going to be using a template engine called EJS in future lessons.  EJS files can contain HTML, so for now, think of ".ejs" as an HTML file.
+You may have noticed that we used the ".ejs" file extension instead of the ".html" file extension.  This is because we are going to be using a template engine called [EJS](http://www.embeddedjs.com/) in future lessons.  EJS files can contain HTML, so for now, think of ".ejs" as an HTML file.
 
 Let's write a basic HTML page with a title heading and some text.  Below is the code for the page and I'll explain it in a second:
 
@@ -87,7 +87,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 ```
 
-Express provides the "set" method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a list of setting here.
+Express provides the "set" method on the app variable to set settings.  The first argument is the name of the setting and the second is the value we are setting it to.  Each setting does something different and you can find a [list of setting here](http://expressjs.com/en/api.html#app.set).
 
 In the example above, the "views" setting defines where our views can be found.  We are setting this to "./views".  The period at the beginning means the current directory the "app.js" file is in and the "/views" part says we want the "views" directory in the current directory.
 

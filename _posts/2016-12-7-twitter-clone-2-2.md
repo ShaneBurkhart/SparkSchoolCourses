@@ -63,7 +63,7 @@ With knowledge of selectors, we can now style our header.  The first thing we ne
 
 This is going to contain all of our css files and images.  To stay organized, create a "css" directory in the "public" directory.  Now that we have a directory for our css files, we can create a "site.css" file in the "css" directory.  Do that now in Sublime Text.
 
-Right now, our CSS file can't be accessed since we haven't told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can't see the file by visiting http://127.0.0.1:8080/css/site.css.
+Right now, our CSS file can't be accessed since we haven't told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can't see the file by visiting [http://127.0.0.1:8080/css/site.css](http://127.0.0.1:8080/css/site.css).
 
 CSS files are what we call static files.  This means that they aren't dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time when because our server has to do less work.
 
@@ -81,7 +81,7 @@ app.use(express.static('public'));
 
 As you can see, we are using the Express static middleware.  Calling the "static" function on our "express" variable returns static middleware.  The argument it takes is directory containing our static files.  In our case, this is the "./public" directory.  After adding that line, restart you server for the changes to take effect.
 
-Now anything in our "public" directory can be accessed by the browser.  You can view our "site.css" file by going to http://127.0.0.1:8080/css/site.css.
+Now anything in our "public" directory can be accessed by the browser.  You can view our "site.css" file by going to [http://127.0.0.1:8080/css/site.css](http://127.0.0.1:8080/css/site.css)
 
 We now have a CSS file and it's publicly accessible, but we aren't loading it on our page.  To load CSS files in HTML, we put a "link" element in the "head" element of our page.  Let's do that now:
 
@@ -134,7 +134,7 @@ header {
 
 The first property is the "position" property which defines how the element will be positioned on the page.  We are setting the header position to "fixed" which means it will stay fixed to the browser window when scrolling.
 
-There are a few different position types, but we aren't going to go into detail since there are plenty of guides that do that for us.  If you want more detail, check out this guide on element positioning.
+There are a few different position types, but we aren't going to go into detail since there are plenty of guides that do that for us.  If you want more detail, check out this [guide on element positioning](https://css-tricks.com/almanac/properties/p/position/).
 
 Most of CSS is pretty straightforward and can be done with a reference.  It's all about tweaking and constant iteration.  We aren't going to go into details on the specifics of CSS since it's out of the scope of the course.
 
@@ -142,7 +142,7 @@ The next three properties, "top", "left", "right", define how our fixed position
 
 The first four properties position the header how we want it and the next three add some style so we can see it easier.
 
-We set "background-color" to "#ffffff" which is hexadecimal for white.  There are a few different color formats that CSS accepts and hexadecimal is one of the more common.  Here is a really good explanation on how hexadecimal colors work.
+We set "background-color" to "#ffffff" which is hexadecimal for white.  There are a few different color formats that CSS accepts and hexadecimal is one of the more common.  Here is a really good explanation on [how hexadecimal colors work](http://stackoverflow.com/questions/22239803/how-does-hexadecimal-color-work#answer-22239907).
 
 Next we are defining "border-bottom" which as it sounds, defines the border on the bottom side of the element.  This sets a "solid" border of "1px" wide with the color "#d9d9d9".  Last, we define the "height" property and give it a value of "50px". Reload the page and you should see a light gray header:
 
@@ -200,9 +200,9 @@ body {
 
 The first line is straightforward and is changing the background color.  The next line is setting the "font-family" property and we give it font names separated by commas.  We give it more than one font because not all fonts are on all computers so the browser needs to know what to fall back on if it can't find one.  It'll first look for "Helvetica Neue", then "Helvetica", then "Arial", etc.
 
-Like most things, font families aren't something you need to memorize.  There are sites that help you define them.  CSS Font Stack is an awesome site that shows you different font families and their browser compatibility. I used this for the font family above.
+Like most things, font families aren't something you need to memorize.  There are sites that help you define them.  [CSS Font Stack](http://www.cssfontstack.com/) is an awesome site that shows you different font families and their browser compatibility. I used this for the font family above.
 
-The next line is setting the "font-size" to "14px".  The last line is setting the "box-sizing" property to "border-box".  This property defines how elements are measured and is out of the scope of the course.  If you want to know more, CSS Tricks has a great guide on box sizing.
+The next line is setting the "font-size" to "14px".  The last line is setting the "box-sizing" property to "border-box".  This property defines how elements are measured and is out of the scope of the course.  If you want to know more, [CSS Tricks](https://css-tricks.com/) has a great [guide on box sizing](https://css-tricks.com/box-sizing/).
 
 "Font-family" and "font-size" are inherited properties meaning the element's children will also have the same properties unless specifically set differently on the child element. Reload this and you should see the font and the background color of the page change.
 

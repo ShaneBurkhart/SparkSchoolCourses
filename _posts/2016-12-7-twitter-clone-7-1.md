@@ -25,7 +25,7 @@ Web servers can also set cookies in the browser.  To do this, the web server sen
 
 For this course, we don't have users, so we are going to store the ids of tweets that were created.  We'll give our cookie the name "tweets_created" and it's value will be a list of ids.  We can use these ids to check if the user created the tweet they are trying to edit, update, or destroy.
 
-Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called cookie-parser and it works much like body-parser.  Let's install the cookie-parser library now.  Remember to add "--no-bin-links" if you are on Windows.
+Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called [cookie-parser](https://github.com/expressjs/cookie-parser) and it works much like body-parser.  Let's install the cookie-parser library now.  Remember to add "--no-bin-links" if you are on Windows.
 
 ```bash
 # Terminal
@@ -84,7 +84,7 @@ app.post('/tweets/create', function(req, res) {
 
 We are using the "or" operator when setting the "tweetsCreated" variable.  We are doing this because the first time a user creates a tweet, there won't be any cookies set since they haven't created a tweet yet.  This means that the "tweets_created" cookie will be undefined.  Since we want the cookie to be an array, we are using the "or" operator to set "tweetsCreated" to an empty array if the "tweets_created" cookies doesn't exist.  If the "tweets_created" cookie does exist, then the empty array gets ignored and "tweetsCreated" is the array from the cookie.
 
-In the query callback, just before the redirect, we are setting our "tweets_created" cookie.  We set cookies with the "cookies" method on the response parameter.  The first parameter to the "cookies" method is the name of the cookies and the second is the value the we are giving the cookie.  There is a third optional parameter, that takes an object with options for the cookie.  In this object, we can set things like expiration date and domain name that the cookie applies to.
+In the query callback, just before the redirect, we are setting our "tweets_created" cookie.  We set cookies with the "cookies" method on the response parameter.  The first parameter to the "cookies" method is the name of the cookies and the second is the value the we are giving the cookie.  There is a third optional parameter, that takes an object with [options for the cookie](http://expressjs.com/en/api.html#res.cookie).  In this object, we can set things like expiration date and domain name that the cookie applies to.
 
 For our cookies, we are setting the "httpOnly" option to true.  This option makes it so the cookie can only be accessed by the web server and not by client side javascript.  Don't worry about this too much.  Just know that the having this option set means that only our web server can read the cookie.
 
