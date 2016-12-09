@@ -40,11 +40,11 @@ CSS is a simple language, that defines styles for a given set of elements.  CSS 
 
 Earlier I mentioned that HTML element attributes are used to add identification to elements.  CSS uses these identification attributes in selectors to determine which elements should receive which style. There are three different ways to identify HTML element:
 
-Tag name - Tag names are the element types we discussed earlier.  Since most tags can exist more than once on the page, when identifying elements by tag name, you will get all elements with that tag name.
+**Tag name** - Tag names are the element types we discussed earlier.  Since most tags can exist more than once on the page, when identifying elements by tag name, you will get all elements with that tag name.
 
-Class - Class names are custom names we give elements and more than one element can have the same class name.  These are useful when you want to apply a style to more than one element but the elements don't have the same tag name.
+**Class** - Class names are custom names we give elements and more than one element can have the same class name.  These are useful when you want to apply a style to more than one element but the elements don't have the same tag name.
 
-Id - Ids are names we give elements that uniquely identify them on the page.  This means there shouldn't be more than one element with the same id on the page.
+**Id** - Ids are names we give elements that uniquely identify them on the page.  This means there shouldn't be more than one element with the same id on the page.
 
 An HTML element can have any combination of the above identifiers.  All elements always have a tag name, but can also have multiple class names and an id.
 
@@ -67,7 +67,7 @@ Right now, our CSS file can't be accessed since we haven't told Express where it
 
 CSS files are what we call static files.  This means that they aren't dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time when because our server has to do less work.
 
-To tell Express to send static files, we need to add some middleware.  Understanding middleware is out of the scope of this course, but middleware is code that will get run before and after a request gets sent to a route.  Middleware helps use eliminate duplicate code since most routes need some kind of similar functionality.
+To tell Express to send static files, we need to add some middleware.  We'll get more into middleware later, but for now, middleware is code that will run before and after a request gets sent to a route.  Middleware helps use eliminate duplicate code since most routes need some kind of similar functionality.
 
 Express provides middleware we can use to server static files.  To add middleware, we use the "use" method on the "app" variable.  This takes the middleware we are going to use as an argument.  Let's add this under our view settings code.
 

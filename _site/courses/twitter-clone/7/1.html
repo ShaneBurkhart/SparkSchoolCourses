@@ -72,7 +72,7 @@ npm install cookie-parser --save
 </code></pre></div>
 <p>With that out of the way, we need to start by saving the id of newly created tweets in a the &quot;tweets_creatd&quot; cookie.  We&#39;ll add this to the create tweet route.</p>
 
-<p>Each time the user creates a tweet, we need to get the &quot;tweets<em>created&quot; cookie, add the new tweet id, and then set the &quot;tweets</em>created&quot; cookie to the new list.  Let&#39;s add the code to get the tweets created and save it again to the &quot;tweets_created&quot; cookie.</p>
+<p>Each time the user creates a tweet, we need to get the &quot;tweets_created&quot; cookie, add the new tweet id, and then set the &quot;tweets_created&quot; cookie to the new list.  Let&#39;s add the code to get the tweets created and save it again to the &quot;tweets_created&quot; cookie.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
@@ -90,7 +90,7 @@ npm install cookie-parser --save
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>We are using the &quot;or&quot; operator when setting the &quot;tweetsCreated&quot; variable.  We are doing this because the first time a user creates a tweet, there won&#39;t be any cookies set since they haven&#39;t created a tweet yet.  This means that the &quot;tweets<em>created&quot; cookie will be undefined.  Since we want the cookie to be an array, we are using the &quot;or&quot; operator to set &quot;tweetsCreated&quot; to an empty array if the &quot;tweets</em>created&quot; cookies doesn&#39;t exist.  If the &quot;tweets_created&quot; cookie does exist, then the empty array gets ignored and &quot;tweetsCreated&quot; is the array from the cookie.</p>
+<p>We are using the &quot;or&quot; operator when setting the &quot;tweetsCreated&quot; variable.  We are doing this because the first time a user creates a tweet, there won&#39;t be any cookies set since they haven&#39;t created a tweet yet.  This means that the &quot;tweets_created&quot; cookie will be undefined.  Since we want the cookie to be an array, we are using the &quot;or&quot; operator to set &quot;tweetsCreated&quot; to an empty array if the &quot;tweets_created&quot; cookies doesn&#39;t exist.  If the &quot;tweets_created&quot; cookie does exist, then the empty array gets ignored and &quot;tweetsCreated&quot; is the array from the cookie.</p>
 
 <p>In the query callback, just before the redirect, we are setting our &quot;tweets_created&quot; cookie.  We set cookies with the &quot;cookies&quot; method on the response parameter.  The first parameter to the &quot;cookies&quot; method is the name of the cookies and the second is the value the we are giving the cookie.  There is a third optional parameter, that takes an object with <a href="http://expressjs.com/en/api.html#res.cookie">options for the cookie</a>.  In this object, we can set things like expiration date and domain name that the cookie applies to.</p>
 

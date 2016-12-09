@@ -95,7 +95,7 @@
 
 <p>Why use VARCHAR over something like TEXT?  The database can optimize VARCHAR better than TEXT since it knows the max size possible.  So to keep things efficient, we use VARCHAR since Twitter handles can&#39;t be longer than 15 characters.</p>
 
-<p>The last column is the &quot;created<em>at&quot; column and it is of the TIMESTAMP type.  Timestamps columns store a specific moment in time. As before, we want to make sure it&#39;s NOT NULL and this time we are giving it a default of the CURRENT</em>TIMESTAMP.  This will set the &quot;created_at&quot; column to the current time when a row is created.</p>
+<p>The last column is the &quot;created_at&quot; column and it is of the TIMESTAMP type.  Timestamps columns store a specific moment in time. As before, we want to make sure it&#39;s NOT NULL and this time we are giving it a default of the CURRENT_TIMESTAMP.  This will set the &quot;created_at&quot; column to the current time when a row is created.</p>
 
 <p>The last line in the definition tells MySQL which column is the PRIMARY KEY for the table.  The PRIMARY KEY is the column we use to uniquely identify rows and in our case it&#39;s the &quot;id&quot; column.  It also helps optimize when searching by id.</p>
 

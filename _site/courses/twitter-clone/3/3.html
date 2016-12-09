@@ -39,7 +39,7 @@
 
 <p>Right now, our table doesn&#39;t contain any data.  Unfortunately, our form isn&#39;t working yet, but we can insert tweets manually by running SQL queries in our MySQL GUI.</p>
 
-<p>To insert rows into tables, we use the INSERT INTO command.  When we created the Tweets table, we gave the &quot;id&quot; and &quot;created<em>at&quot; columns default values.  Since the id and created</em>at columns are pre populated with default values, we only need to insert the user handle and the body of the tweet.  I&#39;m going to use my Twitter handle in this case.  Run this command in your MySQL GUI and I&#39;ll explain it in a minute:</p>
+<p>To insert rows into tables, we use the INSERT INTO command.  When we created the Tweets table, we gave the &quot;id&quot; and &quot;created_at&quot; columns default values.  Since the id and created_at columns are pre populated with default values, we only need to insert the user handle and the body of the tweet.  I&#39;m going to use my Twitter handle in this case.  Run this command in your MySQL GUI and I&#39;ll explain it in a minute:</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL GUI Query Tab</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Tweets</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'DonkkaShane'</span><span class="p">,</span> <span class="s1">'Having a great time teaching this Twitter clone course!'</span><span class="p">);</span>
 </code></pre></div>

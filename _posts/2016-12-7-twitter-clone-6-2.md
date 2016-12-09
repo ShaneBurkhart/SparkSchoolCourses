@@ -13,7 +13,7 @@ section: 'Day 6: Deleting A Tweets'
 
 We now have a delete button to submit our update tweet form, but we haven't added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.
 
-To determine which button was pressed, we get the "delete_button" value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let's get that now and save it to a variable called "isDelete" under our "body" variable.
+To determine which button was pressed, we get the "delete\_button" value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let's get that now and save it to a variable called "isDelete" under our "body" variable.
 
 ```javascript
 // app.js
@@ -24,7 +24,7 @@ var body = req.body.body;
 var isDelete = req.body.delete_button !== undefined;
 ```
 
-The "!==" is the not equals operator.  We are making sure that the "delete_button" key is not undefined.  If the update button was used to submit the form, the "delete_button" variable will be undefined so "isDelete" will be false.  If the delete button was pressed, the "delete_button" variable will be defined and "isDelete" will be true.
+The "!==" is the not equals operator.  We are making sure that the "delete\_button" key is not undefined.  If the update button was used to submit the form, the "delete\_button" variable will be undefined so "isDelete" will be false.  If the delete button was pressed, the "delete\_button" variable will be defined and "isDelete" will be true.
 
 ```javascript
 // app.js
