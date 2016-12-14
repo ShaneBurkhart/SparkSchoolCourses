@@ -42,21 +42,21 @@ In the past, I've written programs to go through Google finance stock data and l
 
 When I was doing software consulting, I wrote a program that collected all of the contact details from the Chamber of Commerce in my city.  I then used this list to find businesses that might want me to build some software for them.  Since I had their email and website url, I could quickly contact them asking them if they needed my help with anything.
 
-The amount of data on the internet is growing every day, and a lot of it isn't in an easy-to-use format.  Having said that, if you know how to code, you can take advantage of all of this data in a time effiecient way by building web scrapers.
+The amount of data on the internet is growing every day, and a lot of it isn't in an easy-to-use format.  Having said that, if you know how to code, you can take advantage of all of this data in a time efficient way by building web scrapers.
 
 ### Build software specifically for your needs
 
 Software is a major part of almost everyone's life these days, but it's not always easy to find software that fits your need just right.  I don't know about you, but sometimes I find myself fighting the software more than it's helping me.
 
-This usually causes me to be more inneficient with my time than if I had a solution that fit my needs perfectly.  If you know how to code, instead of fighting software, you can make your own to fit your needs.
+This usually causes me to be more inefficient with my time than if I had a solution that fit my needs perfectly.  If you know how to code, instead of fighting software, you can make your own to fit your needs.
 
 A few years ago I built a web app for a construction business to help manage their construction drawings.  The app is essentially a version of Dropbox created specifically for construction drawings.  So why use my app if it's basically another version of Dropbox?
 
-The short answer is it saves their team a lot of time.  The company has a specific workflow that they like to follow and there is a whole team of people that use this workflow.  Let's say my app optimizes their workflow and saves each person on the team 15 minutes a day.  With a team of 7 people, that's 105 minutes a day saved by the team.  Now if we multiply that by approximetely 250 working days in a year, the team saves about 437 hours a year.  That's 1.5 working weeks saved for each employee, which saves a ton of time and money.
+The short answer is it saves their team a lot of time.  The company has a specific workflow that they like to follow and there is a whole team of people that use this workflow.  Let's say my app optimizes their workflow and saves each person on the team 15 minutes a day.  With a team of 7 people, that's 105 minutes a day saved by the team.  Now if we multiply that by approximately 250 working days in a year, the team saves about 437 hours a year.  That's 1.5 working weeks saved for each employee, which saves a ton of time and money.
 
 ![](https://s3.amazonaws.com/spark-school/articles/you-should-learn-to-code/time-saved-calculations.png)
 
-When it comes down to it, you can save a tremendous amount of time by learning how to code.  The examples above may not apply to you directly, but I guarentee you could find some ways to make your life more efficient.  When you learn to code, you'll start to find inneficiencies in your life that you can optimize with a program.  This will ultimately save you countless hours if not days of your time.
+When it comes down to it, you can save a tremendous amount of time by learning how to code.  The examples above may not apply to you directly, but I guarantee you could find some ways to make your life more efficient.  When you learn to code, you'll start to find inefficiencies in your life that you can optimize with a program.  This will ultimately save you countless hours if not days of your time.
 
 <h2 id="make-money">How You Can Make Money With Coding</h2>
 
@@ -64,7 +64,7 @@ When it comes down to it, you can save a tremendous amount of time by learning h
 
 Technology is growing like crazy and it won’t be long until it’s necessary for everyone to know how to code.  Because businesses are becoming inherently more technical, more and more companies are requiring employees know a little bit about programming.
 
-It's hard to belive that almost everyone will need to know how to code in the near future, but you can see it starting at the college level.  A lot of college degrees require you to have completed a programming course of some kind and this trend is only growing.
+It's hard to believe that almost everyone will need to know how to code in the near future, but you can see it starting at the college level.  A lot of college degrees require you to have completed a programming course of some kind and this trend is only growing.
 
 Fortunately for you, the trend has only started and most people don't know how to code yet.  Even if you aren't wanting to be a software developer, this is a perfect way for you to make yourself more marketable by learning to code.  Learning to code will ultimately make you a more valuable employee which means you will make more money.
 
@@ -76,7 +76,7 @@ According to [Glassdoor](https://www.glassdoor.com) the average software develop
 
 ![](https://s3.amazonaws.com/spark-school/articles/you-should-learn-to-code/average-software-developer-salary.png)
 
-Aside from pay, most software companies have very fun and exciting culture.  Forget the boring stereotype of working behind a computer screen in a fluorescently lit cubicle farm.  Most modern software companies focus on creating fun and productive environments for their employees.
+Aside from pay, most software companies have very fun and exciting culture.  Forget the boring stereotype of working behind a computer screen in a fluorescent-lit cubicle farm.  Most modern software companies focus on creating fun and productive environments for their employees.
 
 I've worked at vastly different software companies, but all of them have provided similar perks:
 
@@ -86,7 +86,7 @@ I've worked at vastly different software companies, but all of them have provide
 - **Flexible work hours** - Most places I've worked have had flexible working hours.  You could come in any time, but most people got to work anywhere from 9AM-11AM and worked
 - **Remote work** - Software developers work on their computer all day so there is really no reason you need to be in the office.  All of the companies I've worked for have supported working from wherever you like.  Of course, they don't want you gone all of the time, but this adds a lot of flexibility for your personal life.
 - **Company retreats** - When I worked at SumoMe, they had a company retreat once or twice a year.  I got to go on a 6 day trip with the 30 other employees and it was an amazing time.
-- **Much more** - Software companies offer a lot more and this is by no means a comprehensive list.  Here are some [pictures of Airbnb's office in San Francisco, CA](http://www.officelovin.com/2015/07/31/a-tour-of-airbnbs-gorgeous-new-san-francisco-headquarters/) and this article about [3 comapanies that have cool offices in Austin, TX](http://www.builtinaustin.com/2016/06/14/cool-austin-tech-offices).  These kind of companies exist all over the place.
+- **Much more** - Software companies offer a lot more and this is by no means a comprehensive list.  Here are some [pictures of Airbnb's office in San Francisco, CA](http://www.officelovin.com/2015/07/31/a-tour-of-airbnbs-gorgeous-new-san-francisco-headquarters/) and this article about [3 companies that have cool offices in Austin, TX](http://www.builtinaustin.com/2016/06/14/cool-austin-tech-offices).  These kind of companies exist all over the place.
 
 You may have noticed a trend here.  Software companies really don't care how you work because they realize it doesn't matter if you are getting your work done.  Employees are judged on their ability to do their job and not how well you follow the rules.
 
@@ -126,7 +126,7 @@ Okay, so now you now know why you should learn to program, but does that mean yo
 
 <h2 id="need-degree">Do You Need A College Degree?</h2>
 
-The answer to that question is absolutely not!  I’ve worked at Yelp, Carfax and a startup called SumoMe and I dropped out of colllege.  In fact, I didn't even go to school to learn programming.  Most software companies care more that you know your stuff and not which college you graduated from.
+The answer to that question is absolutely not!  I’ve worked at Yelp, Carfax and a startup called SumoMe and I dropped out of college.  In fact, I didn't even go to school to learn programming.  Most software companies care more that you know your stuff and not which college you graduated from.
 
 I'm not saying that college is bad if you want to be a software developer, but a computer science degree in college is going to teach you theory and not as much about modern design practices or standards.  Theory is useful but less useful for getting a job as a software developer since a lot of things learned in school aren't used.
 
@@ -154,7 +154,7 @@ Below is a list of hands on courses that I think might be good to get started.
 
 - **Android** - [Introduction to Android](https://www.edx.org/course/introduction-mobile-application-hkustx-comp107x-1)
 - **Web Development** - [Build a Twitter clone in 7 days](http://trysparkschool.com/)
-- **iOS** - [Introdcution to making iPhone apps](https://www.udemy.com/iosdevelopment/)
+- **iOS** - [Introduction to making iPhone apps](https://www.udemy.com/iosdevelopment/)
 
 These should give you at least a starting point to creating things you want to build.
 
