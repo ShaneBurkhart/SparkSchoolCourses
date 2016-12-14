@@ -86,7 +86,7 @@ I've worked at vastly different software companies, but all of them have provide
 - **Flexible work hours** - Most places I've worked have had flexible working hours.  You could come in any time, but most people got to work anywhere from 9AM-11AM and worked
 - **Remote work** - Software developers work on their computer all day so there is really no reason you need to be in the office.  All of the companies I've worked for have supported working from wherever you like.  Of course, they don't want you gone all of the time, but this adds a lot of flexibility for your personal life.
 - **Company retreats** - When I worked at SumoMe, they had a company retreat once or twice a year.  I got to go on a 6 day trip with the 30 other employees and it was an amazing time.
-- **Much more** - Software companies offer a lot more and this is by no means a comprehensive list.  Check out these companies for a couple more examples. [Company 1]() [Company 2]()
+- **Much more** - Software companies offer a lot more and this is by no means a comprehensive list.  Here are some [pictures of Airbnb's office in San Francisco, CA](http://www.officelovin.com/2015/07/31/a-tour-of-airbnbs-gorgeous-new-san-francisco-headquarters/) and this article about [3 comapanies that have cool offices in Austin, TX](http://www.builtinaustin.com/2016/06/14/cool-austin-tech-offices).  These kind of companies exist all over the place.
 
 You may have noticed a trend here.  Software companies really don't care how you work because they realize it doesn't matter if you are getting your work done.  Employees are judged on their ability to do their job and not how well you follow the rules.
 
