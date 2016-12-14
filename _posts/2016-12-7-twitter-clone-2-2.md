@@ -65,7 +65,7 @@ This is going to contain all of our css files and images.  To stay organized, cr
 
 Right now, our CSS file can't be accessed since we haven't told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can't see the file by visiting [http://127.0.0.1:8080/css/site.css](http://127.0.0.1:8080/css/site.css).
 
-CSS files are what we call static files.  This means that they aren't dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time when because our server has to do less work.
+CSS files are what we call static files.  This means that they aren't dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time because our server has to do less work.
 
 To tell Express to send static files, we need to add some middleware.  We'll get more into middleware later, but for now, middleware is code that will run before and after a request gets sent to a route.  Middleware helps use eliminate duplicate code since most routes need some kind of similar functionality.
 

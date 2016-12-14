@@ -33,10 +33,10 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <header>
     <div class="container">
         <nav class="pull-left">
-            <a id="site-logo">Spark School</a>
+            <a href="/" id="site-logo">Spark School</a>
         </nav>
         
-        <h3 id="section-name" class="pull-right">Day 2: Creating The Tweets Form In HTML/CSS</h3>
+            <h3 id="section-name" class="pull-right">Day 2: Creating The Tweets Form In HTML/CSS</h3>
         
     </div>
 </header>
@@ -98,7 +98,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 
 <p>Right now, our CSS file can&#39;t be accessed since we haven&#39;t told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can&#39;t see the file by visiting <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a>.</p>
 
-<p>CSS files are what we call static files.  This means that they aren&#39;t dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time when because our server has to do less work.</p>
+<p>CSS files are what we call static files.  This means that they aren&#39;t dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time because our server has to do less work.</p>
 
 <p>To tell Express to send static files, we need to add some middleware.  We&#39;ll get more into middleware later, but for now, middleware is code that will run before and after a request gets sent to a route.  Middleware helps use eliminate duplicate code since most routes need some kind of similar functionality.</p>
 
