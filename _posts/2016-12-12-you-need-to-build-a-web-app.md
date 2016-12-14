@@ -80,7 +80,7 @@ Aside from pay, most software companies have very fun and exciting culture.  For
 
 I've worked at vastly different software companies, but all of them have provided similar perks:
 
-- **Happy hour on Friday** - Every company I've worked for had some form of happy hour on Friday evenings where everyone gets together and  has a casual drink.  I've seen some companies even have beer on tap.
+- **Happy hour on Friday** - Every company I've worked for has had some form of happy hour on Friday evenings.  We would take off work early and everyone would get together to hangout.
 - **Lots of vacation time** - Most software companies either give a lot of vacation time or don't have a vacation policy at all.  As long as you are getting your work done other times, they don't mind if you take vacation.
 - **Great health insurance** - Pretty straight forward.  Software companies usually provide good healthcare.
 - **Flexible work hours** - Most places I've worked have had flexible working hours.  You could come in any time, but most people got to work anywhere from 9AM-11AM and worked
