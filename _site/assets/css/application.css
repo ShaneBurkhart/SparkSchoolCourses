@@ -2069,7 +2069,7 @@ ul li {
 .highlight pre {
   padding: 14px;
   margin: 0;
-  overflow: auto;
+  overflow-x: scroll;
 }
 
 #site-logo {
