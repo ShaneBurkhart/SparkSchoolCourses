@@ -2099,3 +2099,16 @@ article img {
   font-family: "Open Sans";
   display: block;
 }
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+
+  #section-name {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
