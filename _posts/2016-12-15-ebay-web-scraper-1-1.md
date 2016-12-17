@@ -16,7 +16,7 @@ next-lesson-link: /courses/ebay-web-scraper/1/2
 
 Welcome to my course that teaches you how to build a eBay web scraper. The course is going to teach you the basics of web scraping. My goal with this course is to teach you how to build a simple web scraper that you can expand on for your own projects.  
 
-A web scraper is a simply a program that requests a web page and collects data from that page.  Once a web scraper has collected data, you can use this data to run your own calculations or format the data how you want.
+A web scraper is simply a program that requests a web page and collects data from that page.  Once a web scraper has collected data, you can use this data however you want.  Usually, this involves running your own calculations or formatting the data in a specific way.
 
 Our web scraper is going to take a product listing page and get the title, bid price and number of bids from that page.  Once we have those values, we can do anything we want with them, but our program is going to print those values to our terminal.  
 
