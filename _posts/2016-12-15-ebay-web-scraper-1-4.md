@@ -294,7 +294,7 @@ If you run this program, it will go through each URL, starting at the first one,
 
 We aren't going to do this in this course, but you could take this loop one step further by scraping an [auction listings page](http://www.ebay.com/sch/Televisions/11071/i.html?LH_Auction=1).  Instead of getting a single element, you would get all of the product URLs from links on the page and put them in an array to loop over.  If you name the array "urls", then there is no need to change the loop we are currently using.
 
-That's the end of the eBay web scraper course.  As always, I hope you enjoyed the course and now understand the basics of web scraping.  
+That's the end of the eBay web scraper course.  As always, I hope you enjoyed the course and now understand the basics of web scraping. 
 
 If you have any questions or feedback, feel free to leave a comment or reach out to me at shane@trysparkschool.com.  I'll be sure to personally respond to you.
 

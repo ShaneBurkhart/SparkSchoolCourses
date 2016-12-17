@@ -16,7 +16,9 @@ next-lesson-link: /courses/ebay-web-scraper/1/2
 
 Welcome to my course that teaches you how to build a eBay web scraper. The course is going to teach you the basics of web scraping. My goal with this course is to teach you how to build a simple web scraper that you can expand on for your own projects.  
 
-Our web scraper is going to take a product listing page and get the title, bid price and number of bids from that page.  Once we have those values, we can do anything we want with them, but our program will print those values to our terminal.  
+A web scraper is a simply a program that requests a web page and collects data from that page.  Once a web scraper has collected data, you can use this data to run your own calculations or format the data how you want.
+
+Our web scraper is going to take a product listing page and get the title, bid price and number of bids from that page.  Once we have those values, we can do anything we want with them, but our program is going to print those values to our terminal.  
 
 In this course, we are going to be using the Ruby programming language to build our web scraper.  Each programming language has things it does well and things it doesn't do well.  I think Ruby is perfect for web scraping because the language is easy to understand and there are a lot of good libraries for web scraping.
 
