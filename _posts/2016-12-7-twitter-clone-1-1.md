@@ -29,7 +29,7 @@ This course assumes you know nothing about programming.  Even if you have some e
 
 If you get stuck somewhere, write in the part that you don't understand and come back to it later.  More than likely, it will probably make more sense when you come back.
 
-If something seems off or doesn't make sense though, let me know and I'll do my best to improve the explanation.  I want to make this course as good as I can be and your feedback helps me do that.  You will always have access to this course, so you will get all updates as well.
+If something seems off or doesn't make sense though, let me know and I'll do my best to improve the explanation.  I want to make this course as good as it can be and your feedback helps me do that.  You will always have access to this course, so you will get all updates as well.
 
 If you have questions or feedback for me during the course, email me at shane@trysparkschool.com.  I'll be sure to respond to you personally.
 
