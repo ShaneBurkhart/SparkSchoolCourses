@@ -4,6 +4,13 @@ permalink: /articles/you-should-learn-to-code
 title: You Are Losing Time And Money By Not Knowing How To Code
 ---
 
+#### Table Of Contents
+
+- [How You Can Save Time With Coding](#save-time)
+- [How You Can Make Money With Coding](#make-money)
+- [Do You Need A College Degree?](#college-degree)
+- [How To Start Learning](#how-to-start)
+
 What if I told you that you are probably losing money for every day that goes by where you don't know how to code?
 
 You'd tell me I'm crazy.  No one is taking money out of your bank account so how could you possibly be losing money?
@@ -14,7 +21,9 @@ The truth is that knowing how to code and being able to write your own programs 
 
 Still skeptical?  Continue reading and I'll explain how learning to code will save you time, make you more money and how you can get started.
 
-<h2 id="save-time">How You Can Save Time With Coding</h2>
+<span class="anchor" id="save-time">&nbsp;</span>
+
+## How You Can Save Time With Coding
 
 Saving time with programming is really about being more efficient.  The whole purpose of a program is to do a task more efficiently than it would have been done otherwise.  By making tasks in your life more efficient, you can save yourself a ton of time.
 
@@ -60,7 +69,9 @@ When it comes down to it, you can save a tremendous amount of time by learning h
 
 <span data-sumome-listbuilder-embed-id="50e9dca0222dc3f785f3e490e89670fb2fa6d66899474890c0ddbc50eee6f54f"></span>
 
-<h2 id="make-money">How You Can Make Money With Coding</h2>
+<span class="anchor" id="make-money">&nbsp;</span>
+
+## How You Can Make Money With Coding
 
 ### Make you more marketable in your current career
 
@@ -128,7 +139,9 @@ Okay, so now you now know why you should learn to program, but does that mean yo
 
 <span data-sumome-listbuilder-embed-id="139381edefbfc30e8711ea08a74b6b50357c9b8612574264c9a8f6d9ec8c588f"></span>
 
-<h2 id="need-degree">Do You Need A College Degree?</h2>
+<span class="anchor" id="college-degree">&nbsp;</span>
+
+## Do You Need A College Degree?
 
 The answer to that question is absolutely not!  I’ve worked at Yelp, Carfax and a startup called SumoMe and I dropped out of college.  In fact, I didn't even go to school to learn programming.  Most software companies care more that you know your stuff and not which college you graduated from.
 
@@ -140,7 +153,9 @@ On top of that, college isn't cheap and it costs close to nothing to learn on yo
 
 So learning to code is going to save you time, make you more money, and you don't need to go to college to learn it, but where do you start?
 
-<h2 id="how-to-start">How To Start Learning</h2>
+<span class="anchor" id="how-to-start">&nbsp;</span>
+
+## How To Start Learning
 
 ###Just start building something
 
