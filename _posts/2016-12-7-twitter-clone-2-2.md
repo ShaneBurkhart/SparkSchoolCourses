@@ -76,7 +76,7 @@ Express provides middleware we can use to server static files.  To add middlewar
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.use(express.static('public'));
+app.use(express.static('./public'));
 ```
 
 As you can see, we are using the Express static middleware.  Calling the "static" function on our "express" variable returns static middleware.  The argument it takes is directory containing our static files.  In our case, this is the "./public" directory.  After adding that line, restart you server for the changes to take effect.
@@ -233,7 +233,7 @@ var app = express();
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
 app.get('/', function(req, res) {
   res.render('tweets');
