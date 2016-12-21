@@ -143,18 +143,20 @@ var mysql = require('mysql');
 var express = require('express');
 var app = express();
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrant',
-  password : '',
-  database : 'twitter'
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
 });
 
 connection.connect(function(err) {
   if(err) {
     console.log(err);
-    return err;
+    return;
   }
-   console.log('Connected to the database.');
+
+  console.log('Connected to the database.');
+
   app.listen(8080, function() {
     console.log('Web server listening on port 8080!');
   });
@@ -163,7 +165,7 @@ connection.connect(function(err) {
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.use(express.static('./public'));
+app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   res.render('tweets');
@@ -171,7 +173,7 @@ app.get('/', function(req, res) {
 
 app.post('/tweets/create', function(req, res) {
   // Code to create tweets goes here.
-  res.send('Creating tweets');
+  res.send('Creating tweet.');
 });
 ```
 
@@ -324,7 +326,9 @@ connection.query(query, [handle, body], function(err) {
 });
 ```
 
-The final code for "app.js" should look like the following:
+That conclude day 3 of the Twitter clone course.  Today we connected to our database, got our Tweet form values and inserted our tweet into our database. This is the "C" (Create) in CRUD.  In the next day, we will cover the "R" (Read) of CRUD and will read the tweets from our database and render them on our homepage.
+
+### Final Code
 
 ```javascript
 // app.js
@@ -335,16 +339,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrant',
-  password : '',
-  database : 'twitter'
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
 });
 
 connection.connect(function(err) {
   if(err) {
     console.log(err);
-    return err;
+    return;
   }
 
   console.log('Connected to the database.');
@@ -357,7 +361,7 @@ connection.connect(function(err) {
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.use(express.static('./public'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
@@ -378,5 +382,3 @@ app.post('/tweets/create', function(req, res) {
   });
 });
 ```
-
-That conclude day 3 of the Twitter clone course.  Today we connected to our database, got our Tweet form values and inserted our tweet into our database. This is the "C" (Create) in CRUD.  In the next day, we will cover the "R" (Read) of CRUD and will read the tweets from our database and render them on our homepage.

@@ -154,18 +154,20 @@ npm install mysql --save
 <span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-  <span class="na">host</span>     <span class="p">:</span> <span class="s1">'localhost'</span><span class="p">,</span>
-  <span class="na">user</span>     <span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
-  <span class="na">password</span> <span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">database</span> <span class="p">:</span> <span class="s1">'twitter'</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
 <span class="p">});</span>
 
 <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
-   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
+
   <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
   <span class="p">});</span>
@@ -174,7 +176,7 @@ npm install mysql --save
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'public'</span><span class="p">));</span>
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">);</span>
@@ -182,7 +184,7 @@ npm install mysql --save
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Code to create tweets goes here.</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Creating tweets'</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Creating tweet.'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Restart your web server in your terminal and you should see the following:</p>
@@ -304,7 +306,9 @@ npm install body-parser --save
   <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>The final code for &quot;app.js&quot; should look like the following:</p>
+<p>That conclude day 3 of the Twitter clone course.  Today we connected to our database, got our Tweet form values and inserted our tweet into our database. This is the &quot;C&quot; (Create) in CRUD.  In the next day, we will cover the &quot;R&quot; (Read) of CRUD and will read the tweets from our database and render them on our homepage.</p>
+
+<h3>Final Code</h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="s1">'use strict'</span>
 
@@ -313,16 +317,16 @@ npm install body-parser --save
 <span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-  <span class="na">host</span>     <span class="p">:</span> <span class="s1">'localhost'</span><span class="p">,</span>
-  <span class="na">user</span>     <span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
-  <span class="na">password</span> <span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">database</span> <span class="p">:</span> <span class="s1">'twitter'</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
 <span class="p">});</span>
 
 <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
@@ -335,7 +339,7 @@ npm install body-parser --save
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'public'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -356,8 +360,6 @@ npm install body-parser --save
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>That conclude day 3 of the Twitter clone course.  Today we connected to our database, got our Tweet form values and inserted our tweet into our database. This is the &quot;C&quot; (Create) in CRUD.  In the next day, we will cover the &quot;R&quot; (Read) of CRUD and will read the tweets from our database and render them on our homepage.</p>
-
                 
                 <div id="disqus_thread"></div>
 <script>
