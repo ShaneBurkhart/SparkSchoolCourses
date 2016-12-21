@@ -228,7 +228,7 @@ We want to know when our server starts, so the The body of this function simply 
 
 We used "console.log" earlier, but I didn't get a chance to explain it.  The "console" variable always exists and can be accessed at any time.  The "console" variable has a method called "log" that takes an argument and prints it to the termina.  This is useful for inspecting variable values and notifying us that things have happen.
 
-Your final code should look similar to this:
+Your final code should look like this:
 
 ```javascript
 // app.js
@@ -270,3 +270,21 @@ When the page loads, you should see the words "Hello world!" printed on the scre
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/hello-world-web-app.png)
 
 That concludes day 1 of the Twitter clone course.  Today, we got our development environment setup and wrote our first web server.  On day 2 we'll start writing some HTML and give our page some style.  Thanks for following along, and I'll see you in the next lesson.
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  res.send('Hello world!');
+});
+
+app.listen(8080, function() {
+  console.log('Web server listening on port 8080!');
+});
+```

@@ -225,7 +225,7 @@ npm install express --save --no-bin-links
 
 <p>We used &quot;console.log&quot; earlier, but I didn&#39;t get a chance to explain it.  The &quot;console&quot; variable always exists and can be accessed at any time.  The &quot;console&quot; variable has a method called &quot;log&quot; that takes an argument and prints it to the termina.  This is useful for inspecting variable values and notifying us that things have happen.</p>
 
-<p>Your final code should look similar to this:</p>
+<p>Your final code should look like this:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="s1">'use strict'</span>
 
@@ -262,6 +262,21 @@ node app.js
 
 <p>That concludes day 1 of the Twitter clone course.  Today, we got our development environment setup and wrote our first web server.  On day 2 we&#39;ll start writing some HTML and give our page some style.  Thanks for following along, and I&#39;ll see you in the next lesson.</p>
 
+<h3>Final Code</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="s1">'use strict'</span>
+
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Hello world!'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
                 
                 <div id="disqus_thread"></div>
 <script>

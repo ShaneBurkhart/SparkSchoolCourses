@@ -72,3 +72,10 @@ node app.js
 You should see the text "Hello World!" appear below the command.  We now know everything is setup correctly and we can start making our web server.
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/printing-hello-world-in-the-terminal.png)
+
+### Final Code
+
+```javascript
+// app.js
+console.log('Hello World!');
+```

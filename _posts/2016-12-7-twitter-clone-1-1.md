@@ -27,7 +27,9 @@ Make sure you are trying to understand the broader concepts and how you would go
 
 This course assumes you know nothing about programming.  Even if you have some experience, I recommend reading through the entire course.  You might get a different perspective that will help you understand something better.
 
-If you get stuck somewhere, write in the part that you don't understand and come back to it later.  More than likely, it will probably make more sense when you come back.
+If you get stuck somewhere, write in the part that you don't understand and come back to it later.  More than likely, it will make more sense when you come back to it.
+
+I'm also including the final code at the end of each day so you can easily compare your code to mine if you run into issues.
 
 If something seems off or doesn't make sense though, let me know and I'll do my best to improve the explanation.  I want to make this course as good as it can be and your feedback helps me do that.  You will always have access to this course, so you will get all updates as well.
 

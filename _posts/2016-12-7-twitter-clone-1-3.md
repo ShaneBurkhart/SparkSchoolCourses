@@ -139,3 +139,13 @@ Click the "Open" button and you should see a screen asking you for "login as:" w
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/putty-logged-into-vagrant.png)
 
 You are now logged into your VM on your Windows machine.
+
+### Final Code
+
+```ruby
+# Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "node-mysql"
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+end
+```
