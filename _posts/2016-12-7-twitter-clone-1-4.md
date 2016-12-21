@@ -53,7 +53,7 @@ The cyan colored section of the terminal prompt is the current working directory
 
 The "~" path stands for the home directory.  When you open the terminal, your current working directory is normally the home directory. This is the directory for the current user.
 
-Now that we know a bit about the terminal, let's get back to running our program.  First, let's navigate to our project directory in our VM.  Vagrant automatically links all of the files in our project directory to the '/vagrant' directory in our VM.  Navigate there now with the following command:
+Now that we know a bit about the terminal, let's get back to running our program.  First, let's navigate to our project directory in our VM.  Vagrant automatically shares all of the files in our project directory to the '/vagrant' directory in our VM.  We can switch to the '/vagrant' directory (with the 'cd' command) and run commands for our project inside the VM.  Navigate there now with the following command:
 
 ```bash
 # Terminal logged into VM
