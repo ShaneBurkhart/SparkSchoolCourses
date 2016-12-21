@@ -172,6 +172,136 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 
 <p>We have now added some user authentication to our tweets, but the edit button still shows for each tweet.  In the next lesson, we are going to go over how to hide this for tweets the user can&#39;t edit.</p>
 
+<h3>Final Code</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<span class="s1">'use strict'</span>
+
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">authUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./middleware/auth-user'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
+<span class="p">});</span>
+
+<span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
+
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets ORDER BY created_at DESC'</span><span class="p">;</span>
+
+  <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
+
+  <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">handle</span><span class="p">,</span> <span class="nx">body</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">tweetsCreated</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">insertId</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">'tweets_created'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+
+  <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="nx">authUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">isDelete</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">delete_button</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">queryCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="nx">isDelete</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Our delete code goes here.</span>
+    <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">deleteQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// The update button was pressed.</span>
+    <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">updateQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// middleware/auth-user.js</span>
+<span class="s1">'use strict'</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">tweetsCreated</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Redirect to homepage if user didn't create tweet.</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div>
                 
                     <p class="text-center">
                         <a href="/courses/twitter-clone/7/3" class="next-lesson-button">

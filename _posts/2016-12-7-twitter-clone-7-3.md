@@ -80,3 +80,138 @@ There is still a lot of learning to be done, but now you have a solid understand
 I'm really excited that you made it all the way through the course and would love to know what you think.  Email me at shane@trysparkschool.com to let me know what you thought of the course.  I would appreciate any feedback and if you are interested, I can help point you in the right direction to continue your education.
 
 Thanks for taking the course and I hope to hear from you soon!
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var mysql = require('mysql');
+var express = require('express');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var authUser = require('./middleware/auth-user');
+var moment = require('moment');
+var app = express();
+var connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
+});
+
+connection.connect(function(err) {
+  if(err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Connected to the database.');
+
+  app.listen(8080, function() {
+    console.log('Web server listening on port 8080!');
+  });
+});
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.use(express.static('./public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+app.get('/', function(req, res) {
+  var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
+  var tweetsCreated = req.cookies.tweets_created || [];
+
+  connection.query(query, function(err, results) {
+    if(err) {
+      console.log(err);
+    }
+
+    for(var i = 0; i < results.length; i++) {
+      var tweet = results[i];
+
+      tweet.time_from_now = moment(tweet.created_at).fromNow();
+      tweet.isEditable = tweetsCreated.includes(tweet.id);
+    }
+
+    res.render('tweets', { tweets: results });
+  });
+});
+
+app.post('/tweets/create', function(req, res) {
+  var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
+  var handle = req.body.handle;
+  var body = req.body.body;
+  var tweetsCreated = req.cookies.tweets_created || [];
+
+  connection.query(query, [handle, body], function(err, results) {
+    if(err) {
+      console.log(err);
+    }
+
+    tweetsCreated.push(results.insertId);
+    res.cookie('tweets_created', tweetsCreated, { httpOnly: true });
+
+    res.redirect('/');
+  });
+});
+
+app.get('/tweets/:id([0-9]+)/edit', authUser, function(req, res) {
+  var query = 'SELECT * FROM Tweets WHERE id = ?';
+  var id = req.params.id;
+
+  connection.query(query, [id], function(err, results) {
+    if(err || results.length === 0) {
+      console.log(err || 'No tweet found.');
+      res.redirect('/');
+      return;
+    }
+
+    var tweet = results[0];
+    tweet.time_from_now = moment(tweet.created_at).fromNow();
+
+    res.render('edit-tweet', { tweet: tweet });
+  });
+});
+
+app.post('/tweets/:id([0-9]+)/update', authUser, function(req, res) {
+  var updateQuery = 'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?';
+  var deleteQuery = 'DELETE FROM Tweets WHERE id = ?';
+  var id = req.params.id;
+  var handle = req.body.handle;
+  var body = req.body.body;
+  var isDelete = req.body.delete_button;
+  var queryCallback = function(err) {
+    if(err) {
+      console.log(err);
+    }
+
+    res.redirect('/');
+  };
+
+  if(isDelete) {
+    // Our delete code goes here.
+    connection.query(deleteQuery, [id], queryCallback);
+  } else {
+    // The update button was pressed.
+    connection.query(updateQuery, [body, handle, id], queryCallback);
+  }
+});
+```
+
+```ejs
+<!-- views/_tweet.ejs -->
+<article class="tweet">
+  <p>
+    <a href="http://twitter.com/<%= tweet.handle %>">@<%= tweet.handle %></a>
+    <span class="light-grey"> - <%= tweet.time_from_now %></span>
+  </p>
+  <p><%= tweet.body %></p>
+  <% if(tweet.isEditable) { %>
+    <p><a href="/tweets/<%= tweet.id %>/edit">Edit</a></p>
+  <% } %>
+</article>
+```
