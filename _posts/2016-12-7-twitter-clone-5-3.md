@@ -129,3 +129,146 @@ Refresh the edit tweet page and you should see the form populated with the tweet
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-adding-form-to-edit-tweet-page.png)
 
 This is looking really good.  If you try submitting the form, nothing happens yet because we haven't defined our update tweet route.  In the next lesson, we'll be creating our update tweet POST route and updating the tweet in the database.
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var mysql = require('mysql');
+var express = require('express');
+var bodyParser = require('body-parser');
+var moment = require('moment');
+var app = express();
+var connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
+});
+
+connection.connect(function(err) {
+  if(err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Connected to the database.');
+
+  app.listen(8080, function() {
+    console.log('Web server listening on port 8080!');
+  });
+});
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', function(req, res) {
+  var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
+
+  connection.query(query, function(err, results) {
+    if(err) {
+      console.log(err);
+    }
+
+    for(var i = 0; i < results.length; i++) {
+      var tweet = results[i];
+      tweet.time_from_now = moment(tweet.created_at).fromNow();
+    }
+
+    res.render('tweets', { tweets: results });
+  });
+});
+
+app.post('/tweets/create', function(req, res) {
+  var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
+  var handle = req.body.handle;
+  var body = req.body.body;
+
+  connection.query(query, [handle, body], function(err) {
+    if(err) {
+      console.log(err);
+    }
+
+    res.redirect('/');
+  });
+});
+
+app.get('/tweets/:id([0-9]+)/edit', function(req, res) {
+  var query = 'SELECT * FROM Tweets WHERE id = ?';
+  var id = req.params.id;
+
+  connection.query(query, [id], function(err, results) {
+    if(err || results.length === 0) {
+      console.log(err || 'No tweet found.');
+      res.redirect('/');
+      return;
+    }
+
+    var tweet = results[0];
+    tweet.time_from_now = moment(tweet.created_at).fromNow();
+
+    res.render('edit-tweet', { tweet: tweet });
+  });
+});
+```
+
+```ejs
+<!-- views/tweets.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <form id="tweet-form" action="/tweets/create" method="POST">
+        <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane">
+        <textarea id="tweet-form-body" name="body" placeholder="What's happening?"></textarea>
+        <button id="tweet-form-button">Tweet</button>
+      </form>
+      <% for(var i = 0; i < tweets.length; i++) { %>
+        <%- include('_tweet', { tweet: tweets[i] }); %>
+      <% } %>
+    </main>
+  </body>
+</html>
+```
+
+```ejs
+<!-- views/edit-tweet.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <%- include('_tweet', { tweet: tweet }); %>
+      <form id="tweet-form" action="/tweets/<%= tweet.id %>/update" method="POST">
+        <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane" value="<%= tweet.handle %>">
+        <textarea id="tweet-form-body" name="body" placeholder="What's happening?"><%= tweet.body %></textarea>
+        <button id="tweet-form-button">Update Tweet</button>
+      </form>
+    </main>
+  </body>
+</html>
+```
+
+```ejs
+<!-- views/_tweet.ejs -->
+<article class="tweet">
+  <p>
+    <a href="http://twitter.com/<%= tweet.handle %>">@<%= tweet.handle %></a>
+    <span class="light-grey"> - <%= tweet.time_from_now %></span>
+  </p>
+  <p><%= tweet.body %></p>
+  <p><a href="/tweets/<%= tweet.id %>/edit">Edit</a></p>
+</article>
+```

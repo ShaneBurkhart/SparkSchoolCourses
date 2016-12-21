@@ -76,7 +76,9 @@ Restart your server, go to the edit page and submit the form with updated values
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-4-updated-tweet-in-feed.png)
 
-Here's the final code for "app.js".
+Today, we went over the "U" (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the "D" (Delete).  In day 5, we will go over how we can delete tweets.
+
+### Final Code
 
 ```javascript
 // app.js
@@ -88,16 +90,16 @@ var bodyParser = require('body-parser');
 var moment = require('moment');
 var app = express();
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'vagrant',
-  password : '',
-  database : 'twitter'
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
 });
 
 connection.connect(function(err) {
   if(err) {
     console.log(err);
-    return err;
+    return;
   }
 
   console.log('Connected to the database.');
@@ -110,7 +112,7 @@ connection.connect(function(err) {
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.use(express.static('./public'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
@@ -177,5 +179,3 @@ app.post('/tweets/:id([0-9]+)/update', function(req, res) {
   });
 });
 ```
-
-Today, we went over the "U" (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the "D" (Delete).  In day 5, we will go over how we can delete tweets.

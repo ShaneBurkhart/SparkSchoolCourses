@@ -101,7 +101,9 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 
 <p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-4-updated-tweet-in-feed.png" alt=""></p>
 
-<p>Here&#39;s the final code for &quot;app.js&quot;.</p>
+<p>Today, we went over the &quot;U&quot; (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the &quot;D&quot; (Delete).  In day 5, we will go over how we can delete tweets.</p>
+
+<h3>Final Code</h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="s1">'use strict'</span>
 
@@ -111,16 +113,16 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-  <span class="na">host</span>     <span class="p">:</span> <span class="s1">'localhost'</span><span class="p">,</span>
-  <span class="na">user</span>     <span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
-  <span class="na">password</span> <span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">database</span> <span class="p">:</span> <span class="s1">'twitter'</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
 <span class="p">});</span>
 
 <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
@@ -133,7 +135,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'public'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -200,8 +202,6 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Today, we went over the &quot;U&quot; (Update) part of CRUD.  Our site is almost completely interactive since we can now create, read and update tweets.  The only thing left is the &quot;D&quot; (Delete).  In day 5, we will go over how we can delete tweets.</p>
-
                 
                 <div id="disqus_thread"></div>
 <script>
