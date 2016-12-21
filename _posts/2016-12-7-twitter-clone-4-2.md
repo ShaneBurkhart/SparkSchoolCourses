@@ -128,3 +128,70 @@ Assuming you inserted Tweets into your database earlier, you can restart your we
 As you can see, each row is an object containing the data for each tweet.  We'll need the for loop in our next lesson so we're going to leave it there for now.  I more wanted to show you what was returned by our query.
 
 In the next lesson, we'll be passing these tweets to our "tweets.ejs" template and rendering them to the page.
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var mysql = require('mysql');
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+var connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
+});
+
+connection.connect(function(err) {
+  if(err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Connected to the database.');
+
+  app.listen(8080, function() {
+    console.log('Web server listening on port 8080!');
+  });
+});
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', function(req, res) {
+  var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
+
+  connection.query(query, function(err, results) {
+    if(err) {
+      console.log(err);
+    }
+
+    for(var i = 0; i < results.length; i++) {
+      console.log(results[i]);
+    }
+
+    res.render('tweets');
+  });
+});
+
+app.post('/tweets/create', function(req, res) {
+  var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
+  var handle = req.body.handle;
+  var body = req.body.body;
+
+  connection.query(query, [handle, body], function(err) {
+    if(err) {
+      console.log(err);
+    }
+
+    res.redirect('/');
+  });
+});
+```

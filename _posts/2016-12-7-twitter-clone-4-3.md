@@ -132,3 +132,102 @@ Restart your server and refresh the homepage [http://127.0.0.1:8080](http://127.
 We can now create tweets and see them get added to the page.  Try adding a tweet with our form and you should see it get added to the top of our tweets feed.
 
 Today, we went over the "R" (Read) part of CRUD.  So far we can create tweets with our form and render tweets on our homepage.  This is really exciting, because our app is becoming interactive.  In day 5, we will go over the "U" (Update) and how we can edit these tweets after they are created.
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var mysql = require('mysql');
+var express = require('express');
+var bodyParser = require('body-parser');
+var moment = require('moment');
+var app = express();
+var connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'vagrant',
+  password: '',
+  database: 'twitter'
+});
+
+connection.connect(function(err) {
+  if(err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Connected to the database.');
+
+  app.listen(8080, function() {
+    console.log('Web server listening on port 8080!');
+  });
+});
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', function(req, res) {
+  var query = 'SELECT * FROM Tweets ORDER BY created_at DESC';
+
+  connection.query(query, function(err, results) {
+    if(err) {
+      console.log(err);
+    }
+
+    for(var i = 0; i < results.length; i++) {
+      var tweet = results[i];
+      tweet.time_from_now = moment(tweet.created_at).fromNow();
+    }
+
+    res.render('tweets', { tweets: results });
+  });
+});
+
+app.post('/tweets/create', function(req, res) {
+  var query = 'INSERT INTO Tweets(handle, body) VALUES(?, ?)';
+  var handle = req.body.handle;
+  var body = req.body.body;
+
+  connection.query(query, [handle, body], function(err) {
+    if(err) {
+      console.log(err);
+    }
+
+    res.redirect('/');
+  });
+});
+```
+
+```ejs
+<!-- views/tweets.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <form id="tweet-form" action="/tweets/create" method="POST">
+        <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane">
+        <textarea id="tweet-form-body" name="body" placeholder="What's happening?"></textarea>
+        <button id="tweet-form-button">Tweet</button>
+      </form>
+      <% for(var i = 0; i < tweets.length; i++) { %>
+        <% var tweet = tweets[i]; %>
+        <article class="tweet">
+          <p>
+            <a href="http://twitter.com/<%= tweet.handle %>">@<%= tweet.handle %></a>
+            <span class="light-grey"> - <%= tweet.time_from_now %></span>
+          </p>
+          <p><%= tweet.body %></p>
+        </article>
+      <% } %>
+    </main>
+  </body>
+</html>
+```
