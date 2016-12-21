@@ -25,7 +25,7 @@ The "package.json" file is used by the "npm" terminal command which stands for N
 npm init
 ```
 
-Follow the instructions. The defaults should work well but give it a name of "twitter-clone" and when it asks for entry point, give it "app.js". When the command is done, it will have created a package.json file in the root of your project directory.
+The command will prompt for various pieces of information.  You can press enter until the command is finished to use the defaults. When the command is done, it will have created a "package.json" file in the root of your project directory.
 
 With npm initialized, we can install libraries for our project.  The first library we need is Express.js ([http://expressjs.com/](http://expressjs.com/)).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.
 
