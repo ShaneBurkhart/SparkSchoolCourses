@@ -83,13 +83,13 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 
 <p>Now that we have defined what our VM will look like for our project, we need to start it and connect to it.  Our goal here is to start the VM on your computer so we can log into that run terminal commands in our VM.</p>
 
-<p>In our Vagrantfile, we configured our VM to use the &quot;node-mysql&quot; box, but we haven&#39;t told Vagrant where to find it yet.  Open your terminal and copy the following into your terminal.  Press enter to run it.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<p>In our Vagrantfile, we configured our VM to use the &quot;node-mysql&quot; box, but we haven&#39;t told Vagrant where to find it yet.  Open your terminal (PowerShell on Windows. Terminal on OSX/Linux) and copy the following into your terminal.  Press enter to run it.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal (or PowerShell) on host computer</span>
 vagrant box add --name node-mysql <span class="s2">"https://s3.amazonaws.com/spark-school/node-mysql.box"</span>
 </code></pre></div>
 <p>If this command fails to run saying there was an error, you might have to install an older version of vagrant.  Some people have contacted me telling me that they have ran into this issue and the fix is to download an older version.  <a href="https://releases.hashicorp.com/vagrant/">https://releases.hashicorp.com/vagrant/</a> Visit that link to see a list of vagrant versions you can download. I would try a version or two down from the top.  Click that and you will see a page with links to installers.  For windows download the &quot;.msi&quot; version and for OS X, download the &quot;.dmg&quot; version.</p>
 
-<p>We have now added our &quot;node-mysql&quot; box.</p>
+<p>We have now added our &quot;node-mysql&quot; box to vagrant on our local machine.</p>
 
 <p>To connect to our VM, Vagrant uses SSH. SSH stands for secure shell and is a protocol used to run commands on other computers that are not the host computer. The secure part means we need we need correct user authentication to run commands on the remote machine.  We are going to have a VM running on our computer which will act as a remote machine.  You don&#39;t need to know much about SSH except that we are going to use it to log into our VM.</p>
 
@@ -100,19 +100,19 @@ vagrant box add --name node-mysql <span class="s2">"https://s3.amazonaws.com/spa
 <h4>OS X/Linux</h4>
 
 <p>Assuming you created the &quot;TwitterClone&quot; folder on the Desktop, open your terminal, in your applications, and navigate to the project directory with:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal on host computer</span>
 <span class="nb">cd</span> ~/Desktop/TwitterClone
 </code></pre></div>
 <p>Type that into your terminal and press enter to run it.</p>
 
 <p>Now that we are in our project directory, let&#39;s start our VM with the &quot;vagrant up&quot; command.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal on host computer</span>
 vagrant up
 </code></pre></div>
 <p>Type that into your terminal and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.</p>
 
 <p>Now we have our VM running, let&#39;s connect to it.  On Unix based operating systems, this is easy because we can run &quot;vagrant ssh&quot; and Vagrant will take care the our user authentication for us.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal on host computer</span>
 vagrant ssh
 </code></pre></div>
 <p>Type that into your terminal and press enter.  You should see the last line of your terminal change format to look like this:</p>
@@ -123,14 +123,14 @@ vagrant ssh
 
 <h4>Windows</h4>
 
-<p>Assuming you created the &quot;TwitterClone&quot; folder on the Desktop, open&quot;Windows Powershell&quot; from the start menu, and navigate to the project directory with:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell</span>
+<p>Assuming you created the &quot;TwitterClone&quot; folder on the Desktop, open &quot;Windows Powershell&quot; from the start menu, and navigate to the project directory with:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell on host computer</span>
 <span class="nb">cd</span> ~/Desktop/TwitterClone
 </code></pre></div>
 <p>Type that into your terminal and press enter to run it.</p>
 
 <p>Now that we are in our project directory, let&#39;s start our VM with the &quot;vagrant up&quot; command.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell on host computer</span>
 vagrant up
 </code></pre></div>
 <p>Type that into powershell and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.</p>
@@ -138,7 +138,7 @@ vagrant up
 <p>Now we have our VM running, let&#39;s connect to it.  On Unix based operating systems, the following command will log you into your VM, but windows doesn&#39;t have the tools Vagrant needs.  Instead, when you run the following command on Windows, it will tell you it can&#39;t find the &quot;ssh executable&quot;.  On Windows we are going to use Putty to log into our VM.</p>
 
 <p>In order to log into our VM with Putty, we need login credentials.  Run the following command to get them:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell on host computer</span>
 vagrant ssh-config
 </code></pre></div>
 <p>Type that into your terminal and press enter.  You should see something like the following.</p>

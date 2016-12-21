@@ -85,7 +85,7 @@ Our tweets feed is finally coming to life, but that date is plain nasty.  We wan
 Moment.js is an extremely useful library that makes working with dates really easy.  As we have with other libraries we need to install it for our project. Don't forget "--no-bin-links" for Windows.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm install moment --save
 ```
 

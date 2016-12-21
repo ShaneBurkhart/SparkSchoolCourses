@@ -47,16 +47,16 @@ The next line forwards port 8080 from the VM to the host machine.  Our web serve
 
 Now that we have defined what our VM will look like for our project, we need to start it and connect to it.  Our goal here is to start the VM on your computer so we can log into that run terminal commands in our VM.
 
-In our Vagrantfile, we configured our VM to use the "node-mysql" box, but we haven't told Vagrant where to find it yet.  Open your terminal and copy the following into your terminal.  Press enter to run it.
+In our Vagrantfile, we configured our VM to use the "node-mysql" box, but we haven't told Vagrant where to find it yet.  Open your terminal (PowerShell on Windows. Terminal on OSX/Linux) and copy the following into your terminal.  Press enter to run it.
 
 ```bash
-# Terminal
+# Terminal (or PowerShell) on host computer
 vagrant box add --name node-mysql "https://s3.amazonaws.com/spark-school/node-mysql.box"
 ```
 
 If this command fails to run saying there was an error, you might have to install an older version of vagrant.  Some people have contacted me telling me that they have ran into this issue and the fix is to download an older version.  [https://releases.hashicorp.com/vagrant/](https://releases.hashicorp.com/vagrant/) Visit that link to see a list of vagrant versions you can download. I would try a version or two down from the top.  Click that and you will see a page with links to installers.  For windows download the ".msi" version and for OS X, download the ".dmg" version.
 
-We have now added our "node-mysql" box.
+We have now added our "node-mysql" box to vagrant on our local machine.
 
 To connect to our VM, Vagrant uses SSH. SSH stands for secure shell and is a protocol used to run commands on other computers that are not the host computer. The secure part means we need we need correct user authentication to run commands on the remote machine.  We are going to have a VM running on our computer which will act as a remote machine.  You don't need to know much about SSH except that we are going to use it to log into our VM.
 
@@ -69,7 +69,7 @@ These instructions are specific to your operating system so scroll down to find 
 Assuming you created the "TwitterClone" folder on the Desktop, open your terminal, in your applications, and navigate to the project directory with:
 
 ```bash
-# Terminal
+# Terminal on host computer
 cd ~/Desktop/TwitterClone
 ```
 
@@ -78,7 +78,7 @@ Type that into your terminal and press enter to run it.
 Now that we are in our project directory, let's start our VM with the "vagrant up" command.
 
 ```bash
-# Terminal
+# Terminal on host computer
 vagrant up
 ```
 
@@ -87,7 +87,7 @@ Type that into your terminal and press enter.   This command takes some time to 
 Now we have our VM running, let's connect to it.  On Unix based operating systems, this is easy because we can run "vagrant ssh" and Vagrant will take care the our user authentication for us.
 
 ```bash
-# Terminal
+# Terminal on host computer
 vagrant ssh
 ```
 
@@ -99,10 +99,10 @@ You are now logged into your VM and are ready to get started.  All terminal comm
 
 ####Windows
 
-Assuming you created the "TwitterClone" folder on the Desktop, open"Windows Powershell" from the start menu, and navigate to the project directory with:
+Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu, and navigate to the project directory with:
 
 ```bash
-# PowerShell
+# PowerShell on host computer
 cd ~/Desktop/TwitterClone
 ```
 
@@ -111,7 +111,7 @@ Type that into your terminal and press enter to run it.
 Now that we are in our project directory, let's start our VM with the "vagrant up" command.
 
 ```bash
-# PowerShell
+# PowerShell on host computer
 vagrant up
 ```
 
@@ -122,7 +122,7 @@ Now we have our VM running, let's connect to it.  On Unix based operating system
 In order to log into our VM with Putty, we need login credentials.  Run the following command to get them:
 
 ```bash
-# PowerShell
+# PowerShell on host computer
 vagrant ssh-config
 ```
 

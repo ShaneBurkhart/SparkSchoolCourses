@@ -75,7 +75,7 @@ All HTML files follow the same pattern as above.  They start with a doctype decl
 Now that we have our page, let's have our web server render our new HTML page.  Before we can do that, we need to install the EJS library. Don't forget "--no-bin-links" for Windows.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm install ejs --save
  ```
 

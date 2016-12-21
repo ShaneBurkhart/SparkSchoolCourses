@@ -59,7 +59,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <p>Libraries are also sometimes called packages.  Generally, libraries are other projects that people have made to help do a specific task.  We are going to use the Express.js library since it makes creating web servers much easier.</p>
 
 <p>The &quot;package.json&quot; file is used by the &quot;npm&quot; terminal command which stands for Node Package Manager.  This command lets us manage the libraries we have installed as well as install new ones.  To create a package.json file, run the following command in the terminal in the root of our project directory.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 npm init
 </code></pre></div>
 <p>Follow the instructions. The defaults should work well but give it a name of &quot;twitter-clone&quot; and when it asks for entry point, give it &quot;app.js&quot;. When the command is done, it will have created a package.json file in the root of your project directory.</p>
@@ -67,11 +67,11 @@ npm init
 <p>With npm initialized, we can install libraries for our project.  The first library we need is Express.js (<a href="http://expressjs.com/">http://expressjs.com/</a>).  This is a pretty standard web server library in the Node.js community and makes it much easier to create web servers.</p>
 
 <p>To install libraries, we use the &quot;npm&quot; command followed by the word &quot;install&quot; followed by the name of the library we want to install.  To tell npm we want to save this library in our package.json file, we add the &quot;--save&quot; option at the end.  Below is what this looks like for Express.js:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 npm install express --save
 </code></pre></div>
 <p>On Windows, when running &quot;npm install&quot; commands, you&#39;ll have to add &quot;--no-bin-links&quot; to the end of the command.  So the previous command on windows should look like the following.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 npm install express --save --no-bin-links
 </code></pre></div>
 <p>If you wanted to install the library only temporary, you can omit the &quot;--save&quot; portion and the library won&#39;t be saved to your package.json file.</p>
@@ -185,7 +185,7 @@ npm install express --save --no-bin-links
 
 <p>Notice that there isn&#39;t a semicolon at the end of the first line.  Semicolons never come directly after an open curly brace.</p>
 
-<p>The next new thing is the comment  in the function body.  Comments are code that gets ignored when the program executes.  Anything after a &quot;//&quot; is a line comment that will go until the end of the line.  Comments are useful to add clarification to code or quickly remove some code temporarily.  In our case, we have are putting a note of what will go inside in the future.</p>
+<p>The next new thing is the comment  in the function body.  Comments are code that gets ignored when the program executes.  Anything after a &quot;//&quot; is a line comment that will go until the end of the line.  Comments are useful to add clarification to code or quickly remove some code temporarily.  In our case, we are putting a note of what will go inside in the future.</p>
 
 <p>This is only a single line comment and there are other types of comments.  To learn more about comments, visit <a href="http://www.w3schools.com/js/js_comments.asp">http://www.w3schools.com/js/js_comments.asp</a>.</p>
 
@@ -245,7 +245,7 @@ npm install express --save --no-bin-links
 <p>Now we have our server written, let&#39;s run it. Save &quot;app.js&quot; and go to your terminal (remember we need to be logged into our VM and be in our project directory).</p>
 
 <p>To run javascript files, we use the &quot;node&quot; command.  <a href="https://nodejs.org/en/">Node.js</a> is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let&#39;s run our &quot;app.js&quot; file.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 node app.js
 </code></pre></div>
 <p>You should see a screen similar to this:</p>

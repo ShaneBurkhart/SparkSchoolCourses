@@ -87,13 +87,13 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <p>The &quot;~&quot; path stands for the home directory.  When you open the terminal, your current working directory is normally the home directory. This is the directory for the current user.</p>
 
 <p>Now that we know a bit about the terminal, let&#39;s get back to running our program.  First, let&#39;s navigate to our project directory in our VM.  Vagrant automatically links all of the files in our project directory to the &#39;/vagrant&#39; directory in our VM.  Navigate there now with the following command:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 <span class="nb">cd</span> /vagrant
 </code></pre></div>
 <p>Now run the &quot;ls&quot; command to see the contents of the current working directory and you should see &quot;app.js&quot; and &quot;Vagrantfile&quot; listed.</p>
 
 <p>To run javascript files, we use the &quot;node&quot; and give it the name of the file we want to run.  In our case, our file is called &quot;app.js&quot; so our command looks like:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 node app.js
 </code></pre></div>
 <p>You should see the text &quot;Hello World!&quot; appear below the command.  We now know everything is setup correctly and we can start making our web server.</p>

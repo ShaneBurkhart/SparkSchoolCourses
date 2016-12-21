@@ -28,7 +28,7 @@ For this course, we don't have users, so we are going to store the ids of tweets
 Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called [cookie-parser](https://github.com/expressjs/cookie-parser) and it works much like body-parser.  Let's install the cookie-parser library now.  Remember to add "--no-bin-links" if you are on Windows.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm install cookie-parser --save
 ```
 

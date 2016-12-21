@@ -109,7 +109,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <p>All HTML files follow the same pattern as above.  They start with a doctype declaration followed by an &quot;html&quot; tag that contains a &quot;head&quot; and &quot;body&quot; element.  From there, it&#39;s up to you how the page will be structured.</p>
 
 <p>Now that we have our page, let&#39;s have our web server render our new HTML page.  Before we can do that, we need to install the EJS library. Don&#39;t forget &quot;--no-bin-links&quot; for Windows.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 npm install ejs --save
 </code></pre></div>
 <p>With that saved, we can tell Express to use EJS as our templating engine.  We also need to tell Express where it can find our view (HTML) files.  To do this, we need to add these two lines under the &quot;var app = express();&quot; line:</p>

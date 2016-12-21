@@ -65,7 +65,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <p>For this course, we don&#39;t have users, so we are going to store the ids of tweets that were created.  We&#39;ll give our cookie the name &quot;tweets_created&quot; and it&#39;s value will be a list of ids.  We can use these ids to check if the user created the tweet they are trying to edit, update, or destroy.</p>
 
 <p>Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called <a href="https://github.com/expressjs/cookie-parser">cookie-parser</a> and it works much like body-parser.  Let&#39;s install the cookie-parser library now.  Remember to add &quot;--no-bin-links&quot; if you are on Windows.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
 npm install cookie-parser --save
 </code></pre></div>
 <p>With that installed, let&#39;s require the cookie-parser library under our body-parser library.</p>

@@ -56,7 +56,7 @@ The "~" path stands for the home directory.  When you open the terminal, your cu
 Now that we know a bit about the terminal, let's get back to running our program.  First, let's navigate to our project directory in our VM.  Vagrant automatically links all of the files in our project directory to the '/vagrant' directory in our VM.  Navigate there now with the following command:
 
 ```bash
-# Terminal
+# Terminal logged into VM
 cd /vagrant
 ```
 
@@ -65,7 +65,7 @@ Now run the "ls" command to see the contents of the current working directory an
 To run javascript files, we use the "node" and give it the name of the file we want to run.  In our case, our file is called "app.js" so our command looks like:
 
 ```bash
-# Terminal
+# Terminal logged into VM
 node app.js
 ```
 

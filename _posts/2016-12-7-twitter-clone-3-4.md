@@ -38,7 +38,7 @@ Right now, we are outputting the text "Creating tweet." so we can test if everyt
 Before we can have our POST route create tweets, we need to establish a connection to our database.  To do this, we need to install the MySQL driver for node. Run the following in your terminal. Don't forget "--no-bin-links" for Windows.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm install mysql --save
 ```
 

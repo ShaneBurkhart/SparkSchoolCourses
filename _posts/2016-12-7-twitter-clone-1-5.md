@@ -21,7 +21,7 @@ Libraries are also sometimes called packages.  Generally, libraries are other pr
 The "package.json" file is used by the "npm" terminal command which stands for Node Package Manager.  This command lets us manage the libraries we have installed as well as install new ones.  To create a package.json file, run the following command in the terminal in the root of our project directory.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm init
 ```
 
@@ -32,14 +32,14 @@ With npm initialized, we can install libraries for our project.  The first libra
 To install libraries, we use the "npm" command followed by the word "install" followed by the name of the library we want to install.  To tell npm we want to save this library in our package.json file, we add the "--save" option at the end.  Below is what this looks like for Express.js:
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm install express --save
 ```
 
 On Windows, when running "npm install" commands, you'll have to add "--no-bin-links" to the end of the command.  So the previous command on windows should look like the following.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 npm install express --save --no-bin-links
 ```
 
@@ -182,7 +182,7 @@ Following the parentheses, curly braces define the body of the function.  This i
 
 Notice that there isn't a semicolon at the end of the first line.  Semicolons never come directly after an open curly brace.
 
-The next new thing is the comment  in the function body.  Comments are code that gets ignored when the program executes.  Anything after a "//" is a line comment that will go until the end of the line.  Comments are useful to add clarification to code or quickly remove some code temporarily.  In our case, we have are putting a note of what will go inside in the future.
+The next new thing is the comment  in the function body.  Comments are code that gets ignored when the program executes.  Anything after a "//" is a line comment that will go until the end of the line.  Comments are useful to add clarification to code or quickly remove some code temporarily.  In our case, we are putting a note of what will go inside in the future.
 
 This is only a single line comment and there are other types of comments.  To learn more about comments, visit [http://www.w3schools.com/js/js_comments.asp](http://www.w3schools.com/js/js_comments.asp).
 
@@ -253,7 +253,7 @@ Now we have our server written, let's run it. Save "app.js" and go to your termi
 To run javascript files, we use the "node" command.  [Node.js](https://nodejs.org/en/) is a Javascript environment that runs Javascript code for us. The first option passed to the node command is the name of the file we want to run.  Let's run our "app.js" file.
 
 ```bash
-# Terminal
+# Terminal logged into VM
 node app.js
 ```
 
