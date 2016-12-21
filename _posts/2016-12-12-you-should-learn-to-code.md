@@ -58,6 +58,8 @@ The short answer is it saves their team a lot of time.  The company has a specif
 
 When it comes down to it, you can save a tremendous amount of time by learning how to code.  The examples above may not apply to you directly, but I guarantee you could find some ways to make your life more efficient.  When you learn to code, you'll start to find inefficiencies in your life that you can optimize with a program.  This will ultimately save you countless hours if not days of your time.
 
+<span data-sumome-listbuilder-embed-id="50e9dca0222dc3f785f3e490e89670fb2fa6d66899474890c0ddbc50eee6f54f"></span>
+
 <h2 id="make-money">How You Can Make Money With Coding</h2>
 
 ### Make you more marketable in your current career
@@ -124,6 +126,8 @@ When it comes down to it, you are going to have significant opportunity if you l
 
 Okay, so now you now know why you should learn to program, but does that mean you have to go back to school?
 
+<span data-sumome-listbuilder-embed-id="139381edefbfc30e8711ea08a74b6b50357c9b8612574264c9a8f6d9ec8c588f"></span>
+
 <h2 id="need-degree">Do You Need A College Degree?</h2>
 
 The answer to that question is absolutely not!  I’ve worked at Yelp, Carfax and a startup called SumoMe and I dropped out of college.  In fact, I didn't even go to school to learn programming.  Most software companies care more that you know your stuff and not which college you graduated from.
@@ -161,3 +165,5 @@ These should give you at least a starting point to creating things you want to b
 If you want some more help getting started, leave a comment or email me at shane@trysparkschool.com.  Let me know what kind of things you are interested in building and I can help you figure out how to get there.
 
 At the end of the day, by not learning to code, you are leaving a lot of wasted time and money on the table.  Take advantage of the opportunity and don't waste another second not knowing how to code.
+
+<span data-sumome-listbuilder-embed-id="11f5694f0d411c3a94bb4b17f743b8aa31f223fbaf097e383ba5217869a3c9a0"></span>
