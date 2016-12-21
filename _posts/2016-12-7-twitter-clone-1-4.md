@@ -21,7 +21,7 @@ It's usually a good idea to test early and often.  Coding can become tedious if 
 
 Let's get started.  Right now, the only thing in our project directory is our Vagrantfile.  We need another file that we can use to run our web server.  This file is going to be a javascript file called "app.js".  The ".js" extension means it's a javascript file.
 
-To create our file, go into your text editor and select File > New File as we did with our Vagrantfile.  Now select File > Save As and save the file in our project directory as "app.js".  We now have a file to put our code in, let's write some code.
+To create our file, go into your text editor (Sublime Text 3) and select File > New File as we did with our Vagrantfile.  Now select File > Save As and save the file in our project directory as "app.js".  We now have a file to put our code in, let's write some code.
 
 In the next section, we are going to go into more detail on javascript, but since we are mostly wanting to check if everything is working, type the following code in our "app.js" file and save.
 
