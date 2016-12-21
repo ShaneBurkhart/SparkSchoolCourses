@@ -71,3 +71,112 @@ Now if you refresh the edit page and press delete, you will be asked if you want
 Pressing "OK" will submit the form and pressing "Cancel" will not.
 
 We now have our delete button created, but submitting the form with our delete button will still update the tweet rather than delete it since we haven't update our update route yet.  In the next section, we'll add a check for which button was pressed and update or delete the tweet accordingly.
+
+### Final Code
+
+
+```ejs
+<!-- views/edit-tweet.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <%- include('_tweet', { tweet: tweet }); %>
+      <form id="tweet-form" action="/tweets/<%= tweet.id %>/update" method="POST">
+        <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane" value="<%= tweet.handle %>">
+        <textarea id="tweet-form-body" name="body" placeholder="What's happening?"><%= tweet.body %></textarea>
+        <button id="tweet-form-button">Update Tweet</button>
+        <button id="tweet-form-delete-button" name="delete_button" onclick="return confirm('Are you sure you want to delete the tweet?')">Delete Tweet</button>
+      </form>
+    </main>
+  </body>
+</html>
+```
+
+```css
+/* public/css/site.css */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #d9d9d9;
+  height: 50px;
+}
+
+main {
+  width: 600px;
+  margin: 60px auto 0px auto;
+  background-color: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+}
+
+body {
+  background-color: #f5f8fa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#tweet-form {
+  padding: 10px 12px 10px 12px;
+  background-color: #e8f4fb;
+}
+
+#tweet-form-handle {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 8px 10px 8px 10px;
+  border: 1px solid #a3d4f2;
+  border-radius: 3px;
+  width: 100%;
+}
+
+#tweet-form-body {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 8px 10px 8px 10px;
+  border: 1px solid #a3d4f2;
+  border-radius: 3px;
+  width: 100%;
+}
+
+#tweet-form-button {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 7px 8px;
+  background-color: #1b95e0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tweet {
+  padding: 10px 12px;
+  border-top: 1px solid #e1e8ed;
+}
+
+.light-grey {
+  color: #8899a6;
+}
+
+#tweet-form-delete-button {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 7px 8px;
+  background-color: #e53334;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+```
