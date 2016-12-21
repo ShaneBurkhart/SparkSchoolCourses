@@ -134,3 +134,37 @@ Go to your browser and reload you page.  You should see something like the follo
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/simple-html-page-with-header-and-paragraph.png)
 
 Now that we have created a basic HTML page, let's add some style.
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var express = require('express');
+var app = express();
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+  res.render('tweets');
+});
+
+app.listen(8080, function() {
+  console.log('Web server listening on port 8080!');
+});
+```
+
+```ejs
+<!-- views/tweets.ejs -->
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Twitter Clone Course</h1>
+        <p>We're learning HTML!</p>
+    </body>
+</html>
+```

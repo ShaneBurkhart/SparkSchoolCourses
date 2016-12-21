@@ -108,3 +108,90 @@ We've seen all of these properties used except the "cursor" property.  This prop
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/add-tweet-form-button.png)
 
 That concludes day 2 of the Twitter clone course.  Our page is starting to look pretty good.  It's not complete yet, but we now have a page that has a form for us to create Tweets.  On day 3, we'll connect this form to our server and save Tweets to our database.  Stay tuned, because this is where web development gets really exciting.  You will really start to see your web app start coming together. Thanks for following along, and I'll see you in the next lesson.
+
+### Final Code
+
+```ejs
+<!-- views/tweets.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <form id="tweet-form" action="/tweets/create" method="POST">
+        <input id="tweet-form-handle" type="text" name="handle" placeholder="DonkkaShane">
+        <textarea id="tweet-form-body" name="body" placeholder="What's happening?"></textarea>
+        <button id="tweet-form-button">Tweet</button>
+      </form>
+    </main>
+  </body>
+</html>
+```
+
+```css
+/* public/css/site.css */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #d9d9d9;
+  height: 50px;
+}
+
+main {
+  width: 600px;
+  margin: 60px auto 0px auto;
+  background-color: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+}
+
+body {
+  background-color: #f5f8fa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#tweet-form {
+  padding: 10px 12px 10px 12px;
+  background-color: #e8f4fb;
+}
+
+#tweet-form-handle {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 8px 10px 8px 10px;
+  border: 1px solid #a3d4f2;
+  border-radius: 3px;
+  width: 100%;
+}
+
+#tweet-form-body {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 8px 10px 8px 10px;
+  border: 1px solid #a3d4f2;
+  border-radius: 3px;
+  width: 100%;
+}
+
+#tweet-form-button {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 7px 8px;
+  background-color: #1b95e0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+```

@@ -220,3 +220,75 @@ Add that to your "site.css" file, save and reload the page.  You should see the 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/add-background-color.png)
 
 You now know the basics of styling an HTML page.  In the next lesson, we are going to create a Tweet form that users will use to submit Tweets.
+
+### Final Code
+
+```javascript
+// app.js
+'use strict'
+
+var express = require('express');
+var app = express();
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+
+app.get('/', function(req, res) {
+  res.render('tweets');
+});
+
+app.listen(8080, function() {
+  console.log('Web server listening on port 8080!');
+});
+```
+
+```ejs
+<!-- views/tweets.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <h1>Twitter Clone Course</h1>
+      <p>We're learning HTML!</p>
+    </main>
+  </body>
+</html>
+```
+
+```css
+/* public/css/site.css */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #d9d9d9;
+  height: 50px;
+}
+
+main {
+  width: 600px;
+  margin: 60px auto 0px auto;
+  background-color: #ffffff;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+}
+
+body {
+  background-color: #f5f8fa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+```
