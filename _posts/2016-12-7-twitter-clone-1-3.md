@@ -66,7 +66,7 @@ These instructions are specific to your operating system so scroll down to find 
 
 ####OS X/Linux
 
-Assuming you created the "TwitterClone" folder on the Desktop, open your terminal, in your applications, and navigate to the project directory with:
+Assuming you created the "TwitterClone" folder on the Desktop, open the Mac application called "Terminal" in your Applications, and navigate to the project directory with:
 
 ```bash
 # Terminal on host computer
