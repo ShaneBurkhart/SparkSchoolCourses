@@ -1,2 +1,2 @@
 FROM ruby:2.3-onbuild
-CMD ["./app.rb"]
+CMD ["ruby", "./app.rb"]

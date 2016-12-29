@@ -4,12 +4,8 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     colorator (1.1.0)
-    domain_name (0.5.20161129)
-      unf (>= 0.0.5, < 1.0.0)
     ffi (1.9.14)
     forwardable-extended (2.6.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
     jekyll (3.3.1)
       addressable (~> 2.4)
       colorator (~> 1.0)
@@ -34,37 +30,16 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     mercenary (0.3.6)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
-    netrc (0.11.0)
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.4)
-    rack (1.6.5)
-    rack-protection (1.5.3)
-      rack
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     redcarpet (3.3.4)
-    rest-client (2.0.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
     rouge (1.11.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    sinatra (1.4.7)
-      rack (~> 1.5)
-      rack-protection (~> 1.4)
-      tilt (>= 1.3, < 3)
-    stripe (1.57.1)
-      rest-client (>= 1.4, < 4.0)
-    tilt (2.0.5)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.2)
 
 PLATFORMS
   ruby
@@ -74,8 +49,6 @@ DEPENDENCIES
   jekyll-sass
   redcarpet
   rouge
-  sinatra
-  stripe
 
 BUNDLED WITH
    1.13.6
