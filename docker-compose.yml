@@ -1,0 +1,10 @@
+nginx:
+    image: nginx
+    volumes:
+        - ./SparkSchoolCourses/_site:/site
+        - ./nginx.conf:/etc/nginx/nginx.conf
+        - /etc/nginx/ssl/trysparkschool.crt:/etc/nginx/ssl/trysparkschool.crt
+        - /etc/nginx/ssl/trysparkschool.key:/etc/nginx/ssl/trysparkschool.key
+    ports:
+        - 80:80
+        - 443:443
