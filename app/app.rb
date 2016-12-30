@@ -3,7 +3,7 @@ require 'stripe'
 
 Stripe.api_key = ENV['STRIPE_SECRET']
 
-get '/payments' do
+post '/payments' do
     token = params[:stripeToken]
 
     begin
