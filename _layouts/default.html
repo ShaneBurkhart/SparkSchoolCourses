@@ -17,7 +17,9 @@
                         </a>
                     </p>
                 {% endif %}
-                {% include disqus.html %}
+                {% unless page.disable-comments %}
+                    {% include disqus.html %}
+                {% endunless %}
             </article>
         </main>
         {% include google_analytics.html %}

@@ -5,7 +5,7 @@ title: 1.1 Introduction
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
 next-lesson-link: /courses/twitter-clone/1/2
-comments: false
+disable-comments: true
 ---
 
 ####Table Of Contents
@@ -22,7 +22,7 @@ The course assumes you know nothing about programming, but even if you have some
 
 ###How To Take This Course
 
-When taking the course, make sure you are trying to understand the broader concepts and how you would go about finding a solution rather than trying to memorize everything.  For instance, in day 2, we go over HTML, but HTML isn't something you memorize.  Instead, you need to know the basics and then you can use a reference to decide what to do.  
+When taking the course, make sure you are trying to understand the broader concepts and how you would go about finding a solution rather than trying to memorize everything.  For instance, in day 2, we go over HTML, but HTML isn't something you memorize.  Instead, you need to know the basics and then you can use a reference to decide what to do.
 
 If you get stuck somewhere, write in the part that you don't understand and come back to it later.  More than likely, it will make more sense when you come back to it. I'm also including the final code at the end of each day so you can easily compare your code to mine.
 
