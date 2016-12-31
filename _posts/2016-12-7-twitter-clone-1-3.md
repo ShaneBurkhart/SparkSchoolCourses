@@ -99,7 +99,7 @@ You are now logged into your VM and are ready to get started.  All terminal comm
 
 ####Windows
 
-Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu, and navigate to the project directory with:
+Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu.  I'll refer to "Windows Powershell" as the terminal for the rest of this guide.  Let's navigate to the project directory with:
 
 ```bash
 # PowerShell on host computer
@@ -115,7 +115,7 @@ Now that we are in our project directory, let's start our VM with the "vagrant u
 vagrant up
 ```
 
-Type that into powershell and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.
+Type that into the terminal and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.
 
 Now we have our VM running, let's connect to it.  For Windows we are going to use Putty to log into our VM.
 

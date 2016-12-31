@@ -66,7 +66,7 @@ Now that we are in our project directory, let's start our VM with the "vagrant u
 vagrant up
 ```
 
-Type that into powershell and press enter.   This command might take some time to finish, so be patient. 
+Type that into the terminal and press enter.   This command might take some time to finish, so be patient. 
 
 Now we have our VM running, let's connect to it. For Windows we are going to use Putty to log into our VM.
 
