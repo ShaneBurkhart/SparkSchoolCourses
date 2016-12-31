@@ -93,7 +93,7 @@ vagrant box add --name node-mysql <span class="s2">"https://s3.amazonaws.com/spa
 
 <p>To connect to our VM, Vagrant uses SSH. SSH stands for secure shell and is a protocol used to run commands on other computers that are not the host computer. The secure part means we need we need correct user authentication to run commands on the remote machine.  We are going to have a VM running on our computer which will act as a remote machine.  You don&#39;t need to know much about SSH except that we are going to use it to log into our VM.</p>
 
-<p>Let&#39;s get started.  I&#39;m going to explain the terminal later, but for right now, follow the instructions to start and log into your VM.  All terminal commands after this section will be run in our VM, so for the rest of the course, I&#39;m going to assume you are logged in.  If you ever need help logging back into your VM, come back here.</p>
+<p>Let&#39;s get started.  I&#39;m going to explain the terminal later, but for right now, follow the instructions to start and log into your VM.  All terminal commands after this section will be run in our VM, so for the rest of the course, I&#39;m going to assume you are logged in.  If you ever need help logging back into your VM, you can use <a href="/guides/logging-into-vagrant" target="_blank">this guide to logging into Vagrant</a>.  I&#39;ll also add a link to the guide at the start of each day so it&#39;s easy for you to access.</p>
 
 <p>These instructions are specific to your operating system so scroll down to find the section for your OS.</p>
 
@@ -135,7 +135,7 @@ vagrant up
 </code></pre></div>
 <p>Type that into powershell and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.</p>
 
-<p>Now we have our VM running, let&#39;s connect to it.  On Unix based operating systems, the following command will log you into your VM, but windows doesn&#39;t have the tools Vagrant needs.  Instead, when you run the following command on Windows, it will tell you it can&#39;t find the &quot;ssh executable&quot;.  On Windows we are going to use Putty to log into our VM.</p>
+<p>Now we have our VM running, let&#39;s connect to it.  For Windows we are going to use Putty to log into our VM.</p>
 
 <p>In order to log into our VM with Putty, we need login credentials.  Run the following command to get them:</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># PowerShell on host computer</span>

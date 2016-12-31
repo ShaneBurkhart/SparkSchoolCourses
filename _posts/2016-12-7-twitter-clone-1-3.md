@@ -60,7 +60,7 @@ We have now added our "node-mysql" box to vagrant on our local machine.
 
 To connect to our VM, Vagrant uses SSH. SSH stands for secure shell and is a protocol used to run commands on other computers that are not the host computer. The secure part means we need we need correct user authentication to run commands on the remote machine.  We are going to have a VM running on our computer which will act as a remote machine.  You don't need to know much about SSH except that we are going to use it to log into our VM.
 
-Let's get started.  I'm going to explain the terminal later, but for right now, follow the instructions to start and log into your VM.  All terminal commands after this section will be run in our VM, so for the rest of the course, I'm going to assume you are logged in.  If you ever need help logging back into your VM, come back here.
+Let's get started.  I'm going to explain the terminal later, but for right now, follow the instructions to start and log into your VM.  All terminal commands after this section will be run in our VM, so for the rest of the course, I'm going to assume you are logged in.  If you ever need help logging back into your VM, you can use <a href="/guides/logging-into-vagrant" target="_blank">this guide to logging into Vagrant</a>.  I'll also add a link to the guide at the start of each day so it's easy for you to access.
 
 These instructions are specific to your operating system so scroll down to find the section for your OS.
 
@@ -117,7 +117,7 @@ vagrant up
 
 Type that into powershell and press enter.   This command takes some time to finish, so be patient.   If your Vagrantfile is correct, vagrant should start your VM and tell you everything worked successfully.
 
-Now we have our VM running, let's connect to it.  On Unix based operating systems, the following command will log you into your VM, but windows doesn't have the tools Vagrant needs.  Instead, when you run the following command on Windows, it will tell you it can't find the "ssh executable".  On Windows we are going to use Putty to log into our VM.
+Now we have our VM running, let's connect to it.  For Windows we are going to use Putty to log into our VM.
 
 In order to log into our VM with Putty, we need login credentials.  Run the following command to get them:
 
