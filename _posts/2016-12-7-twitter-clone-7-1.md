@@ -13,6 +13,8 @@ next-lesson-link: /courses/twitter-clone/7/2
 - [7.2 Creating User Authentication Middleware](/courses/twitter-clone/7/2)
 - [7.3 Hiding Tweet Edit Link](/courses/twitter-clone/7/3)
 
+***Make sure you are logged into Vagrant before starting today's lessons.*** <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the "Logging Into Vagrant Guide"</a>
+
 Welcome to day 7 of the Twitter clone course.  Yesterday, we added a delete button for our tweets and deleted them from the database.  Today, we are going to add a little user authentication so only the computer that created the tweet can edit the tweet. Let's get started.
 
 HTTP is stateless which means each request is isolated and doesn't know about any other request.  This makes it hard to associate requests with a specific user since each request only knows what we pass to it and not what happened on other requests. Because we need a way to keep track of which requests belong to each user, we use cookies.

@@ -13,6 +13,8 @@ next-lesson-link: /courses/twitter-clone/2/2
 - [2.2 Adding Style To Our HTML Page With CSS](/courses/twitter-clone/2/2)
 - [2.3 Adding The Tweet Form](/courses/twitter-clone/2/3)
 
+***Make sure you are logged into Vagrant before starting today's lessons.*** <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the "Logging Into Vagrant Guide"</a>
+
 Welcome to day 2 of the Twitter clone course.  Today we are going to making our first web page.  This is going to be the page we display tweets on as well as have a form that allows people to submit tweets.  Today though, we are going to focus on building the form so we can create Tweets on day 3.
 
 Writing web pages in HTML and CSS usually takes a lot of iterations.  There is a lot of trial and error to get everything to look the way you want it.  This is mostly design work which is more time consuming than technically challenging, so it's not something we are going to cover in detail.
