@@ -50,7 +50,7 @@ You are now logged into your VM and are ready to get started.  All terminal comm
 
 ####Windows
 
-Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu.  I'll refer to "Windows Powershell" as the terminal for the rest of this guide.  Let's navigate to the project directory with:
+Open "Windows Powershell" from the start menu.  I'll refer to "Windows Powershell" as the terminal for the rest of this guide.  Assuming you created the "TwitterClone" folder on the Desktop, let's navigate to the project directory with:
 
 ```bash
 # PowerShell on host computer
