@@ -4,7 +4,14 @@ permalink: /guides/logging-into-vagrant
 title: Logging Into Vagrant Guide
 ---
 
+#### Table Of Contents
+
+- [OS X/Linux](#osx-linux)
+- [Windows](#windows)
+
 These instructions are specific to your operating system so scroll down to find the section for your OS.
+
+<span class="anchor" id="osx-linux">&nbsp;</span>
 
 ####OS X/Linux
 
@@ -39,9 +46,11 @@ Type that into your terminal and press enter.  You should see the last line of y
 
 You are now logged into your VM and are ready to get started.  All terminal commands from here on out will assume running them in your VM.
 
+<span class="anchor" id="windows">&nbsp;</span>
+
 ####Windows
 
-Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu, and navigate to the project directory with:
+Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu.  I'll refer to "Windows Powershell" as the terminal for the rest of this guide.  Let's navigate to the project directory with:
 
 ```bash
 # PowerShell on host computer
