@@ -8,7 +8,7 @@ next-lesson-link: /courses/twitter-clone/1/2
 disable-comments: true
 ---
 
-#### Table Of Contents
+#### Table Of Contents ####
 
 - **1.1 Introduction**
 - [1.2 Installing Tools](/courses/twitter-clone/1/2)
@@ -20,7 +20,7 @@ Welcome to my course that teaches you how to build a small Twitter clone.  This 
 
 The course assumes you know nothing about programming, but even if you have some experience, I recommend reading through the entire course.  You might get a different perspective that will help you understand something better.
 
-###How To Take This Course
+### How To Take This Course ###
 
 When taking the course, make sure you are trying to understand the broader concepts and how you would go about finding a solution rather than trying to memorize everything.  For instance, in day 2, we go over HTML, but HTML isn't something you memorize.  Instead, you need to know the basics and then you can use a reference to decide what to do.
 
