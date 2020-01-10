@@ -1,4 +1,4 @@
-I"<p>####Table Of Contents</p>
+I"<<h4 id="table-of-contents">Table Of Contents</h4>
 
 <ul>
   <li><strong>1.1 Introduction</strong></li>
@@ -12,7 +12,7 @@
 
 <p>The course assumes you know nothing about programming, but even if you have some experience, I recommend reading through the entire course.  You might get a different perspective that will help you understand something better.</p>
 
-<p>###How To Take This Course</p>
+<h3 id="how-to-take-this-course">How To Take This Course</h3>
 
 <p>When taking the course, make sure you are trying to understand the broader concepts and how you would go about finding a solution rather than trying to memorize everything.  For instance, in day 2, we go over HTML, but HTML isn’t something you memorize.  Instead, you need to know the basics and then you can use a reference to decide what to do.</p>
 

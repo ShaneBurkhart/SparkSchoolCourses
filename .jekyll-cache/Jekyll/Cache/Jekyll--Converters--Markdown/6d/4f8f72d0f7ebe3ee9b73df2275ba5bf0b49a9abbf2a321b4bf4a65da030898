@@ -1,4 +1,4 @@
-I"�<p>####Table Of Contents</p>
+I"{<h4 id="table-of-contents">Table Of Contents</h4>
 
 <ul>
   <li><a href="/courses/twitter-clone/1/1">1.1 Introduction</a></li>
@@ -10,7 +10,7 @@
 
 <p>Before we can start coding, we need to install some tools that we are going to use to build our Twitter clone.  Some tools are specific to certain operating systems.  Read through the whole section to make sure you have everything you need.</p>
 
-<p>###Installing VirtualBox</p>
+<h3 id="installing-virtualbox">Installing VirtualBox</h3>
 
 <p>Because everyone is on different operating systems (OS), it would be essentially two different guides for developing on Windows vs OS X.  Although they are getting better, Windows doesn’t have nearly the dev tools or support that a Unix based OS (OS X or Linux) has.  Because of this, the industry standard is to use a Unix based operating systems to develop on.  We’ll be doing the same since it makes the most sense.</p>
 
@@ -20,7 +20,7 @@
 
 <p>For our VM software, we are going to be using VirtualBox.  Go to <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a> and download the correct version for your operating system. Open the file that was downloaded and follow the instructions to install VirtualBox.  Just use the default settings.</p>
 
-<p>###Installing Vagrant</p>
+<h3 id="installing-vagrant">Installing Vagrant</h3>
 
 <p>VirtualBox allows us to create VMs but that’s about it.  With VMs there is generally a lot of configuration that has to be done to get started.  Because of this, we use a program called Vagrant to manage the VM for our project.</p>
 
@@ -28,35 +28,35 @@
 
 <p>To install Vagrant, go to <a href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a> and download the appropriate version for your OS.</p>
 
-<p>###Installing Sublime Text 3</p>
+<h3 id="installing-sublime-text-3">Installing Sublime Text 3</h3>
 
 <p>We need a good text editor to write code.  My personal favorite text editor for beginners is Sublime Text 3.  Sublime Text 3 does a nice job of being easy to use while also including a lot of important tools if you want them.</p>
 
 <p>To install Sublime Text 3, go to <a href="https://www.sublimetext.com/3">https://www.sublimetext.com/3</a> and download the version for your operating system.  Open the file you downloaded and use the default settings.</p>
 
-<p>###Installing A MySQL Database GUI</p>
+<h3 id="installing-a-mysql-database-gui">Installing A MySQL Database GUI</h3>
 
 <p>MySQL is the database server we are going to be running and we need a way to read and modify our database.  You can do this many ways, but the easiest is with a GUI (graphic user interface) program.</p>
 
 <p>Unfortunately, there isn’t a great GUI that runs on both OS X and Windows so we are going to download different version for each OS.  When we use our MySQL GUI, I’ll make sure to explain how to use both versions.</p>
 
-<p>####Windows - HeidiSQL</p>
+<h4 id="windows---heidisql">Windows - HeidiSQL</h4>
 
 <p>Go to <a href="http://www.heidisql.com/download.php?download=installer">http://www.heidisql.com/download.php?download=installer</a> which should start downloading the installer.  Open the installer you just downloaded and use the default settings.</p>
 
 <p>HeidiSQL also requires we download a program called plink.exe.  Go to this page <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a> and click the link that says “plink.exe”.  Put this somewhere easy to access because we will need this later.</p>
 
-<p>####OS X - Sequel Pro</p>
+<h4 id="os-x---sequel-pro">OS X - Sequel Pro</h4>
 
 <p>Go to <a href="https://www.sequelpro.com/">https://www.sequelpro.com/</a> and click on the download link.  Open the file you just downloaded and drag the Sequel Pro icon to your “Applications” folder.</p>
 
-<p>###Install Putty For Windows</p>
+<h3 id="install-putty-for-windows">Install Putty For Windows</h3>
 
 <p>Because we want to run commands in our VM, we need a way to log into it.  On OS X and Linux, there are tools built in for us to do that and Vagrant handles it for us.  On Windows however, the same tools don’t exist so we need to use something else.  We are going to use a program called PuTTY which will let us log into our VM.  I’ll cover what I’m talking about more in detail later, but for now, if you are running Windows, you need to install PuTTY.</p>
 
 <p>Go to <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a> and click the link that says “putty.exe”.  There is no installer for Putty and instead put the downloaded file somewhere easy to access (where you put plink.exe).  This file opens Putty.</p>
 
-<p>###Install Chrome Browser</p>
+<h3 id="install-chrome-browser">Install Chrome Browser</h3>
 
 <p>The default web browsers on Windows and OS X (Edge &amp; Safari) are good for browsing the web, but lack developer tools we need. Instead, we need to use either Chrome or Firefox. My personal favorite is Chrome so we are going to use it in this course.</p>
 
