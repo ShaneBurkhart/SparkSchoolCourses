@@ -2,6 +2,7 @@ all: build
 
 build:
 	docker-compose build
+	docker-compose run build
 
 prod:
 	git checkout master

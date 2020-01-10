@@ -1,6 +1,6 @@
 name: Spark School
 highlighter: rouge
-markdown: redcarpet
+markdown: kramdown
 exclude:
  - Makefile
  - Gemfile
