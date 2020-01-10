@@ -1,5 +1,12 @@
-all: run
+all: build
 
-run:
+build:
 	docker-compose build
-	docker-compose run app
+
+prod:
+	git checkout master
+	git pull origin master
+	$(MAKE) build
+
+deploy_prod:
+	ssh -A ubuntu@shaneburkhart.com "cd ~/SparkSchoolCourses; make prod;"
