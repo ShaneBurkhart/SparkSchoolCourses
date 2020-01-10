@@ -1,0 +1,26 @@
+I" <h4 id="table-of-contents">Table Of Contents</h4>
+
+<ul>
+  <li><strong>1.1 Introduction</strong></li>
+  <li><a href="/courses/twitter-clone/1/2">1.2 Installing Tools</a></li>
+  <li><a href="/courses/twitter-clone/1/3">1.3 Setup Your Project And Connect To Your VM</a></li>
+  <li><a href="/courses/twitter-clone/1/4">1.4 Your First Javascript Program</a></li>
+  <li><a href="/courses/twitter-clone/1/5">1.5 Writing Your First Web Server</a></li>
+</ul>
+
+<p>Welcome to my course that teaches you how to build a small Twitter clone.  This course is going to teach you the basics that every web app is built on, so you can start building your own web apps as soon as possible.</p>
+
+<p>The course assumes you know nothing about programming, but even if you have some experience, I recommend reading through the entire course.  You might get a different perspective that will help you understand something better.</p>
+
+<p>###How To Take This Course</p>
+
+<p>When taking the course, make sure you are trying to understand the broader concepts and how you would go about finding a solution rather than trying to memorize everything.  For instance, in day 2, we go over HTML, but HTML isn’t something you memorize.  Instead, you need to know the basics and then you can use a reference to decide what to do.</p>
+
+<p>If you get stuck somewhere, write in the part that you don’t understand and come back to it later.  More than likely, it will make more sense when you come back to it. I’m also including the final code at the end of each day so you can easily compare your code to mine.</p>
+
+<p>If you have questions or feedback for me during the course, email me at shane@trysparkschool.com.  I’ll be sure to respond to you personally.</p>
+
+<p>Having said that, part of being a good dev is being able to solve problems.  I am happy to help, but most problems are already solved on Stack Overflow.  If you run into issues, I recommend going to Google and searching “stack overflow” followed by the problem you are having.</p>
+
+<p>With that out of the way, let’s get started!</p>
+:ET

@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # Course and landing pages
 gem 'jekyll'
 gem 'jekyll-sass'
+gem 'jekyll-sitemap'
 gem 'redcarpet'
 gem 'rouge'
 

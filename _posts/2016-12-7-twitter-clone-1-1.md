@@ -8,7 +8,7 @@ next-lesson-link: /courses/twitter-clone/1/2
 disable-comments: true
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - **1.1 Introduction**
 - [1.2 Installing Tools](/courses/twitter-clone/1/2)
