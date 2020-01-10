@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="/assets/css/application.css">
+<link rel="stylesheet" href="/courses/assets/css/application.css">
 
         <!-- Facebook Pixel Code -->
 <script>
@@ -44,17 +44,18 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <main class="container">
             <article>
                 <h1>5.3 Creating An Edit Tweet Page</h1>
-                <h4>Table Of Contents</h4>
+                <p>####Table Of Contents</p>
 
 <ul>
-<li><a href="/courses/twitter-clone/5/1">5.1 Adding An Edit Link To Tweets</a></li>
-<li><a href="/courses/twitter-clone/5/2">5.2 Getting Our Tweet From The Database</a></li>
-<li><strong>5.3 Creating An Edit Tweet Page</strong></li>
-<li><a href="/courses/twitter-clone/5/4">5.4 Updating The Tweet In The Database</a></li>
+  <li><a href="/courses/twitter-clone/5/1">5.1 Adding An Edit Link To Tweets</a></li>
+  <li><a href="/courses/twitter-clone/5/2">5.2 Getting Our Tweet From The Database</a></li>
+  <li><strong>5.3 Creating An Edit Tweet Page</strong></li>
+  <li><a href="/courses/twitter-clone/5/4">5.4 Updating The Tweet In The Database</a></li>
 </ul>
 
-<p>In the last lesson, we got our tweet from the database and rendered the &#39;edit-tweet&#39; EJS file, but that file doesn&#39;t exist yet.  Let&#39;s create an EJS file for our edit tweet page.  In the &quot;views&quot; directory, we are going to create a file called &quot;edit-tweet.ejs&quot; for our edit page.  Do that now and let&#39;s add the basic HTML structure for our site (header, css, etc.).</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<p>In the last lesson, we got our tweet from the database and rendered the ‘edit-tweet’ EJS file, but that file doesn’t exist yet.  Let’s create an EJS file for our edit tweet page.  In the “views” directory, we are going to create a file called “edit-tweet.ejs” for our edit page.  Do that now and let’s add the basic HTML structure for our site (header, css, etc.).</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -66,19 +67,21 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="nt">&lt;/main&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre></div>
-<p>Visit a tweet edit page and you&#39;ll see a blank page with a header.</p>
+</code></pre></div></div>
 
-<p>Let&#39;s talk about what&#39;s going to go on this page.  When editing a resource, it&#39;s generally a good idea to give a preview of what it currently looks like and then a form to edit those values.  That means the first thing we need to add to our page is a tweet.  We&#39;ve already created HTML/CSS for tweets, so no need to go over that again.</p>
+<p>Visit a tweet edit page and you’ll see a blank page with a header.</p>
+
+<p>Let’s talk about what’s going to go on this page.  When editing a resource, it’s generally a good idea to give a preview of what it currently looks like and then a form to edit those values.  That means the first thing we need to add to our page is a tweet.  We’ve already created HTML/CSS for tweets, so no need to go over that again.</p>
 
 <p>We could copy the tweet HTML from our homepage view into our edit tweet view, but this is generally bad practice.  If you have the tweet HTML in two places, anytime you want to make changes to a tweet, you have to update it in two places.  This can quickly cause inconsistencies and makes development tedious.</p>
 
 <p>Instead, it would be better if we could have an EJS file that defines what a tweet looks like that we could use in both locations.  Luckily, EJS can do this by including other EJS files in our views.</p>
 
-<p>Let&#39;s first create a file in our &quot;views&quot; directory that is called &quot;<em>tweet.ejs&quot;.  Notice the &quot;</em>&quot; at the beginning of our files name.  It&#39;s generally good practice to put an underscore at the beginning of a file&#39;s name if that file only defines part of an HTML page.  Our &quot;_tweet.ejs&quot; is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.</p>
+<p>Let’s first create a file in our “views” directory that is called “<em>tweet.ejs”.  Notice the “</em>” at the beginning of our files name.  It’s generally good practice to put an underscore at the beginning of a file’s name if that file only defines part of an HTML page.  Our “_tweet.ejs” is going to contain only a single tweet so we add an underscore at the beginning of the file name.  Files that define only a small portion of a page are called partials since it only contains part of a page.</p>
 
-<p>Let&#39;s copy our tweet HTML into our &quot;_tweet.ejs&quot; file.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/_tweet.ejs --&gt;</span>
+<p>Let’s copy our tweet HTML into our “_tweet.ejs” file.</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/_tweet.ejs --&gt;</span>
 <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;p&gt;</span>
     <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">handle</span><span class="k"> %&gt;</span><span class="nt">&lt;/a&gt;</span>
@@ -87,84 +90,94 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
   <span class="nt">&lt;p&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/p&gt;</span>
   <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/edit"</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 <span class="nt">&lt;/article&gt;</span>
-</code></pre></div>
-<p>Now that we have a tweet partial, let&#39;s update our homepage to use it.  EJS has a function we can use to include other EJS files that is called &quot;include&quot;.  It follows the same pattern as our &quot;res.render()&quot; function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in &quot;tweets.ejs&quot; will now look like the following.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
-<span class="k">&lt;% for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tweets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="k"> %&gt;</span>
-  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">});</span><span class="k"> %&gt;</span>
-<span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
-</code></pre></div>
-<p>We are still looping through the tweets the same but we are now including our tweet partial instead of having HTML.  We specify we want to include the &quot;_tweet&quot; partial and give a data object that contains the tweet to render.</p>
+</code></pre></div></div>
 
-<p>The EJS tags around the &quot;include&quot; function call is different than we&#39;ve done before.  The hyphen after the opening EJS tag indicates that we want to render HTML and not text.  If we used an equals sign instead of a hyphen, you would see the literal HTML code printed to the page rather than HTML elements.</p>
+<p>Now that we have a tweet partial, let’s update our homepage to use it.  EJS has a function we can use to include other EJS files that is called “include”.  It follows the same pattern as our “res.render()” function.  The first argument is the name of the EJS file to include and the second argument is an optional data object to be passed to the partial.  Our tweets loop in “tweets.ejs” will now look like the following.</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="k">&lt;% for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tweets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="k"> %&gt;</span>
+  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="dl">'</span><span class="s1">_tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">});</span><span class="k"> %&gt;</span>
+<span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
+</code></pre></div></div>
+
+<p>We are still looping through the tweets the same but we are now including our tweet partial instead of having HTML.  We specify we want to include the “_tweet” partial and give a data object that contains the tweet to render.</p>
+
+<p>The EJS tags around the “include” function call is different than we’ve done before.  The hyphen after the opening EJS tag indicates that we want to render HTML and not text.  If we used an equals sign instead of a hyphen, you would see the literal HTML code printed to the page rather than HTML elements.</p>
 
 <p>If you refresh your homepage, you should still see each of the tweets being rendered.</p>
 
-<p>Let&#39;s include the tweet partial in &#39;edit-tweet.ejs&#39;.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+<p>Let’s include the tweet partial in ‘edit-tweet.ejs’.</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
 <span class="nt">&lt;main&gt;</span>
-  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
+  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="dl">'</span><span class="s1">_tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
 <span class="nt">&lt;/main&gt;</span>
-</code></pre></div>
-<p>We passed our tweet from the database to &quot;edit-tweet&quot; as &quot;tweet&quot;.  We&#39;ll pass that to our partial as &quot;tweet&quot; as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.</p>
+</code></pre></div></div>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-tweet-preview-on-edit-tweet-page.png" alt=""></p>
+<p>We passed our tweet from the database to “edit-tweet” as “tweet”.  We’ll pass that to our partial as “tweet” as well.  Visit an edit tweet page and you should see a preview of the tweet you are editing.</p>
 
-<p>The time since created is blank. This is because we didn&#39;t add it to the tweet in our edit tweet route.  Let&#39;s add that now.  Our final edit tweet route will look like the following.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-tweet-preview-on-edit-tweet-page.png" alt="" /></p>
+
+<p>The time since created is blank. This is because we didn’t add it to the tweet in our edit tweet route.  Let’s add that now.  Our final edit tweet route will look like the following.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/edit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">No tweet found.</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">edit-tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let&#39;s copy our tweet form and add it below our tweet preview on the &quot;edit-tweet&quot; view.  We&#39;ll change some values so our form submits to our update route.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+</code></pre></div></div>
+
+<p>Our tweet preview is good to go, but we need a form to edit the tweet values.  We could create a partial for our form, but I think the two forms are going to be different enough that it would be too complicated to deal with right now.  Let’s copy our tweet form and add it below our tweet preview on the “edit-tweet” view.  We’ll change some values so our form submits to our update route.</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
 <span class="nt">&lt;main&gt;</span>
-  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
+  <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="dl">'</span><span class="s1">_tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
   <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/update"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span> <span class="na">value=</span><span class="s">"&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/textarea&gt;</span>
     <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-button"</span><span class="nt">&gt;</span>Update Tweet<span class="nt">&lt;/button&gt;</span>
   <span class="nt">&lt;/form&gt;</span>
 <span class="nt">&lt;/main&gt;</span>
-</code></pre></div>
-<p>The first thing we change is the form &quot;action&quot; attribute.  Our update route is going to listen for a POST route at &quot;/tweets/:id/update&quot;.  We&#39;re following the same resource-action pattern.</p>
+</code></pre></div></div>
 
-<p>Next, we are populating inputs with the tweet&#39;s current values.  For &quot;input&quot; elements, we give populate it with the &quot;value&quot; attribute.  For &quot;textarea&quot; elements, we put the value in the elements contents.  Lastly, we updated the button to say &quot;Update Tweet&quot; so it&#39;s obvious what the user is doing.</p>
+<p>The first thing we change is the form “action” attribute.  Our update route is going to listen for a POST route at “/tweets/:id/update”.  We’re following the same resource-action pattern.</p>
+
+<p>Next, we are populating inputs with the tweet’s current values.  For “input” elements, we give populate it with the “value” attribute.  For “textarea” elements, we put the value in the elements contents.  Lastly, we updated the button to say “Update Tweet” so it’s obvious what the user is doing.</p>
 
 <p>Refresh the edit tweet page and you should see the form populated with the tweet values.</p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-adding-form-to-edit-tweet-page.png" alt=""></p>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/5/5-3-adding-form-to-edit-tweet-page.png" alt="" /></p>
 
-<p>This is looking really good.  If you try submitting the form, nothing happens yet because we haven&#39;t defined our update tweet route.  In the next lesson, we&#39;ll be creating our update tweet POST route and updating the tweet in the database.</p>
+<p>This is looking really good.  If you try submitting the form, nothing happens yet because we haven’t defined our update tweet route.  In the next lesson, we’ll be creating our update tweet POST route and updating the tweet in the database.</p>
 
-<h3>Final Code</h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="s1">'use strict'</span>
+<h3 id="final-code">Final Code</h3>
 
-<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span>
+
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mysql</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">moment</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
-  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
-  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
+  <span class="na">host</span><span class="p">:</span> <span class="dl">'</span><span class="s1">127.0.0.1</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="dl">'</span><span class="s1">vagrant</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="dl">'</span><span class="s1">twitter</span><span class="dl">'</span>
 <span class="p">});</span>
 
 <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -173,21 +186,21 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connected to the database.</span><span class="dl">'</span><span class="p">);</span>
 
   <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Web server listening on port 8080!</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">views</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./views</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ejs</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">./public</span><span class="dl">'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets ORDER BY created_at DESC'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets ORDER BY created_at DESC</span><span class="dl">'</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -199,12 +212,12 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
       <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/create</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">INSERT INTO Tweets(handle, body) VALUES(?, ?)</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
 
@@ -213,28 +226,30 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/edit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">No tweet found.</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">edit-tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div><div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+</code></pre></div></div>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -249,12 +264,14 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"tweet-form-button"</span><span class="nt">&gt;</span>Tweet<span class="nt">&lt;/button&gt;</span>
       <span class="nt">&lt;/form&gt;</span>
       <span class="k">&lt;% for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tweets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="k"> %&gt;</span>
-        <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">});</span><span class="k"> %&gt;</span>
+        <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="dl">'</span><span class="s1">_tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweets</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">});</span><span class="k"> %&gt;</span>
       <span class="k">&lt;% </span><span class="p">}</span><span class="k"> %&gt;</span>
     <span class="nt">&lt;/main&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre></div><div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
+</code></pre></div></div>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/edit-tweet.ejs --&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -263,7 +280,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
   <span class="nt">&lt;body&gt;</span>
     <span class="nt">&lt;header&gt;&lt;/header&gt;</span>
     <span class="nt">&lt;main&gt;</span>
-      <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="s1">'_tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
+      <span class="k">&lt;%- </span><span class="nx">include</span><span class="p">(</span><span class="dl">'</span><span class="s1">_tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span><span class="k"> %&gt;</span>
       <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"tweet-form"</span> <span class="na">action=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/update"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"tweet-form-handle"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"handle"</span> <span class="na">placeholder=</span><span class="s">"DonkkaShane"</span> <span class="na">value=</span><span class="s">"&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"tweet-form-body"</span> <span class="na">name=</span><span class="s">"body"</span> <span class="na">placeholder=</span><span class="s">"What's happening?"</span><span class="nt">&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/textarea&gt;</span>
@@ -272,7 +289,9 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="nt">&lt;/main&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre></div><div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/_tweet.ejs --&gt;</span>
+</code></pre></div></div>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/_tweet.ejs --&gt;</span>
 <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"tweet"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;p&gt;</span>
     <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://twitter.com/&lt;%= tweet.handle %&gt;"</span><span class="nt">&gt;</span>@<span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">handle</span><span class="k"> %&gt;</span><span class="nt">&lt;/a&gt;</span>
@@ -281,7 +300,8 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
   <span class="nt">&lt;p&gt;</span><span class="k">&lt;%= </span><span class="nx">tweet</span><span class="p">.</span><span class="nx">body</span><span class="k"> %&gt;</span><span class="nt">&lt;/p&gt;</span>
   <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/tweets/&lt;%= tweet.id %&gt;/edit"</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
 <span class="nt">&lt;/article&gt;</span>
-</code></pre></div>
+</code></pre></div></div>
+
                 
                     <p class="text-center">
                         <a href="/courses/twitter-clone/5/4" class="next-lesson-button">

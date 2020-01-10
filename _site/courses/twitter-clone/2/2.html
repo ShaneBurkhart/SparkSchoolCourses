@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="/assets/css/application.css">
+<link rel="stylesheet" href="/courses/assets/css/application.css">
 
         <!-- Facebook Pixel Code -->
 <script>
@@ -44,105 +44,116 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <main class="container">
             <article>
                 <h1>2.2 Adding Style To Our HTML Page With CSS</h1>
-                <h4>Table Of Contents</h4>
+                <p>####Table Of Contents</p>
 
 <ul>
-<li><a href="/courses/twitter-clone/2/1">2.1 Creating A Simple HTML Page</a></li>
-<li><strong>2.2 Adding Style To Our HTML Page With CSS</strong></li>
-<li><a href="/courses/twitter-clone/2/3">2.3 Adding The Tweet Form</a></li>
+  <li><a href="/courses/twitter-clone/2/1">2.1 Creating A Simple HTML Page</a></li>
+  <li><strong>2.2 Adding Style To Our HTML Page With CSS</strong></li>
+  <li><a href="/courses/twitter-clone/2/3">2.3 Adding The Tweet Form</a></li>
 </ul>
 
-<p>You&#39;ve now created your first HTML page, but let&#39;s start writing our Tweets feed page.  Because this is a Twitter clone, we are going to mimic Twitter&#39;s site style as much as possible.  For today, we are just going to create the Tweet form.  We&#39;ll work on rendering Tweets after we have the ability to create them.</p>
+<p>You’ve now created your first HTML page, but let’s start writing our Tweets feed page.  Because this is a Twitter clone, we are going to mimic Twitter’s site style as much as possible.  For today, we are just going to create the Tweet form.  We’ll work on rendering Tweets after we have the ability to create them.</p>
 
-<p>Like most website these days, we need a header bar.  Header bars have become a web standard for displaying high level site navigation.  Header bars usually contain links to about pages, blog articles, user profiles, etc.  We don&#39;t have any other pages yet so our header won&#39;t contain any links just yet.</p>
+<p>Like most website these days, we need a header bar.  Header bars have become a web standard for displaying high level site navigation.  Header bars usually contain links to about pages, blog articles, user profiles, etc.  We don’t have any other pages yet so our header won’t contain any links just yet.</p>
 
-<p>In HTML5 there is an element type called &quot;header&quot; that is used to define a site&#39;s header.  Above our &quot;h1&quot; element add a header element:</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<p>In HTML5 there is an element type called “header” that is used to define a site’s header.  Above our “h1” element add a header element:</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
 <span class="nt">&lt;header&gt;&lt;/header&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Twitter Clone Course<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>We're learning HTML!<span class="nt">&lt;/p&gt;</span>
-</code></pre></div>
-<p>If you reload this in your browser, nothing should really change since our header doesn&#39;t have any contents and we haven&#39;t given it any style yet.</p>
+</code></pre></div></div>
+
+<p>If you reload this in your browser, nothing should really change since our header doesn’t have any contents and we haven’t given it any style yet.</p>
 
 <p>Earlier, I mentioned that you have to stop and restart your server every time you update Javascript code.  Because Express reloads the EJS file on each request, there is no need to restart your server when you are updating EJS files.  Express will reload EJS files for us automatically.</p>
 
-<p>Let&#39;s give our header some style now.</p>
+<p>Let’s give our header some style now.</p>
 
-<h3>CSS 101</h3>
+<p>###CSS 101</p>
 
 <p>HTML is used to structure a web page, but overall, HTML is fairly plain.  To add style to HTML, we use CSS which stands for cascading style sheets.</p>
 
-<p>CSS is a simple language, that defines styles for a given set of elements.  CSS defines which elements to set style on with CSS selectors.  Let&#39;s go over those now.</p>
+<p>CSS is a simple language, that defines styles for a given set of elements.  CSS defines which elements to set style on with CSS selectors.  Let’s go over those now.</p>
 
 <p>Earlier I mentioned that HTML element attributes are used to add identification to elements.  CSS uses these identification attributes in selectors to determine which elements should receive which style. There are three different ways to identify HTML element:</p>
 
 <p><strong>Tag name</strong> - Tag names are the element types we discussed earlier.  Since most tags can exist more than once on the page, when identifying elements by tag name, you will get all elements with that tag name.</p>
 
-<p><strong>Class</strong> - Class names are custom names we give elements and more than one element can have the same class name.  These are useful when you want to apply a style to more than one element but the elements don&#39;t have the same tag name.</p>
+<p><strong>Class</strong> - Class names are custom names we give elements and more than one element can have the same class name.  These are useful when you want to apply a style to more than one element but the elements don’t have the same tag name.</p>
 
-<p><strong>Id</strong> - Ids are names we give elements that uniquely identify them on the page.  This means there shouldn&#39;t be more than one element with the same id on the page.</p>
+<p><strong>Id</strong> - Ids are names we give elements that uniquely identify them on the page.  This means there shouldn’t be more than one element with the same id on the page.</p>
 
 <p>An HTML element can have any combination of the above identifiers.  All elements always have a tag name, but can also have multiple class names and an id.</p>
 
 <p>The following snippet of code contains the three main selectors:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* CSS Example */</span>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* CSS Example */</span>
 <span class="nt">header</span>
 <span class="nc">.tweet</span>
 <span class="nf">#site-logo</span>
-</code></pre></div>
-<p>The first line is a tag name selector that will get all of the elements on the page with the &quot;header&quot; tag name.  The second line is a class name selector that gets all of the elements on the page with the class &quot;tweet&quot;.  The third line is an id selector that grabs the element with the &quot;site-logo&quot; id.  Notice that id selectors are prefixed with a &quot;#&quot;, class name selectors are prefixed with a &quot;.&quot; and tag name selectors aren&#39;t prefixed with anything.</p>
+</code></pre></div></div>
 
-<p>With knowledge of selectors, we can now style our header.  The first thing we need to do is create a CSS file and load it on our HTML page.  In the root of our project, create a directory called &quot;public&quot;.  We call it &quot;public&quot; because the files in this directory will be publicly accessible to the browser.  Another common name is &quot;static&quot;.</p>
+<p>The first line is a tag name selector that will get all of the elements on the page with the “header” tag name.  The second line is a class name selector that gets all of the elements on the page with the class “tweet”.  The third line is an id selector that grabs the element with the “site-logo” id.  Notice that id selectors are prefixed with a “#”, class name selectors are prefixed with a “.” and tag name selectors aren’t prefixed with anything.</p>
 
-<p>This is going to contain all of our css files and images.  To stay organized, create a &quot;css&quot; directory in the &quot;public&quot; directory.  Now that we have a directory for our css files, we can create a &quot;site.css&quot; file in the &quot;css&quot; directory.  Do that now in Sublime Text.</p>
+<p>With knowledge of selectors, we can now style our header.  The first thing we need to do is create a CSS file and load it on our HTML page.  In the root of our project, create a directory called “public”.  We call it “public” because the files in this directory will be publicly accessible to the browser.  Another common name is “static”.</p>
 
-<p>Right now, our CSS file can&#39;t be accessed since we haven&#39;t told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can&#39;t see the file by visiting <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a>.</p>
+<p>This is going to contain all of our css files and images.  To stay organized, create a “css” directory in the “public” directory.  Now that we have a directory for our css files, we can create a “site.css” file in the “css” directory.  Do that now in Sublime Text.</p>
 
-<p>CSS files are what we call static files.  This means that they aren&#39;t dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time because our server has to do less work.</p>
+<p>Right now, our CSS file can’t be accessed since we haven’t told Express where it can find our public files. This is an issue because our HTML page is going to import this file for style. You can test that you can’t see the file by visiting <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a>.</p>
 
-<p>To tell Express to send static files, we need to add some middleware.  We&#39;ll get more into middleware later, but for now, middleware is code that will run before and after a request gets sent to a route.  Middleware helps use eliminate duplicate code since most routes need some kind of similar functionality.</p>
+<p>CSS files are what we call static files.  This means that they aren’t dynamically created and our web server can immediately send the file to the browser rather than going through a route like our homepage.  This saves time because our server has to do less work.</p>
 
-<p>Express provides middleware we can use to server static files.  To add middleware, we use the &quot;use&quot; method on the &quot;app&quot; variable.  This takes the middleware we are going to use as an argument.  Let&#39;s add this under our view settings code.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
+<p>To tell Express to send static files, we need to add some middleware.  We’ll get more into middleware later, but for now, middleware is code that will run before and after a request gets sent to a route.  Middleware helps use eliminate duplicate code since most routes need some kind of similar functionality.</p>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
-</code></pre></div>
-<p>As you can see, we are using the Express static middleware.  Calling the &quot;static&quot; function on our &quot;express&quot; variable returns static middleware.  The argument it takes is directory containing our static files.  In our case, this is the &quot;./public&quot; directory.  After adding that line, restart you server for the changes to take effect.</p>
+<p>Express provides middleware we can use to server static files.  To add middleware, we use the “use” method on the “app” variable.  This takes the middleware we are going to use as an argument.  Let’s add this under our view settings code.</p>
 
-<p>Now anything in our &quot;public&quot; directory can be accessed by the browser.  You can view our &quot;site.css&quot; file by going to <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ejs</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">views</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./views</span><span class="dl">'</span><span class="p">);</span>
 
-<p>We now have a CSS file and it&#39;s publicly accessible, but we aren&#39;t loading it on our page.  To load CSS files in HTML, we put a &quot;link&quot; element in the &quot;head&quot; element of our page.  Let&#39;s do that now:</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">./public</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>As you can see, we are using the Express static middleware.  Calling the “static” function on our “express” variable returns static middleware.  The argument it takes is directory containing our static files.  In our case, this is the “./public” directory.  After adding that line, restart you server for the changes to take effect.</p>
+
+<p>Now anything in our “public” directory can be accessed by the browser.  You can view our “site.css” file by going to <a href="http://127.0.0.1:8080/css/site.css">http://127.0.0.1:8080/css/site.css</a></p>
+
+<p>We now have a CSS file and it’s publicly accessible, but we aren’t loading it on our page.  To load CSS files in HTML, we put a “link” element in the “head” element of our page.  Let’s do that now:</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/css/site.css"</span><span class="nt">&gt;</span>
-</code></pre></div>
-<p>The &quot;link&quot; element is a little different than the elements we have previously discussed because it doesn&#39;t have a closing tag.  Some elements don&#39;t have closing tags since it doesn&#39;t make sense for them to have contents.</p>
+</code></pre></div></div>
 
-<p>Let&#39;s look at the attributes on the element.  The &quot;rel&quot; attribute is telling the browser we are loading a stylesheet.  The &quot;type&quot; attribute is defining the type of file it is and finally the &quot;href&quot; is the path to our CSS.</p>
+<p>The “link” element is a little different than the elements we have previously discussed because it doesn’t have a closing tag.  Some elements don’t have closing tags since it doesn’t make sense for them to have contents.</p>
 
-<p>Let&#39;s test to make sure the file is loaded properly by turning the background color of the page to blue.  To do this, open your &quot;site.css&quot; file and type the following.  Save and reload the page.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+<p>Let’s look at the attributes on the element.  The “rel” attribute is telling the browser we are loading a stylesheet.  The “type” attribute is defining the type of file it is and finally the “href” is the path to our CSS.</p>
+
+<p>Let’s test to make sure the file is loaded properly by turning the background color of the page to blue.  To do this, open your “site.css” file and type the following.  Save and reload the page.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* public/css/site.css */</span>
 <span class="nt">body</span> <span class="p">{</span>
   <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>Let&#39;s break down what the above is doing.  To define a CSS style, you type the selector you want followed by curly braces.  Inside the curly braces, you define the style for the elements that the selector applies to.</p>
+</code></pre></div></div>
+
+<p>Let’s break down what the above is doing.  To define a CSS style, you type the selector you want followed by curly braces.  Inside the curly braces, you define the style for the elements that the selector applies to.</p>
 
 <p>To set a property for the style, you type the name of the property followed by a colon and then the value you want to set it to.  Like in Javascript, each style property needs to end in a semicolon.</p>
 
-<p>Our selector above is looking for the body element and setting the &quot;background-color&quot; property to &quot;blue&quot;. Reload the page and you should see your web page turn blue.</p>
+<p>Our selector above is looking for the body element and setting the “background-color” property to “blue”. Reload the page and you should see your web page turn blue.</p>
 
-<p>I mentioned earlier that CSS is largely a lot of tweaking until you get it to look the way you want it to.  Sometimes we want to see what style an element has in the browser.  Chrome has developer tools we can use to see the style of elements.  In our chrome browser, find the element you want to inspect and right click it and press &quot;Inspect&quot;.</p>
+<p>I mentioned earlier that CSS is largely a lot of tweaking until you get it to look the way you want it to.  Sometimes we want to see what style an element has in the browser.  Chrome has developer tools we can use to see the style of elements.  In our chrome browser, find the element you want to inspect and right click it and press “Inspect”.</p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/chrome-developer-tools.png" alt=""></p>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/chrome-developer-tools.png" alt="" /></p>
 
 <p>This brings up chrome developer console (yours might be white) and selects the element we right clicked on.  On the right hand side of the console, you can see the style of the element we have selected.  Click on different elements on the left to change which element you have selected.  When hovering an element, you should see it highlight on the page.</p>
 
-<p>This is a really useful tool to see how other people are styling their page and it makes it easier to see exactly what your style is doing.  You won&#39;t need to use this much now, but it&#39;s good that you know it exists so you can use it in the future.</p>
+<p>This is a really useful tool to see how other people are styling their page and it makes it easier to see exactly what your style is doing.  You won’t need to use this much now, but it’s good that you know it exists so you can use it in the future.</p>
 
-<p>Let&#39;s get back to styling our site header.  In our case, we are going to have only one header element per page so we can use the tag name selector.  Replace the &quot;body&quot; style with the style for our header:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+<p>Let’s get back to styling our site header.  In our case, we are going to have only one header element per page so we can use the tag name selector.  Replace the “body” style with the style for our header:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* public/css/site.css */</span>
 <span class="nt">header</span> <span class="p">{</span>
   <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
   <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
@@ -152,37 +163,41 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
   <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#d9d9d9</span><span class="p">;</span>
   <span class="nl">height</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>The first property is the &quot;position&quot; property which defines how the element will be positioned on the page.  We are setting the header position to &quot;fixed&quot; which means it will stay fixed to the browser window when scrolling.</p>
+</code></pre></div></div>
 
-<p>There are a few different position types, but we aren&#39;t going to go into detail since there are plenty of guides that do that for us.  If you want more detail, check out this <a href="https://css-tricks.com/almanac/properties/p/position/">guide on element positioning</a>.</p>
+<p>The first property is the “position” property which defines how the element will be positioned on the page.  We are setting the header position to “fixed” which means it will stay fixed to the browser window when scrolling.</p>
 
-<p>Most of CSS is pretty straightforward and can be done with a reference.  It&#39;s all about tweaking and constant iteration.  We aren&#39;t going to go into details on the specifics of CSS since it&#39;s out of the scope of the course.</p>
+<p>There are a few different position types, but we aren’t going to go into detail since there are plenty of guides that do that for us.  If you want more detail, check out this <a href="https://css-tricks.com/almanac/properties/p/position/">guide on element positioning</a>.</p>
 
-<p>The next three properties, &quot;top&quot;, &quot;left&quot;, &quot;right&quot;, define how our fixed position element should be placed in the browser window.  The value given is the offset of the side of the element to the same side of the window.  So if the property &quot;left&quot; is set to zero, then the left side of our element will be on the far left side of our browser window. The same applies to the other sides.</p>
+<p>Most of CSS is pretty straightforward and can be done with a reference.  It’s all about tweaking and constant iteration.  We aren’t going to go into details on the specifics of CSS since it’s out of the scope of the course.</p>
+
+<p>The next three properties, “top”, “left”, “right”, define how our fixed position element should be placed in the browser window.  The value given is the offset of the side of the element to the same side of the window.  So if the property “left” is set to zero, then the left side of our element will be on the far left side of our browser window. The same applies to the other sides.</p>
 
 <p>The first four properties position the header how we want it and the next three add some style so we can see it easier.</p>
 
-<p>We set &quot;background-color&quot; to &quot;#ffffff&quot; which is hexadecimal for white.  There are a few different color formats that CSS accepts and hexadecimal is one of the more common.  Here is a really good explanation on <a href="http://stackoverflow.com/questions/22239803/how-does-hexadecimal-color-work#answer-22239907">how hexadecimal colors work</a>.</p>
+<p>We set “background-color” to “#ffffff” which is hexadecimal for white.  There are a few different color formats that CSS accepts and hexadecimal is one of the more common.  Here is a really good explanation on <a href="http://stackoverflow.com/questions/22239803/how-does-hexadecimal-color-work#answer-22239907">how hexadecimal colors work</a>.</p>
 
-<p>Next we are defining &quot;border-bottom&quot; which as it sounds, defines the border on the bottom side of the element.  This sets a &quot;solid&quot; border of &quot;1px&quot; wide with the color &quot;#d9d9d9&quot;.  Last, we define the &quot;height&quot; property and give it a value of &quot;50px&quot;. Reload the page and you should see a light gray header:</p>
+<p>Next we are defining “border-bottom” which as it sounds, defines the border on the bottom side of the element.  This sets a “solid” border of “1px” wide with the color “#d9d9d9”.  Last, we define the “height” property and give it a value of “50px”. Reload the page and you should see a light gray header:</p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/page-with-header.png" alt=""></p>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/page-with-header.png" alt="" /></p>
 
-<p>It looks like our header is covering up our &quot;h1&quot; tag.  We&#39;ll fix this in a bit.</p>
+<p>It looks like our header is covering up our “h1” tag.  We’ll fix this in a bit.</p>
 
-<p>You may or may not have noticed, but modern sites don&#39;t normally have their main content going all the way across the page.  This stretches your content out and makes it look unnatural and hard to read.  To fix this, we add spacing on the left and right of our content to get it closer to the center of the screen.  Since we want to do this for the entire page (minus the header), let&#39;s use an element to wrap our content and position everything.</p>
+<p>You may or may not have noticed, but modern sites don’t normally have their main content going all the way across the page.  This stretches your content out and makes it look unnatural and hard to read.  To fix this, we add spacing on the left and right of our content to get it closer to the center of the screen.  Since we want to do this for the entire page (minus the header), let’s use an element to wrap our content and position everything.</p>
 
-<p>In HTML5 there is an element called &quot;main&quot; that contains the main content for the page.  We are going to include everything but the site header since the site header is on every page and isn&#39;t really specific to this page.  Below our &quot;header&quot; element, add a &quot;main&quot; element and put our &quot;h1&quot; and &quot;p&quot; tags in it&#39;s contents.</p>
-<div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+<p>In HTML5 there is an element called “main” that contains the main content for the page.  We are going to include everything but the site header since the site header is on every page and isn’t really specific to this page.  Below our “header” element, add a “main” element and put our “h1” and “p” tags in it’s contents.</p>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
 <span class="nt">&lt;header&gt;&lt;/header&gt;</span>
 <span class="nt">&lt;main&gt;</span>
   <span class="nt">&lt;h1&gt;</span>Twitter Clone Course<span class="nt">&lt;/h1&gt;</span>
   <span class="nt">&lt;p&gt;</span>We're learning HTML!<span class="nt">&lt;/p&gt;</span>
 <span class="nt">&lt;/main&gt;</span>
-</code></pre></div>
-<p>If you reload the page, you&#39;ll notice nothing happened.  This is because we haven&#39;t given it a style yet.  Let&#39;s give our &quot;main&quot; element some style:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+</code></pre></div></div>
+
+<p>If you reload the page, you’ll notice nothing happened.  This is because we haven’t given it a style yet.  Let’s give our “main” element some style:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* public/css/site.css */</span>
 <span class="nt">main</span> <span class="p">{</span>
   <span class="nl">width</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span>
   <span class="nl">margin</span><span class="p">:</span> <span class="m">60px</span> <span class="nb">auto</span> <span class="m">0px</span> <span class="nb">auto</span><span class="p">;</span>
@@ -190,66 +205,74 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
   <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#e1e8ed</span><span class="p">;</span>
   <span class="nl">border-radius</span><span class="p">:</span> <span class="m">6px</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>The first line defines the &quot;width&quot; and we are setting it to &quot;600px&quot;.  Usually your main content is somewhere in the 600-1000px range depending on how much content you have.  Since tweets are small, we are staying on the small side.</p>
+</code></pre></div></div>
 
-<p>The next line defines the margins (spacing), for the element.  Each value corresponds to a side of the element.  The order is top, right, bottom, then left.  Our header was covering some of our content, so we are giving our main content a &quot;60px&quot; top margin to push it under our header.  For the sides, we are giving the margin or &quot;auto&quot; which will center the element in it&#39;s container if the container has a width.  We defined a width earlier so this will center our element on the page. The bottom side margin is set to &quot;0px&quot;.</p>
+<p>The first line defines the “width” and we are setting it to “600px”.  Usually your main content is somewhere in the 600-1000px range depending on how much content you have.  Since tweets are small, we are staying on the small side.</p>
 
-<p>We talked about &quot;background-color&quot; and &quot;border&quot; earlier, but this time, we are defining the border on all sides.</p>
+<p>The next line defines the margins (spacing), for the element.  Each value corresponds to a side of the element.  The order is top, right, bottom, then left.  Our header was covering some of our content, so we are giving our main content a “60px” top margin to push it under our header.  For the sides, we are giving the margin or “auto” which will center the element in it’s container if the container has a width.  We defined a width earlier so this will center our element on the page. The bottom side margin is set to “0px”.</p>
 
-<p>The last property is &quot;border-radius&quot; which gives our element rounded corners based on the radius we give &quot;border-radius&quot;.  For our element, we are giving it &quot;6px&quot;.  Reload the page and you should see your content in the middle of the screen:</p>
+<p>We talked about “background-color” and “border” earlier, but this time, we are defining the border on all sides.</p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/created-main-content-container.png" alt=""></p>
+<p>The last property is “border-radius” which gives our element rounded corners based on the radius we give “border-radius”.  For our element, we are giving it “6px”.  Reload the page and you should see your content in the middle of the screen:</p>
 
-<p>Our page is starting to look like an actual web page.  It&#39;s a little plain, so let&#39;s add a subtle background color and change the font to something less formal.  To do this, let&#39;s add some style to the &quot;body&quot; element.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/created-main-content-container.png" alt="" /></p>
+
+<p>Our page is starting to look like an actual web page.  It’s a little plain, so let’s add a subtle background color and change the font to something less formal.  To do this, let’s add some style to the “body” element.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* public/css/site.css */</span>
 <span class="nt">body</span> <span class="p">{</span>
   <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f5f8fa</span><span class="p">;</span>
   <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Helvetica Neue"</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
   <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
   <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>The first line is straightforward and is changing the background color.  The next line is setting the &quot;font-family&quot; property and we give it font names separated by commas.  We give it more than one font because not all fonts are on all computers so the browser needs to know what to fall back on if it can&#39;t find one.  It&#39;ll first look for &quot;Helvetica Neue&quot;, then &quot;Helvetica&quot;, then &quot;Arial&quot;, etc.</p>
+</code></pre></div></div>
 
-<p>Like most things, font families aren&#39;t something you need to memorize.  There are sites that help you define them.  <a href="http://www.cssfontstack.com/">CSS Font Stack</a> is an awesome site that shows you different font families and their browser compatibility. I used this for the font family above.</p>
+<p>The first line is straightforward and is changing the background color.  The next line is setting the “font-family” property and we give it font names separated by commas.  We give it more than one font because not all fonts are on all computers so the browser needs to know what to fall back on if it can’t find one.  It’ll first look for “Helvetica Neue”, then “Helvetica”, then “Arial”, etc.</p>
 
-<p>The next line is setting the &quot;font-size&quot; to &quot;14px&quot;.  The last line is setting the &quot;box-sizing&quot; property to &quot;border-box&quot;.  This property defines how elements are measured and is out of the scope of the course.  If you want to know more, <a href="https://css-tricks.com/">CSS Tricks</a> has a great <a href="https://css-tricks.com/box-sizing/">guide on box sizing</a>.</p>
+<p>Like most things, font families aren’t something you need to memorize.  There are sites that help you define them.  <a href="http://www.cssfontstack.com/">CSS Font Stack</a> is an awesome site that shows you different font families and their browser compatibility. I used this for the font family above.</p>
 
-<p>&quot;Font-family&quot; and &quot;font-size&quot; are inherited properties meaning the element&#39;s children will also have the same properties unless specifically set differently on the child element. Reload this and you should see the font and the background color of the page change.</p>
+<p>The next line is setting the “font-size” to “14px”.  The last line is setting the “box-sizing” property to “border-box”.  This property defines how elements are measured and is out of the scope of the course.  If you want to know more, <a href="https://css-tricks.com/">CSS Tricks</a> has a great <a href="https://css-tricks.com/box-sizing/">guide on box sizing</a>.</p>
 
-<p>Unfortunately, the &quot;box-sizing&quot; attribute isn&#39;t inherited but we want it to be.  We can change that by adding the following style.  This is a little out of the scope of the course, so don&#39;t worry about the details of what this is doing.  Instead, just know that we use this so all of our elements can have the same &quot;box-sizing&quot; property.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+<p>“Font-family” and “font-size” are inherited properties meaning the element’s children will also have the same properties unless specifically set differently on the child element. Reload this and you should see the font and the background color of the page change.</p>
+
+<p>Unfortunately, the “box-sizing” attribute isn’t inherited but we want it to be.  We can change that by adding the following style.  This is a little out of the scope of the course, so don’t worry about the details of what this is doing.  Instead, just know that we use this so all of our elements can have the same “box-sizing” property.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* public/css/site.css */</span>
 <span class="o">*,</span> <span class="o">*</span><span class="nd">:before</span><span class="o">,</span> <span class="o">*</span><span class="nd">:after</span> <span class="p">{</span>
   <span class="nl">box-sizing</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>Add that to your &quot;site.css&quot; file, save and reload the page.  You should see the following.</p>
+</code></pre></div></div>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/add-background-color.png" alt=""></p>
+<p>Add that to your “site.css” file, save and reload the page.  You should see the following.</p>
+
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/2/add-background-color.png" alt="" /></p>
 
 <p>You now know the basics of styling an HTML page.  In the next lesson, we are going to create a Tweet form that users will use to submit Tweets.</p>
 
-<h3>Final Code</h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="s1">'use strict'</span>
+<h3 id="final-code">Final Code</h3>
 
-<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span>
+
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">views</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./views</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ejs</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">./public</span><span class="dl">'</span><span class="p">));</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Web server listening on port 8080!</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div><div class="highlight"><pre><code class="language-ejs" data-lang="ejs"><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
+</code></pre></div></div>
+
+<div class="language-ejs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- views/tweets.ejs --&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -263,7 +286,9 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="nt">&lt;/main&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre></div><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* public/css/site.css */</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* public/css/site.css */</span>
 <span class="nt">header</span> <span class="p">{</span>
   <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
   <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
@@ -292,7 +317,8 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
 <span class="o">*,</span> <span class="o">*</span><span class="nd">:before</span><span class="o">,</span> <span class="o">*</span><span class="nd">:after</span> <span class="p">{</span>
   <span class="nl">box-sizing</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></div>
+
                 
                     <p class="text-center">
                         <a href="/courses/twitter-clone/2/3" class="next-lesson-button">

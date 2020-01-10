@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="/assets/css/application.css">
+<link rel="stylesheet" href="/courses/assets/css/application.css">
 
         <!-- Facebook Pixel Code -->
 <script>
@@ -44,56 +44,65 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <main class="container">
             <article>
                 <h1>7.1 Saving Created Tweets In Cookies</h1>
-                <h4>Table Of Contents</h4>
+                <p>####Table Of Contents</p>
 
 <ul>
-<li><strong>7.1 Saving Created Tweets In Cookies</strong></li>
-<li><a href="/courses/twitter-clone/7/2">7.2 Creating User Authentication Middleware</a></li>
-<li><a href="/courses/twitter-clone/7/3">7.3 Hiding Tweet Edit Link</a></li>
+  <li><strong>7.1 Saving Created Tweets In Cookies</strong></li>
+  <li><a href="/courses/twitter-clone/7/2">7.2 Creating User Authentication Middleware</a></li>
+  <li><a href="/courses/twitter-clone/7/3">7.3 Hiding Tweet Edit Link</a></li>
 </ul>
 
-<p><strong><em>Make sure you are logged into Vagrant before starting today&#39;s lessons.</em></strong> <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the &quot;Logging Into Vagrant Guide&quot;</a></p>
+<p><strong><em>Make sure you are logged into Vagrant before starting today’s lessons.</em></strong> <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the “Logging Into Vagrant Guide”</a></p>
 
-<p>Welcome to day 7 of the Twitter clone course.  Yesterday, we added a delete button for our tweets and deleted them from the database.  Today, we are going to add a little user authentication so only the computer that created the tweet can edit the tweet. Let&#39;s get started.</p>
+<p>Welcome to day 7 of the Twitter clone course.  Yesterday, we added a delete button for our tweets and deleted them from the database.  Today, we are going to add a little user authentication so only the computer that created the tweet can edit the tweet. Let’s get started.</p>
 
-<p>HTTP is stateless which means each request is isolated and doesn&#39;t know about any other request.  This makes it hard to associate requests with a specific user since each request only knows what we pass to it and not what happened on other requests. Because we need a way to keep track of which requests belong to each user, we use cookies.</p>
+<p>HTTP is stateless which means each request is isolated and doesn’t know about any other request.  This makes it hard to associate requests with a specific user since each request only knows what we pass to it and not what happened on other requests. Because we need a way to keep track of which requests belong to each user, we use cookies.</p>
 
-<p>Cookies are simply data that is stored in the user&#39;s browser. At minimum, each cookie contains a name and a value.  For instance, we might have a cookie named &quot;user_id&quot; that stores the id of the user that is logged in.</p>
+<p>Cookies are simply data that is stored in the user’s browser. At minimum, each cookie contains a name and a value.  For instance, we might have a cookie named “user_id” that stores the id of the user that is logged in.</p>
 
-<p>On each request, the browser will send all of the cookies for the domain to the web server.  The web server then uses these cookies for data that is specific to the user.  In the case of the &quot;user_id&quot; cookie, the web server would use that id to get the user&#39;s information from the database.</p>
+<p>On each request, the browser will send all of the cookies for the domain to the web server.  The web server then uses these cookies for data that is specific to the user.  In the case of the “user_id” cookie, the web server would use that id to get the user’s information from the database.</p>
 
-<p>Web servers can also set cookies in the browser.  To do this, the web server sends back the cookies to set on the response and the browser will update its cookies. Each browser on a computer has it&#39;s own set of cookies.  So a cookie is not only specific to a computer, but also to a browser on that computer.</p>
+<p>Web servers can also set cookies in the browser.  To do this, the web server sends back the cookies to set on the response and the browser will update its cookies. Each browser on a computer has it’s own set of cookies.  So a cookie is not only specific to a computer, but also to a browser on that computer.</p>
 
-<p>For this course, we don&#39;t have users, so we are going to store the ids of tweets that were created.  We&#39;ll give our cookie the name &quot;tweets_created&quot; and it&#39;s value will be a list of ids.  We can use these ids to check if the user created the tweet they are trying to edit, update, or destroy.</p>
+<p>For this course, we don’t have users, so we are going to store the ids of tweets that were created.  We’ll give our cookie the name “tweets_created” and it’s value will be a list of ids.  We can use these ids to check if the user created the tweet they are trying to edit, update, or destroy.</p>
 
-<p>Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called <a href="https://github.com/expressjs/cookie-parser">cookie-parser</a> and it works much like body-parser.  Let&#39;s install the cookie-parser library now.  Remember to add &quot;--no-bin-links&quot; if you are on Windows.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
-npm install cookie-parser --save
-</code></pre></div>
-<p>With that installed, let&#39;s require the cookie-parser library under our body-parser library.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
-</code></pre></div>
-<p>To get the middleware and add it to our app, we simply call the &quot;cookieParser&quot; function, which returns the middleware, and pass it to &quot;app.use&quot;.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<p>Before we can start using cookies, we need to add middleware to parse cookies.  This middleware is called <a href="https://github.com/expressjs/cookie-parser">cookie-parser</a> and it works much like body-parser.  Let’s install the cookie-parser library now.  Remember to add “–no-bin-links” if you are on Windows.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal logged into VM</span>
+npm <span class="nb">install </span>cookie-parser <span class="nt">--save</span>
+</code></pre></div></div>
+
+<p>With that installed, let’s require the cookie-parser library under our body-parser library.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mysql</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cookie-parser</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">moment</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>To get the middleware and add it to our app, we simply call the “cookieParser” function, which returns the middleware, and pass it to “app.use”.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">./public</span><span class="dl">'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span>
-</code></pre></div>
-<p>Now on each request, Express will parse cookies for us and add them to the request object with the key &quot;cookies&quot;.  The &quot;cookies&quot; object contains name-value pairs with the name of the cookie being the key.  To get our &quot;tweets_created&quot; cookie value, we can do the following.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Javascript Example</span>
-<span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span>
-</code></pre></div>
-<p>With that out of the way, we need to start by saving the id of newly created tweets in a the &quot;tweets_creatd&quot; cookie.  We&#39;ll add this to the create tweet route.</p>
+</code></pre></div></div>
 
-<p>Each time the user creates a tweet, we need to get the &quot;tweets_created&quot; cookie, add the new tweet id, and then set the &quot;tweets_created&quot; cookie to the new list.  Let&#39;s add the code to get the tweets created and save it again to the &quot;tweets_created&quot; cookie.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
+<p>Now on each request, Express will parse cookies for us and add them to the request object with the key “cookies”.  The “cookies” object contains name-value pairs with the name of the cookie being the key.  To get our “tweets_created” cookie value, we can do the following.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Javascript Example</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span>
+</code></pre></div></div>
+
+<p>With that out of the way, we need to start by saving the id of newly created tweets in a the “tweets_creatd” cookie.  We’ll add this to the create tweet route.</p>
+
+<p>Each time the user creates a tweet, we need to get the “tweets_created” cookie, add the new tweet id, and then set the “tweets_created” cookie to the new list.  Let’s add the code to get the tweets created and save it again to the “tweets_created” cookie.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/create</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">INSERT INTO Tweets(handle, body) VALUES(?, ?)</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
@@ -103,32 +112,36 @@ npm install cookie-parser --save
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">'tweets_created'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets_created</span><span class="dl">'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>We are using the &quot;or&quot; operator when setting the &quot;tweetsCreated&quot; variable.  We are doing this because the first time a user creates a tweet, there won&#39;t be any cookies set since they haven&#39;t created a tweet yet.  This means that the &quot;tweets_created&quot; cookie will be undefined.  Since we want the cookie to be an array, we are using the &quot;or&quot; operator to set &quot;tweetsCreated&quot; to an empty array if the &quot;tweets_created&quot; cookies doesn&#39;t exist.  If the &quot;tweets_created&quot; cookie does exist, then the empty array gets ignored and &quot;tweetsCreated&quot; is the array from the cookie.</p>
+</code></pre></div></div>
 
-<p>In the query callback, just before the redirect, we are setting our &quot;tweets_created&quot; cookie.  We set cookies with the &quot;cookie&quot; method on the response parameter.  The first parameter to the &quot;cookie&quot; method is the name of the cookie and the second is the value the we are giving the cookie.  There is a third optional parameter, that takes an object with <a href="http://expressjs.com/en/api.html#res.cookie">options for the cookie</a>.  In this object, we can set things like expiration date and domain name that the cookie applies to.</p>
+<p>We are using the “or” operator when setting the “tweetsCreated” variable.  We are doing this because the first time a user creates a tweet, there won’t be any cookies set since they haven’t created a tweet yet.  This means that the “tweets_created” cookie will be undefined.  Since we want the cookie to be an array, we are using the “or” operator to set “tweetsCreated” to an empty array if the “tweets_created” cookies doesn’t exist.  If the “tweets_created” cookie does exist, then the empty array gets ignored and “tweetsCreated” is the array from the cookie.</p>
 
-<p>For our cookie, we are setting the &quot;httpOnly&quot; option to true.  This option makes it so the cookie can only be accessed by the web server and not by client side javascript.  Don&#39;t worry about this too much.  Just know that the having this option set means that only our web server can read the cookie.</p>
+<p>In the query callback, just before the redirect, we are setting our “tweets_created” cookie.  We set cookies with the “cookie” method on the response parameter.  The first parameter to the “cookie” method is the name of the cookie and the second is the value the we are giving the cookie.  There is a third optional parameter, that takes an object with <a href="http://expressjs.com/en/api.html#res.cookie">options for the cookie</a>.  In this object, we can set things like expiration date and domain name that the cookie applies to.</p>
 
-<p>We are setting our cookie, but we aren&#39;t adding ids to our &quot;tweetsCreated&quot; array.  To do this, we need the id of the tweet that was just created.  There is a second parameter that is passed to our INSERT INTO query callback that contains the inserted id. Let&#39;s add that parameter and call it &quot;results&quot;.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<p>For our cookie, we are setting the “httpOnly” option to true.  This option makes it so the cookie can only be accessed by the web server and not by client side javascript.  Don’t worry about this too much.  Just know that the having this option set means that only our web server can read the cookie.</p>
+
+<p>We are setting our cookie, but we aren’t adding ids to our “tweetsCreated” array.  To do this, we need the id of the tweet that was just created.  There is a second parameter that is passed to our INSERT INTO query callback that contains the inserted id. Let’s add that parameter and call it “results”.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
 <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">handle</span><span class="p">,</span> <span class="nx">body</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">'tweets_created'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets_created</span><span class="dl">'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>The &quot;results&quot; parameter is an object that has a key called &quot;insertId&quot; that contains the id that was just inserted.  Let&#39;s get that id and add it to our &quot;tweetsCreated&quot; array.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The “results” parameter is an object that has a key called “insertId” that contains the id that was just inserted.  Let’s get that id and add it to our “tweetsCreated” array.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/create</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">INSERT INTO Tweets(handle, body) VALUES(?, ?)</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
@@ -139,43 +152,45 @@ npm install cookie-parser --save
     <span class="p">}</span>
 
     <span class="nx">tweetsCreated</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">insertId</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">'tweets_created'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets_created</span><span class="dl">'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>To add a value to an array, we use the &quot;push&quot; method on the array.  The &quot;push&quot; method takes a single argument which is the value we want to add.  In our case we are adding the id of the tweet we just inserted.</p>
+</code></pre></div></div>
 
-<p>Now if you restart your server and create a tweet, the tweet id will be in a cookie called &quot;tweets_created&quot;.  You can see the cookies for a site using the Google Chrome Developer Console.</p>
+<p>To add a value to an array, we use the “push” method on the array.  The “push” method takes a single argument which is the value we want to add.  In our case we are adding the id of the tweet we just inserted.</p>
 
-<p>I talked about the Chrome Developer Console a bit earlier when we were working with HTML and CSS.  To open the console, go to a chrome tab and right click on the page.  You should see an option that says &quot;Inspect&quot; or &quot;Inspect Element&quot;.  Click that and the developer console will open.</p>
+<p>Now if you restart your server and create a tweet, the tweet id will be in a cookie called “tweets_created”.  You can see the cookies for a site using the Google Chrome Developer Console.</p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-1-inspect-element-option.png" alt=""></p>
+<p>I talked about the Chrome Developer Console a bit earlier when we were working with HTML and CSS.  To open the console, go to a chrome tab and right click on the page.  You should see an option that says “Inspect” or “Inspect Element”.  Click that and the developer console will open.</p>
 
-<p>Go to the &quot;Application&quot; tab and there should be an item in the left hand column that says &quot;Cookies&quot;.  Open the drop down, and select &quot;http://127.0.0.1:8080&quot;.  In the right table, you will see the cookies for the site.</p>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-1-inspect-element-option.png" alt="" /></p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-1-chrome-dev-tools.png" alt=""></p>
+<p>Go to the “Application” tab and there should be an item in the left hand column that says “Cookies”.  Open the drop down, and select “http://127.0.0.1:8080”.  In the right table, you will see the cookies for the site.</p>
 
-<p>If you have created a tweet since adding cookies, you should see a cookie with the name &quot;tweets_created&quot; and it should have a value.  The value is URL encoded so it&#39;s a little hard to read.  You should be good as long as the value isn&#39;t blank.</p>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/7/7-1-chrome-dev-tools.png" alt="" /></p>
 
-<p>We now have created tweet ids being saved in cookies, but we aren&#39;t checking those ids to see if the user can edit a tweet.  To do this, we are going to use middleware.  In the next section, we are going to be going over middleware and how to create your own.</p>
+<p>If you have created a tweet since adding cookies, you should see a cookie with the name “tweets_created” and it should have a value.  The value is URL encoded so it’s a little hard to read.  You should be good as long as the value isn’t blank.</p>
 
-<h3>Final Code</h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="s1">'use strict'</span>
+<p>We now have created tweet ids being saved in cookies, but we aren’t checking those ids to see if the user can edit a tweet.  To do this, we are going to use middleware.  In the next section, we are going to be going over middleware and how to create your own.</p>
 
-<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
+<h3 id="final-code">Final Code</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span>
+
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mysql</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">cookie-parser</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">moment</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
-  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
-  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
+  <span class="na">host</span><span class="p">:</span> <span class="dl">'</span><span class="s1">127.0.0.1</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="dl">'</span><span class="s1">vagrant</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="dl">'</span><span class="s1">twitter</span><span class="dl">'</span>
 <span class="p">});</span>
 
 <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -184,22 +199,22 @@ npm install cookie-parser --save
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connected to the database.</span><span class="dl">'</span><span class="p">);</span>
 
   <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Web server listening on port 8080!</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">views</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./views</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ejs</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">./public</span><span class="dl">'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets ORDER BY created_at DESC'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets ORDER BY created_at DESC</span><span class="dl">'</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -211,12 +226,12 @@ npm install cookie-parser --save
       <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/create</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">INSERT INTO Tweets(handle, body) VALUES(?, ?)</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">tweetsCreated</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">tweets_created</span> <span class="o">||</span> <span class="p">[];</span>
@@ -227,33 +242,33 @@ npm install cookie-parser --save
     <span class="p">}</span>
 
     <span class="nx">tweetsCreated</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">insertId</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">'tweets_created'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets_created</span><span class="dl">'</span><span class="p">,</span> <span class="nx">tweetsCreated</span><span class="p">,</span> <span class="p">{</span> <span class="na">httpOnly</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/edit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">No tweet found.</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">edit-tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/update</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">DELETE FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -263,7 +278,7 @@ npm install cookie-parser --save
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">};</span>
 
   <span class="k">if</span><span class="p">(</span><span class="nx">isDelete</span><span class="p">)</span> <span class="p">{</span>
@@ -274,7 +289,8 @@ npm install cookie-parser --save
     <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">updateQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
+</code></pre></div></div>
+
                 
                     <p class="text-center">
                         <a href="/courses/twitter-clone/7/2" class="next-lesson-button">

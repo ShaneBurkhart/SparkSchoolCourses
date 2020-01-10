@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="/assets/css/application.css">
+<link rel="stylesheet" href="/courses/assets/css/application.css">
 
         <!-- Facebook Pixel Code -->
 <script>
@@ -44,27 +44,30 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <main class="container">
             <article>
                 <h1>6.2 Removing The Tweet From The Database</h1>
-                <h4>Table Of Contents</h4>
+                <p>####Table Of Contents</p>
 
 <ul>
-<li><a href="/courses/twitter-clone/6/1">6.1 Adding A Delete Button</a></li>
-<li><strong>6.2 Removing The Tweet From The Database</strong></li>
+  <li><a href="/courses/twitter-clone/6/1">6.1 Adding A Delete Button</a></li>
+  <li><strong>6.2 Removing The Tweet From The Database</strong></li>
 </ul>
 
-<p>We now have a delete button to submit our update tweet form, but we haven&#39;t added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.</p>
+<p>We now have a delete button to submit our update tweet form, but we haven’t added a check for which button was pressed.  If the delete button was pressed, we want to delete the tweet and if not, we want to update the tweet.</p>
 
-<p>To determine which button was pressed, we get the &quot;delete_button&quot; value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let&#39;s get that now and save it to a variable called &quot;isDelete&quot; under our &quot;body&quot; variable.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
+<p>To determine which button was pressed, we get the “delete_button” value on our POST request body.  This is the same value we gave our name attribute on our delete button.  Let’s get that now and save it to a variable called “isDelete” under our “body” variable.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">isDelete</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">delete_button</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span>
-</code></pre></div>
-<p>The &quot;!==&quot; is the not equals operator.  We are making sure that the &quot;delete_button&quot; key is not undefined.  If the update button was used to submit the form, the &quot;delete_button&quot; variable will be undefined so &quot;isDelete&quot; will be false.  If the delete button was pressed, the &quot;delete_button&quot; variable will be defined and &quot;isDelete&quot; will be true.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The “!==” is the not equals operator.  We are making sure that the “delete_button” key is not undefined.  If the update button was used to submit the form, the “delete_button” variable will be undefined so “isDelete” will be false.  If the delete button was pressed, the “delete_button” variable will be defined and “isDelete” will be true.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/update</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -79,26 +82,30 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
       <span class="p">}</span>
 
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>This checks if &quot;isDelete&quot; is true.  If it is, the code block that says &quot;Our delete code goes here.&quot; will be executed.  The else block gets executed if the &quot;isDelete&quot; variable is false and will update our tweet.</p>
+</code></pre></div></div>
 
-<p>Before we can write our delete query, let&#39;s go over how you delete rows in SQL.  We use the DELETE FROM query to delete rows.</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- SQL Example</span>
+<p>This checks if “isDelete” is true.  If it is, the code block that says “Our delete code goes here.” will be executed.  The else block gets executed if the “isDelete” variable is false and will update our tweet.</p>
+
+<p>Before we can write our delete query, let’s go over how you delete rows in SQL.  We use the DELETE FROM query to delete rows.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- SQL Example</span>
 <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">Tweets</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
-<p>DELETE FROM queries start with &quot;DELETE FROM&quot; followed by the table we are deleting rows from.  We can add an optional WHERE clause to specify which rows should be deleted.</p>
+</code></pre></div></div>
 
-<p>The above query is deleting all rows where the &quot;id&quot; column is 1.  Since ids are unique, there will only be one row deleted.  If we didn&#39;t add the WHERE clause, the query would delete all rows in our table.</p>
+<p>DELETE FROM queries start with “DELETE FROM” followed by the table we are deleting rows from.  We can add an optional WHERE clause to specify which rows should be deleted.</p>
 
-<p>Let&#39;s add this query to our update route as the variable &quot;deleteQuery&quot; and change the update query variable name to &quot;updateQuery&quot;.  Don&#39;t forget to change the variable name we pass to the &quot;query&quot; method as well.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<p>The above query is deleting all rows where the “id” column is 1.  Since ids are unique, there will only be one row deleted.  If we didn’t add the WHERE clause, the query would delete all rows in our table.</p>
+
+<p>Let’s add this query to our update route as the variable “deleteQuery” and change the update query variable name to “updateQuery”.  Don’t forget to change the variable name we pass to the “query” method as well.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/update</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">DELETE FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -113,18 +120,20 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
       <span class="p">}</span>
 
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>As always, since our id is user input, we are using query parameters in our query&#39;s WHERE clause.</p>
+</code></pre></div></div>
 
-<p>Let&#39;s execute the delete query in the first section of our &quot;if&quot; statement.  We&#39;ll pass it the id as a parameter.  The query callback will look the same as the one we used for the update query.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<p>As always, since our id is user input, we are using query parameters in our query’s WHERE clause.</p>
+
+<p>Let’s execute the delete query in the first section of our “if” statement.  We’ll pass it the id as a parameter.  The query callback will look the same as the one we used for the update query.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/update</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">DELETE FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -137,7 +146,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
       <span class="p">}</span>
 
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="c1">// The update button was pressed.</span>
@@ -146,16 +155,18 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
       <span class="p">}</span>
 
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
+</code></pre></div></div>
+
 <p>If you restart your server and submit the form with the delete button, the tweet will be deleted.  Our update route now has the behavior we want, but the query callback functions are identical.  Duplicate code is usually a sign that something can be cleaned up.  In our case, we can assign our anonymous function to a variable and pass that as the callback instead of the anonymous function.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/update</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">DELETE FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -165,7 +176,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">};</span>
 
   <span class="k">if</span><span class="p">(</span><span class="nx">isDelete</span><span class="p">)</span> <span class="p">{</span>
@@ -176,25 +187,27 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">updateQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
-<p>We are now saving our anonymous function to a variable called &quot;queryCallback&quot; and passing that &quot;queryCallback&quot; variable to our &quot;query&quot; method as the callback.  This removes duplicate code and makes everything look much cleaner.</p>
+</code></pre></div></div>
 
-<p>Our update route now updates and deletes rows in our table based on which form button was pressed.  Today&#39;s lesson is much shorter than the other CRUD methods because there isn&#39;t much to deleting data.  In day 7, we&#39;ll learn how to use cookies to restrict deleting and updating tweets to the user that created the tweet.</p>
+<p>We are now saving our anonymous function to a variable called “queryCallback” and passing that “queryCallback” variable to our “query” method as the callback.  This removes duplicate code and makes everything look much cleaner.</p>
 
-<h3>Final Code</h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="s1">'use strict'</span>
+<p>Our update route now updates and deletes rows in our table based on which form button was pressed.  Today’s lesson is much shorter than the other CRUD methods because there isn’t much to deleting data.  In day 7, we’ll learn how to use cookies to restrict deleting and updating tweets to the user that created the tweet.</p>
 
-<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mysql'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
+<h3 id="final-code">Final Code</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span>
+
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mysql</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">moment</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-  <span class="na">host</span><span class="p">:</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
-  <span class="na">user</span><span class="p">:</span> <span class="s1">'vagrant'</span><span class="p">,</span>
-  <span class="na">password</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-  <span class="na">database</span><span class="p">:</span> <span class="s1">'twitter'</span>
+  <span class="na">host</span><span class="p">:</span> <span class="dl">'</span><span class="s1">127.0.0.1</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="dl">'</span><span class="s1">vagrant</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="dl">'</span><span class="s1">twitter</span><span class="dl">'</span>
 <span class="p">});</span>
 
 <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -203,21 +216,21 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Connected to the database.'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connected to the database.</span><span class="dl">'</span><span class="p">);</span>
 
   <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Web server listening on port 8080!'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Web server listening on port 8080!</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="s1">'./views'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'ejs'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">views</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">./views</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ejs</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'./public'</span><span class="p">));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">./public</span><span class="dl">'</span><span class="p">));</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets ORDER BY created_at DESC'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets ORDER BY created_at DESC</span><span class="dl">'</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -229,12 +242,12 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
       <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'tweets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">tweets</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweets</span><span class="p">:</span> <span class="nx">results</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/create'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'INSERT INTO Tweets(handle, body) VALUES(?, ?)'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/create</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">INSERT INTO Tweets(handle, body) VALUES(?, ?)</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
 
@@ -243,31 +256,31 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/edit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">'SELECT * FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/edit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT * FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
 
   <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">id</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="s1">'No tweet found.'</span><span class="p">);</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">No tweet found.</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">tweet</span><span class="p">.</span><span class="nx">time_from_now</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'edit-tweet'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">edit-tweet</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">tweet</span><span class="p">:</span> <span class="nx">tweet</span> <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/tweets/:id([0-9]+)/update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="s1">'UPDATE Tweets SET body = ?, handle = ? WHERE id = ?'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="s1">'DELETE FROM Tweets WHERE id = ?'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tweets/:id([0-9]+)/update</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">updateQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">UPDATE Tweets SET body = ?, handle = ? WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">deleteQuery</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">DELETE FROM Tweets WHERE id = ?</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">handle</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -277,7 +290,7 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">};</span>
 
   <span class="k">if</span><span class="p">(</span><span class="nx">isDelete</span><span class="p">)</span> <span class="p">{</span>
@@ -288,7 +301,8 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
     <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">updateQuery</span><span class="p">,</span> <span class="p">[</span><span class="nx">body</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">id</span><span class="p">],</span> <span class="nx">queryCallback</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></div>
+</code></pre></div></div>
+
                 
                 
                     <div id="disqus_thread"></div>

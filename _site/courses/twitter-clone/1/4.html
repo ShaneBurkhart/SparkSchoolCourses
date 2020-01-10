@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="/assets/css/application.css">
+<link rel="stylesheet" href="/courses/assets/css/application.css">
 
         <!-- Facebook Pixel Code -->
 <script>
@@ -44,66 +44,76 @@ src="https://www.facebook.com/tr?id=327777587588900&ev=PageView&noscript=1"
         <main class="container">
             <article>
                 <h1>1.4 Your First Javascript Program</h1>
-                <h4>Table Of Contents</h4>
+                <p>####Table Of Contents</p>
 
 <ul>
-<li><a href="/courses/twitter-clone/1/1">1.1 Introduction</a></li>
-<li><a href="/courses/twitter-clone/1/2">1.2 Installing Tools</a></li>
-<li><a href="/courses/twitter-clone/1/3">1.3 Setup Your Project And Connect To Your VM</a></li>
-<li><strong>1.4 Your First Javascript Program</strong></li>
-<li><a href="/courses/twitter-clone/1/5">1.5 Writing Your First Web Server</a></li>
+  <li><a href="/courses/twitter-clone/1/1">1.1 Introduction</a></li>
+  <li><a href="/courses/twitter-clone/1/2">1.2 Installing Tools</a></li>
+  <li><a href="/courses/twitter-clone/1/3">1.3 Setup Your Project And Connect To Your VM</a></li>
+  <li><strong>1.4 Your First Javascript Program</strong></li>
+  <li><a href="/courses/twitter-clone/1/5">1.5 Writing Your First Web Server</a></li>
 </ul>
 
-<p>This guide assumes you know nothing about programming so let&#39;s create and run our first program.  We are going to start with a very basic program that prints the text &quot;Hello World!&quot; to the terminal.  This will get your feet wet as well as ensure that everything is setup correctly for our project.</p>
+<p>This guide assumes you know nothing about programming so let’s create and run our first program.  We are going to start with a very basic program that prints the text “Hello World!” to the terminal.  This will get your feet wet as well as ensure that everything is setup correctly for our project.</p>
 
-<p>It&#39;s usually a good idea to test early and often.  Coding can become tedious if you try to do everything at once.  Instead, it&#39;s better to start small and basic, make sure everything is working, and then move onto the next step.  In this tutorial, you&#39;ll notice that we are constantly checking to see if the code we wrote works as we expected.  Mistakes and errors are part of programming, so don&#39;t get discouraged.</p>
+<p>It’s usually a good idea to test early and often.  Coding can become tedious if you try to do everything at once.  Instead, it’s better to start small and basic, make sure everything is working, and then move onto the next step.  In this tutorial, you’ll notice that we are constantly checking to see if the code we wrote works as we expected.  Mistakes and errors are part of programming, so don’t get discouraged.</p>
 
-<p>Let&#39;s get started.  Right now, the only thing in our project directory is our Vagrantfile.  We need another file that we can use to run our web server.  This file is going to be a javascript file called &quot;app.js&quot;.  The &quot;.js&quot; extension means it&#39;s a javascript file.</p>
+<p>Let’s get started.  Right now, the only thing in our project directory is our Vagrantfile.  We need another file that we can use to run our web server.  This file is going to be a javascript file called “app.js”.  The “.js” extension means it’s a javascript file.</p>
 
-<p>To create our file, go into your text editor (Sublime Text 3) and select File &gt; New File as we did with our Vagrantfile.  Now select File &gt; Save As and save the file in our project directory as &quot;app.js&quot;.  We now have a file to put our code in, let&#39;s write some code.</p>
+<p>To create our file, go into your text editor (Sublime Text 3) and select File &gt; New File as we did with our Vagrantfile.  Now select File &gt; Save As and save the file in our project directory as “app.js”.  We now have a file to put our code in, let’s write some code.</p>
 
-<p>In the next section, we are going to go into more detail on javascript, but since we are mostly wanting to check if everything is working, type the following code in our &quot;app.js&quot; file and save.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">);</span>
-</code></pre></div>
-<p>&quot;console.log&quot; is a function we use to print things to the terminal.  In this case, we are printing the text &quot;Hello World!&quot;.  You can change the text in the single quotes to print different text to the terminal.</p>
+<p>In the next section, we are going to go into more detail on javascript, but since we are mostly wanting to check if everything is working, type the following code in our “app.js” file and save.</p>
 
-<p>We now have our code written, so let&#39;s run it.  To run our program, we are going to use the terminal.  Let&#39;s go into more detail on how the terminal works first.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
 
-<p>The terminal is simply a place where you can type and run text based commands.   For the most part, each line in the terminal is it&#39;s own command.  To execute a command, you type out the command you want to execute and press enter.</p>
+<p>“console.log” is a function we use to print things to the terminal.  In this case, we are printing the text “Hello World!”.  You can change the text in the single quotes to print different text to the terminal.</p>
+
+<p>We now have our code written, so let’s run it.  To run our program, we are going to use the terminal.  Let’s go into more detail on how the terminal works first.</p>
+
+<p>The terminal is simply a place where you can type and run text based commands.   For the most part, each line in the terminal is it’s own command.  To execute a command, you type out the command you want to execute and press enter.</p>
 
 <p>The first word is always the command we are running and the rest is extra arguments given to the command so it knows what you want it to run.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal Example</span>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal Example</span>
 <span class="nb">cd</span> ~/Desktop/TwitterClone
-</code></pre></div>
-<p>The above terminal line is calling the &quot;cd&quot; (stands for change directory) command and is given the path to our project directory.  This changes our terminal&#39;s current working directory to be our project directory.</p>
+</code></pre></div></div>
 
-<p>This brings me to my next point, the terminal has a current working directory which is the base for running commands.  As you saw above, we can change this directory with the &quot;cd&quot; command. You can see what your current working directory is by using the &quot;pwd&quot; command or look at the end of the terminal prompt.</p>
+<p>The above terminal line is calling the “cd” (stands for change directory) command and is given the path to our project directory.  This changes our terminal’s current working directory to be our project directory.</p>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/current-working-directory-in-terminal.png" alt=""></p>
+<p>This brings me to my next point, the terminal has a current working directory which is the base for running commands.  As you saw above, we can change this directory with the “cd” command. You can see what your current working directory is by using the “pwd” command or look at the end of the terminal prompt.</p>
 
-<p>The cyan colored section of the terminal prompt is the current working directory.  For the example above, the current working directory is &quot;/vagrant&quot;.</p>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/current-working-directory-in-terminal.png" alt="" /></p>
 
-<p>The &quot;~&quot; path stands for the home directory.  When you open the terminal, your current working directory is normally the home directory. This is the directory for the current user.</p>
+<p>The cyan colored section of the terminal prompt is the current working directory.  For the example above, the current working directory is “/vagrant”.</p>
 
-<p>Now that we know a bit about the terminal, let&#39;s get back to running our program.  First, let&#39;s navigate to our project directory in our VM.  Vagrant automatically shares all of the files in our project directory to the &#39;/vagrant&#39; directory in our VM.  We can switch to the &#39;/vagrant&#39; directory (with the &#39;cd&#39; command) and run commands for our project inside the VM.  Navigate there now with the following command:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
+<p>The “~” path stands for the home directory.  When you open the terminal, your current working directory is normally the home directory. This is the directory for the current user.</p>
+
+<p>Now that we know a bit about the terminal, let’s get back to running our program.  First, let’s navigate to our project directory in our VM.  Vagrant automatically shares all of the files in our project directory to the ‘/vagrant’ directory in our VM.  We can switch to the ‘/vagrant’ directory (with the ‘cd’ command) and run commands for our project inside the VM.  Navigate there now with the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal logged into VM</span>
 <span class="nb">cd</span> /vagrant
-</code></pre></div>
-<p>Now run the &quot;ls&quot; command to see the contents of the current working directory and you should see &quot;app.js&quot; and &quot;Vagrantfile&quot; listed.</p>
+</code></pre></div></div>
 
-<p>To run javascript files, we use the &quot;node&quot; and give it the name of the file we want to run.  In our case, our file is called &quot;app.js&quot; so our command looks like:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Terminal logged into VM</span>
+<p>Now run the “ls” command to see the contents of the current working directory and you should see “app.js” and “Vagrantfile” listed.</p>
+
+<p>To run javascript files, we use the “node” and give it the name of the file we want to run.  In our case, our file is called “app.js” so our command looks like:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal logged into VM</span>
 node app.js
-</code></pre></div>
-<p>You should see the text &quot;Hello World!&quot; appear below the command.  We now know everything is setup correctly and we can start making our web server.</p>
+</code></pre></div></div>
 
-<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/printing-hello-world-in-the-terminal.png" alt=""></p>
+<p>You should see the text “Hello World!” appear below the command.  We now know everything is setup correctly and we can start making our web server.</p>
 
-<h3>Final Code</h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">);</span>
-</code></pre></div>
+<p><img src="https://s3.amazonaws.com/spark-school/courses/twitter-clone/1/printing-hello-world-in-the-terminal.png" alt="" /></p>
+
+<h3 id="final-code">Final Code</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
                 
                     <p class="text-center">
                         <a href="/courses/twitter-clone/1/5" class="next-lesson-button">
