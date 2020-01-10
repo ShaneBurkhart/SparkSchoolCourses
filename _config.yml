@@ -4,6 +4,7 @@ markdown: kramdown
 plugins:
     - jekyll-sitemap
 exclude:
+ - Dockerfile
  - Makefile
  - Gemfile
  - Gemfile.lock
