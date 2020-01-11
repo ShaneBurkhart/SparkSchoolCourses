@@ -3,7 +3,6 @@ all: build
 build:
 	docker-compose build
 	docker-compose run build
-	rm _site/robots.txt
 
 prod:
 	git checkout master
