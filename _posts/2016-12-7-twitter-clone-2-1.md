@@ -1,17 +1,17 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/2/1
+permalink: /learn/courses/twitter-clone/2/1
 title: 2.1 Creating A Simple HTML Page
 course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'
-next-lesson-link: /courses/twitter-clone/2/2
+next-lesson-link: /learn/courses/twitter-clone/2/2
 ---
 
 ####Table Of Contents
 
 - **2.1 Creating A Simple HTML Page**
-- [2.2 Adding Style To Our HTML Page With CSS](/courses/twitter-clone/2/2)
-- [2.3 Adding The Tweet Form](/courses/twitter-clone/2/3)
+- [2.2 Adding Style To Our HTML Page With CSS](/learn/courses/twitter-clone/2/2)
+- [2.3 Adding The Tweet Form](/learn/courses/twitter-clone/2/3)
 
 ***Make sure you are logged into Vagrant before starting today's lessons.*** <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the "Logging Into Vagrant Guide"</a>
 

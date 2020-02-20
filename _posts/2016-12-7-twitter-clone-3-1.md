@@ -1,18 +1,18 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/3/1
+permalink: /learn/courses/twitter-clone/3/1
 title: 3.1 Connecting To MySQL
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
-next-lesson-link: /courses/twitter-clone/3/2
+next-lesson-link: /learn/courses/twitter-clone/3/2
 ---
 
 ####Table Of Contents
 
 - **3.1 Connecting To MySQL**
-- [3.2 Creating The Database And Tweets Table](/courses/twitter-clone/3/2)
-- [3.3 Inserting Some Tweets Into Our Database](/courses/twitter-clone/3/3)
-- [3.4 Connecting The Tweet Form To Our Web Server](/courses/twitter-clone/3/4)
+- [3.2 Creating The Database And Tweets Table](/learn/courses/twitter-clone/3/2)
+- [3.3 Inserting Some Tweets Into Our Database](/learn/courses/twitter-clone/3/3)
+- [3.4 Connecting The Tweet Form To Our Web Server](/learn/courses/twitter-clone/3/4)
 
 ***Make sure you are logged into Vagrant before starting today's lessons.*** <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the "Logging Into Vagrant Guide"</a>
 

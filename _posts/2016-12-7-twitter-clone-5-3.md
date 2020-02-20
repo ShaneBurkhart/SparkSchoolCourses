@@ -1,18 +1,18 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/5/3
+permalink: /learn/courses/twitter-clone/5/3
 title: 5.3 Creating An Edit Tweet Page
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'
-next-lesson-link: /courses/twitter-clone/5/4
+next-lesson-link: /learn/courses/twitter-clone/5/4
 ---
 
 ####Table Of Contents
 
-- [5.1 Adding An Edit Link To Tweets](/courses/twitter-clone/5/1)
-- [5.2 Getting Our Tweet From The Database](/courses/twitter-clone/5/2)
+- [5.1 Adding An Edit Link To Tweets](/learn/courses/twitter-clone/5/1)
+- [5.2 Getting Our Tweet From The Database](/learn/courses/twitter-clone/5/2)
 - **5.3 Creating An Edit Tweet Page**
-- [5.4 Updating The Tweet In The Database](/courses/twitter-clone/5/4)
+- [5.4 Updating The Tweet In The Database](/learn/courses/twitter-clone/5/4)
 
 In the last lesson, we got our tweet from the database and rendered the 'edit-tweet' EJS file, but that file doesn't exist yet.  Let's create an EJS file for our edit tweet page.  In the "views" directory, we are going to create a file called "edit-tweet.ejs" for our edit page.  Do that now and let's add the basic HTML structure for our site (header, css, etc.).
 

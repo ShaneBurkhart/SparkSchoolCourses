@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/5/4
+permalink: /learn/courses/twitter-clone/5/4
 title: 5.4 Updating The Tweet In The Database
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'
@@ -8,9 +8,9 @@ section: 'Day 5: Editing Tweets'
 
 ####Table Of Contents
 
-- [5.1 Adding An Edit Link To Tweets](/courses/twitter-clone/5/1)
-- [5.2 Getting Our Tweet From The Database](/courses/twitter-clone/5/2)
-- [5.3 Creating An Edit Tweet Page](/courses/twitter-clone/5/3)
+- [5.1 Adding An Edit Link To Tweets](/learn/courses/twitter-clone/5/1)
+- [5.2 Getting Our Tweet From The Database](/learn/courses/twitter-clone/5/2)
+- [5.3 Creating An Edit Tweet Page](/learn/courses/twitter-clone/5/3)
 - **5.4 Updating The Tweet In The Database**
 
 In the last lesson, we added a tweet preview and edit form to our edit tweet page, but our form submits to a route that doesn't exist yet.  In this lesson, we'll be making that route and updating the tweet in the database.

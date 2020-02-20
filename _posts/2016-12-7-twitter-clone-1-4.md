@@ -1,19 +1,19 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/1/4
+permalink: /learn/courses/twitter-clone/1/4
 title: 1.4 Your First Javascript Program
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
-next-lesson-link: /courses/twitter-clone/1/5
+next-lesson-link: /learn/courses/twitter-clone/1/5
 ---
 
 ####Table Of Contents
 
-- [1.1 Introduction](/courses/twitter-clone/1/1)
-- [1.2 Installing Tools](/courses/twitter-clone/1/2)
-- [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
+- [1.1 Introduction](/learn/courses/twitter-clone/1/1)
+- [1.2 Installing Tools](/learn/courses/twitter-clone/1/2)
+- [1.3 Setup Your Project And Connect To Your VM](/learn/courses/twitter-clone/1/3)
 - **1.4 Your First Javascript Program**
-- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
+- [1.5 Writing Your First Web Server](/learn/courses/twitter-clone/1/5)
 
 This guide assumes you know nothing about programming so let's create and run our first program.  We are going to start with a very basic program that prints the text "Hello World!" to the terminal.  This will get your feet wet as well as ensure that everything is setup correctly for our project.
 

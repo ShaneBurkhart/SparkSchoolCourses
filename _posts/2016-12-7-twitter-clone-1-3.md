@@ -1,19 +1,19 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/1/3
+permalink: /learn/courses/twitter-clone/1/3
 title: 1.3 Setup Your Project And Connect To Your VM
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
-next-lesson-link: /courses/twitter-clone/1/4
+next-lesson-link: /learn/courses/twitter-clone/1/4
 ---
 
 ####Table Of Contents
 
-- [1.1 Introduction](/courses/twitter-clone/1/1)
-- [1.2 Installing Tools](/courses/twitter-clone/1/2)
+- [1.1 Introduction](/learn/courses/twitter-clone/1/1)
+- [1.2 Installing Tools](/learn/courses/twitter-clone/1/2)
 - **1.3 Setup Your Project And Connect To Your VM**
-- [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
-- [1.5 Writing Your First Web Server](/courses/twitter-clone/1/5)
+- [1.4 Your First Javascript Program](/learn/courses/twitter-clone/1/4)
+- [1.5 Writing Your First Web Server](/learn/courses/twitter-clone/1/5)
 
 To set up our project, we need to create a place to store our project files and connect to our VM so we can develop our web app in it.
 

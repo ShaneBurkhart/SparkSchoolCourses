@@ -1,18 +1,18 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/5/1
+permalink: /learn/courses/twitter-clone/5/1
 title: 5.1 Adding An Edit Link To Tweets
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'
-next-lesson-link: /courses/twitter-clone/5/2
+next-lesson-link: /learn/courses/twitter-clone/5/2
 ---
 
 ####Table Of Contents
 
 - **5.1 Adding An Edit Link To Tweets**
-- [5.2 Getting Our Tweet From The Database](/courses/twitter-clone/5/2)
-- [5.3 Creating An Edit Tweet Page](/courses/twitter-clone/5/3)
-- [5.4 Updating The Tweet In The Database](/courses/twitter-clone/5/4)
+- [5.2 Getting Our Tweet From The Database](/learn/courses/twitter-clone/5/2)
+- [5.3 Creating An Edit Tweet Page](/learn/courses/twitter-clone/5/3)
+- [5.4 Updating The Tweet In The Database](/learn/courses/twitter-clone/5/4)
 
 ***Make sure you are logged into Vagrant before starting today's lessons.*** <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the "Logging Into Vagrant Guide"</a>
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/2/3
+permalink: /learn/courses/twitter-clone/2/3
 title: 2.3 Adding The Tweet Form
 course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'
@@ -8,8 +8,8 @@ section: 'Day 2: Creating The Tweets Form In HTML/CSS'
 
 ####Table Of Contents
 
-- [2.1 Creating A Simple HTML Page](/courses/twitter-clone/2/1)
-- [2.2 Adding Style To Our HTML Page With CSS](/courses/twitter-clone/2/2)
+- [2.1 Creating A Simple HTML Page](/learn/courses/twitter-clone/2/1)
+- [2.2 Adding Style To Our HTML Page With CSS](/learn/courses/twitter-clone/2/2)
 - **2.3 Adding The Tweet Form**
 
 Next, let's make a form so users can submit tweets.  Since creating user profiles is out of the scope of the course, we are going to have the user input their Twitter handle as well as the body of their tweet.  Let's replace the contents of our "main" element with our tweet form.

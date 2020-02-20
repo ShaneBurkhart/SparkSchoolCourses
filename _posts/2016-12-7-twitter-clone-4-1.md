@@ -1,17 +1,17 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/4/1
+permalink: /learn/courses/twitter-clone/4/1
 title: 4.1 Creating A Tweet In HTML/CSS
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'
-next-lesson-link: /courses/twitter-clone/4/2
+next-lesson-link: /learn/courses/twitter-clone/4/2
 ---
 
 ####Table Of Contents
 
 - **4.1 Creating A Tweet In HTML/CSS**
-- [4.2 Reading The Tweet From The Database](/courses/twitter-clone/4/2)
-- [4.3 Rendering Tweets On Our Page](/courses/twitter-clone/4/3)
+- [4.2 Reading The Tweet From The Database](/learn/courses/twitter-clone/4/2)
+- [4.3 Rendering Tweets On Our Page](/learn/courses/twitter-clone/4/3)
 
 ***Make sure you are logged into Vagrant before starting today's lessons.*** <a href="/guides/logging-into-vagrant" target="_blank">Click here to view the "Logging Into Vagrant Guide"</a>
 

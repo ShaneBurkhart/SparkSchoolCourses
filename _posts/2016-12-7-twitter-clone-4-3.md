@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/4/3
+permalink: /learn/courses/twitter-clone/4/3
 title: 4.3 Rendering Tweets On Our Page
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'
@@ -8,8 +8,8 @@ section: 'Day 4: Showing Tweets'
 
 ####Table Of Contents
 
-- [4.1 Creating A Tweet In HTML/CSS](/courses/twitter-clone/4/1)
-- [4.2 Reading The Tweet From The Database](/courses/twitter-clone/4/2)
+- [4.1 Creating A Tweet In HTML/CSS](/learn/courses/twitter-clone/4/1)
+- [4.2 Reading The Tweet From The Database](/learn/courses/twitter-clone/4/2)
 - **4.3 Rendering Tweets On Our Page**
 
 In the last lesson, we got our tweets from the database and saw how we can loop through them to get each tweet.  Now, let's pass these to our template.

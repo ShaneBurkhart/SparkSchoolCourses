@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/1/5
+permalink: /learn/courses/twitter-clone/1/5
 title: 1.5 Writing Your First Web Server
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
@@ -8,10 +8,10 @@ section: 'Day 1: Getting Your Development Environment Setup'
 
 ####Table Of Contents
 
-- [1.1 Introduction](/courses/twitter-clone/1/1)
-- [1.2 Installing Tools](/courses/twitter-clone/1/2)
-- [1.3 Setup Your Project And Connect To Your VM](/courses/twitter-clone/1/3)
-- [1.4 Your First Javascript Program](/courses/twitter-clone/1/4)
+- [1.1 Introduction](/learn/courses/twitter-clone/1/1)
+- [1.2 Installing Tools](/learn/courses/twitter-clone/1/2)
+- [1.3 Setup Your Project And Connect To Your VM](/learn/courses/twitter-clone/1/3)
+- [1.4 Your First Javascript Program](/learn/courses/twitter-clone/1/4)
 - **1.5 Writing Your First Web Server**
 
 We're finally have everything set up and are ready to start creating a web server.  Before we can write our web server, we need to create a "package.json" file in the root of our project directory.  This file stores information about the project as well as keeps track of the Node.js libraries we want to install.

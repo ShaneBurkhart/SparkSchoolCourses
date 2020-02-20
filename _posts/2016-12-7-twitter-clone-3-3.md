@@ -1,18 +1,18 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/3/3
+permalink: /learn/courses/twitter-clone/3/3
 title: 3.3 Inserting Some Tweets Into Our Database
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
-next-lesson-link: /courses/twitter-clone/3/4
+next-lesson-link: /learn/courses/twitter-clone/3/4
 ---
 
 ####Table Of Contents
 
-- [3.1 Connecting To MySQL](/courses/twitter-clone/3/1)
-- [3.2 Creating The Database And Tweets Table](/courses/twitter-clone/3/2)
+- [3.1 Connecting To MySQL](/learn/courses/twitter-clone/3/1)
+- [3.2 Creating The Database And Tweets Table](/learn/courses/twitter-clone/3/2)
 - **3.3 Inserting Some Tweets Into Our Database**
-- [3.4 Connecting The Tweet Form To Our Web Server](/courses/twitter-clone/3/4)
+- [3.4 Connecting The Tweet Form To Our Web Server](/learn/courses/twitter-clone/3/4)
 
 Right now, our table doesn't contain any data.  Unfortunately, our form isn't working yet, but we can insert tweets manually by running SQL queries in our MySQL GUI.
 

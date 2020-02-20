@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/3/4
+permalink: /learn/courses/twitter-clone/3/4
 title: 3.4 Connecting The Tweet Form To Our Web Server
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
@@ -8,9 +8,9 @@ section: 'Day 3: Creating And Saving Tweets'
 
 ####Table Of Contents
 
-- [3.1 Connecting To MySQL](/courses/twitter-clone/3/1)
-- [3.2 Creating The Database And Tweets Table](/courses/twitter-clone/3/2)
-- [3.3 Inserting Some Tweets Into Our Database](/courses/twitter-clone/3/3)
+- [3.1 Connecting To MySQL](/learn/courses/twitter-clone/3/1)
+- [3.2 Creating The Database And Tweets Table](/learn/courses/twitter-clone/3/2)
+- [3.3 Inserting Some Tweets Into Our Database](/learn/courses/twitter-clone/3/3)
 - **3.4 Connecting The Tweet Form To Our Web Server**
 
 Now that we know how to create tweets, let's do that in code.  Earlier we created our tweet form, but it doesn't do anything yet.

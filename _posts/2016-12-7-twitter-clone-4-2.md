@@ -1,17 +1,17 @@
 ---
 layout: default
-permalink: /courses/twitter-clone/4/2
+permalink: /learn/courses/twitter-clone/4/2
 title: 4.2 Reading The Tweet From The Database
 course: Twitter Clone
 section: 'Day 4: Showing Tweets'
-next-lesson-link: /courses/twitter-clone/4/3
+next-lesson-link: /learn/courses/twitter-clone/4/3
 ---
 
 ####Table Of Contents
 
-- [4.1 Creating A Tweet In HTML/CSS](/courses/twitter-clone/4/1)
+- [4.1 Creating A Tweet In HTML/CSS](/learn/courses/twitter-clone/4/1)
 - **4.2 Reading The Tweet From The Database**
-- [4.3 Rendering Tweets On Our Page](/courses/twitter-clone/4/3)
+- [4.3 Rendering Tweets On Our Page](/learn/courses/twitter-clone/4/3)
 
 Our page now has a static tweet, but we still need to get our tweets from our database and pass them to our "tweet.ejs" template file so it can render them.
 
