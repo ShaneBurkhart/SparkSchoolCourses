@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/3/1
+permalink: /courses/twitter-clone/3/1
 title: 3.1 Connecting To MySQL
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/3/4
+permalink: /courses/twitter-clone/3/4
 title: 3.4 Connecting The Tweet Form To Our Web Server
 course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'

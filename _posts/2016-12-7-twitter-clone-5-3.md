@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/5/3
+permalink: /courses/twitter-clone/5/3
 title: 5.3 Creating An Edit Tweet Page
 course: Twitter Clone
 section: 'Day 5: Editing Tweets'

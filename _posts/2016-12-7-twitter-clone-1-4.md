@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/1/4
+permalink: /courses/twitter-clone/1/4
 title: 1.4 Your First Javascript Program
 course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'

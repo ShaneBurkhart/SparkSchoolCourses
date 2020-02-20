@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/2/1
+permalink: /courses/twitter-clone/2/1
 title: 2.1 Creating A Simple HTML Page
 course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'

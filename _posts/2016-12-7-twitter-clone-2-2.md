@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/2/2
+permalink: /courses/twitter-clone/2/2
 title: 2.2 Adding Style To Our HTML Page With CSS
 course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /learn/courses/twitter-clone/2/3
+permalink: /courses/twitter-clone/2/3
 title: 2.3 Adding The Tweet Form
 course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'
