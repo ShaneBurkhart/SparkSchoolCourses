@@ -7,7 +7,7 @@ section: 'Day 2: Creating The Tweets Form In HTML/CSS'
 next-lesson-link: /learn/courses/twitter-clone/2/3
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [2.1 Creating A Simple HTML Page](/learn/courses/twitter-clone/2/1)
 - **2.2 Adding Style To Our HTML Page With CSS**
@@ -32,7 +32,7 @@ Earlier, I mentioned that you have to stop and restart your server every time yo
 
 Let's give our header some style now.
 
-###CSS 101
+### CSS 101
 
 HTML is used to structure a web page, but overall, HTML is fairly plain.  To add style to HTML, we use CSS which stands for cascading style sheets.
 

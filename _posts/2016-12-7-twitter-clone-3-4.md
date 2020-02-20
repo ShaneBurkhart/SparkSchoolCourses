@@ -6,7 +6,7 @@ course: Twitter Clone
 section: 'Day 3: Creating And Saving Tweets'
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [3.1 Connecting To MySQL](/learn/courses/twitter-clone/3/1)
 - [3.2 Creating The Database And Tweets Table](/learn/courses/twitter-clone/3/2)
@@ -33,7 +33,7 @@ app.post('/tweets/create', function(req, res) {
 
 Right now, we are outputting the text "Creating tweet." so we can test if everything is working.  Restart your server and try submitting the form on the homepage ([http://127.0.0.1:8080](http://127.0.0.1:8080)).  You should see "Creating tweet." on the page which means our form is connected to our server.
 
-###Connecting To The Database In Code
+### Connecting To The Database In Code
 
 Before we can have our POST route create tweets, we need to establish a connection to our database.  To do this, we need to install the MySQL driver for node. Run the following in your terminal. Don't forget "--no-bin-links" for Windows.
 
@@ -181,7 +181,7 @@ Restart your web server in your terminal and you should see the following:
 
 ![](https://s3.amazonaws.com/spark-school/courses/twitter-clone/3/connected-to-database-in-terminal.png)
 
-###Saving The Tweet To The Database
+### Saving The Tweet To The Database
 
 We now have a connection to our database in "app.js", so let's get the form data and save our Tweet to the database.
 

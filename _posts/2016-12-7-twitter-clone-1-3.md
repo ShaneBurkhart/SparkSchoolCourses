@@ -43,7 +43,7 @@ The first indented line tells Vagrant that we want to use the box that I made fo
 
 The next line forwards port 8080 from the VM to the host machine.  Our web server is going to run on port 8080 for development so we need to be able to access that. If you don't know what ports are, don't worry, I'll explain them a little later.  For now, just know that our web server is going to run on our VM and this line let's us access it from our browser.
 
-###Connect To The VM
+### Connect To The VM
 
 Now that we have defined what our VM will look like for our project, we need to start it and connect to it.  Our goal here is to start the VM on your computer so we can log into that run terminal commands in our VM.
 
@@ -64,7 +64,7 @@ Let's get started.  I'm going to explain the terminal later, but for right now, 
 
 These instructions are specific to your operating system so scroll down to find the section for your OS.
 
-####OS X/Linux
+#### OS X/Linux
 
 Assuming you created the "TwitterClone" folder on the Desktop, open the Mac application called "Terminal" in your Applications, and navigate to the project directory with:
 
@@ -97,7 +97,7 @@ Type that into your terminal and press enter.  You should see the last line of y
 
 You are now logged into your VM and are ready to get started.  All terminal commands from here on out will assume you are logged into your VM.  If you ever need help getting logged back in, look back here as a reference.
 
-####Windows
+#### Windows
 
 Assuming you created the "TwitterClone" folder on the Desktop, open "Windows Powershell" from the start menu.  I'll refer to "Windows Powershell" as the terminal for the rest of this guide.  Let's navigate to the project directory with:
 

@@ -6,7 +6,7 @@ course: Twitter Clone
 section: 'Day 1: Getting Your Development Environment Setup'
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [1.1 Introduction](/learn/courses/twitter-clone/1/1)
 - [1.2 Installing Tools](/learn/courses/twitter-clone/1/2)
@@ -51,7 +51,7 @@ If you open the package.json file, you should see "express" listed under "depend
 
 When you run "npm install", npm creates a directory called "node_modules" in the root of our project.  This holds all of the installed packages for the project.
 
-###How Do Web Servers Work
+### How Do Web Servers Work
 
 Before we can create a web server, we need to understand how it works.  Web servers run on a protocol called HTTP.  You may have seen "http" when copying a url.  When a url starts with "http" or "https", you know it's a request to a web server.  You don't need to know the specifics of HTTP, just know that it tells the browser how to communicate with the server.
 
@@ -75,7 +75,7 @@ Below is a diagram showing the client and server and how they make requests.
 
 If you look at the diagram above, you can see there are two distinct computers to a web request: a web server and the client computer.  Some people will call the client computer the "frontend" and the web server the "backend".
 
-###Writing Our Web Server
+### Writing Our Web Server
 
 With a basic understanding of how a web server works, let's create one. Open your "app.js" and remove our previous code.  This will be the file that contains our web server.
 
@@ -246,7 +246,7 @@ app.listen(8080, function() {
 });
 ```
 
-###Starting The Server And Viewing The Page
+### Starting The Server And Viewing The Page
 
 Now we have our server written, let's run it. Save "app.js" and go to your terminal (remember we need to be logged into our VM and be in our project directory).
 

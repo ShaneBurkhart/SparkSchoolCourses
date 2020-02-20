@@ -7,7 +7,7 @@ section: 'Day 1: Getting Your Development Environment Setup'
 next-lesson-link: /learn/courses/twitter-clone/1/5
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [1.1 Introduction](/learn/courses/twitter-clone/1/1)
 - [1.2 Installing Tools](/learn/courses/twitter-clone/1/2)

@@ -7,7 +7,7 @@ section: 'Day 3: Creating And Saving Tweets'
 next-lesson-link: /learn/courses/twitter-clone/3/3
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [3.1 Connecting To MySQL](/learn/courses/twitter-clone/3/1)
 - **3.2 Creating The Database And Tweets Table**
@@ -16,7 +16,7 @@ next-lesson-link: /learn/courses/twitter-clone/3/3
 
 We are now connect to our MySQL server, but we don't have a database yet.  In this section, we'll be creating a database and a table in that database called "Tweets".  Before we can do this, let's go over what databases are and how they work.
 
-###Understanding Databases
+### Understanding Databases
 
 A database is a collection of data that is organized so that it's easy to read, write, update and destroy data.  There are many ways to organize data and different database formats are better at some things than others.
 
@@ -30,7 +30,7 @@ Tables are made up of columns that define what data we want to store and rows th
 
 To read and modify this data, we use the SQL query language.  MySQL uses the SQL language to run queries on the database.  We will learn the different queries as we go, and all you need to know right now is that every SQL query ends with a semicolon.
 
-###Creating Our Database
+### Creating Our Database
 
 Right now, we are connected to the MySQL server but don't have a database for our project yet.  Creating databases is pretty straightforward and can simply be done with the "CREATE DATABASE" command.
 
@@ -50,7 +50,7 @@ USE twitter;
 
 With the "twitter" database selected, we can now create tables in the selected database.
 
-###Creating The Tweets Table
+### Creating The Tweets Table
 
 We need to decide on a name for our table.  Generally you name it what the table contains.  For instance, our tables holds tweets so we are going to call it "Tweets".  Table names are generally plural since they hold more than one entry and are capitalized.
 

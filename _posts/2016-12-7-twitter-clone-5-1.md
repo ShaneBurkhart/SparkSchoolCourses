@@ -7,7 +7,7 @@ section: 'Day 5: Editing Tweets'
 next-lesson-link: /learn/courses/twitter-clone/5/2
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - **5.1 Adding An Edit Link To Tweets**
 - [5.2 Getting Our Tweet From The Database](/learn/courses/twitter-clone/5/2)

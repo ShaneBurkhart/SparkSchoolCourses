@@ -7,7 +7,7 @@ section: 'Day 3: Creating And Saving Tweets'
 next-lesson-link: /learn/courses/twitter-clone/3/4
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [3.1 Connecting To MySQL](/learn/courses/twitter-clone/3/1)
 - [3.2 Creating The Database And Tweets Table](/learn/courses/twitter-clone/3/2)

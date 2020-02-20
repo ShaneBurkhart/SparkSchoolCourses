@@ -7,7 +7,7 @@ section: 'Day 3: Creating And Saving Tweets'
 next-lesson-link: /learn/courses/twitter-clone/3/2
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - **3.1 Connecting To MySQL**
 - [3.2 Creating The Database And Tweets Table](/learn/courses/twitter-clone/3/2)
@@ -26,13 +26,13 @@ If you know how to write a basic CRUD app, you can build just about any web app 
 
 Each of the next four days of the course are going to be used to explain one of the four letters in CRUD.  Today, we are going to start with the "C" and learn how to create data in a database.  Before we can create any data, we need to understand a little bit about databases.
 
-###Connect To MySQL
+### Connect To MySQL
 
 The first thing we to do is connect to our MySQL server we have running in our VM. It starts running at boot so you don't need to do anything but log into the VM to get it running.  To connect to the MySQL server, we are going to use the MySQL GUI we installed in day one (Sequel Pro or HeidiSQL).
 
 Since our GUI application is running on the host machine, we need to deal with different operating systems again.  Scroll down to find the instructions for your operating system.
 
-####Windows
+#### Windows
 
 Open the HeidiSQL program we downloaded earlier. You should see a screen that looks like the following.
 
@@ -62,7 +62,7 @@ Click on the "Query" tab in the upper middle part of the screen.  This will open
 
 In the rest of the course, I'm going to mention running the SQL command in your MySQL GUI.  To run SQL queries in HeidiSQL you click the command you want to run and press ctrl-shift-F9.  Remember, semicolons mark the end of a command, so keep that in mind when selecting commands.
 
-####OS X
+#### OS X
 
 Open Sequel Pro and you should see a screen asking you for connection details.  Click on the "SSH" tab and fill out the form with the following info:
 
@@ -86,6 +86,6 @@ As you can see at the top, we are in the "Query" tab.  In this tab, we can run S
 
 In the rest of the course, I'm going to mention running the SQL command in your MySQL GUI.  To run SQL queries in Sequel Pro, click on the command you want to run and press cmd+r.  Remember, semicolons mark the end of a command, so keep that in mind when selecting commands.
 
-####Linux
+#### Linux
 
 I doubt many people taking this course are on Linux, but if you are, send me an email at shane@trysparkschool.com and I'll help you get set up with a MySQL GUI.

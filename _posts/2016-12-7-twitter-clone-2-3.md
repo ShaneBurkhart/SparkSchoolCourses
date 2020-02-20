@@ -6,7 +6,7 @@ course: Twitter Clone
 section: 'Day 2: Creating The Tweets Form In HTML/CSS'
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - [2.1 Creating A Simple HTML Page](/learn/courses/twitter-clone/2/1)
 - [2.2 Adding Style To Our HTML Page With CSS](/learn/courses/twitter-clone/2/2)

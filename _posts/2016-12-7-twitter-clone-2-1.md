@@ -7,7 +7,7 @@ section: 'Day 2: Creating The Tweets Form In HTML/CSS'
 next-lesson-link: /learn/courses/twitter-clone/2/2
 ---
 
-####Table Of Contents
+#### Table Of Contents
 
 - **2.1 Creating A Simple HTML Page**
 - [2.2 Adding Style To Our HTML Page With CSS](/learn/courses/twitter-clone/2/2)
@@ -23,7 +23,7 @@ If you're interested in learning more about design, I recommend looking at other
 
 Remember that all terminal commands we run today refer to running them in our VM.  Make sure you are logged in to your VM before getting started.  If you need help, refer back to the "Setup Your Project And Connect To Your VM" in day 1.
 
-###HTML 101
+### HTML 101
 
 HTML isn't complicated and it's more of a format than it is a language.  What I mean by this is HTML doesn't contain any logic and instead is just a document that tells the browser how the web page should be structured.
 
